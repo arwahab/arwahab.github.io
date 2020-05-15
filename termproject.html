@@ -1,0 +1,72 @@
+<html>
+<head>
+
+  <title>AWCC Movie Search</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  
+  
+</head>
+<body onload="javascript:requestPopularMovies()">
+  <div id="header">
+	<button style="float:right" onclick='populateFavorites()'>Login</button>
+	<button style="float:right" onclick='registerEmail()'>Register</button>
+	<input type="search" id="email" placeholder="Enter email address" style="float:right">
+	
+	<h1 onclick="hideResults()">AWCC Movie Search</h1>
+  </div>
+	<a name="topOfPage" style="text-decoration:none;color: inherit"/>
+  <div id="main-container">
+	<h2>Popular Movies</h2>
+	<div id="popularMoviesContainer"></div>
+	<h2>Favorites</h2>
+	<div id="favorites"></div>
+	<h2>Movie Search</h2>
+    <div id="search-container">
+		<button class='fr' onclick='gridView()'>Grid View</button>
+		<button class='fr' onclick='listView()'>List View</button>
+		
+		  <input type="search" id="movieSearchBox" placeholder="Search for a movie">
+		  <button id="searchButton" onclick="searchForMovies()">Search</button> 
+	   
+    </div>
+	
+	<button id="resultsPage1" onclick="searchForPage1()">1</button> 
+    <button id="resultsPage2" onclick="searchForPage2()">2</button>
+    <button id="resultsPage3" onclick="searchForPage3()">3</button>
+	<button id="resultsPage4" onclick="searchForPage4()">4</button>
+	<button id="resultsPage5" onclick="searchForPage5()">5</button>
+    <div id="results-container"></div>
+	<div id="data-container"></div>
+	<div id="cast-container"></div>
+	
+  </div>  
+
+  <!--<div id="footer">IT 4203 - Term Project | Cristian Cheveresan | Abdul Wahab </div>-->
+  
+<script type="text/javascript" src="index.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script id="castDetailsTemplate" type="text/template">
+	<div class='castMember'>
+		<div><a href="#topOfPage" style="text-decoration:none;color: inherit"><input type="button" id="btnClose" value="Close This" /></a></div>
+		<h2>{{name}}</h2>
+		<img src='https://image.tmdb.org/t/p/w185{{profile_path}}'/>
+		<h2>Date of Birth: {{birthday}}</h2>
+		<p>{{biography}}</p>
+		
+	</div>
+</script>
+<script id="popularMoviesTemplate" type="text/template">
+	{{#results}}
+		<div id="popMovie" onclick="requestMovieData({{id}});document.getElementById('data-container').style.display='block';document.getElementById('popularMoviesContainer').style.display='none'">
+		<img src='https://image.tmdb.org/t/p/w45{{poster_path}}'/>
+		<h6>{{title}}</h6>
+		</div>
+	{{/results}}
+</script>
+	<a name="toCastDetails" style="text-decoration:none;color: inherit"/>
+</body>
+</html>
