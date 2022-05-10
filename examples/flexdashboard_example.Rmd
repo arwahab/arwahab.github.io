@@ -1,201 +1,116 @@
 ---
-title: "flexdashboard example"
-subtitle: "https://martinctc.github.io"
-author: "Martin Chan"
-date: "2019"
+title: "Sales Report with Highcharter"
+author: "Joshua Kunst"
 output: 
   flexdashboard::flex_dashboard:
-  orientation: columns
-  vertical_layout: fill
+    orientation: columns
+    social: menu
+    source_code: embed
 ---
-
-<style>                     
-.navbar {
-  background-color: rgb(47,85,151);
-}
-
-</style>   
-
 
 ```{r setup, include=FALSE}
-library(tidyverse)
-library(ggiraph)
-library(ggthemes)
+library(highcharter)
+library(dplyr)
+library(viridisLite)
+library(forecast)
+library(treemap)
 library(flexdashboard)
-library(dygraphs)
-library(wordcloud2)
-library(janeaustenr)
-library(tidytext)
 
-#' Make it pipe friendly
-plot_ggiraph <- function(ggobject, ...){
-  ggiraph::girafe(ggobj = ggobject, ...)
-}
-
-rgb2hex <- function(r,g,b) rgb(r, g, b, maxColorValue = 255)
+thm <- 
+  hc_theme(
+    colors = c("#1a6ecc", "#434348", "#90ed7d"),
+    chart = list(
+      backgroundColor = "transparent",
+      style = list(fontFamily = "Source Sans Pro")
+    ),
+    xAxis = list(
+      gridLineWidth = 1
+    )
+  )
 
 ```
 
-
-Home {data-icon="fa-tachometer-alt"}
-=====================================
-
-Column {data-width=120}
+Column {data-width=600}
 -----------------------------------------------------------------------
 
-### Introduction
+### Sales Forecast
 
-> This is an example to showcase the visualisations we can create in a static HTML file, using the two R packages **flexdashboard** and **RMarkdown**.
-
-In this dashboard, we use a number of canonical inbuilt datasets with R to display a variety of visualisations, including time-series charts, interactive scatter plots, word clouds, etc. 
-
-Use the tabs in the navigation bar above to browse through the different visualisations.
-
-### Average Sepal.Width of setosa [iris]
 ```{r}
-iris %>%
-  filter(Species == "setosa") %>%
-  pull(Sepal.Width) %>%
-  mean() %>%
-  round(1) %>%
-  valueBox(icon = "fa-spa")
+AirPassengers %>% 
+  forecast(level = 90) %>% 
+  hchart() %>% 
+  hc_add_theme(thm)
 ```
 
-### Average mpg of cars in [mpg] dataset
+### Sales by State
+
 ```{r}
-mtcars %>% 
-  pull(mpg) %>%
-  mean() %>%
-  round(1) %>%
-  valueBox(color = rgb2hex(150,48,20), icon = "fa-car")
+data("USArrests", package = "datasets")
+data("usgeojson")
+
+USArrests <- USArrests %>%
+  mutate(state = rownames(.))
+
+n <- 4
+colstops <- data.frame(
+  q = 0:n/n,
+  c = substring(viridis(n + 1), 0, 7)) %>%
+  list.parse2()
+
+highchart() %>%
+  hc_add_series_map(usgeojson, USArrests, name = "Sales",
+                    value = "Murder", joinBy = c("woename", "state"),
+                    dataLabels = list(enabled = TRUE,
+                                      format = '{point.properties.postalcode}')) %>%
+  hc_colorAxis(stops = colstops) %>%
+  hc_legend(valueDecimals = 0, valueSuffix = "%") %>%
+  hc_mapNavigation(enabled = TRUE) %>%
+  hc_add_theme(thm)
 ```
 
-### Average height of beings on Tatooine [starwars]
-```{r}
-starwars %>%
-  filter(homeworld == "Tatooine") %>%
-  pull(height) %>%
-  mean(na.rm = TRUE) %>%
-  round(1) %>%
-  valueBox(color = rgb2hex(112,48,160), icon = "fa-walking")
-```
-
-
-Column {data-width=250}
+Column {.tabset data-width=400}
 -----------------------------------------------------------------------
 
-### Interactive Scatter Plot
+### Sales by Category
+
+```{r, fig.keep='none'}
+data("Groceries", package = "arules")
+dfitems <- tbl_df(Groceries@itemInfo)
+
+set.seed(10)
+
+dfitemsg <- dfitems %>%
+  mutate(category = gsub(" ", "-", level1),
+         subcategory = gsub(" ", "-", level2)) %>%
+  group_by(category, subcategory) %>% 
+  summarise(sales = n() ^ 3 ) %>% 
+  ungroup() %>% 
+  sample_n(31)
+
+tm <- treemap(dfitemsg, index = c("category", "subcategory"),
+              vSize = "sales", vColor = "sales",
+              type = "value", palette = rev(viridis(6)))
+
+highchart() %>% 
+  hc_add_series_treemap(tm, allowDrillToNode = TRUE,
+                        layoutAlgorithm = "squarified") %>% 
+  hc_add_theme(thm)
+```
+
+### Best Sellers
+
 ```{r}
-iris %>%
-  mutate(tool_tip = paste0("Sepal Length: ", Sepal.Length,
-                          "; Sepal Width: ", Sepal.Width,
-                          "; Species: ", Species)) %>%
-  ggplot(aes(x = Sepal.Length,
-             y = Sepal.Width,
-             colour = Species,
-             data_id = Species,
-             tooltip = tool_tip)) +
-  geom_point_interactive() +
-  ggtitle("Sepal Length and Sepal Width by iris Species",
-          subtitle = "Dataset: iris") +
-  ggthemes::theme_economist() -> gg
+set.seed(2)
 
-ggiraph::girafe(ggobj = gg, width = 7, height = 4)
+nprods <- 10
 
+dfitems %>% 
+  sample_n(nprods) %>% 
+  .$labels %>% 
+  rep(times = sort(sample( 1e4:2e4, size = nprods), decreasing = TRUE)) %>% 
+  factor(levels = unique(.)) %>% 
+  hchart(showInLegend = FALSE, name = "Sales", pointWidth = 10) %>% 
+  hc_add_theme(thm) %>% 
+  hc_chart(type = "bar")
+  
 ```
-
-### Time Series - Lung Deaths
-```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-lungDeaths <- cbind(mdeaths, fdeaths)
-dygraph(lungDeaths) %>%
-  dySeries("mdeaths", label = "Male") %>%
-  dySeries("fdeaths", label = "Female") %>%
-  dyOptions(stackedGraph = TRUE) %>%
-  dyRangeSelector(height = 20)
-```
-
-Column {data-width=250}
------------------------------------------------------------------------
-
-### Downloadable Interactive Table
-```{r}
-mtcars %>%
-    DT::datatable(caption = "mtcars data table with download buttons",
-                extensions = 'Buttons',
-                options = list(bLengthChange = FALSE,
-                               dom = 'Blfrtip',
-                               buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
-                               lengthMenu = list(c(10,25,50,-1),
-                                                 c(10,25,50,"All"))))
-```
-
-### Word Cloud - Emma (Jane Austen)
-```{r}
-tibble(text = janeaustenr::emma) %>%
-  tidytext::unnest_tokens(word, text) %>%
-  anti_join(stop_words) %>%
-  count(word, sort = TRUE) %>%
-  wordcloud2() + WCtheme(1)
-
-```
-
----
-
-
-iris  {data-navmenu="Explore me" data-icon="fa-list"}
-=====================================
-Column {data-width=150}
------------------------------------------------------------------------
-
-### Overview 
-
-Welcome to the dashboard! 
-
-Use the above tabs to flick through different visualizations.
-
-This current page is showing data from the *iris* dataset.
-
----
-
-#### `iris` dataset
-
-This is the famous iris dataset by Ronald Fisher.
-
-Column {data-width=300 .tabset .tabset-fade}
------------------------------------------------------------------------
-
-### Interactive scatter plot
-```{r}
-iris %>%
-  mutate(tool_tip = paste0("Sepal Length: ", Sepal.Length,
-                          "; Sepal Width: ", Sepal.Width,
-                          "; Species: ", Species)) %>%
-  ggplot(aes(x = Sepal.Length,
-             y = Sepal.Width,
-             colour = Species,
-             data_id = Species,
-             tooltip = tool_tip)) +
-  geom_point_interactive() +
-  ggtitle("Sepal Length and Sepal Width by iris Species",
-          subtitle = "Dataset: iris") +
-  ggthemes::theme_economist()-> gg
-
-ggiraph::girafe(ggobj = gg, width = 7, height = 4.5)
-
-```
-
-### Interactive scatterplot with facets
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-iris %>%
-  mutate(tool_tip = paste(Sepal.Length, Sepal.Width, sep = ", ")) %>%
-  ggplot(aes(x = Sepal.Width, y = Sepal.Length, colour = Species,tooltip = tool_tip, data_id = tool_tip)) +
-  geom_point_interactive() +
-  facet_grid(cols = vars(Species)) +
-  ggtitle("Example of a chart which will be a pain to build in Excel",
-          subtitle = "(Especially if you want the interactivity as well)") +
-  ggthemes::theme_igray()-> gg
-
-ggiraph::girafe(ggobj = gg, width = 7, height = 3.5)
-```
-
