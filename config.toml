@@ -1,0 +1,28 @@
+baseURL = 'https://wahab2.com/'
+languageCode = 'en-us'
+title = 'Abdul R Wahab'
+theme = "m10c"
+
+[params]
+  author = "Abdul R Wahab"
+  description = "I enjoy making complicated things simple!"
+  avatar = "avatar.png"
+  favicon = "favicon.ico"
+  menu_item_separator = " · "
+  
+  [[params.social]]
+    icon = "linkedin"
+    name = "LinkedIn"
+    url = "https://linkedin.com/in/arwahab"
+  
+  [[params.social]]
+    icon = "mail"
+    name = "mail"
+    url = "mailto:arw9511@gmail.com"
+  
+  [[params.social]]
+    icon = "github"
+    name = "GitHub"
+    url = "https://github.com/arwahab"
+
+[menu]
