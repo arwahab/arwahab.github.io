@@ -31,11 +31,12 @@ function evaluateArchitectures(requirements) {
 
 
             const requirementWeight =
-                requirements[dimension];
+                requirements[dimension] || 0;
+
 
 
             const capability =
-                architecture.scores[dimension];
+                architecture.scores[dimension] || 0;
 
 
 
@@ -50,29 +51,47 @@ function evaluateArchitectures(requirements) {
 
 
 
+        const finalScore =
+            Math.round(
+                score / dimensions.length
+            );
+
+
+
         return {
 
 
             ...architecture,
 
 
+            // Always keep architecture fit between 0-100
             finalScore:
-                Math.round(
-                    score / dimensions.length * 100
+                Math.min(
+                    100,
+                    Math.max(
+                        0,
+                        finalScore
+                    )
                 )
+
 
         };
 
 
     })
 
+
     .sort(
-        (a,b)=>
-        b.finalScore -
-        a.finalScore
+
+        (a,b) =>
+            b.finalScore -
+            a.finalScore
+
     );
 
+
 }
+
 
 
 
@@ -83,7 +102,9 @@ function getRecommendation(requirements){
 
 
     const results =
-        evaluateArchitectures(requirements);
+        evaluateArchitectures(
+            requirements
+        );
 
 
 
@@ -91,17 +112,23 @@ function getRecommendation(requirements){
 
 
         winner:
+
             results[0],
 
 
+
         alternatives:
+
             results.slice(1,4),
 
 
+
         ranking:
+
             results
 
 
     };
+
 
 }

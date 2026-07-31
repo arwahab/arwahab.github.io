@@ -18,7 +18,9 @@ function selectScenario(scenarioId) {
 
 
 
-    updateScenarioContext(scenario);
+    updateScenarioContext(
+        scenario
+    );
 
 
 
@@ -60,7 +62,7 @@ function selectScenario(scenarioId) {
 
 
 
-function updateScenarioContext(scenario) {
+function updateScenarioContext(scenario){
 
 
     const title =
@@ -82,7 +84,7 @@ function updateScenarioContext(scenario) {
 
 
 
-    if (title) {
+    if(title){
 
         title.innerHTML =
             scenario.name;
@@ -91,7 +93,7 @@ function updateScenarioContext(scenario) {
 
 
 
-    if (description) {
+    if(description){
 
         description.innerHTML =
             scenario.summary;
@@ -100,15 +102,15 @@ function updateScenarioContext(scenario) {
 
 
 
-    if (challenges) {
+    if(challenges){
 
         challenges.innerHTML =
             scenario.keyChallenges
-                .map(
-                    item =>
-                        "✓ " + item
-                )
-                .join("<br>");
+            .map(
+                item =>
+                "✓ " + item
+            )
+            .join("<br>");
 
     }
 
@@ -131,66 +133,94 @@ function updateRecommendation(data) {
 
 
 
-    document
-        .querySelector(".tech")
-        .innerHTML =
-        winner.name;
+    const tech =
+        document.querySelector(
+            ".tech"
+        );
+
+
+
+    const score =
+        document.querySelector(
+            ".score"
+        );
+
+
+
+    const reason =
+        document.querySelector(
+            ".reason"
+        );
+
+
+
+    if(tech){
+
+        tech.innerHTML =
+            winner.name;
+
+    }
 
 
 
     animateScore(
 
-        document.querySelector(".score"),
+        score,
 
-        winner.finalScore
+        Number(
+            winner.finalScore
+        )
 
     );
 
 
 
-    document
-        .querySelector(".reason")
-        .innerHTML = `
 
 
-    <b>
-    Why this architecture?
-    </b>
+    if(reason){
+
+        reason.innerHTML = `
 
 
-    <br><br>
+        <b>
+        Why this architecture?
+        </b>
 
 
-    ${winner.strengths
+        <br><br>
+
+
+        ${winner.strengths
             .map(
                 item =>
-                    "✓ " + item
+                "✓ " + item
             )
             .join("<br>")}
 
 
 
-    <br><br>
+        <br><br>
 
 
-    <b>
-    Tradeoffs:
-    </b>
+        <b>
+        Tradeoffs:
+        </b>
 
 
-    <br><br>
+        <br><br>
 
 
-    ${winner.weaknesses
+        ${winner.weaknesses
             .map(
                 item =>
-                    "• " + item
+                "• " + item
             )
             .join("<br>")}
 
 
+        `;
 
-    `;
+    }
 
 
 }
@@ -203,40 +233,34 @@ function updateRecommendation(data) {
 
 
 
-function animateScore(element, target) {
+function animateScore(element, target){
+
+    if(!element){
+        return;
+    }
 
 
-    let current = 0;
+    let score = parseFloat(target);
 
 
-    const interval =
-        setInterval(() => {
+    if(isNaN(score)){
+        score = 0;
+    }
 
 
-            current += 2;
+    // Hard safety limit
+    if(score > 100){
+        score = 100;
+    }
 
 
-            element.innerHTML =
-                current + "%";
+    if(score < 0){
+        score = 0;
+    }
 
 
-
-            if (current >= target) {
-
-
-                element.innerHTML =
-                    target + "%";
-
-
-                clearInterval(interval);
-
-
-            }
-
-
-
-        }, 15);
-
+    element.innerHTML =
+        Math.round(score) + "%";
 
 }
 
@@ -247,34 +271,46 @@ function animateScore(element, target) {
 
 
 
+function updateMetrics(system){
 
-function updateMetrics(system) {
+
+
+    if(!system || !system.scores){
+
+        return;
+
+    }
+
+
 
 
     document
-        .getElementById("scaleBar")
-        .style.width =
+    .getElementById("scaleBar")
+    .style.width =
         system.scores.scalability + "%";
 
 
 
+
     document
-        .getElementById("reliabilityBar")
-        .style.width =
+    .getElementById("reliabilityBar")
+    .style.width =
         system.scores.reliability + "%";
 
 
 
+
     document
-        .getElementById("simplicityBar")
-        .style.width =
+    .getElementById("simplicityBar")
+    .style.width =
         system.scores.simplicity + "%";
 
 
 
+
     document
-        .getElementById("costBar")
-        .style.width =
+    .getElementById("costBar")
+    .style.width =
         system.scores.costEfficiency + "%";
 
 
@@ -288,7 +324,7 @@ function updateMetrics(system) {
 
 
 
-function updateComparison(results) {
+function updateComparison(results){
 
 
     const container =
@@ -297,7 +333,8 @@ function updateComparison(results) {
         );
 
 
-    if (!container) {
+
+    if(!container){
 
         return;
 
@@ -305,17 +342,19 @@ function updateComparison(results) {
 
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
 
-    results.forEach(system => {
+    results.forEach(system=>{
 
 
         const row =
             document.createElement(
                 "div"
             );
+
 
 
         row.className =
@@ -336,6 +375,7 @@ function updateComparison(results) {
         </span>
 
 
+
         <span class="comparison-score">
 
         ${system.finalScore}%
@@ -346,10 +386,14 @@ function updateComparison(results) {
         </div>
 
 
+
+
         <div class="comparison-bar">
 
 
-        <div class="comparison-fill"
+        <div
+
+        class="comparison-fill"
 
         style="width:${system.finalScore}%">
 
@@ -363,10 +407,13 @@ function updateComparison(results) {
 
 
 
-        container.appendChild(row);
+        container.appendChild(
+            row
+        );
 
 
     });
+
 
 
 }
@@ -379,7 +426,7 @@ function updateComparison(results) {
 
 
 
-function updateDiagram(scenarioId) {
+function updateDiagram(scenarioId){
 
 
     const diagram =
@@ -403,7 +450,10 @@ function updateDiagram(scenarioId) {
 
 
 
-    if (!diagram || !container) {
+    if(
+        !diagram ||
+        !container
+    ){
 
         return;
 
@@ -411,17 +461,22 @@ function updateDiagram(scenarioId) {
 
 
 
-    title.innerHTML =
-        diagram.title;
+    if(title){
+
+        title.innerHTML =
+            diagram.title;
+
+    }
 
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
 
     diagram.nodes.forEach(
-        (node, index) => {
+        (node,index)=>{
 
 
             const box =
@@ -430,8 +485,10 @@ function updateDiagram(scenarioId) {
                 );
 
 
+
             box.className =
                 "diagram-node";
+
 
 
             box.innerHTML =
@@ -439,12 +496,16 @@ function updateDiagram(scenarioId) {
 
 
 
-            container.appendChild(box);
+            container.appendChild(
+                box
+            );
 
 
 
-            if (index <
-                diagram.nodes.length - 1) {
+            if(
+                index <
+                diagram.nodes.length - 1
+            ){
 
 
                 const arrow =
@@ -453,12 +514,15 @@ function updateDiagram(scenarioId) {
                     );
 
 
+
                 arrow.className =
                     "diagram-arrow";
 
 
+
                 arrow.innerHTML =
                     "↓";
+
 
 
                 container.appendChild(
@@ -470,8 +534,9 @@ function updateDiagram(scenarioId) {
 
 
 
-        });
+        }
 
+    );
 
 
 }
