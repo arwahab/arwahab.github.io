@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>
+        Engineering Decision Lab | Architecture Tradeoff Explorer
+    </title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+
+    <style>
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+
+        body {
+
+            font-family: Inter, Arial, sans-serif;
+
+            background: #070b16;
+
+            color: white;
+
+            min-height: 100vh;
+
+        }
+
+
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+
+                radial-gradient(circle at 20% 20%, #2563eb55, transparent 35%),
+
+                radial-gradient(circle at 80% 20%, #9333ea55, transparent 35%),
+
+                radial-gradient(circle at 50% 90%, #06b6d455, transparent 35%);
+
+            filter: blur(80px);
+
+            z-index: -1;
+
+        }
+
+
+
+        header {
+
+            text-align: center;
+
+            padding: 70px 20px 40px;
+
+        }
+
+
+
+        .badge {
+
+            display: inline-block;
+
+            padding: 8px 18px;
+
+            border-radius: 50px;
+
+            background: #2563eb22;
+
+            border: 1px solid #60a5fa55;
+
+            color: #93c5fd;
+
+            margin-bottom: 25px;
+
+        }
+
+
+
+        h1 {
+
+            font-size: 56px;
+
+            font-weight: 800;
+
+            letter-spacing: -3px;
+
+        }
+
+
+
+        .subtitle {
+
+            margin-top: 18px;
+
+            font-size: 20px;
+
+            color: #94a3b8;
+
+        }
+
+
+
+        .container {
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 40px;
+
+        }
+
+
+
+        /* Scenario cards */
+
+
+        .scenarios {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 24px;
+
+        }
+
+
+
+        .scenario {
+
+            background:
+
+                rgba(255, 255, 255, .06);
+
+            border:
+
+                1px solid rgba(255, 255, 255, .12);
+
+            border-radius: 24px;
+
+            padding: 28px;
+
+            cursor: pointer;
+
+            transition: .35s;
+
+            backdrop-filter: blur(20px);
+
+        }
+
+
+
+        .scenario:hover {
+
+            transform: translateY(-8px);
+
+            border-color: #60a5fa;
+
+            box-shadow:
+
+                0 20px 60px rgba(0, 0, 0, .4);
+
+        }
+
+
+
+        .icon {
+
+            font-size: 40px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        .scenario h3 {
+
+            font-size: 22px;
+
+        }
+
+
+
+        .scenario p {
+
+            margin-top: 12px;
+
+            color: #94a3b8;
+
+            line-height: 1.5;
+
+        }
+
+
+
+
+
+        /* Main panels */
+
+
+        .workspace {
+
+            margin-top: 50px;
+
+            display: grid;
+
+            grid-template-columns:
+
+                1fr 1fr;
+
+            gap: 30px;
+
+        }
+
+
+
+        .panel {
+
+
+            background:
+
+                rgba(255, 255, 255, .06);
+
+            border:
+
+                1px solid rgba(255, 255, 255, .12);
+
+            border-radius: 28px;
+
+            padding: 35px;
+
+            backdrop-filter: blur(20px);
+
+        }
+
+
+
+        .panel h2 {
+
+            margin-bottom: 25px;
+
+            font-size: 26px;
+
+        }
+
+
+
+
+        /* Recommendation */
+
+
+        .recommendation {
+
+            text-align: center;
+
+        }
+
+
+
+        .tech {
+
+            font-size: 40px;
+
+            font-weight: 800;
+
+        }
+
+
+
+        .score {
+
+            font-size: 90px;
+
+            font-weight: 800;
+
+            margin: 20px;
+
+            background:
+
+                linear-gradient(90deg,
+
+                    #60a5fa,
+
+                    #c084fc);
+
+
+            -webkit-background-clip: text;
+
+            color: transparent;
+
+        }
+
+
+
+        .confidence {
+
+            height: 12px;
+
+            background: #1e293b;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            margin: 20px auto;
+
+            width: 80%;
+
+        }
+
+
+
+        .confidence span {
+
+            display: block;
+
+            height: 100%;
+
+            width: 90%;
+
+            background:
+
+                linear-gradient(90deg,
+
+                    #3b82f6,
+
+                    #8b5cf6);
+
+        }
+
+
+
+        .reason {
+
+            margin-top: 30px;
+
+            color: #cbd5e1;
+
+            line-height: 1.7;
+
+        }
+
+
+
+
+
+        /* Metrics */
+
+
+        .metric {
+
+            margin: 25px 0;
+
+        }
+
+
+
+        .metric-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 10px;
+
+        }
+
+
+
+        .bar {
+
+            height: 10px;
+
+            background: #1e293b;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .bar div {
+
+            height: 100%;
+
+            background:
+
+                linear-gradient(90deg,
+
+                    #3b82f6,
+
+                    #8b5cf6);
+
+            transition: .5s;
+
+        }
+
+
+
+        @media(max-width:900px) {
+
+
+            .workspace {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+
+            h1 {
+
+                font-size: 40px;
+
+            }
+
+
+        }
+    </style>
+
+</head>
+
+
+
+
+<body>
+
+
+
+    <header>
+
+
+        <div class="badge">
+
+            Engineering Decision Lab
+
+        </div>
+
+
+        <h1>
+
+            Architecture Tradeoff Explorer
+
+        </h1>
+
+
+        <p class="subtitle">
+
+            Explore architecture choices through scalability, reliability, cost, and operational tradeoffs.
+            
+        </p>
+
+
+    </header>
+
+
+
+
+    <div class="container">
+
+
+        <section class="scenarios">
+
+
+
+            <div class="scenario" onclick="selectScenario('streaming')">
+
+
+                <div class="icon">
+                    📡
+                </div>
+
+
+                <h3>
+                    Event Streaming
+                </h3>
+
+
+                <p>
+                    Millions of events, ordering, replay, analytics.
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <div class="scenario" onclick="selectScenario('payments')">
+
+
+                <div class="icon">
+                    💳
+                </div>
+
+
+                <h3>
+                    Payments Platform
+                </h3>
+
+
+                <p>
+                    Reliability, correctness, low latency.
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <div class="scenario" onclick="selectScenario('ai')">
+
+
+                <div class="icon">
+                    🤖
+                </div>
+
+
+                <h3>
+                    AI Platform
+                </h3>
+
+
+                <p>
+                    Pipelines, async processing, scale.
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <div class="scenario" onclick="selectScenario('api')">
+
+
+                <div class="icon">
+                    🌎
+                </div>
+
+
+                <h3>
+                    Global API
+                </h3>
+
+
+                <p>
+                    Availability, latency, developer velocity.
+                </p>
+
+
+            </div>
+
+
+
+        </section>
+
+
+
+
+
+
+        <section class="workspace">
+
+
+
+
+
+            <div class="panel recommendation">
+
+
+                <h2>
+                    Recommended Architecture
+                </h2>
+
+
+                <div class="tech">
+
+                    Select a scenario
+
+                </div>
+
+
+                <div class="score">
+
+                    --
+
+                </div>
+
+
+                <p>
+
+                    Choose a workload above
+
+                </p>
+
+
+
+                <div class="confidence">
+
+                    <span></span>
+
+                </div>
+
+
+
+                <div class="reason">
+
+                    Your architecture recommendation will appear here.
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="panel">
+
+
+                <h2>
+                    Engineering Profile
+                </h2>
+
+
+
+                <div class="metric">
+
+
+                    <div class="metric-header">
+
+                        <span>
+                            Scalability
+                        </span>
+
+                        <span>
+                        </span>
+
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div id="scaleBar" style="width:0%"></div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <div class="metric">
+
+
+                    <div class="metric-header">
+
+                        <span>
+                            Reliability
+                        </span>
+
+                        <span>
+                        </span>
+
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div id="reliabilityBar" style="width:0%"></div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <div class="metric">
+
+
+                    <div class="metric-header">
+
+                        <span>
+                            Operational Simplicity
+                        </span>
+
+                        <span>
+                        </span>
+
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div id="simplicityBar" style="width:0%"></div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <div class="metric">
+
+
+                    <div class="metric-header">
+
+                        <span>
+                            Cost Efficiency
+                        </span>
+
+                        <span>
+                        </span>
+
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div id="costBar" style="width:0%"></div>
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+        </section>
+
+
+    </div>
+
+
+
+
+
+
+    <script src="js/architectures.js"></script>
+
+    <script src="js/scenarios.js"></script>
+
+    <script src="js/engine.js"></script>
+
+    <script src="js/app.js"></script>
+
+
+
+</body>
+
+</html>
