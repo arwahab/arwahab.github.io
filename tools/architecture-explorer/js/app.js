@@ -1,8 +1,15 @@
+let selectedScenario = null;
+
+let selectedRecommendation = null;
+
 function selectScenario(scenarioId) {
 
 
     const scenario =
         scenarios[scenarioId];
+
+    selectedScenario =
+        scenario;
 
 
     if (!scenario) {
@@ -53,6 +60,9 @@ function selectScenario(scenarioId) {
         scenarioId
     );
 
+    selectedRecommendation =
+        recommendation;
+
 
 }
 
@@ -62,7 +72,7 @@ function selectScenario(scenarioId) {
 
 
 
-function updateScenarioContext(scenario){
+function updateScenarioContext(scenario) {
 
 
     const title =
@@ -84,7 +94,7 @@ function updateScenarioContext(scenario){
 
 
 
-    if(title){
+    if (title) {
 
         title.innerHTML =
             scenario.name;
@@ -93,7 +103,7 @@ function updateScenarioContext(scenario){
 
 
 
-    if(description){
+    if (description) {
 
         description.innerHTML =
             scenario.summary;
@@ -102,15 +112,15 @@ function updateScenarioContext(scenario){
 
 
 
-    if(challenges){
+    if (challenges) {
 
         challenges.innerHTML =
             scenario.keyChallenges
-            .map(
-                item =>
-                "✓ " + item
-            )
-            .join("<br>");
+                .map(
+                    item =>
+                        "✓ " + item
+                )
+                .join("<br>");
 
     }
 
@@ -154,7 +164,7 @@ function updateRecommendation(data) {
 
 
 
-    if(tech){
+    if (tech) {
 
         tech.innerHTML =
             winner.name;
@@ -177,7 +187,7 @@ function updateRecommendation(data) {
 
 
 
-    if(reason){
+    if (reason) {
 
         reason.innerHTML = `
 
@@ -191,11 +201,11 @@ function updateRecommendation(data) {
 
 
         ${winner.strengths
-            .map(
-                item =>
-                "✓ " + item
-            )
-            .join("<br>")}
+                .map(
+                    item =>
+                        "✓ " + item
+                )
+                .join("<br>")}
 
 
 
@@ -211,11 +221,11 @@ function updateRecommendation(data) {
 
 
         ${winner.weaknesses
-            .map(
-                item =>
-                "• " + item
-            )
-            .join("<br>")}
+                .map(
+                    item =>
+                        "• " + item
+                )
+                .join("<br>")}
 
 
         `;
@@ -233,9 +243,9 @@ function updateRecommendation(data) {
 
 
 
-function animateScore(element, target){
+function animateScore(element, target) {
 
-    if(!element){
+    if (!element) {
         return;
     }
 
@@ -243,18 +253,18 @@ function animateScore(element, target){
     let score = parseFloat(target);
 
 
-    if(isNaN(score)){
+    if (isNaN(score)) {
         score = 0;
     }
 
 
     // Hard safety limit
-    if(score > 100){
+    if (score > 100) {
         score = 100;
     }
 
 
-    if(score < 0){
+    if (score < 0) {
         score = 0;
     }
 
@@ -271,11 +281,11 @@ function animateScore(element, target){
 
 
 
-function updateMetrics(system){
+function updateMetrics(system) {
 
 
 
-    if(!system || !system.scores){
+    if (!system || !system.scores) {
 
         return;
 
@@ -285,32 +295,32 @@ function updateMetrics(system){
 
 
     document
-    .getElementById("scaleBar")
-    .style.width =
+        .getElementById("scaleBar")
+        .style.width =
         system.scores.scalability + "%";
 
 
 
 
     document
-    .getElementById("reliabilityBar")
-    .style.width =
+        .getElementById("reliabilityBar")
+        .style.width =
         system.scores.reliability + "%";
 
 
 
 
     document
-    .getElementById("simplicityBar")
-    .style.width =
+        .getElementById("simplicityBar")
+        .style.width =
         system.scores.simplicity + "%";
 
 
 
 
     document
-    .getElementById("costBar")
-    .style.width =
+        .getElementById("costBar")
+        .style.width =
         system.scores.costEfficiency + "%";
 
 
@@ -324,7 +334,7 @@ function updateMetrics(system){
 
 
 
-function updateComparison(results){
+function updateComparison(results) {
 
 
     const container =
@@ -334,7 +344,7 @@ function updateComparison(results){
 
 
 
-    if(!container){
+    if (!container) {
 
         return;
 
@@ -347,7 +357,7 @@ function updateComparison(results){
 
 
 
-    results.forEach(system=>{
+    results.forEach(system => {
 
 
         const row =
@@ -426,7 +436,7 @@ function updateComparison(results){
 
 
 
-function updateDiagram(scenarioId){
+function updateDiagram(scenarioId) {
 
 
     const diagram =
@@ -450,10 +460,10 @@ function updateDiagram(scenarioId){
 
 
 
-    if(
+    if (
         !diagram ||
         !container
-    ){
+    ) {
 
         return;
 
@@ -461,7 +471,7 @@ function updateDiagram(scenarioId){
 
 
 
-    if(title){
+    if (title) {
 
         title.innerHTML =
             diagram.title;
@@ -476,7 +486,7 @@ function updateDiagram(scenarioId){
 
 
     diagram.nodes.forEach(
-        (node,index)=>{
+        (node, index) => {
 
 
             const box =
@@ -502,10 +512,10 @@ function updateDiagram(scenarioId){
 
 
 
-            if(
+            if (
                 index <
                 diagram.nodes.length - 1
-            ){
+            ) {
 
 
                 const arrow =
@@ -535,6 +545,42 @@ function updateDiagram(scenarioId){
 
 
         }
+
+    );
+
+
+}
+
+function showADR(){
+
+
+    if(
+        !selectedScenario ||
+        !selectedRecommendation
+    ){
+
+        alert(
+        "Select a workload first."
+        );
+
+        return;
+
+    }
+
+
+
+    document
+    .getElementById(
+        "adrOutput"
+    )
+    .value =
+
+
+    generateADR(
+
+        selectedScenario,
+
+        selectedRecommendation
 
     );
 
