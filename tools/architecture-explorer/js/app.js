@@ -18,6 +18,10 @@ function selectScenario(scenarioId) {
 
 
 
+    updateScenarioContext(scenario);
+
+
+
     const recommendation =
         getRecommendation(
             scenario.requirements
@@ -30,12 +34,88 @@ function selectScenario(scenarioId) {
     );
 
 
+
     updateMetrics(
         recommendation.winner
     );
 
 
+
+    updateComparison(
+        recommendation.ranking
+    );
+
+
+
+    updateDiagram(
+        scenarioId
+    );
+
+
 }
+
+
+
+
+
+
+
+function updateScenarioContext(scenario) {
+
+
+    const title =
+        document.getElementById(
+            "scenarioTitle"
+        );
+
+
+    const description =
+        document.getElementById(
+            "scenarioDescription"
+        );
+
+
+    const challenges =
+        document.getElementById(
+            "scenarioChallenges"
+        );
+
+
+
+    if (title) {
+
+        title.innerHTML =
+            scenario.name;
+
+    }
+
+
+
+    if (description) {
+
+        description.innerHTML =
+            scenario.summary;
+
+    }
+
+
+
+    if (challenges) {
+
+        challenges.innerHTML =
+            scenario.keyChallenges
+                .map(
+                    item =>
+                        "✓ " + item
+                )
+                .join("<br>");
+
+    }
+
+
+}
+
+
 
 
 
@@ -51,72 +131,63 @@ function updateRecommendation(data) {
 
 
 
-    const technologyName =
-        document.querySelector(".tech");
-
-
-    const score =
-        document.querySelector(".score");
-
-
-    const reason =
-        document.querySelector(".reason");
-
-
-
-
-    technologyName.innerHTML =
+    document
+        .querySelector(".tech")
+        .innerHTML =
         winner.name;
 
 
 
     animateScore(
-        score,
+
+        document.querySelector(".score"),
+
         winner.finalScore
+
     );
 
 
 
+    document
+        .querySelector(".reason")
+        .innerHTML = `
 
 
-    reason.innerHTML = `
+    <b>
+    Why this architecture?
+    </b>
 
 
-        <b>
-        Why this architecture?
-        </b>
+    <br><br>
 
 
-        <br><br>
-
-
-        ${winner.strengths
+    ${winner.strengths
             .map(
                 item =>
-                "✓ " + item
+                    "✓ " + item
             )
-            .join("<br>")
-        }
+            .join("<br>")}
 
 
-        <br><br>
+
+    <br><br>
 
 
-        <b>
-        Tradeoffs:
-        </b>
+    <b>
+    Tradeoffs:
+    </b>
 
 
-        <br><br>
+    <br><br>
 
 
-        ${winner.weaknesses
+    ${winner.weaknesses
             .map(
                 item =>
-                "• " + item
+                    "• " + item
             )
-            .join("<br>")
-        }
+            .join("<br>")}
+
 
 
     `;
@@ -132,37 +203,39 @@ function updateRecommendation(data) {
 
 
 
-function animateScore(element,target){
+function animateScore(element, target) {
 
 
     let current = 0;
 
 
     const interval =
-        setInterval(()=>{
+        setInterval(() => {
 
 
             current += 2;
 
 
             element.innerHTML =
-                current;
+                current + "%";
 
 
 
-            if(current >= target){
+            if (current >= target) {
+
 
                 element.innerHTML =
-                    target;
+                    target + "%";
 
 
                 clearInterval(interval);
+
 
             }
 
 
 
-        },15);
+        }, 15);
 
 
 }
@@ -175,33 +248,230 @@ function animateScore(element,target){
 
 
 
-function updateMetrics(system){
+function updateMetrics(system) {
 
 
     document
-    .getElementById("scaleBar")
-    .style.width =
+        .getElementById("scaleBar")
+        .style.width =
         system.scores.scalability + "%";
 
 
 
     document
-    .getElementById("reliabilityBar")
-    .style.width =
+        .getElementById("reliabilityBar")
+        .style.width =
         system.scores.reliability + "%";
 
 
 
     document
-    .getElementById("simplicityBar")
-    .style.width =
+        .getElementById("simplicityBar")
+        .style.width =
         system.scores.simplicity + "%";
 
 
 
     document
-    .getElementById("costBar")
-    .style.width =
+        .getElementById("costBar")
+        .style.width =
         system.scores.costEfficiency + "%";
+
+
+}
+
+
+
+
+
+
+
+
+
+function updateComparison(results) {
+
+
+    const container =
+        document.getElementById(
+            "comparisonContainer"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+
+    container.innerHTML = "";
+
+
+
+    results.forEach(system => {
+
+
+        const row =
+            document.createElement(
+                "div"
+            );
+
+
+        row.className =
+            "comparison-row";
+
+
+
+        row.innerHTML = `
+
+
+        <div class="comparison-header">
+
+
+        <span class="comparison-name">
+
+        ${system.name}
+
+        </span>
+
+
+        <span class="comparison-score">
+
+        ${system.finalScore}%
+
+        </span>
+
+
+        </div>
+
+
+        <div class="comparison-bar">
+
+
+        <div class="comparison-fill"
+
+        style="width:${system.finalScore}%">
+
+        </div>
+
+
+        </div>
+
+
+        `;
+
+
+
+        container.appendChild(row);
+
+
+    });
+
+
+}
+
+
+
+
+
+
+
+
+
+function updateDiagram(scenarioId) {
+
+
+    const diagram =
+        getDiagram(
+            scenarioId
+        );
+
+
+
+    const title =
+        document.getElementById(
+            "diagramTitle"
+        );
+
+
+
+    const container =
+        document.getElementById(
+            "diagramContainer"
+        );
+
+
+
+    if (!diagram || !container) {
+
+        return;
+
+    }
+
+
+
+    title.innerHTML =
+        diagram.title;
+
+
+
+    container.innerHTML = "";
+
+
+
+    diagram.nodes.forEach(
+        (node, index) => {
+
+
+            const box =
+                document.createElement(
+                    "div"
+                );
+
+
+            box.className =
+                "diagram-node";
+
+
+            box.innerHTML =
+                node;
+
+
+
+            container.appendChild(box);
+
+
+
+            if (index <
+                diagram.nodes.length - 1) {
+
+
+                const arrow =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                arrow.className =
+                    "diagram-arrow";
+
+
+                arrow.innerHTML =
+                    "↓";
+
+
+                container.appendChild(
+                    arrow
+                );
+
+
+            }
+
+
+
+        });
+
+
 
 }

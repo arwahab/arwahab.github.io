@@ -11,6 +11,23 @@ const scenarios = {
             "High-volume event ingestion, analytics, and real-time processing.",
 
 
+        summary:
+            "Designed for systems that process millions of events while maintaining ordering, durability, and replay capability.",
+
+
+        keyChallenges: [
+
+            "Massive event throughput",
+
+            "Event ordering guarantees",
+
+            "Long-term event replay",
+
+            "Real-time processing"
+
+        ],
+
+
         requirements: {
 
             scalability: 100,
@@ -56,6 +73,23 @@ const scenarios = {
 
         description:
             "Mission-critical transactions requiring correctness and reliability.",
+
+
+        summary:
+            "Designed for financial workflows where data correctness and availability matter more than raw throughput.",
+
+
+        keyChallenges: [
+
+            "Transaction correctness",
+
+            "High availability",
+
+            "Low latency",
+
+            "Failure recovery"
+
+        ],
 
 
         requirements: {
@@ -105,6 +139,23 @@ const scenarios = {
             "AI workloads requiring asynchronous pipelines and scalable processing.",
 
 
+        summary:
+            "Designed for machine learning workloads involving data pipelines, model processing, and distributed workloads.",
+
+
+        keyChallenges: [
+
+            "Large data processing",
+
+            "Pipeline scalability",
+
+            "Compute optimization",
+
+            "Workflow orchestration"
+
+        ],
+
+
         requirements: {
 
             scalability: 90,
@@ -150,6 +201,23 @@ const scenarios = {
 
         description:
             "Customer-facing APIs requiring availability and low latency.",
+
+
+        summary:
+            "Designed for internet-scale applications requiring global availability, performance, and operational simplicity.",
+
+
+        keyChallenges: [
+
+            "Global traffic distribution",
+
+            "Low latency",
+
+            "High availability",
+
+            "Developer velocity"
+
+        ],
 
 
         requirements: {

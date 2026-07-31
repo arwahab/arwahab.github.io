@@ -3,449 +3,616 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>
-        Engineering Decision Lab | Architecture Tradeoff Explorer
-    </title>
+<title>
+Engineering Decision Lab | Architecture Tradeoff Explorer
+</title>
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 
 
-    <style>
-        * {
+<style>
 
-            box-sizing: border-box;
 
-            margin: 0;
+*{
 
-            padding: 0;
+box-sizing:border-box;
 
-        }
+margin:0;
 
+padding:0;
 
+}
 
-        body {
 
-            font-family: Inter, Arial, sans-serif;
 
-            background: #070b16;
+body{
 
-            color: white;
+font-family:Inter,Arial,sans-serif;
 
-            min-height: 100vh;
+background:#070b16;
 
-        }
+color:white;
 
+min-height:100vh;
 
+}
 
-        body::before {
 
-            content: "";
 
-            position: fixed;
+body::before{
 
-            inset: 0;
+content:"";
 
-            background:
+position:fixed;
 
-                radial-gradient(circle at 20% 20%, #2563eb55, transparent 35%),
+inset:-100px;
 
-                radial-gradient(circle at 80% 20%, #9333ea55, transparent 35%),
+background:
 
-                radial-gradient(circle at 50% 90%, #06b6d455, transparent 35%);
+radial-gradient(circle at 20% 20%,#2563eb55,transparent 35%),
 
-            filter: blur(80px);
+radial-gradient(circle at 80% 20%,#9333ea55,transparent 35%),
 
-            z-index: -1;
+radial-gradient(circle at 50% 90%,#06b6d455,transparent 35%);
 
-        }
+filter:blur(80px);
 
+z-index:-1;
 
+}
 
-        header {
 
-            text-align: center;
 
-            padding: 70px 20px 40px;
+header{
 
-        }
+text-align:center;
 
+padding:70px 20px 40px;
 
+}
 
-        .badge {
 
-            display: inline-block;
 
-            padding: 8px 18px;
+.badge{
 
-            border-radius: 50px;
+display:inline-block;
 
-            background: #2563eb22;
+padding:8px 18px;
 
-            border: 1px solid #60a5fa55;
+border-radius:50px;
 
-            color: #93c5fd;
+background:#2563eb22;
 
-            margin-bottom: 25px;
+border:1px solid #60a5fa55;
 
-        }
+color:#93c5fd;
 
+margin-bottom:25px;
 
+}
 
-        h1 {
 
-            font-size: 56px;
 
-            font-weight: 800;
+h1{
 
-            letter-spacing: -3px;
+font-size:56px;
 
-        }
+font-weight:800;
 
+letter-spacing:-3px;
 
+}
 
-        .subtitle {
 
-            margin-top: 18px;
 
-            font-size: 20px;
+.subtitle{
 
-            color: #94a3b8;
+margin-top:18px;
 
-        }
+font-size:20px;
 
+color:#94a3b8;
 
+}
 
-        .container {
 
-            max-width: 1400px;
 
-            margin: auto;
+.container{
 
-            padding: 40px;
+max-width:1500px;
 
-        }
+margin:auto;
 
+padding:40px;
 
+}
 
-        /* Scenario cards */
 
 
-        .scenarios {
+/* Scenario Cards */
 
-            display: grid;
 
-            grid-template-columns:
-                repeat(auto-fit, minmax(240px, 1fr));
+.scenarios{
 
-            gap: 24px;
+display:grid;
 
-        }
+grid-template-columns:
+repeat(auto-fit,minmax(240px,1fr));
 
+gap:24px;
 
+}
 
-        .scenario {
 
-            background:
 
-                rgba(255, 255, 255, .06);
+.scenario{
 
-            border:
+background:
 
-                1px solid rgba(255, 255, 255, .12);
+rgba(255,255,255,.06);
 
-            border-radius: 24px;
+border:
 
-            padding: 28px;
+1px solid rgba(255,255,255,.12);
 
-            cursor: pointer;
+border-radius:24px;
 
-            transition: .35s;
+padding:28px;
 
-            backdrop-filter: blur(20px);
+cursor:pointer;
 
-        }
+transition:.35s;
 
+backdrop-filter:blur(20px);
 
+}
 
-        .scenario:hover {
 
-            transform: translateY(-8px);
 
-            border-color: #60a5fa;
+.scenario:hover{
 
-            box-shadow:
+transform:translateY(-8px);
 
-                0 20px 60px rgba(0, 0, 0, .4);
+border-color:#60a5fa;
 
-        }
+box-shadow:
 
+0 20px 60px rgba(0,0,0,.4);
 
+}
 
-        .icon {
 
-            font-size: 40px;
 
-            margin-bottom: 20px;
+.icon{
 
-        }
+font-size:40px;
 
+margin-bottom:20px;
 
+}
 
-        .scenario h3 {
 
-            font-size: 22px;
 
-        }
+.scenario h3{
 
+font-size:22px;
 
+}
 
-        .scenario p {
 
-            margin-top: 12px;
 
-            color: #94a3b8;
+.scenario p{
 
-            line-height: 1.5;
+margin-top:12px;
 
-        }
+color:#94a3b8;
 
+line-height:1.5;
 
+}
 
 
 
-        /* Main panels */
+/* Panels */
 
 
-        .workspace {
+.workspace{
 
-            margin-top: 50px;
+margin-top:50px;
 
-            display: grid;
+display:grid;
 
-            grid-template-columns:
+grid-template-columns:
 
-                1fr 1fr;
+repeat(auto-fit,minmax(420px,1fr));
 
-            gap: 30px;
+gap:30px;
 
-        }
+}
 
 
 
-        .panel {
+.panel{
 
+background:
 
-            background:
+rgba(255,255,255,.06);
 
-                rgba(255, 255, 255, .06);
+border:
 
-            border:
+1px solid rgba(255,255,255,.12);
 
-                1px solid rgba(255, 255, 255, .12);
+border-radius:28px;
 
-            border-radius: 28px;
+padding:35px;
 
-            padding: 35px;
+backdrop-filter:blur(20px);
 
-            backdrop-filter: blur(20px);
+}
 
-        }
 
 
+.panel h2{
 
-        .panel h2 {
+margin-bottom:25px;
 
-            margin-bottom: 25px;
+font-size:26px;
 
-            font-size: 26px;
+}
 
-        }
 
 
 
 
-        /* Recommendation */
+/* Recommendation */
 
 
-        .recommendation {
+.recommendation{
 
-            text-align: center;
+text-align:center;
 
-        }
+}
 
 
 
-        .tech {
+.tech{
 
-            font-size: 40px;
+font-size:38px;
 
-            font-weight: 800;
+font-weight:800;
 
-        }
+}
 
 
 
-        .score {
+.score{
 
-            font-size: 90px;
+font-size:90px;
 
-            font-weight: 800;
+font-weight:800;
 
-            margin: 20px;
+margin:20px;
 
-            background:
+background:
 
-                linear-gradient(90deg,
+linear-gradient(
+90deg,
+#60a5fa,
+#c084fc
+);
 
-                    #60a5fa,
+-webkit-background-clip:text;
 
-                    #c084fc);
+color:transparent;
 
+}
 
-            -webkit-background-clip: text;
 
-            color: transparent;
 
-        }
+.confidence{
 
+height:12px;
 
+background:#1e293b;
 
-        .confidence {
+border-radius:20px;
 
-            height: 12px;
+overflow:hidden;
 
-            background: #1e293b;
+margin:20px auto;
 
-            border-radius: 20px;
+width:80%;
 
-            overflow: hidden;
+}
 
-            margin: 20px auto;
 
-            width: 80%;
 
-        }
+.confidence span{
 
+display:block;
 
+height:100%;
 
-        .confidence span {
+width:90%;
 
-            display: block;
+background:
 
-            height: 100%;
+linear-gradient(
+90deg,
+#3b82f6,
+#8b5cf6
+);
 
-            width: 90%;
+}
 
-            background:
 
-                linear-gradient(90deg,
 
-                    #3b82f6,
+.reason{
 
-                    #8b5cf6);
+margin-top:30px;
 
-        }
+color:#cbd5e1;
 
+line-height:1.7;
 
+}
 
-        .reason {
 
-            margin-top: 30px;
 
-            color: #cbd5e1;
 
-            line-height: 1.7;
 
-        }
+/* Metrics */
 
 
+.metric{
 
+margin:25px 0;
 
+}
 
-        /* Metrics */
 
 
-        .metric {
+.metric-header{
 
-            margin: 25px 0;
+margin-bottom:10px;
 
-        }
+}
 
 
 
-        .metric-header {
+.bar{
 
-            display: flex;
+height:10px;
 
-            justify-content: space-between;
+background:#1e293b;
 
-            margin-bottom: 10px;
+border-radius:20px;
 
-        }
+overflow:hidden;
 
+}
 
 
-        .bar {
 
-            height: 10px;
+.bar div{
 
-            background: #1e293b;
+height:100%;
 
-            border-radius: 20px;
+background:
 
-            overflow: hidden;
+linear-gradient(
+90deg,
+#3b82f6,
+#8b5cf6
+);
 
-        }
+transition:.6s;
 
+}
 
 
-        .bar div {
 
-            height: 100%;
 
-            background:
 
-                linear-gradient(90deg,
 
-                    #3b82f6,
+/* Comparison */
 
-                    #8b5cf6);
 
-            transition: .5s;
+.comparison-row{
 
-        }
+margin:20px 0;
 
+}
 
 
-        @media(max-width:900px) {
 
+.comparison-header{
 
-            .workspace {
+display:flex;
 
-                grid-template-columns: 1fr;
+justify-content:space-between;
 
-            }
+margin-bottom:8px;
 
+}
 
 
-            h1 {
 
-                font-size: 40px;
+.comparison-name{
 
-            }
+font-weight:600;
 
+}
 
-        }
-    </style>
+
+
+.comparison-score{
+
+color:#93c5fd;
+
+}
+
+
+
+.comparison-bar{
+
+height:10px;
+
+background:#1e293b;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+
+
+.comparison-fill{
+
+height:100%;
+
+background:
+
+linear-gradient(
+90deg,
+#3b82f6,
+#8b5cf6
+);
+
+transition:.6s;
+
+}
+
+
+
+
+
+/* Architecture Diagram */
+
+
+.diagram-container{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:10px;
+
+margin-top:25px;
+
+}
+
+
+
+.diagram-node{
+
+width:260px;
+
+padding:18px;
+
+text-align:center;
+
+border-radius:18px;
+
+background:
+
+rgba(96,165,250,.15);
+
+border:
+
+1px solid #60a5fa88;
+
+font-weight:600;
+
+animation:
+
+fadeIn .5s ease;
+
+}
+
+
+
+.diagram-arrow{
+
+font-size:30px;
+
+color:#93c5fd;
+
+animation:
+
+pulse 1.5s infinite;
+
+}
+
+
+
+@keyframes fadeIn{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
+
+@keyframes pulse{
+
+
+50%{
+
+opacity:.4;
+
+}
+
+
+}
+
+
+
+
+@media(max-width:900px){
+
+
+h1{
+
+font-size:40px;
+
+}
+
+
+}
+
+
+
+</style>
 
 </head>
 
@@ -456,343 +623,411 @@
 
 
 
-    <header>
+<header>
 
 
-        <div class="badge">
+<div class="badge">
 
-            Engineering Decision Lab
+Engineering Decision Lab
 
-        </div>
+</div>
 
 
-        <h1>
+<h1>
 
-            Architecture Tradeoff Explorer
+Architecture Tradeoff Explorer
 
-        </h1>
+</h1>
 
 
-        <p class="subtitle">
+<p class="subtitle">
 
-            Explore architecture choices through scalability, reliability, cost, and operational tradeoffs.
-            
-        </p>
+Explore architecture choices through scalability, reliability, cost, and operational tradeoffs.
 
+</p>
 
-    </header>
 
+</header>
 
 
 
-    <div class="container">
 
+<div class="container">
 
-        <section class="scenarios">
 
 
 
-            <div class="scenario" onclick="selectScenario('streaming')">
 
+<div class="scenarios">
 
-                <div class="icon">
-                    📡
-                </div>
 
 
-                <h3>
-                    Event Streaming
-                </h3>
+<div class="scenario"
+onclick="selectScenario('streaming')">
 
+<div class="icon">
 
-                <p>
-                    Millions of events, ordering, replay, analytics.
-                </p>
+📡
 
+</div>
 
-            </div>
+<h3>
+Event Streaming
+</h3>
 
+<p>
+Millions of events, ordering, replay, analytics.
+</p>
 
+</div>
 
 
 
-            <div class="scenario" onclick="selectScenario('payments')">
 
 
-                <div class="icon">
-                    💳
-                </div>
+<div class="scenario"
+onclick="selectScenario('payments')">
 
+<div class="icon">
 
-                <h3>
-                    Payments Platform
-                </h3>
+💳
 
+</div>
 
-                <p>
-                    Reliability, correctness, low latency.
-                </p>
+<h3>
+Payments Platform
+</h3>
 
+<p>
+Reliability, correctness, low latency.
+</p>
 
-            </div>
+</div>
 
 
 
 
 
-            <div class="scenario" onclick="selectScenario('ai')">
+<div class="scenario"
+onclick="selectScenario('ai')">
 
+<div class="icon">
 
-                <div class="icon">
-                    🤖
-                </div>
+🤖
 
+</div>
 
-                <h3>
-                    AI Platform
-                </h3>
+<h3>
+AI Platform
+</h3>
 
+<p>
+Pipelines, async processing, scale.
+</p>
 
-                <p>
-                    Pipelines, async processing, scale.
-                </p>
+</div>
 
 
-            </div>
 
 
 
+<div class="scenario"
+onclick="selectScenario('api')">
 
+<div class="icon">
 
-            <div class="scenario" onclick="selectScenario('api')">
+🌎
 
+</div>
 
-                <div class="icon">
-                    🌎
-                </div>
+<h3>
+Global API
+</h3>
 
+<p>
+Availability, latency, developer velocity.
+</p>
 
-                <h3>
-                    Global API
-                </h3>
+</div>
 
 
-                <p>
-                    Availability, latency, developer velocity.
-                </p>
 
+</div>
 
-            </div>
 
 
 
-        </section>
 
 
 
+<div class="workspace">
 
 
 
-        <section class="workspace">
 
 
+<div class="panel">
 
 
+<h2>
+Scenario Overview
+</h2>
 
-            <div class="panel recommendation">
 
+<h3 id="scenarioTitle">
 
-                <h2>
-                    Recommended Architecture
-                </h2>
+Select a workload
 
+</h3>
 
-                <div class="tech">
 
-                    Select a scenario
+<p id="scenarioDescription"
+style="margin-top:15px;color:#94a3b8;">
 
-                </div>
+Choose a scenario above to see the engineering context.
 
+</p>
 
-                <div class="score">
 
-                    --
+<br>
 
-                </div>
 
+<h3>
+Key Challenges
+</h3>
 
-                <p>
 
-                    Choose a workload above
+<div id="scenarioChallenges"
+style="margin-top:15px;line-height:1.8;color:#cbd5e1;">
 
-                </p>
+</div>
 
 
+</div>
 
-                <div class="confidence">
 
-                    <span></span>
 
-                </div>
 
 
 
-                <div class="reason">
 
-                    Your architecture recommendation will appear here.
+<div class="panel recommendation">
 
-                </div>
 
+<h2>
+Recommended Architecture
+</h2>
 
-            </div>
 
+<div class="tech">
 
+Select a scenario
 
+</div>
 
 
+<div class="score">
 
+--
 
-            <div class="panel">
+</div>
 
 
-                <h2>
-                    Engineering Profile
-                </h2>
+<p>
 
+Architecture Fit
 
+</p>
 
-                <div class="metric">
 
+<div class="confidence">
 
-                    <div class="metric-header">
+<span></span>
 
-                        <span>
-                            Scalability
-                        </span>
+</div>
 
-                        <span>
-                        </span>
 
-                    </div>
+<div class="reason">
 
+Your architecture recommendation will appear here.
 
-                    <div class="bar">
+</div>
 
-                        <div id="scaleBar" style="width:0%"></div>
 
-                    </div>
+</div>
 
 
-                </div>
 
 
 
 
 
-                <div class="metric">
 
+<div class="panel">
 
-                    <div class="metric-header">
 
-                        <span>
-                            Reliability
-                        </span>
+<h2>
+Engineering Profile
+</h2>
 
-                        <span>
-                        </span>
 
-                    </div>
 
+<div class="metric">
 
-                    <div class="bar">
+<div class="metric-header">
+Scalability
+</div>
 
-                        <div id="reliabilityBar" style="width:0%"></div>
+<div class="bar">
 
-                    </div>
+<div id="scaleBar"></div>
 
+</div>
 
-                </div>
+</div>
 
 
 
 
+<div class="metric">
 
-                <div class="metric">
+<div class="metric-header">
+Reliability
+</div>
 
+<div class="bar">
 
-                    <div class="metric-header">
+<div id="reliabilityBar"></div>
 
-                        <span>
-                            Operational Simplicity
-                        </span>
+</div>
 
-                        <span>
-                        </span>
+</div>
 
-                    </div>
 
 
-                    <div class="bar">
 
-                        <div id="simplicityBar" style="width:0%"></div>
 
-                    </div>
+<div class="metric">
 
+<div class="metric-header">
+Operational Simplicity
+</div>
 
-                </div>
+<div class="bar">
 
+<div id="simplicityBar"></div>
 
+</div>
 
+</div>
 
 
-                <div class="metric">
 
 
-                    <div class="metric-header">
 
-                        <span>
-                            Cost Efficiency
-                        </span>
+<div class="metric">
 
-                        <span>
-                        </span>
+<div class="metric-header">
+Cost Efficiency
+</div>
 
-                    </div>
+<div class="bar">
 
+<div id="costBar"></div>
 
-                    <div class="bar">
+</div>
 
-                        <div id="costBar" style="width:0%"></div>
+</div>
 
-                    </div>
 
+</div>
 
-                </div>
 
 
 
-            </div>
 
 
 
 
-        </section>
+<div class="panel">
 
 
-    </div>
+<h2>
+Architecture Comparison
+</h2>
 
 
+<div id="comparisonContainer">
 
+<p style="color:#94a3b8">
 
+Select a workload to compare architectures.
 
+</p>
 
-    <script src="js/architectures.js"></script>
+</div>
 
-    <script src="js/scenarios.js"></script>
 
-    <script src="js/engine.js"></script>
+</div>
 
-    <script src="js/app.js"></script>
+
+
+
+
+
+
+
+<div class="panel">
+
+
+<h2 id="diagramTitle">
+
+Architecture Blueprint
+
+</h2>
+
+
+<div id="diagramContainer"
+class="diagram-container">
+
+
+<p style="color:#94a3b8">
+
+Select a workload to visualize architecture.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<script src="js/architectures.js"></script>
+
+<script src="js/scenarios.js"></script>
+
+<script src="js/engine.js"></script>
+
+<script src="js/diagrams.js"></script>
+
+<script src="js/app.js"></script>
 
 
 
