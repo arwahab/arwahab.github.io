@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Engineering Decision Lab</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<header>
+
+<h1>Engineering Decision Lab</h1>
+
+<p>
+Architecture Tradeoff Explorer
+</p>
+
+</header>
+
+<main>
+
+<section class="glass controls">
+
+<h2>Workload Profile</h2>
+
+<div class="slider">
+
+<label>Traffic</label>
+
+<input
+type="range"
+min="0"
+max="100"
+value="50"
+id="traffic">
+
+</div>
+
+<div class="slider">
+
+<label>Latency Sensitive</label>
+
+<input
+type="range"
+min="0"
+max="100"
+value="70"
+id="latency">
+
+</div>
+
+<div class="slider">
+
+<label>Need Ordering</label>
+
+<input
+type="range"
+min="0"
+max="100"
+value="20"
+id="ordering">
+
+</div>
+
+<div class="slider">
+
+<label>Budget Sensitive</label>
+
+<input
+type="range"
+min="0"
+max="100"
+value="60"
+id="budget">
+
+</div>
+
+<div class="slider">
+
+<label>Need Replay</label>
+
+<input
+type="range"
+min="0"
+max="100"
+value="40"
+id="replay">
+
+</div>
+
+</section>
+
+<section>
+
+<div id="results"></div>
+
+</section>
+
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
