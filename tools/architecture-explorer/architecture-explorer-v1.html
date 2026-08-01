@@ -254,6 +254,33 @@
             placeholder="Your Architecture Decision Record will appear here..."
           ></textarea>
         </div>
+
+        <!-- Architecture Q&A -->
+
+        <div class="panel full-width qa-panel">
+          <h2>Architecture Q&A</h2>
+
+          <p class="panel-note">
+            Ask any architecture question in your own words - whether you are
+            just getting started or deep in the trenches. Try a prompt below or
+            type your own.
+          </p>
+
+          <div class="qa-form">
+            <textarea
+              id="qaInput"
+              placeholder="e.g. What is the difference between a message queue and an event bus?"
+            ></textarea>
+
+            <button class="qa-submit" onclick="askQuestion()">Ask</button>
+          </div>
+
+          <div class="qa-chips" id="qaExamples"></div>
+
+          <div id="qaResult" class="qa-result">
+            <p class="qa-empty">Your answer will appear here.</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -268,6 +295,8 @@
     <script src="js/adr.js"></script>
 
     <script src="js/app.js"></script>
+
+    <script src="js/qa.js"></script>
 
     <footer class="footer">
       <div class="footer-glass">
