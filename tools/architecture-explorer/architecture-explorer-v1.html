@@ -54,9 +54,25 @@
       </div>
     </header>
 
+    <nav class="quick-nav" aria-label="Page sections">
+      <a href="#overview">Overview</a>
+
+      <a href="#recommendation">Recommendation</a>
+
+      <a href="#tuning">Tuning</a>
+
+      <a href="#compare">Compare</a>
+
+      <a href="#blueprint">Blueprint</a>
+
+      <a href="#qa">Q&A</a>
+
+      <a href="#adr">ADR</a>
+    </nav>
+
     <div class="container">
-      <div class="scenarios">
-        <div class="scenario" onclick="selectScenario('streaming')">
+      <div class="scenarios" id="overview">
+        <div class="scenario" data-scenario="streaming">
           <div class="icon">📡</div>
 
           <h3>Event Streaming</h3>
@@ -64,7 +80,7 @@
           <p>Millions of events, ordering, replay, analytics.</p>
         </div>
 
-        <div class="scenario" onclick="selectScenario('payments')">
+        <div class="scenario" data-scenario="payments">
           <div class="icon">💳</div>
 
           <h3>Payments Platform</h3>
@@ -72,7 +88,7 @@
           <p>Reliability, correctness, low latency.</p>
         </div>
 
-        <div class="scenario" onclick="selectScenario('ai')">
+        <div class="scenario" data-scenario="ai">
           <div class="icon">🤖</div>
 
           <h3>AI Platform</h3>
@@ -80,7 +96,7 @@
           <p>Pipelines, async processing, scale.</p>
         </div>
 
-        <div class="scenario" onclick="selectScenario('dataPlatform')">
+        <div class="scenario" data-scenario="dataPlatform">
           <div class="icon">🏢</div>
 
           <h3>Enterprise Data Platform</h3>
@@ -91,7 +107,7 @@
           </p>
         </div>
 
-        <div class="scenario" onclick="selectScenario('api')">
+        <div class="scenario" data-scenario="api">
           <div class="icon">🌎</div>
 
           <h3>Global API</h3>
@@ -121,7 +137,7 @@
 
         <!-- Recommendation -->
 
-        <div class="panel recommendation">
+        <div class="panel recommendation" id="recommendation">
           <h2>Recommended Architecture</h2>
 
           <div class="tech">Select a scenario</div>
@@ -184,7 +200,7 @@
         <!-- What-If Analysis + Comparison -->
 
         <div class="dual-panel">
-          <div class="panel">
+          <div class="panel" id="tuning">
             <h2>What-If Weight Tuning</h2>
 
             <p class="panel-note">
@@ -201,7 +217,7 @@
             </button>
           </div>
 
-          <div class="panel">
+          <div class="panel" id="compare">
             <h2>Architecture Comparison</h2>
 
             <div id="comparisonContainer">
@@ -234,7 +250,7 @@
 
         <!-- Blueprint -->
 
-        <div class="panel adr-panel">
+        <div class="panel adr-panel" id="blueprint">
           <h2 id="diagramTitle">Architecture Blueprint</h2>
 
           <div id="diagramContainer" class="diagram-container">
@@ -244,7 +260,7 @@
 
         <!-- Architecture Q&A -->
 
-        <div class="panel full-width qa-panel">
+        <div class="panel full-width qa-panel" id="qa">
           <h2>Architecture Q&A</h2>
 
           <p class="panel-note">
@@ -264,24 +280,43 @@
 
           <div class="qa-chips" id="qaExamples"></div>
 
-          <div class="qa-settings">
-            <label for="qaApiKey">Gemini API key (optional)</label>
+          <details class="qa-settings" id="qaSettings">
+            <summary>
+              <span class="qa-settings-summary">
+                AI answers
+                <span
+                  class="qa-mode-chip"
+                  id="qaModeChip"
+                  data-mode="off"
+                ></span>
+              </span>
 
-            <div class="qa-settings-row">
-              <input
-                id="qaApiKey"
-                type="password"
-                autocomplete="off"
-                placeholder="Paste your Gemini API key (optional)"
-              />
+              <span class="qa-settings-caret">▾</span>
+            </summary>
 
-              <button class="secondary" onclick="saveGenAIKey()" type="button">
-                Save
-              </button>
+            <div class="qa-settings-body">
+              <label for="qaApiKey">Gemini API key (optional)</label>
+
+              <div class="qa-settings-row">
+                <input
+                  id="qaApiKey"
+                  type="password"
+                  autocomplete="off"
+                  placeholder="Paste your Gemini API key (optional)"
+                />
+
+                <button
+                  class="secondary"
+                  onclick="saveGenAIKey()"
+                  type="button"
+                >
+                  Save
+                </button>
+              </div>
+
+              <p id="qaKeyStatus" class="qa-key-status"></p>
             </div>
-
-            <p id="qaKeyStatus" class="qa-key-status"></p>
-          </div>
+          </details>
 
           <div id="qaResult" class="qa-result">
             <p class="qa-empty">Your answer will appear here.</p>
@@ -290,7 +325,7 @@
 
         <!-- ADR -->
 
-        <div class="panel adr-panel">
+        <div class="panel adr-panel" id="adr">
           <h2>Architecture Decision Record</h2>
 
           <div class="adr-actions">
@@ -381,5 +416,7 @@
         </div>
       </div>
     </footer>
+
+    <div id="toastContainer" class="toast-container"></div>
   </body>
 </html>

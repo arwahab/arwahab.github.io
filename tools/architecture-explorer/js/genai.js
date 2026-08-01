@@ -105,15 +105,27 @@ function saveGenAIKey() {
 
 function updateGenAIStatus() {
   const status = document.getElementById("qaKeyStatus");
-  if (!status) return;
+  const chip = document.getElementById("qaModeChip");
   if (genAIEnabled()) {
-    status.textContent =
-      "AI answers enabled. Key is stored in this browser only.";
-    status.className = "qa-key-status qa-key-on";
+    if (status) {
+      status.textContent =
+        "AI answers enabled. Key is stored in this browser only.";
+      status.className = "qa-key-status qa-key-on";
+    }
+    if (chip) {
+      chip.textContent = "AI on";
+      chip.dataset.mode = "on";
+    }
   } else {
-    status.textContent =
-      "Local knowledge base mode. Add a free Gemini API key to enable AI answers for any architecture question.";
-    status.className = "qa-key-status qa-key-off";
+    if (status) {
+      status.textContent =
+        "Local knowledge base mode. Add a free Gemini API key to enable AI answers for any architecture question.";
+      status.className = "qa-key-status qa-key-off";
+    }
+    if (chip) {
+      chip.textContent = "Local KB";
+      chip.dataset.mode = "off";
+    }
   }
 }
 

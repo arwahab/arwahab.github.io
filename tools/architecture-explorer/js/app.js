@@ -73,6 +73,8 @@ function selectScenario(scenarioId) {
 
   selectedScenario = scenario;
 
+  setActiveScenarioCard(scenarioId);
+
   updateScenarioContext(scenario);
 
   renderWeightSliders(scenario);
@@ -88,6 +90,26 @@ function selectScenario(scenarioId) {
   updateDiagram(scenarioId);
 
   currentDiagramId = scenarioId;
+
+  scrollToResults();
+}
+
+function setActiveScenarioCard(scenarioId) {
+  document.querySelectorAll(".scenario").forEach((card) => {
+    const active = card.getAttribute("data-scenario") === scenarioId;
+
+    card.classList.toggle("active", active);
+
+    card.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+}
+
+function scrollToResults() {
+  const recommendation = document.getElementById("recommendation");
+
+  if (recommendation && window.matchMedia("(max-width: 900px)").matches) {
+    recommendation.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
 function renderResults(recommendation) {
@@ -932,6 +954,12 @@ function resetView() {
 
   selectedRecommendation = null;
 
+  document.querySelectorAll(".scenario").forEach((card) => {
+    card.classList.remove("active");
+
+    card.setAttribute("aria-pressed", "false");
+  });
+
   const title = document.getElementById("scenarioTitle");
 
   const description = document.getElementById("scenarioDescription");
@@ -1052,7 +1080,7 @@ function resetView() {
 
 function showADR() {
   if (!selectedScenario || !selectedRecommendation) {
-    alert("Select a workload first.");
+    showToast("Select a workload first.", "warn");
 
     return;
   }
@@ -1072,7 +1100,7 @@ function copyADR() {
   const output = document.getElementById("adrOutput");
 
   if (!output || !output.value) {
-    alert("Generate an ADR first.");
+    showToast("Generate an ADR first.", "warn");
 
     return;
   }
@@ -1080,10 +1108,10 @@ function copyADR() {
   navigator.clipboard
     .writeText(output.value)
     .then(() => {
-      alert("ADR copied to clipboard.");
+      showToast("ADR copied to clipboard.");
     })
     .catch(() => {
-      alert("Could not copy ADR.");
+      showToast("Could not copy ADR.", "error");
     });
 }
 
@@ -1091,7 +1119,7 @@ function downloadADR() {
   const output = document.getElementById("adrOutput");
 
   if (!output || !output.value) {
-    alert("Generate an ADR first.");
+    showToast("Generate an ADR first.", "warn");
 
     return;
   }
@@ -1113,4 +1141,76 @@ function downloadADR() {
   document.body.removeChild(link);
 
   URL.revokeObjectURL(url);
+}
+
+/*
+=====================================
+ Toast Notifications
+=====================================
+*/
+
+function showToast(message, type) {
+  const container = document.getElementById("toastContainer");
+
+  if (!container) {
+    alert(message);
+
+    return;
+  }
+
+  const toast = document.createElement("div");
+
+  toast.className = "toast " + (type || "success");
+
+  toast.setAttribute("role", "status");
+
+  toast.textContent = message;
+
+  container.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.classList.add("toast-visible");
+  });
+
+  setTimeout(() => {
+    toast.classList.remove("toast-visible");
+
+    setTimeout(() => toast.remove(), 400);
+  }, 3200);
+}
+
+/*
+=====================================
+ Scenario Card Keyboard Access
+=====================================
+*/
+
+function initScenarioCards() {
+  document.querySelectorAll(".scenario").forEach((card) => {
+    card.setAttribute("tabindex", "0");
+
+    card.setAttribute("role", "button");
+
+    card.setAttribute("aria-pressed", "false");
+
+    const id = card.getAttribute("data-scenario");
+
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+
+        if (id) selectScenario(id);
+      }
+    });
+
+    card.addEventListener("click", () => {
+      if (id) selectScenario(id);
+    });
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initScenarioCards);
+} else {
+  initScenarioCards();
 }

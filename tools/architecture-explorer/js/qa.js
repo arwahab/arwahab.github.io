@@ -1683,28 +1683,43 @@ function askTopic(topicId) {
 
 async function askQuestion() {
   const input = document.getElementById("qaInput");
+  const submit = document.querySelector(".qa-submit");
   const question = input ? input.value.trim() : "";
   if (!question) {
     if (input) input.focus();
     return;
   }
-  if (genAIEnabled()) {
-    qaRenderLoading();
-    try {
-      const text = await askGenAI(question);
-      qaRenderAI(text);
-      return;
-    } catch (err) {
-      // fall through to the local knowledge base
-    }
+  if (submit && submit.disabled) {
+    return;
   }
-  const result = qaFind(question);
-  if (result.entry) {
-    qaRenderResult(result.entry, result.kind);
-  } else if (result.kind === "closest") {
-    qaRenderClosest(result.closest);
-  } else {
-    qaRenderFallback();
+  if (submit) {
+    submit.disabled = true;
+    submit.textContent = "…";
+  }
+  try {
+    if (genAIEnabled()) {
+      qaRenderLoading();
+      try {
+        const text = await askGenAI(question);
+        qaRenderAI(text);
+        return;
+      } catch (err) {
+        // fall through to the local knowledge base
+      }
+    }
+    const result = qaFind(question);
+    if (result.entry) {
+      qaRenderResult(result.entry, result.kind);
+    } else if (result.kind === "closest") {
+      qaRenderClosest(result.closest);
+    } else {
+      qaRenderFallback();
+    }
+  } finally {
+    if (submit) {
+      submit.disabled = false;
+      submit.textContent = "Ask";
+    }
   }
 }
 
@@ -1720,7 +1735,12 @@ function initQA() {
   const input = document.getElementById("qaInput");
   if (input) {
     input.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" && !event.shiftKey) {
+      if (
+        event.key === "Enter" &&
+        !event.shiftKey &&
+        !event.ctrlKey &&
+        !event.metaKey
+      ) {
         event.preventDefault();
         askQuestion();
       }
