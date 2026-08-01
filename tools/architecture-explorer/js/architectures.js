@@ -1,288 +1,221 @@
 const architectures = [
+  {
+    id: "kafka",
 
-    {
-        id: "kafka",
+    name: "Apache Kafka",
 
-        name: "Apache Kafka",
+    category: "Event Streaming",
 
-        category: "Event Streaming",
+    description:
+      "Distributed event streaming platform optimized for massive throughput, durable logs, and event replay.",
 
-        description:
-            "Distributed event streaming platform optimized for massive throughput, durable logs, and event replay.",
+    scores: {
+      scalability: 95,
 
+      reliability: 90,
 
-        scores: {
+      simplicity: 45,
 
-            scalability: 95,
+      costEfficiency: 65,
 
-            reliability: 90,
+      latency: 90,
 
-            simplicity: 45,
+      ordering: 100,
 
-            costEfficiency: 65,
-
-            latency: 90,
-
-            ordering: 100,
-
-            replay: 100
-
-        },
-
-
-        strengths: [
-
-            "Massive throughput",
-
-            "Strong event ordering",
-
-            "Durable event history",
-
-            "Native replay capability",
-
-            "Excellent for streaming analytics"
-
-        ],
-
-
-        weaknesses: [
-
-            "Higher operational complexity",
-
-            "Requires cluster management",
-
-            "Steeper learning curve"
-
-        ],
-
-
-        bestFor: [
-
-            "Event-driven systems",
-
-            "Real-time analytics",
-
-            "Financial transactions",
-
-            "Large scale data pipelines"
-
-        ]
-
+      replay: 100,
     },
 
+    strengths: [
+      "Massive throughput",
 
+      "Strong event ordering",
 
+      "Durable event history",
 
+      "Native replay capability",
 
-    {
-        id: "sqs",
+      "Excellent for streaming analytics",
+    ],
 
-        name: "Amazon SQS",
+    weaknesses: [
+      "Higher operational complexity",
 
-        category: "Managed Queue",
+      "Requires cluster management",
 
-        description:
-            "Fully managed message queue designed for reliable asynchronous processing without infrastructure management.",
+      "Steeper learning curve",
+    ],
 
+    bestFor: [
+      "Event-driven systems",
 
-        scores: {
+      "Real-time analytics",
 
-            scalability: 95,
+      "Financial transactions",
 
-            reliability: 98,
+      "Large scale data pipelines",
+    ],
+  },
 
-            simplicity: 98,
+  {
+    id: "sqs",
 
-            costEfficiency: 90,
+    name: "Amazon SQS",
 
-            latency: 75,
+    category: "Managed Queue",
 
-            ordering: 60,
+    description:
+      "Fully managed message queue designed for reliable asynchronous processing without infrastructure management.",
 
-            replay: 50
+    scores: {
+      scalability: 95,
 
-        },
+      reliability: 98,
 
+      simplicity: 98,
 
-        strengths: [
+      costEfficiency: 90,
 
-            "Fully managed service",
+      latency: 75,
 
-            "Excellent reliability",
+      ordering: 60,
 
-            "Minimal operations",
-
-            "Automatic scaling",
-
-            "Strong AWS integration"
-
-        ],
-
-
-        weaknesses: [
-
-            "Limited ordering guarantees",
-
-            "Replay requires additional design",
-
-            "Less control than Kafka"
-
-        ],
-
-
-        bestFor: [
-
-            "Background processing",
-
-            "Serverless workloads",
-
-            "Task queues",
-
-            "Decoupled services"
-
-        ]
-
+      replay: 50,
     },
 
+    strengths: [
+      "Fully managed service",
 
+      "Excellent reliability",
 
+      "Minimal operations",
 
+      "Automatic scaling",
 
-    {
-        id: "eventbridge",
+      "Strong AWS integration",
+    ],
 
-        name: "Amazon EventBridge",
+    weaknesses: [
+      "Limited ordering guarantees",
 
-        category: "Event Bus",
+      "Replay requires additional design",
 
-        description:
-            "Serverless event routing platform for loosely coupled architectures.",
+      "Less control than Kafka",
+    ],
 
+    bestFor: [
+      "Background processing",
 
-        scores: {
+      "Serverless workloads",
 
-            scalability: 85,
+      "Task queues",
 
-            reliability: 95,
+      "Decoupled services",
+    ],
+  },
 
-            simplicity: 95,
+  {
+    id: "eventbridge",
 
-            costEfficiency: 90,
+    name: "Amazon EventBridge",
 
-            latency: 70,
+    category: "Event Bus",
 
-            ordering: 30,
+    description:
+      "Serverless event routing platform for loosely coupled architectures.",
 
-            replay: 60
+    scores: {
+      scalability: 85,
 
-        },
+      reliability: 95,
 
+      simplicity: 95,
 
-        strengths: [
+      costEfficiency: 90,
 
-            "Serverless architecture",
+      latency: 70,
 
-            "Native AWS integrations",
+      ordering: 30,
 
-            "Event filtering",
-
-            "Schema discovery"
-
-        ],
-
-
-        weaknesses: [
-
-            "Not designed for extreme streaming",
-
-            "Limited ordering guarantees",
-
-            "Less control"
-
-        ],
-
-
-        bestFor: [
-
-            "AWS event-driven systems",
-
-            "Application integration",
-
-            "Serverless platforms"
-
-        ]
-
+      replay: 60,
     },
 
+    strengths: [
+      "Serverless architecture",
 
+      "Native AWS integrations",
 
+      "Event filtering",
 
+      "Schema discovery",
+    ],
 
-    {
-        id: "rabbitmq",
+    weaknesses: [
+      "Not designed for extreme streaming",
 
-        name: "RabbitMQ",
+      "Limited ordering guarantees",
 
-        category: "Message Broker",
+      "Less control",
+    ],
 
-        description:
-            "Flexible messaging broker supporting complex routing and low latency communication.",
+    bestFor: [
+      "AWS event-driven systems",
 
+      "Application integration",
 
-        scores: {
+      "Serverless platforms",
+    ],
+  },
 
-            scalability: 75,
+  {
+    id: "rabbitmq",
 
-            reliability: 85,
+    name: "RabbitMQ",
 
-            simplicity: 70,
+    category: "Message Broker",
 
-            costEfficiency: 80,
+    description:
+      "Flexible messaging broker supporting complex routing and low latency communication.",
 
-            latency: 95,
+    scores: {
+      scalability: 75,
 
-            ordering: 85,
+      reliability: 85,
 
-            replay: 60
+      simplicity: 70,
 
-        },
+      costEfficiency: 80,
 
+      latency: 95,
 
-        strengths: [
+      ordering: 85,
 
-            "Low latency",
+      replay: 60,
+    },
 
-            "Flexible routing",
+    strengths: [
+      "Low latency",
 
-            "Multiple messaging patterns",
+      "Flexible routing",
 
-            "Protocol support"
+      "Multiple messaging patterns",
 
-        ],
+      "Protocol support",
+    ],
 
+    weaknesses: [
+      "Cluster operations",
 
-        weaknesses: [
+      "Scaling complexity",
 
-            "Cluster operations",
+      "Infrastructure ownership",
+    ],
 
-            "Scaling complexity",
+    bestFor: [
+      "Enterprise messaging",
 
-            "Infrastructure ownership"
+      "Complex workflows",
 
-        ],
-
-
-        bestFor: [
-
-            "Enterprise messaging",
-
-            "Complex workflows",
-
-            "Low latency systems"
-
-        ]
-
-    }
-
-
+      "Low latency systems",
+    ],
+  },
 ];

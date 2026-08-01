@@ -2,7 +2,6 @@ let selectedScenario = null;
 
 let selectedRecommendation = null;
 
-
 /*
 =====================================
  Scenario Selection
@@ -10,89 +9,34 @@ let selectedRecommendation = null;
 */
 
 function selectScenario(scenarioId) {
+  const scenario = scenarios[scenarioId];
 
+  if (!scenario) {
+    console.error("Scenario not found:", scenarioId);
 
-    const scenario =
-        scenarios[scenarioId];
+    return;
+  }
 
+  selectedScenario = scenario;
 
-    if(!scenario){
+  updateScenarioContext(scenario);
 
-        console.error(
-            "Scenario not found:",
-            scenarioId
-        );
+  const recommendation = getRecommendation(scenario.requirements);
 
-        return;
+  selectedRecommendation = recommendation;
 
-    }
+  updateRecommendation(recommendation);
 
+  updateMetrics(recommendation.winner);
 
+  updateComparison(recommendation.ranking);
 
-    selectedScenario =
-        scenario;
+  updateTradeoffMatrix(recommendation.ranking);
 
+  updateLandscape(recommendation.ranking);
 
-
-    updateScenarioContext(
-        scenario
-    );
-
-
-
-    const recommendation =
-        getRecommendation(
-            scenario.requirements
-        );
-
-
-
-    selectedRecommendation =
-        recommendation;
-
-
-
-    updateRecommendation(
-        recommendation
-    );
-
-
-
-    updateMetrics(
-        recommendation.winner
-    );
-
-
-
-    updateComparison(
-        recommendation.ranking
-    );
-
-
-
-    updateTradeoffMatrix(
-        recommendation.ranking
-    );
-
-
-
-    updateLandscape(
-        recommendation.ranking
-    );
-
-
-
-    updateDiagram(
-        scenarioId
-    );
-
-
+  updateDiagram(scenarioId);
 }
-
-
-
-
-
 
 /*
 =====================================
@@ -100,66 +44,27 @@ function selectScenario(scenarioId) {
 =====================================
 */
 
-function updateScenarioContext(scenario){
+function updateScenarioContext(scenario) {
+  const title = document.getElementById("scenarioTitle");
 
+  const description = document.getElementById("scenarioDescription");
 
-    const title =
-        document.getElementById(
-            "scenarioTitle"
-        );
+  const challenges = document.getElementById("scenarioChallenges");
 
+  if (title) {
+    title.innerHTML = scenario.name;
+  }
 
-    const description =
-        document.getElementById(
-            "scenarioDescription"
-        );
+  if (description) {
+    description.innerHTML = scenario.summary;
+  }
 
-
-    const challenges =
-        document.getElementById(
-            "scenarioChallenges"
-        );
-
-
-
-    if(title){
-
-        title.innerHTML =
-            scenario.name;
-
-    }
-
-
-
-    if(description){
-
-        description.innerHTML =
-            scenario.summary;
-
-    }
-
-
-
-    if(challenges){
-
-        challenges.innerHTML =
-            scenario.keyChallenges
-            .map(
-                item =>
-                "✓ " + item
-            )
-            .join("<br>");
-
-    }
-
-
+  if (challenges) {
+    challenges.innerHTML = scenario.keyChallenges
+      .map((item) => "✓ " + item)
+      .join("<br>");
+  }
 }
-
-
-
-
-
-
 
 /*
 =====================================
@@ -167,84 +72,35 @@ function updateScenarioContext(scenario){
 =====================================
 */
 
+function updateRecommendation(data) {
+  if (!data || !data.winner) {
+    return;
+  }
 
-function updateRecommendation(data){
+  const winner = data.winner;
 
+  const tech = document.querySelector(".tech");
 
-    if(
-        !data ||
-        !data.winner
-    ){
+  const score = document.querySelector(".score");
 
-        return;
+  const reason = document.querySelector(".reason");
 
-    }
+  const confidence = document.querySelector(".confidence span");
 
+  if (tech) {
+    tech.innerHTML = winner.name;
+  }
 
+  if (score) {
+    animateScore(score, winner.finalScore);
+  }
 
-    const winner =
-        data.winner;
+  if (confidence) {
+    confidence.style.width = winner.finalScore + "%";
+  }
 
-
-
-    const tech =
-        document.querySelector(
-            ".tech"
-        );
-
-
-    const score =
-        document.querySelector(
-            ".score"
-        );
-
-
-    const reason =
-        document.querySelector(
-            ".reason"
-        );
-
-
-    const confidence =
-        document.querySelector(
-            ".confidence span"
-        );
-
-
-
-    if(tech){
-
-        tech.innerHTML =
-            winner.name;
-
-    }
-
-
-
-    if(score){
-
-        animateScore(
-            score,
-            winner.finalScore
-        );
-
-    }
-
-
-
-    if(confidence){
-
-        confidence.style.width =
-            winner.finalScore + "%";
-
-    }
-
-
-
-    if(reason){
-
-
-        reason.innerHTML = `
+  if (reason) {
+    reason.innerHTML = `
 
 
 
@@ -259,14 +115,7 @@ function updateRecommendation(data){
         <br>
 
 
-        ${
-            winner.strengths
-            .map(
-                item =>
-                "✓ " + item
-            )
-            .join("<br>")
-        }
+        ${winner.strengths.map((item) => "✓ " + item).join("<br>")}
 
 
         </div>
@@ -285,14 +134,7 @@ function updateRecommendation(data){
         <br>
 
 
-        ${
-            winner.weaknesses
-            .map(
-                item =>
-                "• " + item
-            )
-            .join("<br>")
-        }
+        ${winner.weaknesses.map((item) => "• " + item).join("<br>")}
 
 
         </div>
@@ -311,61 +153,29 @@ function updateRecommendation(data){
         <br>
 
 
-        ${
-            generateAlternativeAnalysis(
-                winner,
-                data.ranking
-            )
-        }
+        ${generateAlternativeAnalysis(winner, data.ranking)}
 
 
         </div>
 
 
         `;
-
-
-    }
-
-
+  }
 }
 
+function generateAlternativeAnalysis(winner, ranking) {
+  if (!ranking || ranking.length === 0) {
+    return "";
+  }
 
+  return ranking
 
+    .filter((architecture) => architecture.id !== winner.id)
 
+    .slice(0, 3)
 
-
-function generateAlternativeAnalysis(
-    winner,
-    ranking
-){
-
-
-    if(
-        !ranking ||
-        ranking.length === 0
-    ){
-
-        return "";
-
-    }
-
-
-
-    return ranking
-
-    .filter(
-        architecture =>
-        architecture.id !== winner.id
-    )
-
-    .slice(0,3)
-
-    .map(
-        architecture => {
-
-
-            return `
+    .map((architecture) => {
+      return `
 
 
             <div class="alternative-item">
@@ -392,90 +202,36 @@ function generateAlternativeAnalysis(
             <br>
 
 
-            ${
-                architecture.weaknesses
-                .slice(0,2)
-                .map(
-                    item =>
-                    "• " + item
-                )
-                .join("<br>")
-            }
+            ${architecture.weaknesses
+              .slice(0, 2)
+              .map((item) => "• " + item)
+              .join("<br>")}
 
 
             </div>
 
 
             `;
-
-
-        }
-
-    )
+    })
 
     .join("<br>");
-
-
 }
 
+function animateScore(element, target) {
+  if (!element) {
+    return;
+  }
 
+  let score = Number(target);
 
+  if (isNaN(score)) {
+    score = 0;
+  }
 
+  score = Math.max(0, Math.min(100, score));
 
-
-
-
-function animateScore(
-    element,
-    target
-){
-
-
-    if(!element){
-
-        return;
-
-    }
-
-
-
-    let score =
-        Number(target);
-
-
-
-    if(isNaN(score)){
-
-        score = 0;
-
-    }
-
-
-
-    score =
-        Math.max(
-            0,
-            Math.min(
-                100,
-                score
-            )
-        );
-
-
-
-    element.innerHTML =
-        Math.round(score)
-        + "%";
-
-
+  element.innerHTML = Math.round(score) + "%";
 }
-
-
-
-
-
-
-
 
 /*
 =====================================
@@ -483,78 +239,31 @@ function animateScore(
 =====================================
 */
 
+function updateMetrics(system) {
+  if (!system || !system.scores) {
+    return;
+  }
 
-function updateMetrics(system){
+  const metrics = {
+    scaleBar: system.scores.scalability,
 
+    reliabilityBar: system.scores.reliability,
 
-    if(
-        !system ||
-        !system.scores
-    ){
+    simplicityBar: system.scores.simplicity,
 
-        return;
+    costBar: system.scores.costEfficiency,
+  };
 
-    }
+  Object.keys(metrics)
 
+    .forEach((id) => {
+      const element = document.getElementById(id);
 
-
-    const metrics = {
-
-
-        scaleBar:
-        system.scores.scalability,
-
-
-        reliabilityBar:
-        system.scores.reliability,
-
-
-        simplicityBar:
-        system.scores.simplicity,
-
-
-        costBar:
-        system.scores.costEfficiency
-
-
-    };
-
-
-
-    Object.keys(metrics)
-
-    .forEach(
-        id=>{
-
-
-            const element =
-                document.getElementById(
-                    id
-                );
-
-
-
-            if(element){
-
-                element.style.width =
-                    metrics[id]
-                    + "%";
-
-            }
-
-
-        }
-
-    );
-
-
+      if (element) {
+        element.style.width = metrics[id] + "%";
+      }
+    });
 }
-
-
-
-
-
-
 
 /*
 =====================================
@@ -562,50 +271,21 @@ function updateMetrics(system){
 =====================================
 */
 
+function updateComparison(results) {
+  const container = document.getElementById("comparisonContainer");
 
-function updateComparison(results){
+  if (!container || !results) {
+    return;
+  }
 
+  container.innerHTML = "";
 
-    const container =
-        document.getElementById(
-            "comparisonContainer"
-        );
+  results.forEach((system, index) => {
+    const row = document.createElement("div");
 
+    row.className = "comparison-row";
 
-
-    if(
-        !container ||
-        !results
-    ){
-
-        return;
-
-    }
-
-
-
-    container.innerHTML =
-        "";
-
-
-
-    results.forEach(
-        (system,index)=>{
-
-
-            const row =
-                document.createElement(
-                    "div"
-                );
-
-
-
-            row.className =
-                "comparison-row";
-
-
-
-            row.innerHTML = `
+    row.innerHTML = `
 
 
             <div class="comparison-header">
@@ -613,7 +293,7 @@ function updateComparison(results){
 
             <span class="comparison-name">
 
-            #${index+1}
+            #${index + 1}
             ${system.name}
 
             </span>
@@ -648,27 +328,9 @@ function updateComparison(results){
 
             `;
 
-
-
-            container.appendChild(
-                row
-            );
-
-
-        }
-
-    );
-
-
+    container.appendChild(row);
+  });
 }
-
-
-
-
-
-
-
-
 
 /*
 =====================================
@@ -676,49 +338,30 @@ function updateComparison(results){
 =====================================
 */
 
+function updateTradeoffMatrix(results) {
+  const container = document.getElementById("tradeoffMatrix");
 
-function updateTradeoffMatrix(results){
+  if (!container || !results) {
+    return;
+  }
 
+  const dimensions = [
+    "scalability",
 
-    const container =
-        document.getElementById(
-            "tradeoffMatrix"
-        );
+    "reliability",
 
+    "simplicity",
 
+    "costEfficiency",
 
-    if(
-        !container ||
-        !results
-    ){
+    "latency",
 
-        return;
+    "ordering",
 
-    }
+    "replay",
+  ];
 
-
-
-    const dimensions = [
-
-        "scalability",
-
-        "reliability",
-
-        "simplicity",
-
-        "costEfficiency",
-
-        "latency",
-
-        "ordering",
-
-        "replay"
-
-    ];
-
-
-
-    let html = `
+  let html = `
 
 
 <table class="tradeoff-table">
@@ -732,19 +375,17 @@ Dimension
 </th>
 
 
-${
-results.map(
-system =>
-
-`
+${results
+  .map(
+    (system) =>
+      `
 <th>
 ${system.name}
 </th>
 
-`
-
-).join("")
-}
+`,
+  )
+  .join("")}
 
 
 </tr>
@@ -757,13 +398,8 @@ ${system.name}
 
 `;
 
-
-
-dimensions.forEach(
-dimension=>{
-
-
-html += `
+  dimensions.forEach((dimension) => {
+    html += `
 
 
 <tr>
@@ -775,37 +411,21 @@ ${dimension}
 
 
 
-${
-results.map(
-system=>{
+${results
+  .map((system) => {
+    const value = system.scores[dimension] ?? 0;
 
+    let css = "medium-score";
 
-const value =
-system.scores[dimension] ?? 0;
+    if (value >= 85) {
+      css = "high-score";
+    }
 
+    if (value < 60) {
+      css = "low-score";
+    }
 
-let css =
-"medium-score";
-
-
-if(value >= 85){
-
-css =
-"high-score";
-
-}
-
-
-if(value < 60){
-
-css =
-"low-score";
-
-}
-
-
-
-return `
+    return `
 
 <td class="tradeoff-score ${css}">
 
@@ -815,26 +435,17 @@ ${value}
 
 
 `;
-
-
-}
-
-).join("")
-
-}
+  })
+  .join("")}
 
 
 </tr>
 
 
 `;
+  });
 
-
-});
-
-
-
-html += `
+  html += `
 
 </tbody>
 
@@ -842,21 +453,8 @@ html += `
 
 `;
 
-
-
-container.innerHTML =
-    html;
-
-
+  container.innerHTML = html;
 }
-
-
-
-
-
-
-
-
 
 /*
 =====================================
@@ -864,29 +462,14 @@ container.innerHTML =
 =====================================
 */
 
+function updateLandscape(results) {
+  const container = document.getElementById("landscapeContainer");
 
-function updateLandscape(results){
+  if (!container || !results) {
+    return;
+  }
 
-
-    const container =
-        document.getElementById(
-            "landscapeContainer"
-        );
-
-
-
-    if(
-        !container ||
-        !results
-    ){
-
-        return;
-
-    }
-
-
-
-    container.innerHTML = `
+  container.innerHTML = `
 
     <div class="landscape">
 
@@ -910,67 +493,22 @@ function updateLandscape(results){
 
     `;
 
+  const chart = container.querySelector(".landscape");
 
+  results.forEach((architecture) => {
+    const point = document.createElement("div");
 
-    const chart =
-        container.querySelector(
-            ".landscape"
-        );
+    point.className = "landscape-point";
 
+    point.innerHTML = architecture.name;
 
+    point.style.left = architecture.scores.simplicity + "%";
 
-    results.forEach(
-        architecture=>{
+    point.style.bottom = architecture.scores.scalability + "%";
 
-
-            const point =
-                document.createElement(
-                    "div"
-                );
-
-
-
-            point.className =
-                "landscape-point";
-
-
-
-            point.innerHTML =
-                architecture.name;
-
-
-
-            point.style.left =
-                architecture.scores.simplicity
-                + "%";
-
-
-
-            point.style.bottom =
-                architecture.scores.scalability
-                + "%";
-
-
-
-            chart.appendChild(
-                point
-            );
-
-
-        }
-
-    );
-
-
+    chart.appendChild(point);
+  });
 }
-
-
-
-
-
-
-
-
 
 /*
 =====================================
@@ -978,126 +516,43 @@ function updateLandscape(results){
 =====================================
 */
 
+function updateDiagram(scenarioId) {
+  const diagram = getDiagram(scenarioId);
 
-function updateDiagram(scenarioId){
+  const container = document.getElementById("diagramContainer");
 
+  const title = document.getElementById("diagramTitle");
 
-    const diagram =
-        getDiagram(
-            scenarioId
-        );
+  if (!diagram || !container) {
+    return;
+  }
 
+  if (title) {
+    title.innerHTML = diagram.title;
+  }
 
-    const container =
-        document.getElementById(
-            "diagramContainer"
-        );
+  container.innerHTML = "";
 
+  diagram.nodes.forEach((node, index) => {
+    const box = document.createElement("div");
 
-    const title =
-        document.getElementById(
-            "diagramTitle"
-        );
+    box.className = "diagram-node";
 
+    box.innerHTML = node;
 
+    container.appendChild(box);
 
-    if(
-        !diagram ||
-        !container
-    ){
+    if (index < diagram.nodes.length - 1) {
+      const arrow = document.createElement("div");
 
-        return;
+      arrow.className = "diagram-arrow";
 
+      arrow.innerHTML = "↓";
+
+      container.appendChild(arrow);
     }
-
-
-
-    if(title){
-
-        title.innerHTML =
-            diagram.title;
-
-    }
-
-
-
-    container.innerHTML =
-        "";
-
-
-
-    diagram.nodes.forEach(
-        (node,index)=>{
-
-
-            const box =
-                document.createElement(
-                    "div"
-                );
-
-
-
-            box.className =
-                "diagram-node";
-
-
-
-            box.innerHTML =
-                node;
-
-
-
-            container.appendChild(
-                box
-            );
-
-
-
-            if(
-                index <
-                diagram.nodes.length - 1
-            ){
-
-
-                const arrow =
-                    document.createElement(
-                        "div"
-                    );
-
-
-
-                arrow.className =
-                    "diagram-arrow";
-
-
-
-                arrow.innerHTML =
-                    "↓";
-
-
-
-                container.appendChild(
-                    arrow
-                );
-
-
-            }
-
-
-        }
-
-    );
-
-
+  });
 }
-
-
-
-
-
-
-
-
 
 /*
 =====================================
@@ -1105,46 +560,20 @@ function updateDiagram(scenarioId){
 =====================================
 */
 
+function showADR() {
+  if (!selectedScenario || !selectedRecommendation) {
+    alert("Select a workload first.");
 
-function showADR(){
+    return;
+  }
 
+  const output = document.getElementById("adrOutput");
 
-    if(
-        !selectedScenario ||
-        !selectedRecommendation
-    ){
+  if (output) {
+    output.value = generateADR(
+      selectedScenario,
 
-        alert(
-            "Select a workload first."
-        );
-
-        return;
-
-    }
-
-
-
-    const output =
-        document.getElementById(
-            "adrOutput"
-        );
-
-
-
-    if(output){
-
-
-        output.value =
-            generateADR(
-
-                selectedScenario,
-
-                selectedRecommendation
-
-            );
-
-
-    }
-
-
+      selectedRecommendation,
+    );
+  }
 }

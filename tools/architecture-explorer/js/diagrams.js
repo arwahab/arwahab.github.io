@@ -1,192 +1,125 @@
 const diagrams = {
+  streaming: {
+    title: "Event Streaming Architecture",
 
+    nodes: [
+      "Applications",
 
-    streaming: {
+      "Event Producers",
 
+      "Kafka Cluster",
 
-        title:
-            "Event Streaming Architecture",
+      "Stream Processing",
 
+      "Analytics Platform",
 
-        nodes: [
+      "Data Lake",
+    ],
 
-            "Applications",
+    connections: [
+      [0, 1],
 
-            "Event Producers",
+      [1, 2],
 
-            "Kafka Cluster",
+      [2, 3],
 
-            "Stream Processing",
+      [3, 4],
 
-            "Analytics Platform",
+      [3, 5],
+    ],
+  },
 
-            "Data Lake"
+  payments: {
+    title: "Payment Processing Architecture",
 
-        ],
+    nodes: [
+      "Customers",
 
+      "API Gateway",
 
-        connections: [
+      "Payment Services",
 
-            [0, 1],
+      "Transaction Database",
 
-            [1, 2],
+      "Event Bus",
 
-            [2, 3],
+      "Fraud Detection",
+    ],
 
-            [3, 4],
+    connections: [
+      [0, 1],
 
-            [3, 5]
+      [1, 2],
 
-        ]
+      [2, 3],
 
-    },
+      [2, 4],
 
+      [4, 5],
+    ],
+  },
 
+  ai: {
+    title: "AI Platform Architecture",
 
+    nodes: [
+      "Data Sources",
 
+      "Ingestion Pipeline",
 
-    payments: {
+      "Feature Store",
 
+      "ML Training",
 
-        title:
-            "Payment Processing Architecture",
+      "Model Registry",
 
+      "Inference API",
+    ],
 
-        nodes: [
+    connections: [
+      [0, 1],
 
-            "Customers",
+      [1, 2],
 
-            "API Gateway",
+      [2, 3],
 
-            "Payment Services",
+      [3, 4],
 
-            "Transaction Database",
+      [4, 5],
+    ],
+  },
 
-            "Event Bus",
+  api: {
+    title: "Global API Architecture",
 
-            "Fraud Detection"
+    nodes: [
+      "Global Users",
 
-        ],
+      "CDN",
 
+      "API Gateway",
 
-        connections: [
+      "Application Services",
 
-            [0, 1],
+      "Database",
 
-            [1, 2],
+      "Monitoring",
+    ],
 
-            [2, 3],
+    connections: [
+      [0, 1],
 
-            [2, 4],
+      [1, 2],
 
-            [4, 5]
+      [2, 3],
 
-        ]
+      [3, 4],
 
-    },
-
-
-
-
-
-    ai: {
-
-
-        title:
-            "AI Platform Architecture",
-
-
-        nodes: [
-
-            "Data Sources",
-
-            "Ingestion Pipeline",
-
-            "Feature Store",
-
-            "ML Training",
-
-            "Model Registry",
-
-            "Inference API"
-
-        ],
-
-
-        connections: [
-
-            [0, 1],
-
-            [1, 2],
-
-            [2, 3],
-
-            [3, 4],
-
-            [4, 5]
-
-        ]
-
-    },
-
-
-
-
-
-    api: {
-
-
-        title:
-            "Global API Architecture",
-
-
-        nodes: [
-
-            "Global Users",
-
-            "CDN",
-
-            "API Gateway",
-
-            "Application Services",
-
-            "Database",
-
-            "Monitoring"
-
-        ],
-
-
-        connections: [
-
-            [0, 1],
-
-            [1, 2],
-
-            [2, 3],
-
-            [3, 4],
-
-            [3, 5]
-
-        ]
-
-    }
-
-
-
+      [3, 5],
+    ],
+  },
 };
 
-
-
-
-
-
-
 function getDiagram(scenarioId) {
-
-
-    return diagrams[scenarioId];
-
-
+  return diagrams[scenarioId];
 }

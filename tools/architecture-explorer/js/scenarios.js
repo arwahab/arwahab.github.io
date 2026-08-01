@@ -1,325 +1,244 @@
 const scenarios = {
+  streaming: {
+    id: "streaming",
 
+    name: "Event Streaming Platform",
 
-    streaming: {
+    description:
+      "High-volume event ingestion, analytics, and real-time processing.",
 
-        id: "streaming",
+    summary:
+      "Designed for systems that process millions of events while maintaining ordering, durability, and replay capability.",
 
-        name: "Event Streaming Platform",
+    keyChallenges: [
+      "Massive event throughput",
 
-        description:
-            "High-volume event ingestion, analytics, and real-time processing.",
+      "Event ordering guarantees",
 
+      "Long-term event replay",
 
-        summary:
-            "Designed for systems that process millions of events while maintaining ordering, durability, and replay capability.",
+      "Real-time processing",
+    ],
 
+    requirements: {
+      scalability: 100,
 
-        keyChallenges: [
+      reliability: 90,
 
-            "Massive event throughput",
+      simplicity: 35,
 
-            "Event ordering guarantees",
+      costEfficiency: 60,
 
-            "Long-term event replay",
+      latency: 85,
 
-            "Real-time processing"
+      ordering: 100,
 
-        ],
-
-
-        requirements: {
-
-            scalability: 100,
-
-            reliability: 90,
-
-            simplicity: 35,
-
-            costEfficiency: 60,
-
-            latency: 85,
-
-            ordering: 100,
-
-            replay: 100
-
-        },
-
-
-        priorities: [
-
-            "Massive throughput",
-
-            "Event ordering",
-
-            "Replay capability",
-
-            "Real-time processing"
-
-        ]
-
+      replay: 100,
     },
 
+    priorities: [
+      "Massive throughput",
 
+      "Event ordering",
 
+      "Replay capability",
 
+      "Real-time processing",
+    ],
+  },
 
-    payments: {
+  payments: {
+    id: "payments",
 
-        id: "payments",
+    name: "Payment Processing System",
 
-        name: "Payment Processing System",
+    description:
+      "Mission-critical transactions requiring correctness and reliability.",
 
-        description:
-            "Mission-critical transactions requiring correctness and reliability.",
+    summary:
+      "Designed for financial workflows where data correctness and availability matter more than raw throughput.",
 
+    keyChallenges: [
+      "Transaction correctness",
 
-        summary:
-            "Designed for financial workflows where data correctness and availability matter more than raw throughput.",
+      "High availability",
 
+      "Low latency",
 
-        keyChallenges: [
+      "Failure recovery",
+    ],
 
-            "Transaction correctness",
+    requirements: {
+      scalability: 75,
 
-            "High availability",
+      reliability: 100,
 
-            "Low latency",
+      simplicity: 70,
 
-            "Failure recovery"
+      costEfficiency: 50,
 
-        ],
+      latency: 95,
 
+      ordering: 90,
 
-        requirements: {
-
-            scalability: 75,
-
-            reliability: 100,
-
-            simplicity: 70,
-
-            costEfficiency: 50,
-
-            latency: 95,
-
-            ordering: 90,
-
-            replay: 80
-
-        },
-
-
-        priorities: [
-
-            "Data correctness",
-
-            "High availability",
-
-            "Transaction reliability",
-
-            "Low latency"
-
-        ]
-
+      replay: 80,
     },
 
+    priorities: [
+      "Data correctness",
 
+      "High availability",
 
+      "Transaction reliability",
 
+      "Low latency",
+    ],
+  },
 
-    ai: {
+  ai: {
+    id: "ai",
 
-        id: "ai",
+    name: "AI Platform",
 
-        name: "AI Platform",
+    description:
+      "AI workloads requiring asynchronous pipelines and scalable processing.",
 
-        description:
-            "AI workloads requiring asynchronous pipelines and scalable processing.",
+    summary:
+      "Designed for machine learning workloads involving data pipelines, model processing, and distributed workloads.",
 
+    keyChallenges: [
+      "Large data processing",
 
-        summary:
-            "Designed for machine learning workloads involving data pipelines, model processing, and distributed workloads.",
+      "Pipeline scalability",
 
+      "Compute optimization",
 
-        keyChallenges: [
+      "Workflow orchestration",
+    ],
 
-            "Large data processing",
+    requirements: {
+      scalability: 90,
 
-            "Pipeline scalability",
+      reliability: 85,
 
-            "Compute optimization",
+      simplicity: 60,
 
-            "Workflow orchestration"
+      costEfficiency: 75,
 
-        ],
+      latency: 60,
 
+      ordering: 40,
 
-        requirements: {
-
-            scalability: 90,
-
-            reliability: 85,
-
-            simplicity: 60,
-
-            costEfficiency: 75,
-
-            latency: 60,
-
-            ordering: 40,
-
-            replay: 85
-
-        },
-
-
-        priorities: [
-
-            "Pipeline scalability",
-
-            "Data processing",
-
-            "Model workflows",
-
-            "Cost management"
-
-        ]
-
+      replay: 85,
     },
 
+    priorities: [
+      "Pipeline scalability",
 
+      "Data processing",
 
+      "Model workflows",
 
+      "Cost management",
+    ],
+  },
 
-    api: {
+  api: {
+    id: "api",
 
-        id: "api",
+    name: "Global API Platform",
 
-        name: "Global API Platform",
+    description: "Customer-facing APIs requiring availability and low latency.",
 
-        description:
-            "Customer-facing APIs requiring availability and low latency.",
+    summary:
+      "Designed for internet-scale applications requiring global availability, performance, and operational simplicity.",
 
+    keyChallenges: [
+      "Global traffic distribution",
 
-        summary:
-            "Designed for internet-scale applications requiring global availability, performance, and operational simplicity.",
+      "Low latency",
 
+      "High availability",
 
-        keyChallenges: [
+      "Developer velocity",
+    ],
 
-            "Global traffic distribution",
+    requirements: {
+      scalability: 85,
 
-            "Low latency",
+      reliability: 95,
 
-            "High availability",
+      simplicity: 90,
 
-            "Developer velocity"
+      costEfficiency: 80,
 
-        ],
+      latency: 100,
 
+      ordering: 20,
 
-        requirements: {
-
-            scalability: 85,
-
-            reliability: 95,
-
-            simplicity: 90,
-
-            costEfficiency: 80,
-
-            latency: 100,
-
-            ordering: 20,
-
-            replay: 20
-
-        },
-
-
-        priorities: [
-
-            "Low latency",
-
-            "Global availability",
-
-            "Developer productivity",
-
-            "Operational simplicity"
-
-        ]
-
+      replay: 20,
     },
 
+    priorities: [
+      "Low latency",
 
+      "Global availability",
 
+      "Developer productivity",
 
+      "Operational simplicity",
+    ],
+  },
 
-    dataPlatform: {
+  dataPlatform: {
+    id: "dataPlatform",
 
-        id: "dataPlatform",
+    name: "Enterprise Data Platform",
 
-        name: "Enterprise Data Platform",
+    description:
+      "Cloud analytics platform supporting ingestion, governance, transformation, and large-scale data workloads.",
 
-        description:
-            "Cloud analytics platform supporting ingestion, governance, transformation, and large-scale data workloads.",
+    summary:
+      "Designed for enterprise analytics environments requiring scalable data processing, governance, metadata management, and cost-effective cloud operations.",
 
+    keyChallenges: [
+      "Large-scale data ingestion",
 
-        summary:
-            "Designed for enterprise analytics environments requiring scalable data processing, governance, metadata management, and cost-effective cloud operations.",
+      "Data governance and lineage",
 
+      "Analytics workload optimization",
 
-        keyChallenges: [
+      "Cost-efficient cloud processing",
 
-            "Large-scale data ingestion",
+      "Self-service data access",
+    ],
 
-            "Data governance and lineage",
+    requirements: {
+      scalability: 95,
 
-            "Analytics workload optimization",
+      reliability: 95,
 
-            "Cost-efficient cloud processing",
+      simplicity: 75,
 
-            "Self-service data access"
+      costEfficiency: 85,
 
-        ],
+      latency: 65,
 
+      ordering: 50,
 
-        requirements: {
+      replay: 90,
+    },
 
-            scalability: 95,
+    priorities: [
+      "Enterprise data scalability",
 
-            reliability: 95,
+      "Governance and compliance",
 
-            simplicity: 75,
+      "Analytics performance",
 
-            costEfficiency: 85,
+      "Operational efficiency",
 
-            latency: 65,
-
-            ordering: 50,
-
-            replay: 90
-
-        },
-
-
-        priorities: [
-
-            "Enterprise data scalability",
-
-            "Governance and compliance",
-
-            "Analytics performance",
-
-            "Operational efficiency",
-
-            "Data pipeline reliability"
-
-        ]
-
-    }
-
-
+      "Data pipeline reliability",
+    ],
+  },
 };
