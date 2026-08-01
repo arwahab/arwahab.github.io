@@ -1547,6 +1547,126 @@ function qaRenderFallback() {
 
 /*
 =====================================
+ AI Answer Rendering (Markdown)
+=====================================
+*/
+
+function qaInlineCode(text) {
+  return text.replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+function qaRenderMarkdown(markdown) {
+  let html = "";
+  let inCodeBlock = false;
+  let codeLines = [];
+  let listOpen = null;
+
+  const closeList = () => {
+    if (listOpen) {
+      html += "</" + listOpen + ">";
+      listOpen = null;
+    }
+  };
+
+  const lines = String(markdown || "").split("\n");
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+
+    if (/^\s*```/.test(line)) {
+      if (inCodeBlock) {
+        html +=
+          "<pre><code>" +
+          codeLines.map((c) => qaEscape(c)).join("\n") +
+          "</code></pre>";
+        codeLines = [];
+        inCodeBlock = false;
+      } else {
+        closeList();
+        inCodeBlock = true;
+      }
+      continue;
+    }
+
+    if (inCodeBlock) {
+      codeLines.push(line);
+      continue;
+    }
+
+    const trimmed = line.trim();
+    if (!trimmed) {
+      closeList();
+      continue;
+    }
+
+    const heading = trimmed.match(/^(#{1,4})\s+(.+)$/);
+    if (heading) {
+      closeList();
+      const level = Math.min(4, heading[1].length + 1);
+      html +=
+        "<h" +
+        level +
+        ">" +
+        qaInline(qaEscape(heading[2])) +
+        "</h" +
+        level +
+        ">";
+      continue;
+    }
+
+    const ordered = trimmed.match(/^\d+\.\s+(.+)$/);
+    if (ordered) {
+      if (listOpen !== "ol") {
+        closeList();
+        html += "<ol>";
+        listOpen = "ol";
+      }
+      html += "<li>" + qaInlineCode(qaInline(qaEscape(ordered[1]))) + "</li>";
+      continue;
+    }
+
+    const bullet = trimmed.match(/^[-*•]\s+(.+)$/);
+    if (bullet) {
+      if (listOpen !== "ul") {
+        closeList();
+        html += "<ul>";
+        listOpen = "ul";
+      }
+      html += "<li>" + qaInlineCode(qaInline(qaEscape(bullet[1]))) + "</li>";
+      continue;
+    }
+
+    closeList();
+    html += "<p>" + qaInlineCode(qaInline(qaEscape(trimmed))) + "</p>";
+  }
+
+  if (inCodeBlock) {
+    html +=
+      "<pre><code>" +
+      codeLines.map((c) => qaEscape(c)).join("\n") +
+      "</code></pre>";
+  }
+  closeList();
+  return html;
+}
+
+function qaRenderAI(text) {
+  document.getElementById("qaResult").innerHTML =
+    '<div class="qa-answer">' +
+    '<span class="qa-badge qa-badge-ai">AI answer</span>' +
+    qaRenderMarkdown(text) +
+    "</div>";
+}
+
+function qaRenderLoading() {
+  document.getElementById("qaResult").innerHTML =
+    '<div class="qa-answer qa-loading-answer">' +
+    '<span class="qa-badge qa-badge-ai">AI answer</span>' +
+    '<p class="qa-loading"><span class="qa-spinner"></span> Thinking…</p>' +
+    "</div>";
+}
+
+/*
+=====================================
  Public Actions
 =====================================
 */
@@ -1561,12 +1681,22 @@ function askTopic(topicId) {
   if (result) result.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-function askQuestion() {
+async function askQuestion() {
   const input = document.getElementById("qaInput");
   const question = input ? input.value.trim() : "";
   if (!question) {
     if (input) input.focus();
     return;
+  }
+  if (genAIEnabled()) {
+    qaRenderLoading();
+    try {
+      const text = await askGenAI(question);
+      qaRenderAI(text);
+      return;
+    } catch (err) {
+      // fall through to the local knowledge base
+    }
   }
   const result = qaFind(question);
   if (result.entry) {
@@ -1579,6 +1709,8 @@ function askQuestion() {
 }
 
 function initQA() {
+  initGenAI();
+
   const container = document.getElementById("qaExamples");
   if (container) {
     container.innerHTML = qaExamples
