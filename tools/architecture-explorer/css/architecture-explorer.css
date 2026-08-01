@@ -1128,3 +1128,46 @@ header h1 {
     color:#cbd5e1;
 
 }
+
+.recommendation-section {
+
+    margin-top:25px;
+
+    padding:20px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+}
+
+
+
+.recommendation-section h3 {
+
+    color:#93c5fd;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.alternative-item {
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    background:
+        rgba(255,255,255,.03);
+
+    border-radius:12px;
+
+    line-height:1.6;
+
+}

@@ -251,6 +251,74 @@ const scenarios = {
 
         ]
 
+    },
+
+
+
+
+
+    dataPlatform: {
+
+        id: "dataPlatform",
+
+        name: "Enterprise Data Platform",
+
+        description:
+            "Cloud analytics platform supporting ingestion, governance, transformation, and large-scale data workloads.",
+
+
+        summary:
+            "Designed for enterprise analytics environments requiring scalable data processing, governance, metadata management, and cost-effective cloud operations.",
+
+
+        keyChallenges: [
+
+            "Large-scale data ingestion",
+
+            "Data governance and lineage",
+
+            "Analytics workload optimization",
+
+            "Cost-efficient cloud processing",
+
+            "Self-service data access"
+
+        ],
+
+
+        requirements: {
+
+            scalability: 95,
+
+            reliability: 95,
+
+            simplicity: 75,
+
+            costEfficiency: 85,
+
+            latency: 65,
+
+            ordering: 50,
+
+            replay: 90
+
+        },
+
+
+        priorities: [
+
+            "Enterprise data scalability",
+
+            "Governance and compliance",
+
+            "Analytics performance",
+
+            "Operational efficiency",
+
+            "Data pipeline reliability"
+
+        ]
+
     }
 
 

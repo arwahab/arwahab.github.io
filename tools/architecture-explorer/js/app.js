@@ -1,4 +1,5 @@
 let selectedScenario = null;
+
 let selectedRecommendation = null;
 
 
@@ -11,10 +12,11 @@ let selectedRecommendation = null;
 function selectScenario(scenarioId) {
 
 
-    const scenario = scenarios[scenarioId];
+    const scenario =
+        scenarios[scenarioId];
 
 
-    if (!scenario) {
+    if(!scenario){
 
         console.error(
             "Scenario not found:",
@@ -26,12 +28,16 @@ function selectScenario(scenarioId) {
     }
 
 
-    selectedScenario = scenario;
+
+    selectedScenario =
+        scenario;
+
 
 
     updateScenarioContext(
         scenario
     );
+
 
 
     const recommendation =
@@ -40,8 +46,10 @@ function selectScenario(scenarioId) {
         );
 
 
+
     selectedRecommendation =
         recommendation;
+
 
 
     updateRecommendation(
@@ -49,9 +57,11 @@ function selectScenario(scenarioId) {
     );
 
 
+
     updateMetrics(
         recommendation.winner
     );
+
 
 
     updateComparison(
@@ -59,14 +69,17 @@ function selectScenario(scenarioId) {
     );
 
 
+
     updateTradeoffMatrix(
         recommendation.ranking
     );
 
 
+
     updateLandscape(
         recommendation.ranking
     );
+
 
 
     updateDiagram(
@@ -79,13 +92,15 @@ function selectScenario(scenarioId) {
 
 
 
+
+
 /*
 =====================================
  Scenario Context
 =====================================
 */
 
-function updateScenarioContext(scenario) {
+function updateScenarioContext(scenario){
 
 
     const title =
@@ -144,6 +159,8 @@ function updateScenarioContext(scenario) {
 
 
 
+
+
 /*
 =====================================
  Recommendation
@@ -154,11 +171,15 @@ function updateScenarioContext(scenario) {
 function updateRecommendation(data){
 
 
-    if(!data || !data.winner){
+    if(
+        !data ||
+        !data.winner
+    ){
 
         return;
 
     }
+
 
 
     const winner =
@@ -222,15 +243,20 @@ function updateRecommendation(data){
 
     if(reason){
 
+
         reason.innerHTML = `
 
 
-        <b>
+
+        <div class="recommendation-section">
+
+
+        <h3>
         Why this architecture?
-        </b>
+        </h3>
 
 
-        <br><br>
+        <br>
 
 
         ${
@@ -243,15 +269,20 @@ function updateRecommendation(data){
         }
 
 
-        <br><br>
+        </div>
 
 
-        <b>
-        Tradeoffs:
-        </b>
 
 
-        <br><br>
+        <div class="recommendation-section">
+
+
+        <h3>
+        Tradeoffs
+        </h3>
+
+
+        <br>
 
 
         ${
@@ -264,7 +295,35 @@ function updateRecommendation(data){
         }
 
 
+        </div>
+
+
+
+
+        <div class="recommendation-section">
+
+
+        <h3>
+        Why not alternatives?
+        </h3>
+
+
+        <br>
+
+
+        ${
+            generateAlternativeAnalysis(
+                winner,
+                data.ranking
+            )
+        }
+
+
+        </div>
+
+
         `;
+
 
     }
 
@@ -275,11 +334,114 @@ function updateRecommendation(data){
 
 
 
-function animateScore(element,target){
+
+function generateAlternativeAnalysis(
+    winner,
+    ranking
+){
+
+
+    if(
+        !ranking ||
+        ranking.length === 0
+    ){
+
+        return "";
+
+    }
+
+
+
+    return ranking
+
+    .filter(
+        architecture =>
+        architecture.id !== winner.id
+    )
+
+    .slice(0,3)
+
+    .map(
+        architecture => {
+
+
+            return `
+
+
+            <div class="alternative-item">
+
+
+            <b>
+            ${architecture.name}
+            </b>
+
+
+            <br>
+
+
+            Score:
+            ${architecture.finalScore}%
+
+
+            <br><br>
+
+
+            Not selected because:
+
+
+            <br>
+
+
+            ${
+                architecture.weaknesses
+                .slice(0,2)
+                .map(
+                    item =>
+                    "• " + item
+                )
+                .join("<br>")
+            }
+
+
+            </div>
+
+
+            `;
+
+
+        }
+
+    )
+
+    .join("<br>");
+
+
+}
+
+
+
+
+
+
+
+
+function animateScore(
+    element,
+    target
+){
+
+
+    if(!element){
+
+        return;
+
+    }
+
 
 
     let score =
         Number(target);
+
 
 
     if(isNaN(score)){
@@ -287,6 +449,7 @@ function animateScore(element,target){
         score = 0;
 
     }
+
 
 
     score =
@@ -299,12 +462,16 @@ function animateScore(element,target){
         );
 
 
+
     element.innerHTML =
         Math.round(score)
         + "%";
 
 
 }
+
+
+
 
 
 
@@ -330,7 +497,9 @@ function updateMetrics(system){
     }
 
 
+
     const metrics = {
+
 
         scaleBar:
         system.scores.scalability,
@@ -347,29 +516,36 @@ function updateMetrics(system){
         costBar:
         system.scores.costEfficiency
 
+
     };
 
 
 
     Object.keys(metrics)
-    .forEach(id=>{
+
+    .forEach(
+        id=>{
 
 
-        const element =
-            document.getElementById(id);
+            const element =
+                document.getElementById(
+                    id
+                );
 
 
 
-        if(element){
+            if(element){
 
-            element.style.width =
-                metrics[id]
-                + "%";
+                element.style.width =
+                    metrics[id]
+                    + "%";
+
+            }
+
 
         }
 
-
-    });
+    );
 
 
 }
@@ -396,6 +572,7 @@ function updateComparison(results){
         );
 
 
+
     if(
         !container ||
         !results
@@ -404,6 +581,7 @@ function updateComparison(results){
         return;
 
     }
+
 
 
     container.innerHTML =
@@ -419,6 +597,7 @@ function updateComparison(results){
                 document.createElement(
                     "div"
                 );
+
 
 
             row.className =
@@ -455,11 +634,13 @@ function updateComparison(results){
             <div class="comparison-bar">
 
 
-                <div 
-                class="comparison-fill"
-                style="width:${system.finalScore}%">
+            <div
 
-                </div>
+            class="comparison-fill"
+
+            style="width:${system.finalScore}%">
+
+            </div>
 
 
             </div>
@@ -468,7 +649,10 @@ function updateComparison(results){
             `;
 
 
-            container.appendChild(row);
+
+            container.appendChild(
+                row
+            );
 
 
         }
@@ -477,6 +661,7 @@ function updateComparison(results){
 
 
 }
+
 
 
 
@@ -499,6 +684,7 @@ function updateTradeoffMatrix(results){
         document.getElementById(
             "tradeoffMatrix"
         );
+
 
 
     if(
@@ -532,27 +718,10 @@ function updateTradeoffMatrix(results){
 
 
 
-    const formatLabel =
-        text =>
-
-        text
-        .replace(
-            /([A-Z])/g,
-            " $1"
-        )
-        .replace(
-            /^./,
-            c=>c.toUpperCase()
-        );
-
-
-
-
     let html = `
 
 
 <table class="tradeoff-table">
-
 
 <thead>
 
@@ -565,15 +734,16 @@ Dimension
 
 ${
 results.map(
-system=>`
+system =>
 
+`
 <th>
 ${system.name}
 </th>
 
 `
-)
-.join("")
+
+).join("")
 }
 
 
@@ -582,11 +752,10 @@ ${system.name}
 </thead>
 
 
+
 <tbody>
 
-
 `;
-
 
 
 
@@ -601,43 +770,42 @@ html += `
 
 
 <td>
-
-${formatLabel(dimension)}
-
+${dimension}
 </td>
 
 
 
 ${
-results.map(system=>{
+results.map(
+system=>{
 
 
 const value =
 system.scores[dimension] ?? 0;
 
 
-
 let css =
 "medium-score";
 
 
-if(value>=85){
+if(value >= 85){
 
-css="high-score";
+css =
+"high-score";
 
 }
 
 
-if(value<60){
+if(value < 60){
 
-css="low-score";
+css =
+"low-score";
 
 }
 
 
 
 return `
-
 
 <td class="tradeoff-score ${css}">
 
@@ -648,10 +816,12 @@ ${value}
 
 `;
 
-})
-.join("")
+
 }
 
+).join("")
+
+}
 
 
 </tr>
@@ -661,7 +831,6 @@ ${value}
 
 
 });
-
 
 
 
@@ -705,6 +874,7 @@ function updateLandscape(results){
         );
 
 
+
     if(
         !container ||
         !results
@@ -718,13 +888,12 @@ function updateLandscape(results){
 
     container.innerHTML = `
 
-
     <div class="landscape">
 
 
         <div class="landscape-axis-x">
 
-            Operational Simplicity →
+        Operational Simplicity →
 
         </div>
 
@@ -732,13 +901,12 @@ function updateLandscape(results){
 
         <div class="landscape-axis-y">
 
-            Scalability →
+        Scalability →
 
         </div>
 
 
     </div>
-
 
     `;
 
@@ -772,34 +940,15 @@ function updateLandscape(results){
 
 
 
-            const x =
-                Math.max(
-                    10,
-                    Math.min(
-                        90,
-                        architecture.scores.simplicity
-                    )
-                );
-
-
-            const y =
-                Math.max(
-                    10,
-                    Math.min(
-                        90,
-                        architecture.scores.scalability
-                    )
-                );
-
-
-
             point.style.left =
-                x + "%";
+                architecture.scores.simplicity
+                + "%";
 
 
 
             point.style.bottom =
-                y + "%";
+                architecture.scores.scalability
+                + "%";
 
 
 
@@ -814,6 +963,8 @@ function updateLandscape(results){
 
 
 }
+
+
 
 
 
@@ -885,8 +1036,10 @@ function updateDiagram(scenarioId){
                 );
 
 
+
             box.className =
                 "diagram-node";
+
 
 
             box.innerHTML =
@@ -902,8 +1055,9 @@ function updateDiagram(scenarioId){
 
             if(
                 index <
-                diagram.nodes.length-1
+                diagram.nodes.length - 1
             ){
+
 
                 const arrow =
                     document.createElement(
@@ -911,17 +1065,21 @@ function updateDiagram(scenarioId){
                     );
 
 
+
                 arrow.className =
                     "diagram-arrow";
+
 
 
                 arrow.innerHTML =
                     "↓";
 
 
+
                 container.appendChild(
                     arrow
                 );
+
 
             }
 
@@ -932,6 +1090,10 @@ function updateDiagram(scenarioId){
 
 
 }
+
+
+
+
 
 
 
@@ -968,13 +1130,19 @@ function showADR(){
         );
 
 
+
     if(output){
+
 
         output.value =
             generateADR(
+
                 selectedScenario,
+
                 selectedRecommendation
+
             );
+
 
     }
 
