@@ -234,27 +234,6 @@
           </div>
         </div>
 
-        <!-- ADR -->
-
-        <div class="panel adr-panel">
-          <h2>Architecture Decision Record</h2>
-
-          <div class="adr-actions">
-            <button id="adrButton" onclick="showADR()">Generate ADR</button>
-
-            <button class="secondary" onclick="copyADR()">Copy</button>
-
-            <button class="secondary" onclick="downloadADR()">
-              Download .md
-            </button>
-          </div>
-
-          <textarea
-            id="adrOutput"
-            placeholder="Your Architecture Decision Record will appear here..."
-          ></textarea>
-        </div>
-
         <!-- Architecture Q&A -->
 
         <div class="panel full-width qa-panel">
@@ -280,6 +259,27 @@
           <div id="qaResult" class="qa-result">
             <p class="qa-empty">Your answer will appear here.</p>
           </div>
+        </div>
+
+        <!-- ADR -->
+
+        <div class="panel adr-panel">
+          <h2>Architecture Decision Record</h2>
+
+          <div class="adr-actions">
+            <button id="adrButton" onclick="showADR()">Generate ADR</button>
+
+            <button class="secondary" onclick="copyADR()">Copy</button>
+
+            <button class="secondary" onclick="downloadADR()">
+              Download .md
+            </button>
+          </div>
+
+          <textarea
+            id="adrOutput"
+            placeholder="Your Architecture Decision Record will appear here..."
+          ></textarea>
         </div>
       </div>
     </div>
