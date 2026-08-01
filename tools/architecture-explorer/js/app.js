@@ -548,7 +548,7 @@ function updateLandscape(results) {
 
   const chart = container.querySelector(".landscape");
 
-  const plotPadding = 90;
+  const plotPadding = window.innerWidth < 640 ? 56 : 90;
 
   const chartBox = chart.getBoundingClientRect();
 
@@ -612,12 +612,12 @@ function resolveLandscapeCollisions(chart, points, padding) {
               parseFloat(points[j].style.left) +
               direction * (Math.abs(overlapX) + gap);
 
-            const halfWidth = b.width / 2;
+            const width = b.width;
 
             points[j].style.left =
               Math.max(
-                padding + halfWidth,
-                Math.min(chartWidth - padding - halfWidth, left),
+                padding,
+                Math.min(chartWidth - padding - width, left),
               ) + "px";
           } else {
             const direction = a.top < b.top ? -1 : 1;
@@ -641,6 +641,30 @@ function resolveLandscapeCollisions(chart, points, padding) {
     if (!moved) {
       break;
     }
+  }
+
+  for (const point of points) {
+    const rect = point.getBoundingClientRect();
+
+    const left = Math.max(
+      padding,
+      Math.min(
+        chartWidth - padding - rect.width,
+        parseFloat(point.style.left),
+      ),
+    );
+
+    const bottom = Math.max(
+      padding,
+      Math.min(
+        chartHeight - padding - rect.height,
+        parseFloat(point.style.bottom),
+      ),
+    );
+
+    point.style.left = left + "px";
+
+    point.style.bottom = bottom + "px";
   }
 }
 

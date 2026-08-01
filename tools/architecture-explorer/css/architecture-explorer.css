@@ -2018,3 +2018,327 @@ header h1 {
     display: none;
   }
 }
+
+/* =========================================
+   RESPONSIVE / MOBILE
+========================================= */
+
+/* Diagram canvas can be wider than its panel, so let it scroll
+   horizontally instead of clipping on any device. */
+
+.diagram-container {
+  align-items: flex-start;
+
+  overflow-x: auto;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+}
+
+.diagram-container p {
+  margin: 0 auto;
+}
+
+.diagram-canvas {
+  margin: 0 auto;
+}
+
+/* Grid items must be allowed to shrink below their content width,
+   otherwise wide content (diagrams, tradeoff tables) blows out the
+   workspace column and creates horizontal overflow on small screens. */
+
+.workspace > *,
+.dual-panel > * {
+  min-width: 0;
+}
+
+/* Touch devices: drop hover transforms so taps do not stick. */
+
+@media (hover: none) {
+  .scenario:hover {
+    transform: none;
+  }
+
+  .qa-chip:hover,
+  .secondary:hover,
+  #adrButton:hover,
+  .qa-submit:hover {
+    transform: none;
+  }
+
+  .header-btn:hover {
+    background: var(--chip-bg);
+
+    color: var(--text-1);
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 20px;
+  }
+
+  header {
+    padding: 30px 16px 18px;
+  }
+
+  header h1 {
+    font-size: 30px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    touch-action: manipulation;
+  }
+
+  .container {
+    padding: 14px;
+  }
+
+  header {
+    padding: 24px 14px 14px;
+  }
+
+  header h1 {
+    font-size: 25px;
+
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    margin-top: 8px;
+
+    font-size: 13px;
+  }
+
+  .badge {
+    margin-bottom: 12px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-btn {
+    padding: 8px 14px;
+
+    min-height: 44px;
+  }
+
+  .quick-nav {
+    gap: 4px;
+
+    padding: 8px 8px;
+  }
+
+  .quick-nav a {
+    padding: 7px 12px;
+
+    font-size: 12px;
+  }
+
+  section,
+  [id] {
+    scroll-margin-top: 130px;
+  }
+
+  .scenarios {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+  }
+
+  .scenario {
+    padding: 14px;
+
+    border-radius: 14px;
+  }
+
+  .scenario:hover {
+    transform: none;
+  }
+
+  .icon {
+    font-size: 24px;
+
+    margin-bottom: 8px;
+  }
+
+  .scenario h3 {
+    font-size: 15px;
+  }
+
+  .scenario p {
+    font-size: 12px;
+
+    line-height: 1.35;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+
+    margin-top: 18px;
+  }
+
+  .panel {
+    padding: 16px;
+
+    border-radius: 16px;
+  }
+
+  .panel h2 {
+    font-size: 17px;
+  }
+
+  .tech {
+    font-size: 22px;
+  }
+
+  .score {
+    font-size: 44px;
+
+    margin: 8px;
+  }
+
+  .confidence {
+    width: 85%;
+  }
+
+  .weight-row label {
+    flex: 0 0 108px;
+
+    font-size: 12px;
+  }
+
+  .weight-value {
+    flex: 0 0 30px;
+
+    font-size: 13px;
+  }
+
+  .qa-settings-row {
+    flex-wrap: wrap;
+  }
+
+  .qa-settings-row input {
+    flex: 1 1 100%;
+  }
+
+  .qa-submit {
+    width: 100%;
+
+    min-height: 46px;
+  }
+
+  .qa-answer {
+    padding: 14px;
+  }
+
+  .qa-topic {
+    font-size: 17px;
+  }
+
+  #scenarioTitle {
+    font-size: 18px;
+  }
+
+  #scenarioDescription {
+    font-size: 13px;
+
+    margin-bottom: 16px;
+  }
+
+  #scenarioChallenges {
+    font-size: 14px;
+
+    line-height: 1.8;
+  }
+
+  #adrOutput {
+    min-height: 260px;
+
+    padding: 12px;
+  }
+
+  #qaInput,
+  .qa-settings-row input,
+  #adrOutput {
+    font-size: 16px;
+  }
+
+  .landscape {
+    height: 340px;
+
+    min-width: 480px;
+  }
+
+  #landscapeContainer {
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+  }
+
+  .landscape-legend {
+    width: 100%;
+
+    max-width: 100%;
+  }
+
+  .toast-container {
+    left: 16px;
+
+    right: 16px;
+
+    bottom: 16px;
+
+    max-width: none;
+
+    align-items: stretch;
+  }
+
+  .footer {
+    padding: 24px 16px 18px;
+  }
+
+  .footer-glass {
+    padding: 20px 18px;
+
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  header h1 {
+    font-size: 22px;
+  }
+
+  .scenarios {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario {
+    padding: 12px;
+  }
+
+  .weight-row label {
+    flex: 0 0 96px;
+  }
+
+  .score {
+    font-size: 38px;
+  }
+
+  .tech {
+    font-size: 20px;
+  }
+}
