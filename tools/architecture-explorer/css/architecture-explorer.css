@@ -219,6 +219,22 @@ header h1 {
   grid-column: 1 / -1;
 }
 
+.dual-panel {
+  grid-column: 1 / -1;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 30px;
+}
+
+@media (max-width: 900px) {
+  .dual-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
 .panel-note {
   margin-top: -10px;
 
