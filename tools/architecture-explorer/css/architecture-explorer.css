@@ -987,3 +987,144 @@ header h1 {
         0 0 25px rgba(96,165,250,.25);
 
 }
+
+/* =====================================
+   Scenario Overview
+===================================== */
+
+
+.scenario-content {
+
+    margin-top:10px;
+
+}
+
+
+
+#scenarioTitle {
+
+    font-size:24px;
+
+    margin-bottom:18px;
+
+    color:white;
+
+}
+
+
+
+#scenarioDescription {
+
+    color:#94a3b8;
+
+    line-height:1.8;
+
+    font-size:16px;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.challenge-section {
+
+    padding-top:25px;
+
+    border-top:
+
+        1px solid rgba(255,255,255,.08);
+
+}
+
+
+
+.challenge-section h3 {
+
+    font-size:20px;
+
+    margin-bottom:18px;
+
+}
+
+
+
+#scenarioChallenges {
+
+    color:#cbd5e1;
+
+    line-height:2;
+
+    font-size:16px;
+
+}
+
+
+
+#scenarioChallenges br {
+
+    display:block;
+
+    content:"";
+
+    margin-bottom:8px;
+
+}
+
+/* Scenario Overview Inner Glass Card */
+
+.scenario-content {
+
+    margin-top:20px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    border-radius:18px;
+
+    padding:25px;
+
+}
+
+
+
+.scenario-content h3 {
+
+    font-size:22px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+#scenarioDescription {
+
+    color:#94a3b8;
+
+    line-height:1.7;
+
+}
+
+
+
+.section-title {
+
+    margin-top:30px;
+
+}
+
+
+
+.challenge-list {
+
+    margin-top:15px;
+
+    line-height:2;
+
+    color:#cbd5e1;
+
+}
