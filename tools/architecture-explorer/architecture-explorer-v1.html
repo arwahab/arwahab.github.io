@@ -40,6 +40,8 @@
         Explore architecture choices through scalability, reliability, cost, and
         operational tradeoffs.
       </p>
+
+      <button id="resetViewButton" onclick="resetView()">↺ Reset View</button>
     </header>
 
     <div class="container">
@@ -169,6 +171,25 @@
           </div>
         </div>
 
+        <!-- What-If Analysis -->
+
+        <div class="panel">
+          <h2>What-If Weight Tuning</h2>
+
+          <p class="panel-note">
+            Adjust requirement weights and see how the recommendation changes in
+            real time.
+          </p>
+
+          <div id="weightSliders"></div>
+
+          <div id="weightNote" class="weight-note"></div>
+
+          <button class="secondary" onclick="resetWeights()">
+            Reset Weights
+          </button>
+        </div>
+
         <!-- Comparison -->
 
         <div class="panel">
@@ -179,7 +200,7 @@
           </div>
         </div>
 
-        <div class="panel">
+        <div class="panel full-width">
           <h2>Architecture Tradeoff Matrix</h2>
 
           <div id="tradeoffMatrix">
@@ -189,7 +210,7 @@
           </div>
         </div>
 
-        <div class="panel">
+        <div class="panel full-width">
           <h2>Architecture Landscape</h2>
 
           <p style="color: #94a3b8; margin-bottom: 20px">
@@ -218,7 +239,15 @@
         <div class="panel adr-panel">
           <h2>Architecture Decision Record</h2>
 
-          <button id="adrButton" onclick="showADR()">Generate ADR</button>
+          <div class="adr-actions">
+            <button id="adrButton" onclick="showADR()">Generate ADR</button>
+
+            <button class="secondary" onclick="copyADR()">Copy</button>
+
+            <button class="secondary" onclick="downloadADR()">
+              Download .md
+            </button>
+          </div>
 
           <textarea
             id="adrOutput"

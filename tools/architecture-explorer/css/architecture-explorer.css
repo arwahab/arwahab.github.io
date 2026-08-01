@@ -83,6 +83,36 @@ header h1 {
   color: #94a3b8;
 }
 
+#resetViewButton {
+  margin-top: 24px;
+
+  padding: 12px 24px;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #cbd5e1;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+#resetViewButton:hover {
+  background: rgba(255, 255, 255, 0.12);
+
+  color: white;
+
+  border-color: #60a5fa;
+}
+
 /* =========================================
    MAIN CONTAINER
 ========================================= */
@@ -183,6 +213,76 @@ header h1 {
   margin-bottom: 25px;
 
   font-size: 26px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.panel-note {
+  margin-top: -10px;
+
+  margin-bottom: 22px;
+
+  color: #94a3b8;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+/* =========================================
+   WHAT-IF WEIGHT TUNING
+========================================= */
+
+.weight-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin: 18px 0;
+}
+
+.weight-row label {
+  flex: 0 0 170px;
+
+  color: #cbd5e1;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.weight-row input[type="range"] {
+  flex: 1;
+
+  accent-color: #8b5cf6;
+
+  cursor: pointer;
+}
+
+.weight-value {
+  flex: 0 0 34px;
+
+  text-align: right;
+
+  color: #93c5fd;
+
+  font-weight: 700;
+}
+
+.weight-note {
+  min-height: 20px;
+
+  margin: 10px 0 6px;
+
+  color: #fbbf24;
+
+  font-size: 14px;
+
+  font-weight: 600;
 }
 
 /* =========================================
@@ -317,6 +417,36 @@ header h1 {
   background: linear-gradient(90deg, #3b82f6, #8b5cf6);
 }
 
+.comparison-winner {
+  padding: 14px;
+
+  border: 1px solid #60a5fa66;
+
+  border-radius: 14px;
+
+  background: rgba(96, 165, 250, 0.08);
+}
+
+.winner-badge {
+  display: inline-block;
+
+  margin-left: 10px;
+
+  padding: 3px 10px;
+
+  border-radius: 20px;
+
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+
+  color: white;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  vertical-align: middle;
+}
+
 /* =========================================
    TRADEOFF MATRIX
 ========================================= */
@@ -425,9 +555,9 @@ header h1 {
 
   transform: translate(-50%, 50%);
 
-  padding: 10px 16px;
+  padding: 8px 14px;
 
-  border-radius: 20px;
+  border-radius: 16px;
 
   background: rgba(96, 165, 250, 0.2);
 
@@ -435,7 +565,67 @@ header h1 {
 
   font-weight: 700;
 
+  font-size: 13px;
+
   white-space: nowrap;
+}
+
+.landscape-winner {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+
+  border-color: #c084fc;
+
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.5);
+
+  color: white;
+}
+
+.landscape-legend {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 14px;
+
+  padding: 8px 12px;
+
+  border-radius: 12px;
+
+  background: rgba(2, 6, 23, 0.6);
+
+  color: #94a3b8;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  width: max-content;
+}
+
+.legend-dot {
+  width: 10px;
+
+  height: 10px;
+
+  border-radius: 50%;
+
+  display: inline-block;
+}
+
+.legend-winner {
+  background: #8b5cf6;
+}
+
+.legend-alt {
+  background: rgba(96, 165, 250, 0.5);
+
+  border: 1px solid #60a5fa;
 }
 
 /* =========================================
@@ -449,15 +639,53 @@ header h1 {
 
   align-items: center;
 
-  gap: 12px;
+  justify-content: flex-start;
+
+  overflow: hidden;
+
+  padding-bottom: 4px;
+}
+
+.diagram-canvas {
+  position: relative;
+
+  flex: none;
+}
+
+.diagram-svg {
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
 }
 
 .diagram-node {
-  width: 260px;
+  position: absolute;
 
-  padding: 18px;
+  z-index: 1;
+
+  width: 180px;
+
+  height: 64px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 10px 14px;
 
   text-align: center;
+
+  font-size: 14px;
+
+  line-height: 1.35;
 
   border-radius: 18px;
 
@@ -466,12 +694,6 @@ header h1 {
   border: 1px solid #60a5fa88;
 
   font-weight: 600;
-}
-
-.diagram-arrow {
-  font-size: 30px;
-
-  color: #93c5fd;
 }
 
 /* =====================================
@@ -508,6 +730,44 @@ header h1 {
   transform: translateY(-3px);
 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.adr-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+.secondary {
+  padding: 14px 24px;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #cbd5e1;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+
+  color: white;
+
+  border-color: #60a5fa;
+
+  transform: translateY(-2px);
 }
 
 #adrOutput {
@@ -668,41 +928,15 @@ header h1 {
 
 .footer {
   width: 100%;
-  padding: 40px 24px 30px;
+  padding: 50px 40px 35px;
   display: flex;
   justify-content: center;
 }
 
 .footer-glass {
-  width: min(1100px, 95%);
-
-  padding: 28px 40px;
-
-  border-radius: 24px;
-
-  background: rgba(255, 255, 255, 0.08);
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  border: 1px solid rgba(255, 255, 255, 0.18);
-
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.25),
-    inset 0 1px rgba(255, 255, 255, 0.15);
-
-  color: white;
-}
-
-.footer {
   width: 100%;
-  padding: 50px 24px 35px;
-  display: flex;
-  justify-content: center;
-}
 
-.footer-glass {
-  width: min(1200px, 95%);
+  max-width: 1420px;
 
   padding: 40px;
 

@@ -118,6 +118,40 @@ const diagrams = {
       [3, 5],
     ],
   },
+
+  dataPlatform: {
+    title: "Enterprise Data Platform Architecture",
+
+    nodes: [
+      "Data Sources",
+
+      "Ingestion Pipelines",
+
+      "Cloud Data Lake (Bronze)",
+
+      "Transformation Layer (Silver)",
+
+      "Curated Data (Gold)",
+
+      "BI / ML Consumers",
+
+      "Governance & Lineage",
+    ],
+
+    connections: [
+      [0, 1],
+
+      [1, 2],
+
+      [2, 3],
+
+      [3, 4],
+
+      [4, 5],
+
+      [1, 6],
+    ],
+  },
 };
 
 function getDiagram(scenarioId) {
