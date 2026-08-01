@@ -265,13 +265,13 @@ body::before {
 header {
   text-align: center;
 
-  padding: 70px 20px 40px;
+  padding: 40px 20px 22px;
 }
 
 .badge {
   display: inline-block;
 
-  padding: 8px 18px;
+  padding: 6px 16px;
 
   border-radius: 50px;
 
@@ -281,21 +281,21 @@ header {
 
   color: var(--text-link);
 
-  margin-bottom: 25px;
+  margin-bottom: 18px;
 }
 
 header h1 {
-  font-size: 56px;
+  font-size: 36px;
 
   font-weight: 800;
 
-  letter-spacing: -3px;
+  letter-spacing: -1.5px;
 }
 
 .subtitle {
-  margin-top: 18px;
+  margin-top: 10px;
 
-  font-size: 20px;
+  font-size: 15px;
 
   color: var(--text-2);
 }
@@ -305,15 +305,15 @@ header h1 {
 
   justify-content: center;
 
-  gap: 14px;
+  gap: 10px;
 
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 .header-btn {
-  padding: 12px 24px;
+  padding: 8px 18px;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   border: 1px solid var(--chip-border);
 
@@ -323,7 +323,7 @@ header h1 {
 
   color: var(--text-1);
 
-  font-size: 14px;
+  font-size: 13px;
 
   font-weight: 600;
 
@@ -355,9 +355,9 @@ header h1 {
 
   flex-wrap: wrap;
 
-  gap: 8px;
+  gap: 6px;
 
-  padding: 14px 20px;
+  padding: 10px 16px;
 
   background: var(--nav-bg);
 
@@ -369,7 +369,7 @@ header h1 {
 }
 
 .quick-nav a {
-  padding: 9px 18px;
+  padding: 6px 14px;
 
   border-radius: 50px;
 
@@ -377,7 +377,7 @@ header h1 {
 
   color: var(--text-2);
 
-  font-size: 13px;
+  font-size: 12px;
 
   font-weight: 600;
 
@@ -405,11 +405,11 @@ header h1 {
 ========================================= */
 
 .container {
-  max-width: 1500px;
+  max-width: 1440px;
 
   margin: auto;
 
-  padding: 40px;
+  padding: 26px;
 }
 
 /* =========================================
@@ -419,9 +419,9 @@ header h1 {
 .scenarios {
   display: grid;
 
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
-  gap: 24px;
+  gap: 16px;
 }
 
 .scenario {
@@ -429,9 +429,9 @@ header h1 {
 
   border: 1px solid var(--glass-border);
 
-  border-radius: 24px;
+  border-radius: 18px;
 
-  padding: 28px;
+  padding: 18px;
 
   cursor: pointer;
 
@@ -473,21 +473,23 @@ header h1 {
 }
 
 .icon {
-  font-size: 40px;
+  font-size: 28px;
 
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .scenario h3 {
-  font-size: 22px;
+  font-size: 17px;
 }
 
 .scenario p {
-  margin-top: 12px;
+  margin-top: 6px;
 
   color: var(--text-2);
 
-  line-height: 1.5;
+  line-height: 1.4;
+
+  font-size: 13px;
 }
 
 /* =========================================
@@ -495,13 +497,13 @@ header h1 {
 ========================================= */
 
 .workspace {
-  margin-top: 50px;
+  margin-top: 30px;
 
   display: grid;
 
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
 
-  gap: 30px;
+  gap: 20px;
 }
 
 /* =========================================
@@ -513,17 +515,17 @@ header h1 {
 
   border: 1px solid var(--glass-border);
 
-  border-radius: 28px;
+  border-radius: 20px;
 
-  padding: 35px;
+  padding: 24px;
 
   backdrop-filter: blur(20px);
 }
 
 .panel h2 {
-  margin-bottom: 25px;
+  margin-bottom: 16px;
 
-  font-size: 26px;
+  font-size: 19px;
 }
 
 .full-width {
@@ -537,7 +539,7 @@ header h1 {
 
   grid-template-columns: 1fr 1fr;
 
-  gap: 30px;
+  gap: 20px;
 }
 
 @media (max-width: 900px) {
@@ -547,13 +549,13 @@ header h1 {
 }
 
 .panel-note {
-  margin-top: -10px;
+  margin-top: -6px;
 
-  margin-bottom: 22px;
+  margin-bottom: 14px;
 
   color: var(--text-2);
 
-  font-size: 14px;
+  font-size: 13px;
 
   line-height: 1.6;
 }
@@ -571,17 +573,17 @@ header h1 {
 
   align-items: center;
 
-  gap: 14px;
+  gap: 10px;
 
-  margin: 18px 0;
+  margin: 12px 0;
 }
 
 .weight-row label {
-  flex: 0 0 170px;
+  flex: 0 0 150px;
 
   color: var(--text-1);
 
-  font-size: 14px;
+  font-size: 13px;
 
   font-weight: 600;
 }
@@ -625,17 +627,17 @@ header h1 {
 }
 
 .tech {
-  font-size: 38px;
+  font-size: 28px;
 
   font-weight: 800;
 }
 
 .score {
-  font-size: 90px;
+  font-size: 64px;
 
   font-weight: 800;
 
-  margin: 20px;
+  margin: 12px;
 
   background: linear-gradient(90deg, #60a5fa, #c084fc);
 
@@ -645,7 +647,7 @@ header h1 {
 }
 
 .confidence {
-  height: 12px;
+  height: 10px;
 
   background: var(--track-bg);
 
@@ -653,9 +655,9 @@ header h1 {
 
   overflow: hidden;
 
-  margin: 20px auto;
+  margin: 12px auto;
 
-  width: 80%;
+  width: 70%;
 }
 
 .confidence span {
@@ -671,11 +673,13 @@ header h1 {
 }
 
 .reason {
-  margin-top: 30px;
+  margin-top: 18px;
 
   color: var(--text-1);
 
-  line-height: 1.7;
+  line-height: 1.6;
+
+  font-size: 14px;
 }
 
 /* =========================================
@@ -683,11 +687,13 @@ header h1 {
 ========================================= */
 
 .metric {
-  margin: 25px 0;
+  margin: 14px 0;
 }
 
 .metric-header {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+
+  font-size: 14px;
 }
 
 .bar {
@@ -713,7 +719,7 @@ header h1 {
 ========================================= */
 
 .comparison-row {
-  margin: 20px 0;
+  margin: 12px 0;
 }
 
 .comparison-header {
@@ -721,7 +727,9 @@ header h1 {
 
   justify-content: space-between;
 
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+
+  font-size: 14px;
 }
 
 .comparison-name {
@@ -749,11 +757,11 @@ header h1 {
 }
 
 .comparison-winner {
-  padding: 14px;
+  padding: 12px;
 
   border: 1px solid #60a5fa66;
 
-  border-radius: 14px;
+  border-radius: 12px;
 
   background: var(--winner-tint);
 }
@@ -795,21 +803,25 @@ header h1 {
 }
 
 .tradeoff-table th {
-  padding: 16px;
+  padding: 12px;
 
   color: var(--text-link);
 
   border-bottom: 1px solid var(--table-border);
+
+  font-size: 14px;
 }
 
 .tradeoff-table td {
-  padding: 14px;
+  padding: 10px;
 
   text-align: center;
 
   border-bottom: 1px solid var(--table-border-soft);
 
   color: var(--text-1);
+
+  font-size: 14px;
 }
 
 .tradeoff-table td:first-child,
@@ -844,11 +856,11 @@ header h1 {
 .landscape {
   position: relative;
 
-  height: 420px;
+  height: 400px;
 
   width: 100%;
 
-  border-radius: 20px;
+  border-radius: 16px;
 
   border: 1px solid var(--glass-border);
 
@@ -1012,9 +1024,9 @@ header h1 {
 
   z-index: 1;
 
-  width: 180px;
+  width: 160px;
 
-  height: 64px;
+  height: 56px;
 
   display: flex;
 
@@ -1022,15 +1034,15 @@ header h1 {
 
   justify-content: center;
 
-  padding: 10px 14px;
+  padding: 8px 12px;
 
   text-align: center;
 
-  font-size: 14px;
+  font-size: 13px;
 
-  line-height: 1.35;
+  line-height: 1.3;
 
-  border-radius: 18px;
+  border-radius: 14px;
 
   background: var(--node-bg);
 
@@ -1050,11 +1062,11 @@ header h1 {
 }
 
 #adrButton {
-  margin-top: 20px;
+  margin-top: 12px;
 
-  padding: 14px 28px;
+  padding: 10px 22px;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   border: none;
 
@@ -1064,7 +1076,7 @@ header h1 {
 
   color: white;
 
-  font-size: 16px;
+  font-size: 14px;
 
   font-weight: 700;
 
@@ -1086,9 +1098,9 @@ header h1 {
 }
 
 .secondary {
-  padding: 14px 24px;
+  padding: 10px 18px;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   border: 1px solid var(--chip-border);
 
@@ -1098,7 +1110,7 @@ header h1 {
 
   color: var(--text-1);
 
-  font-size: 15px;
+  font-size: 13px;
 
   font-weight: 600;
 
@@ -1116,11 +1128,11 @@ header h1 {
 }
 
 #adrOutput {
-  margin-top: 25px;
+  margin-top: 16px;
 
   width: 100%;
 
-  min-height: 650px;
+  min-height: 420px;
 
   resize: vertical;
 
@@ -1130,15 +1142,15 @@ header h1 {
 
   border: 1px solid var(--field-border);
 
-  border-radius: 15px;
+  border-radius: 12px;
 
-  padding: 25px;
+  padding: 16px;
 
   font-family: "JetBrains Mono", "Courier New", monospace;
 
-  font-size: 14px;
+  font-size: 13px;
 
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 #adrOutput:focus {
@@ -1158,9 +1170,9 @@ header h1 {
 }
 
 #scenarioTitle {
-  font-size: 24px;
+  font-size: 20px;
 
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 
   color: var(--text);
 }
@@ -1168,11 +1180,11 @@ header h1 {
 #scenarioDescription {
   color: var(--text-2);
 
-  line-height: 1.8;
+  line-height: 1.7;
 
-  font-size: 16px;
+  font-size: 14px;
 
-  margin-bottom: 35px;
+  margin-bottom: 24px;
 }
 
 .challenge-section {
@@ -1206,69 +1218,77 @@ header h1 {
 /* Scenario Overview Inner Glass Card */
 
 .scenario-content {
-  margin-top: 20px;
+  margin-top: 14px;
 
   background: var(--inner-bg);
 
   border: 1px solid var(--inner-border);
 
-  border-radius: 18px;
+  border-radius: 16px;
 
-  padding: 25px;
+  padding: 18px;
 }
 
 .scenario-content h3 {
-  font-size: 22px;
+  font-size: 18px;
 
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 #scenarioDescription {
   color: var(--text-2);
 
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 .section-title {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .challenge-list {
-  margin-top: 15px;
+  margin-top: 10px;
 
-  line-height: 2;
+  line-height: 1.8;
 
   color: var(--text-1);
+
+  font-size: 14px;
 }
 
 .recommendation-section {
-  margin-top: 25px;
+  margin-top: 16px;
 
-  padding: 20px;
+  padding: 14px;
 
   background: var(--inner-bg);
 
   border: 1px solid var(--inner-border);
 
-  border-radius: 18px;
+  border-radius: 14px;
+
+  font-size: 14px;
 }
 
 .recommendation-section h3 {
   color: var(--text-link);
 
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+
+  font-size: 15px;
 }
 
 .alternative-item {
-  padding: 15px;
+  padding: 12px;
 
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 
   background: var(--card-bg);
 
-  border-radius: 12px;
+  border-radius: 10px;
 
-  line-height: 1.6;
+  line-height: 1.5;
+
+  font-size: 13px;
 }
 
 /* =====================================
@@ -1284,15 +1304,15 @@ header h1 {
 
   flex-direction: column;
 
-  gap: 16px;
+  gap: 12px;
 
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 #qaInput {
   width: 100%;
 
-  min-height: 70px;
+  min-height: 60px;
 
   resize: vertical;
 
@@ -1302,15 +1322,15 @@ header h1 {
 
   border: 1px solid var(--field-border);
 
-  border-radius: 15px;
+  border-radius: 12px;
 
-  padding: 16px 18px;
+  padding: 12px 14px;
 
   font-family: inherit;
 
-  font-size: 15px;
+  font-size: 14px;
 
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 #qaInput::placeholder {
@@ -1328,9 +1348,9 @@ header h1 {
 .qa-submit {
   align-self: flex-start;
 
-  padding: 12px 26px;
+  padding: 10px 22px;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   border: none;
 
@@ -1340,7 +1360,7 @@ header h1 {
 
   color: white;
 
-  font-size: 15px;
+  font-size: 14px;
 
   font-weight: 700;
 
@@ -1358,13 +1378,13 @@ header h1 {
 
   flex-wrap: wrap;
 
-  gap: 10px;
+  gap: 8px;
 
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .qa-chip {
-  padding: 9px 16px;
+  padding: 6px 13px;
 
   border-radius: 50px;
 
@@ -1374,7 +1394,7 @@ header h1 {
 
   color: var(--text-1);
 
-  font-size: 13px;
+  font-size: 12px;
 
   font-weight: 600;
 
@@ -1394,13 +1414,13 @@ header h1 {
 }
 
 .qa-result {
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 .qa-empty {
   color: var(--text-2);
 
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .qa-answer {
@@ -1408,9 +1428,9 @@ header h1 {
 
   border: 1px solid var(--inner-border);
 
-  border-radius: 18px;
+  border-radius: 16px;
 
-  padding: 26px;
+  padding: 18px;
 }
 
 .qa-badge {
@@ -1864,7 +1884,7 @@ header h1 {
 
 .footer {
   width: 100%;
-  padding: 50px 40px 35px;
+  padding: 36px 28px 24px;
   display: flex;
   justify-content: center;
 }
@@ -1872,11 +1892,11 @@ header h1 {
 .footer-glass {
   width: 100%;
 
-  max-width: 1420px;
+  max-width: 1380px;
 
-  padding: 40px;
+  padding: 28px;
 
-  border-radius: 28px;
+  border-radius: 20px;
 
   background: var(--footer-bg);
 

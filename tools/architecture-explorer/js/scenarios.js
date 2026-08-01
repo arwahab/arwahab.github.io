@@ -241,4 +241,354 @@ const scenarios = {
       "Data pipeline reliability",
     ],
   },
+
+  iot: {
+    id: "iot",
+
+    name: "IoT & Telemetry Platform",
+
+    description:
+      "Millions of connected devices streaming telemetry in real time.",
+
+    summary:
+      "Designed for IoT fleets that continuously emit sensor data, requiring massive ingestion throughput, per-device ordering, and long-term replay for analytics and audit.",
+
+    keyChallenges: [
+      "Massive device ingestion",
+
+      "Per-device event ordering",
+
+      "Long-term telemetry retention",
+
+      "Real-time anomaly detection",
+
+      "Variable and spiky device load",
+    ],
+
+    requirements: {
+      scalability: 100,
+
+      reliability: 90,
+
+      simplicity: 40,
+
+      costEfficiency: 75,
+
+      latency: 70,
+
+      ordering: 95,
+
+      replay: 90,
+    },
+
+    priorities: [
+      "Massive ingestion throughput",
+
+      "Per-device ordering",
+
+      "Telemetry replay for analytics",
+
+      "Durable retention",
+    ],
+  },
+
+  notifications: {
+    id: "notifications",
+
+    name: "Notification & Fan-Out Platform",
+
+    description:
+      "High-volume multi-channel notifications, alerts, and event fan-out.",
+
+    summary:
+      "Designed for platforms that broadcast events to many subscribers across email, push, SMS, and webhooks, prioritizing managed simplicity, cost, and reliable delivery.",
+
+    keyChallenges: [
+      "High-volume fan-out to many channels",
+
+      "Delivery retries and deduplication",
+
+      "Channel-specific rate limits",
+
+      "Dead letter handling for failed sends",
+
+      "Operational simplicity at scale",
+    ],
+
+    requirements: {
+      scalability: 90,
+
+      reliability: 90,
+
+      simplicity: 95,
+
+      costEfficiency: 90,
+
+      latency: 65,
+
+      ordering: 30,
+
+      replay: 40,
+    },
+
+    priorities: [
+      "Managed simplicity",
+
+      "Cost efficiency at scale",
+
+      "Reliable delivery with retries",
+
+      "High-volume fan-out",
+    ],
+  },
+
+  ecommerce: {
+    id: "ecommerce",
+
+    name: "E-Commerce Order Platform",
+
+    description:
+      "Order placement, inventory, and fulfillment workflows with strict correctness.",
+
+    summary:
+      "Designed for retail platforms that must reliably track orders end to end, keep inventory consistent, and reconcile events without duplicates or loss.",
+
+    keyChallenges: [
+      "Order state correctness",
+
+      "Inventory consistency across services",
+
+      "Idempotent payment and stock updates",
+
+      "Event replay for reconciliation",
+
+      "Peak-day traffic spikes",
+    ],
+
+    requirements: {
+      scalability: 85,
+
+      reliability: 100,
+
+      simplicity: 70,
+
+      costEfficiency: 60,
+
+      latency: 90,
+
+      ordering: 95,
+
+      replay: 75,
+    },
+
+    priorities: [
+      "Correctness and reliability",
+
+      "Ordered order lifecycle events",
+
+      "Reconciliation and replay",
+
+      "Low latency at checkout",
+    ],
+  },
+
+  logistics: {
+    id: "logistics",
+
+    name: "Logistics & Supply Chain",
+
+    description:
+      "Shipment tracking, dispatching, and warehouse events across partners.",
+
+    summary:
+      "Designed for logistics networks coordinating carriers, warehouses, and drivers, where reliable delivery tracking, cost control, and operational simplicity matter most.",
+
+    keyChallenges: [
+      "Shipment status tracking across partners",
+
+      "Event deduplication from multiple sources",
+
+      "Retry-heavy integration with external carriers",
+
+      "Dead letter handling for bad events",
+
+      "Cost control across high event volume",
+    ],
+
+    requirements: {
+      scalability: 75,
+
+      reliability: 90,
+
+      simplicity: 95,
+
+      costEfficiency: 90,
+
+      latency: 75,
+
+      ordering: 60,
+
+      replay: 40,
+    },
+
+    priorities: [
+      "Reliable delivery tracking",
+
+      "Operational simplicity",
+
+      "Cost efficiency",
+
+      "Resilient carrier integrations",
+    ],
+  },
+
+  backgroundJobs: {
+    id: "backgroundJobs",
+
+    name: "Background Job Processing",
+
+    description:
+      "Asynchronous task execution for transcoding, reports, and image processing.",
+
+    summary:
+      "Designed for platforms that offload long-running or bursty work to background workers, prioritizing managed queues, automatic retries, and predictable cost.",
+
+    keyChallenges: [
+      "Long-running and bursty jobs",
+
+      "Automatic retry and deduplication",
+
+      "Backpressure on external APIs",
+
+      "Dead letter handling for failed jobs",
+
+      "Worker autoscaling",
+    ],
+
+    requirements: {
+      scalability: 80,
+
+      reliability: 90,
+
+      simplicity: 95,
+
+      costEfficiency: 90,
+
+      latency: 50,
+
+      ordering: 40,
+
+      replay: 30,
+    },
+
+    priorities: [
+      "Managed simplicity",
+
+      "Reliable retries",
+
+      "Cost-efficient scale",
+
+      "Worker autoscaling",
+    ],
+  },
+
+  realtime: {
+    id: "realtime",
+
+    name: "Real-Time Collaboration & Gaming",
+
+    description:
+      "Multiplayer games, live chat, presence, and collaborative editing with sub-second latency.",
+
+    summary:
+      "Designed for interactive experiences where users act together in real time, requiring low-latency delivery, per-room ordering, presence state, and burst-tolerant scale around launches and events.",
+
+    keyChallenges: [
+      "Sub-second message latency",
+
+      "Per-room and per-session ordering",
+
+      "Presence and state synchronization",
+
+      "Bursty traffic from launches and events",
+
+      "Horizontal fan-out to many clients",
+    ],
+
+    requirements: {
+      scalability: 90,
+
+      reliability: 90,
+
+      simplicity: 55,
+
+      costEfficiency: 70,
+
+      latency: 100,
+
+      ordering: 90,
+
+      replay: 50,
+    },
+
+    priorities: [
+      "Low latency",
+
+      "Per-session ordering",
+
+      "Presence and state sync",
+
+      "Burst-tolerant scale",
+    ],
+  },
+
+  healthcare: {
+    id: "healthcare",
+
+    name: "Healthcare Claims & Compliance",
+
+    description:
+      "Claims processing, prior authorization, and clinical events requiring audit trails and replay.",
+
+    summary:
+      "Designed for regulated healthcare workflows where every event must be provable, replayable, and correctly ordered for audits and reconciliation, even if that costs throughput or simplicity.",
+
+    keyChallenges: [
+      "Strict audit trail for every event",
+
+      "Claims reconciliation and replay",
+
+      "HIPAA-grade reliability and security",
+
+      "Ordered clinical event timelines",
+
+      "Integration with legacy payer systems",
+    ],
+
+    requirements: {
+      scalability: 80,
+
+      reliability: 100,
+
+      simplicity: 65,
+
+      costEfficiency: 60,
+
+      latency: 75,
+
+      ordering: 85,
+
+      replay: 95,
+    },
+
+    priorities: [
+      "Audit and compliance",
+
+      "Replayable event history",
+
+      "Reliability",
+
+      "Ordered clinical events",
+    ],
+  },
 };

@@ -96,6 +96,13 @@ Recommended implementation considerations:
 - Schema evolution strategy
 - Cluster capacity planning
 `;
+  } else if (winner.id === "kinesis") {
+    adr += `
+- Shard count and capacity planning
+- Retention window configuration
+- Enhanced fan-out consumer pattern
+- Lambda / Flink integration points
+`;
   } else if (winner.id === "sqs") {
     adr += `
 - Dead letter queue strategy
@@ -108,6 +115,41 @@ Recommended implementation considerations:
 - Event schema governance
 - Event routing rules
 - Integration monitoring
+`;
+  } else if (winner.id === "lambda") {
+    adr += `
+- Cold start mitigation
+- Timeout and memory tuning
+- Reserved concurrency
+- Observability and tracing
+`;
+  } else if (winner.id === "apigateway") {
+    adr += `
+- Throttling and quota policies
+- Authentication and authorization
+- Request validation
+- Usage plans and monitoring
+`;
+  } else if (winner.id === "ecs") {
+    adr += `
+- Fargate vs. EC2 placement
+- Service auto scaling
+- Image registry and CI pipeline
+- Capacity planning
+`;
+  } else if (winner.id === "rosa") {
+    adr += `
+- Node pool sizing and scaling
+- Cluster upgrade strategy
+- Role-based access control
+- Backup and disaster recovery
+`;
+  } else if (winner.id === "pubsub") {
+    adr += `
+- Topic and subscription design
+- Exactly-once and ordering key strategy
+- Retention and seek configuration
+- Cross-region replication
 `;
   } else {
     adr += `

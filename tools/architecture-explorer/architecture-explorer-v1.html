@@ -114,6 +114,62 @@
 
           <p>Availability, latency, developer velocity.</p>
         </div>
+
+        <div class="scenario" data-scenario="iot">
+          <div class="icon">📶</div>
+
+          <h3>IoT & Telemetry</h3>
+
+          <p>Device fleets, per-device ordering, replay.</p>
+        </div>
+
+        <div class="scenario" data-scenario="notifications">
+          <div class="icon">📣</div>
+
+          <h3>Notifications</h3>
+
+          <p>Multi-channel fan-out, retries, delivery.</p>
+        </div>
+
+        <div class="scenario" data-scenario="ecommerce">
+          <div class="icon">🛒</div>
+
+          <h3>E-Commerce</h3>
+
+          <p>Orders, inventory, correctness, spikes.</p>
+        </div>
+
+        <div class="scenario" data-scenario="logistics">
+          <div class="icon">🚚</div>
+
+          <h3>Logistics</h3>
+
+          <p>Tracking, carrier events, cost control.</p>
+        </div>
+
+        <div class="scenario" data-scenario="backgroundJobs">
+          <div class="icon">⚙️</div>
+
+          <h3>Background Jobs</h3>
+
+          <p>Task queues, retries, worker scaling.</p>
+        </div>
+
+        <div class="scenario" data-scenario="realtime">
+          <div class="icon">🎮</div>
+
+          <h3>Realtime</h3>
+
+          <p>Gaming, presence, live collaboration, sub-second latency.</p>
+        </div>
+
+        <div class="scenario" data-scenario="healthcare">
+          <div class="icon">🏥</div>
+
+          <h3>Healthcare</h3>
+
+          <p>Claims, compliance, audit trails, replay.</p>
+        </div>
       </div>
 
       <div class="workspace">
@@ -334,7 +390,7 @@
             <button class="secondary" onclick="copyADR()">Copy</button>
 
             <button class="secondary" onclick="downloadADR()">
-              Download .md
+              Download PDF
             </button>
           </div>
 
@@ -361,6 +417,11 @@
     <script src="js/genai.js"></script>
 
     <script src="js/qa.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+      defer
+    ></script>
 
     <footer class="footer">
       <div class="footer-glass">

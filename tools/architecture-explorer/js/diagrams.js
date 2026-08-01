@@ -152,6 +152,224 @@ const diagrams = {
       [1, 6],
     ],
   },
+
+  iot: {
+    title: "IoT & Telemetry Architecture",
+
+    nodes: [
+      "Device Fleet",
+
+      "Edge Gateways",
+
+      "Ingestion Bus",
+
+      "Stream Processing",
+
+      "Time-Series Store",
+
+      "Analytics & Alerting",
+    ],
+
+    connections: [
+      [0, 1],
+
+      [1, 2],
+
+      [2, 3],
+
+      [3, 4],
+
+      [3, 5],
+    ],
+  },
+
+  notifications: {
+    title: "Notification & Fan-Out Architecture",
+
+    nodes: [
+      "Applications",
+
+      "Notification Producer",
+
+      "Fan-Out Hub",
+
+      "Email Service",
+
+      "Push Service",
+
+      "SMS Service",
+
+      "Webhook Delivery",
+    ],
+
+    connections: [
+      [0, 1],
+
+      [1, 2],
+
+      [2, 3],
+
+      [2, 4],
+
+      [2, 5],
+
+      [2, 6],
+    ],
+  },
+
+  ecommerce: {
+    title: "E-Commerce Order Architecture",
+
+    nodes: [
+      "Customers",
+
+      "API Gateway",
+
+      "Order Service",
+
+      "Event Bus",
+
+      "Inventory Service",
+
+      "Payment Service",
+
+      "Fulfillment Service",
+    ],
+
+    connections: [
+      [0, 1],
+
+      [1, 2],
+
+      [2, 3],
+
+      [3, 4],
+
+      [3, 5],
+
+      [3, 6],
+    ],
+  },
+
+  logistics: {
+    title: "Logistics & Supply Chain Architecture",
+
+    nodes: [
+      "Carrier Partners",
+
+      "Warehouse Systems",
+
+      "Ingestion Queue",
+
+      "Tracking Service",
+
+      "Status Database",
+
+      "Customer Notifications",
+    ],
+
+    connections: [
+      [0, 2],
+
+      [1, 2],
+
+      [2, 3],
+
+      [3, 4],
+
+      [3, 5],
+    ],
+  },
+
+  backgroundJobs: {
+    title: "Background Job Processing Architecture",
+
+    nodes: [
+      "Applications",
+
+      "Job Producer",
+
+      "Task Queue",
+
+      "Worker Pool",
+
+      "DLQ",
+
+      "Result Store",
+    ],
+
+    connections: [
+      [0, 1],
+
+      [1, 2],
+
+      [2, 3],
+
+      [3, 5],
+
+      [2, 4],
+    ],
+  },
+
+  realtime: {
+    title: "Real-Time Collaboration Architecture",
+
+    nodes: [
+      "Players / Clients",
+
+      "Edge Gateway",
+
+      "Session Service",
+
+      "Event Stream",
+
+      "Presence Service",
+
+      "Leaderboard & Analytics",
+    ],
+
+    connections: [
+      [0, 1],
+
+      [1, 2],
+
+      [2, 3],
+
+      [3, 4],
+
+      [3, 5],
+    ],
+  },
+
+  healthcare: {
+    title: "Healthcare Claims & Compliance Architecture",
+
+    nodes: [
+      "Providers",
+
+      "Claims API",
+
+      "Ingestion Bus",
+
+      "Claims Processor",
+
+      "Audit & Compliance Store",
+
+      "Payers",
+    ],
+
+    connections: [
+      [0, 1],
+
+      [1, 2],
+
+      [2, 3],
+
+      [3, 4],
+
+      [3, 5],
+    ],
+  },
 };
 
 function getDiagram(scenarioId) {
