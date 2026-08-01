@@ -1,0 +1,989 @@
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+* {
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+
+
+body {
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
+    background:#070b16;
+
+    color:white;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+}
+
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+
+body::before {
+
+    content:"";
+
+    position:fixed;
+
+    inset:-100px;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            #2563eb55,
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 80% 20%,
+            #9333ea55,
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 50% 90%,
+            #06b6d455,
+            transparent 35%
+        );
+
+    filter:blur(80px);
+
+    z-index:-1;
+
+}
+
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+
+header {
+
+    text-align:center;
+
+    padding:
+        70px 20px 40px;
+
+}
+
+
+
+.badge {
+
+    display:inline-block;
+
+    padding:
+        8px 18px;
+
+    border-radius:50px;
+
+    background:#2563eb22;
+
+    border:
+        1px solid #60a5fa55;
+
+    color:#93c5fd;
+
+    margin-bottom:25px;
+
+}
+
+
+
+header h1 {
+
+    font-size:56px;
+
+    font-weight:800;
+
+    letter-spacing:-3px;
+
+}
+
+
+
+.subtitle {
+
+    margin-top:18px;
+
+    font-size:20px;
+
+    color:#94a3b8;
+
+}
+
+
+
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+
+.container {
+
+    max-width:1500px;
+
+    margin:auto;
+
+    padding:40px;
+
+}
+
+
+
+
+/* =========================================
+   SCENARIO CARDS
+========================================= */
+
+
+.scenarios {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(240px,1fr)
+        );
+
+    gap:24px;
+
+}
+
+
+
+.scenario {
+
+
+    background:
+        rgba(255,255,255,.06);
+
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+
+    border-radius:24px;
+
+
+    padding:28px;
+
+
+    cursor:pointer;
+
+
+    backdrop-filter:
+        blur(20px);
+
+
+    transition:.35s;
+
+}
+
+
+
+.scenario:hover {
+
+
+    transform:
+        translateY(-8px);
+
+
+    border-color:#60a5fa;
+
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.4);
+
+
+}
+
+
+
+.icon {
+
+    font-size:40px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.scenario h3 {
+
+    font-size:22px;
+
+}
+
+
+
+.scenario p {
+
+    margin-top:12px;
+
+    color:#94a3b8;
+
+    line-height:1.5;
+
+}
+
+
+
+
+
+/* =========================================
+   WORKSPACE GRID
+========================================= */
+
+
+.workspace {
+
+
+    margin-top:50px;
+
+
+    display:grid;
+
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(420px,1fr)
+        );
+
+
+    gap:30px;
+
+
+}
+
+
+
+
+
+/* =========================================
+   GLASS PANELS
+========================================= */
+
+
+.panel {
+
+
+    background:
+        rgba(255,255,255,.06);
+
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+
+    border-radius:28px;
+
+
+    padding:35px;
+
+
+    backdrop-filter:
+        blur(20px);
+
+
+}
+
+
+
+.panel h2 {
+
+    margin-bottom:25px;
+
+    font-size:26px;
+
+}
+
+
+
+
+/* =========================================
+   RECOMMENDATION
+========================================= */
+
+
+.recommendation {
+
+    text-align:center;
+
+}
+
+
+
+.tech {
+
+    font-size:38px;
+
+    font-weight:800;
+
+}
+
+
+
+.score {
+
+    font-size:90px;
+
+    font-weight:800;
+
+    margin:20px;
+
+
+    background:
+        linear-gradient(
+            90deg,
+            #60a5fa,
+            #c084fc
+        );
+
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+}
+
+
+
+.confidence {
+
+    height:12px;
+
+    background:#1e293b;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:
+        20px auto;
+
+    width:80%;
+
+}
+
+
+
+.confidence span {
+
+    display:block;
+
+    height:100%;
+
+    width:0%;
+
+
+    background:
+        linear-gradient(
+            90deg,
+            #3b82f6,
+            #8b5cf6
+        );
+
+    transition:.6s;
+
+}
+
+
+
+.reason {
+
+    margin-top:30px;
+
+    color:#cbd5e1;
+
+    line-height:1.7;
+
+}
+
+
+
+
+
+/* =========================================
+   METRICS
+========================================= */
+
+
+.metric {
+
+    margin:
+        25px 0;
+
+}
+
+
+
+.metric-header {
+
+    margin-bottom:10px;
+
+}
+
+
+
+.bar {
+
+    height:10px;
+
+    background:#1e293b;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+
+.bar div {
+
+
+    height:100%;
+
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #3b82f6,
+            #8b5cf6
+        );
+
+
+    transition:.6s;
+
+
+}
+
+
+
+
+
+
+/* =========================================
+   COMPARISON
+========================================= */
+
+
+.comparison-row {
+
+
+    margin:
+        20px 0;
+
+
+}
+
+
+
+.comparison-header {
+
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:8px;
+
+
+}
+
+
+
+.comparison-name {
+
+
+    font-weight:600;
+
+
+}
+
+
+
+.comparison-score {
+
+
+    color:#93c5fd;
+
+
+}
+
+
+
+.comparison-bar {
+
+
+    height:10px;
+
+    background:#1e293b;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+
+}
+
+
+
+.comparison-fill {
+
+
+    height:100%;
+
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #3b82f6,
+            #8b5cf6
+        );
+
+
+}
+
+
+
+
+
+/* =========================================
+   TRADEOFF MATRIX
+========================================= */
+
+
+#tradeoffMatrix {
+
+    overflow-x:auto;
+
+}
+
+
+
+.tradeoff-table {
+
+
+    width:100%;
+
+
+    min-width:850px;
+
+
+    border-collapse:collapse;
+
+
+}
+
+
+
+.tradeoff-table th {
+
+
+    padding:16px;
+
+
+    color:#93c5fd;
+
+
+    border-bottom:
+
+        1px solid rgba(255,255,255,.15);
+
+
+}
+
+
+
+.tradeoff-table td {
+
+
+    padding:14px;
+
+
+    text-align:center;
+
+
+    border-bottom:
+
+        1px solid rgba(255,255,255,.08);
+
+
+    color:#cbd5e1;
+
+
+}
+
+
+
+.tradeoff-table td:first-child,
+.tradeoff-table th:first-child {
+
+    text-align:left;
+
+}
+
+
+
+.tradeoff-score {
+
+    font-weight:700;
+
+}
+
+
+
+.high-score {
+
+    color:#34d399;
+
+}
+
+
+
+.medium-score {
+
+    color:#facc15;
+
+}
+
+
+
+.low-score {
+
+    color:#f87171;
+
+}
+
+
+
+
+
+/* =========================================
+   LANDSCAPE
+========================================= */
+
+
+#landscapeContainer {
+
+    margin-top:20px;
+
+}
+
+
+
+.landscape {
+
+
+    position:relative;
+
+
+    height:420px;
+
+
+    width:100%;
+
+
+    border-radius:20px;
+
+
+    border:
+
+        1px solid rgba(255,255,255,.12);
+
+
+
+    background:
+
+        rgba(255,255,255,.03);
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+.landscape-axis-x {
+
+
+    position:absolute;
+
+
+    bottom:15px;
+
+
+    left:50%;
+
+
+    transform:
+        translateX(-50%);
+
+
+    color:#94a3b8;
+
+
+}
+
+
+
+.landscape-axis-y {
+
+
+    position:absolute;
+
+
+    left:15px;
+
+
+    top:50%;
+
+
+    transform:
+
+        translateY(-50%)
+        rotate(-90deg);
+
+
+    color:#94a3b8;
+
+
+}
+
+
+
+.landscape-point {
+
+
+    position:absolute;
+
+
+    transform:
+        translate(-50%,50%);
+
+
+    padding:
+        10px 16px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+        rgba(96,165,250,.2);
+
+
+    border:
+
+        1px solid #60a5fa;
+
+
+    font-weight:700;
+
+
+    white-space:nowrap;
+
+
+}
+
+
+
+
+
+/* =========================================
+   DIAGRAM
+========================================= */
+
+
+.diagram-container {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+}
+
+
+
+.diagram-node {
+
+
+    width:260px;
+
+
+    padding:18px;
+
+
+    text-align:center;
+
+
+    border-radius:18px;
+
+
+    background:
+
+        rgba(96,165,250,.15);
+
+
+    border:
+
+        1px solid #60a5fa88;
+
+
+    font-weight:600;
+
+
+}
+
+
+
+.diagram-arrow {
+
+
+    font-size:30px;
+
+
+    color:#93c5fd;
+
+
+}
+
+
+
+/* =====================================
+   Architecture Decision Record
+===================================== */
+
+.adr-panel {
+
+    grid-column: 1 / -1;
+
+}
+
+
+#adrButton {
+
+    margin-top:20px;
+
+    padding:14px 28px;
+
+    border-radius:12px;
+
+    border:none;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            #3b82f6,
+            #8b5cf6
+        );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+
+#adrButton:hover {
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.35);
+
+}
+
+
+
+#adrOutput {
+
+    margin-top:25px;
+
+    width:100%;
+
+    min-height:650px;
+
+    resize:vertical;
+
+    background:#020617;
+
+    color:#cbd5e1;
+
+    border:
+
+        1px solid #334155;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    font-family:
+
+        "JetBrains Mono",
+        "Courier New",
+        monospace;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+}
+
+
+#adrOutput:focus {
+
+    outline:none;
+
+    border-color:#60a5fa;
+
+    box-shadow:
+        0 0 25px rgba(96,165,250,.25);
+
+}

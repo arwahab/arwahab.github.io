@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>
+        Engineering Decision Lab | Architecture Tradeoff Explorer
+    </title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/architecture-explorer.css">
+
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+
+        <div class="badge">
+
+            Engineering Decision Lab
+
+        </div>
+
+
+
+        <h1>
+
+            Architecture Tradeoff Explorer
+
+        </h1>
+
+
+
+        <p class="subtitle">
+
+            Explore architecture choices through scalability, reliability, cost, and operational tradeoffs.
+
+        </p>
+
+
+    </header>
+
+
+
+
+
+    <div class="container">
+
+
+
+        <div class="scenarios">
+
+
+
+            <div class="scenario" onclick="selectScenario('streaming')">
+
+
+                <div class="icon">
+                    📡
+                </div>
+
+
+                <h3>
+                    Event Streaming
+                </h3>
+
+
+                <p>
+                    Millions of events, ordering, replay, analytics.
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <div class="scenario" onclick="selectScenario('payments')">
+
+
+                <div class="icon">
+                    💳
+                </div>
+
+
+                <h3>
+                    Payments Platform
+                </h3>
+
+
+                <p>
+                    Reliability, correctness, low latency.
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <div class="scenario" onclick="selectScenario('ai')">
+
+
+                <div class="icon">
+                    🤖
+                </div>
+
+
+                <h3>
+                    AI Platform
+                </h3>
+
+
+                <p>
+                    Pipelines, async processing, scale.
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <div class="scenario" onclick="selectScenario('api')">
+
+
+                <div class="icon">
+                    🌎
+                </div>
+
+
+                <h3>
+                    Global API
+                </h3>
+
+
+                <p>
+                    Availability, latency, developer velocity.
+                </p>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <div class="workspace">
+
+
+
+
+
+            <!-- Scenario Overview -->
+
+
+            <div class="panel">
+
+
+                <h2>
+                    Scenario Overview
+                </h2>
+
+
+                <h3 id="scenarioTitle">
+
+                    Select a workload
+
+                </h3>
+
+
+
+                <p id="scenarioDescription" class="description">
+
+                    Choose a scenario above to see the engineering context.
+
+                </p>
+
+
+
+
+                <h3>
+
+                    Key Challenges
+
+                </h3>
+
+
+
+                <div id="scenarioChallenges">
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- Recommendation -->
+
+
+            <div class="panel recommendation">
+
+
+                <h2>
+
+                    Recommended Architecture
+
+                </h2>
+
+
+
+                <div class="tech">
+
+                    Select a scenario
+
+                </div>
+
+
+
+                <div class="score">
+
+                    --
+
+                </div>
+
+
+
+                <p>
+
+                    Architecture Fit
+
+                </p>
+
+
+
+                <div class="confidence">
+
+                    <span></span>
+
+                </div>
+
+
+
+                <div class="reason">
+
+                    Your architecture recommendation will appear here.
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <!-- Metrics -->
+
+
+            <div class="panel">
+
+
+                <h2>
+
+                    Engineering Profile
+
+                </h2>
+
+
+
+                <div class="metric">
+
+                    <div class="metric-header">
+                        Scalability
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div id="scaleBar"></div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="metric">
+
+                    <div class="metric-header">
+                        Reliability
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div id="reliabilityBar"></div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="metric">
+
+                    <div class="metric-header">
+                        Operational Simplicity
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div id="simplicityBar"></div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="metric">
+
+                    <div class="metric-header">
+                        Cost Efficiency
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div id="costBar"></div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <!-- Comparison -->
+
+
+            <div class="panel">
+
+
+                <h2>
+
+                    Architecture Comparison
+
+                </h2>
+
+
+                <div id="comparisonContainer">
+
+
+                    <p>
+
+                        Select a workload to compare architectures.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <!-- Tradeoff Matrix -->
+
+
+            <div class="panel">
+
+
+                <h2>
+
+                    Architecture Tradeoff Matrix
+
+                </h2>
+
+
+
+                <div id="tradeoffMatrix">
+
+
+                    <p>
+
+                        Select a workload to analyze tradeoffs.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <!-- Landscape -->
+
+
+            <div class="panel">
+
+
+                <h2>
+
+                    Architecture Landscape
+
+                </h2>
+
+
+
+                <p>
+
+                    Compare architectures by scalability and operational simplicity.
+
+                </p>
+
+
+
+                <div id="landscapeContainer">
+
+
+                    <p>
+
+                        Select a workload to visualize architecture positioning.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <!-- ADR -->
+
+
+            <div class="panel adr-panel">
+
+
+                <h2>
+                    Architecture Decision Record
+                </h2>
+            
+            
+                <button id="adrButton" onclick="showADR()">
+                    Generate ADR
+                </button>
+            
+            
+                <textarea id="adrOutput"
+                    placeholder="Your Architecture Decision Record will appear here..."
+                ></textarea>
+            
+            
+            </div>
+
+
+
+
+
+
+
+
+
+            <!-- Blueprint -->
+
+
+            <div class="panel">
+
+
+                <h2 id="diagramTitle">
+
+                    Architecture Blueprint
+
+                </h2>
+
+
+
+                <div id="diagramContainer" class="diagram-container">
+
+
+                    <p>
+
+                        Select a workload to visualize architecture.
+
+                    </p>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <script src="js/architectures.js"></script>
+
+    <script src="js/scenarios.js"></script>
+
+    <script src="js/engine.js"></script>
+
+    <script src="js/diagrams.js"></script>
+
+    <script src="js/adr.js"></script>
+
+    <script src="js/app.js"></script>
+
+
+</body>
+
+
+</html>

@@ -1,15 +1,17 @@
 let selectedScenario = null;
-
 let selectedRecommendation = null;
+
+
+/*
+=====================================
+ Scenario Selection
+=====================================
+*/
 
 function selectScenario(scenarioId) {
 
 
-    const scenario =
-        scenarios[scenarioId];
-
-    selectedScenario =
-        scenario;
+    const scenario = scenarios[scenarioId];
 
 
     if (!scenario) {
@@ -24,11 +26,12 @@ function selectScenario(scenarioId) {
     }
 
 
+    selectedScenario = scenario;
+
 
     updateScenarioContext(
         scenario
     );
-
 
 
     const recommendation =
@@ -37,11 +40,13 @@ function selectScenario(scenarioId) {
         );
 
 
+    selectedRecommendation =
+        recommendation;
+
 
     updateRecommendation(
         recommendation
     );
-
 
 
     updateMetrics(
@@ -49,19 +54,24 @@ function selectScenario(scenarioId) {
     );
 
 
-
     updateComparison(
         recommendation.ranking
     );
 
 
+    updateTradeoffMatrix(
+        recommendation.ranking
+    );
+
+
+    updateLandscape(
+        recommendation.ranking
+    );
+
 
     updateDiagram(
         scenarioId
     );
-
-    selectedRecommendation =
-        recommendation;
 
 
 }
@@ -69,8 +79,11 @@ function selectScenario(scenarioId) {
 
 
 
-
-
+/*
+=====================================
+ Scenario Context
+=====================================
+*/
 
 function updateScenarioContext(scenario) {
 
@@ -94,7 +107,7 @@ function updateScenarioContext(scenario) {
 
 
 
-    if (title) {
+    if(title){
 
         title.innerHTML =
             scenario.name;
@@ -103,7 +116,7 @@ function updateScenarioContext(scenario) {
 
 
 
-    if (description) {
+    if(description){
 
         description.innerHTML =
             scenario.summary;
@@ -112,15 +125,15 @@ function updateScenarioContext(scenario) {
 
 
 
-    if (challenges) {
+    if(challenges){
 
         challenges.innerHTML =
             scenario.keyChallenges
-                .map(
-                    item =>
-                        "✓ " + item
-                )
-                .join("<br>");
+            .map(
+                item =>
+                "✓ " + item
+            )
+            .join("<br>");
 
     }
 
@@ -131,11 +144,21 @@ function updateScenarioContext(scenario) {
 
 
 
+/*
+=====================================
+ Recommendation
+=====================================
+*/
 
 
+function updateRecommendation(data){
 
 
-function updateRecommendation(data) {
+    if(!data || !data.winner){
+
+        return;
+
+    }
 
 
     const winner =
@@ -149,12 +172,10 @@ function updateRecommendation(data) {
         );
 
 
-
     const score =
         document.querySelector(
             ".score"
         );
-
 
 
     const reason =
@@ -163,8 +184,14 @@ function updateRecommendation(data) {
         );
 
 
+    const confidence =
+        document.querySelector(
+            ".confidence span"
+        );
 
-    if (tech) {
+
+
+    if(tech){
 
         tech.innerHTML =
             winner.name;
@@ -173,21 +200,27 @@ function updateRecommendation(data) {
 
 
 
-    animateScore(
+    if(score){
 
-        score,
-
-        Number(
+        animateScore(
+            score,
             winner.finalScore
-        )
+        );
 
-    );
-
-
+    }
 
 
 
-    if (reason) {
+    if(confidence){
+
+        confidence.style.width =
+            winner.finalScore + "%";
+
+    }
+
+
+
+    if(reason){
 
         reason.innerHTML = `
 
@@ -200,13 +233,14 @@ function updateRecommendation(data) {
         <br><br>
 
 
-        ${winner.strengths
-                .map(
-                    item =>
-                        "✓ " + item
-                )
-                .join("<br>")}
-
+        ${
+            winner.strengths
+            .map(
+                item =>
+                "✓ " + item
+            )
+            .join("<br>")
+        }
 
 
         <br><br>
@@ -220,12 +254,14 @@ function updateRecommendation(data) {
         <br><br>
 
 
-        ${winner.weaknesses
-                .map(
-                    item =>
-                        "• " + item
-                )
-                .join("<br>")}
+        ${
+            winner.weaknesses
+            .map(
+                item =>
+                "• " + item
+            )
+            .join("<br>")
+        }
 
 
         `;
@@ -239,38 +275,34 @@ function updateRecommendation(data) {
 
 
 
+function animateScore(element,target){
 
 
+    let score =
+        Number(target);
 
 
-function animateScore(element, target) {
+    if(isNaN(score)){
 
-    if (!element) {
-        return;
-    }
-
-
-    let score = parseFloat(target);
-
-
-    if (isNaN(score)) {
         score = 0;
+
     }
 
 
-    // Hard safety limit
-    if (score > 100) {
-        score = 100;
-    }
-
-
-    if (score < 0) {
-        score = 0;
-    }
+    score =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                score
+            )
+        );
 
 
     element.innerHTML =
-        Math.round(score) + "%";
+        Math.round(score)
+        + "%";
+
 
 }
 
@@ -278,50 +310,66 @@ function animateScore(element, target) {
 
 
 
+/*
+=====================================
+ Engineering Metrics
+=====================================
+*/
 
 
-
-function updateMetrics(system) {
-
+function updateMetrics(system){
 
 
-    if (!system || !system.scores) {
+    if(
+        !system ||
+        !system.scores
+    ){
 
         return;
 
     }
 
 
+    const metrics = {
+
+        scaleBar:
+        system.scores.scalability,
 
 
-    document
-        .getElementById("scaleBar")
-        .style.width =
-        system.scores.scalability + "%";
+        reliabilityBar:
+        system.scores.reliability,
 
 
+        simplicityBar:
+        system.scores.simplicity,
 
 
-    document
-        .getElementById("reliabilityBar")
-        .style.width =
-        system.scores.reliability + "%";
+        costBar:
+        system.scores.costEfficiency
 
-
-
-
-    document
-        .getElementById("simplicityBar")
-        .style.width =
-        system.scores.simplicity + "%";
+    };
 
 
 
+    Object.keys(metrics)
+    .forEach(id=>{
 
-    document
-        .getElementById("costBar")
-        .style.width =
-        system.scores.costEfficiency + "%";
+
+        const element =
+            document.getElementById(id);
+
+
+
+        if(element){
+
+            element.style.width =
+                metrics[id]
+                + "%";
+
+        }
+
+
+    });
 
 
 }
@@ -332,9 +380,14 @@ function updateMetrics(system) {
 
 
 
+/*
+=====================================
+ Architecture Comparison
+=====================================
+*/
 
 
-function updateComparison(results) {
+function updateComparison(results){
 
 
     const container =
@@ -343,13 +396,14 @@ function updateComparison(results) {
         );
 
 
-
-    if (!container) {
+    if(
+        !container ||
+        !results
+    ){
 
         return;
 
     }
-
 
 
     container.innerHTML =
@@ -357,73 +411,272 @@ function updateComparison(results) {
 
 
 
-    results.forEach(system => {
+    results.forEach(
+        (system,index)=>{
 
 
-        const row =
-            document.createElement(
-                "div"
-            );
+            const row =
+                document.createElement(
+                    "div"
+                );
 
 
-
-        row.className =
-            "comparison-row";
-
-
-
-        row.innerHTML = `
-
-
-        <div class="comparison-header">
-
-
-        <span class="comparison-name">
-
-        ${system.name}
-
-        </span>
+            row.className =
+                "comparison-row";
 
 
 
-        <span class="comparison-score">
-
-        ${system.finalScore}%
-
-        </span>
+            row.innerHTML = `
 
 
-        </div>
+            <div class="comparison-header">
 
 
+            <span class="comparison-name">
 
+            #${index+1}
+            ${system.name}
 
-        <div class="comparison-bar">
-
-
-        <div
-
-        class="comparison-fill"
-
-        style="width:${system.finalScore}%">
-
-        </div>
-
-
-        </div>
-
-
-        `;
+            </span>
 
 
 
-        container.appendChild(
-            row
+            <span class="comparison-score">
+
+            ${system.finalScore}%
+
+            </span>
+
+
+            </div>
+
+
+
+            <div class="comparison-bar">
+
+
+                <div 
+                class="comparison-fill"
+                style="width:${system.finalScore}%">
+
+                </div>
+
+
+            </div>
+
+
+            `;
+
+
+            container.appendChild(row);
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+
+
+
+/*
+=====================================
+ Tradeoff Matrix
+=====================================
+*/
+
+
+function updateTradeoffMatrix(results){
+
+
+    const container =
+        document.getElementById(
+            "tradeoffMatrix"
         );
 
 
-    });
+    if(
+        !container ||
+        !results
+    ){
 
+        return;
+
+    }
+
+
+
+    const dimensions = [
+
+        "scalability",
+
+        "reliability",
+
+        "simplicity",
+
+        "costEfficiency",
+
+        "latency",
+
+        "ordering",
+
+        "replay"
+
+    ];
+
+
+
+    const formatLabel =
+        text =>
+
+        text
+        .replace(
+            /([A-Z])/g,
+            " $1"
+        )
+        .replace(
+            /^./,
+            c=>c.toUpperCase()
+        );
+
+
+
+
+    let html = `
+
+
+<table class="tradeoff-table">
+
+
+<thead>
+
+<tr>
+
+<th>
+Dimension
+</th>
+
+
+${
+results.map(
+system=>`
+
+<th>
+${system.name}
+</th>
+
+`
+)
+.join("")
+}
+
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+`;
+
+
+
+
+dimensions.forEach(
+dimension=>{
+
+
+html += `
+
+
+<tr>
+
+
+<td>
+
+${formatLabel(dimension)}
+
+</td>
+
+
+
+${
+results.map(system=>{
+
+
+const value =
+system.scores[dimension] ?? 0;
+
+
+
+let css =
+"medium-score";
+
+
+if(value>=85){
+
+css="high-score";
+
+}
+
+
+if(value<60){
+
+css="low-score";
+
+}
+
+
+
+return `
+
+
+<td class="tradeoff-score ${css}">
+
+${value}
+
+</td>
+
+
+`;
+
+})
+.join("")
+}
+
+
+
+</tr>
+
+
+`;
+
+
+});
+
+
+
+
+html += `
+
+</tbody>
+
+</table>
+
+`;
+
+
+
+container.innerHTML =
+    html;
 
 
 }
@@ -436,7 +689,146 @@ function updateComparison(results) {
 
 
 
-function updateDiagram(scenarioId) {
+/*
+=====================================
+ Architecture Landscape
+=====================================
+*/
+
+
+function updateLandscape(results){
+
+
+    const container =
+        document.getElementById(
+            "landscapeContainer"
+        );
+
+
+    if(
+        !container ||
+        !results
+    ){
+
+        return;
+
+    }
+
+
+
+    container.innerHTML = `
+
+
+    <div class="landscape">
+
+
+        <div class="landscape-axis-x">
+
+            Operational Simplicity →
+
+        </div>
+
+
+
+        <div class="landscape-axis-y">
+
+            Scalability →
+
+        </div>
+
+
+    </div>
+
+
+    `;
+
+
+
+    const chart =
+        container.querySelector(
+            ".landscape"
+        );
+
+
+
+    results.forEach(
+        architecture=>{
+
+
+            const point =
+                document.createElement(
+                    "div"
+                );
+
+
+
+            point.className =
+                "landscape-point";
+
+
+
+            point.innerHTML =
+                architecture.name;
+
+
+
+            const x =
+                Math.max(
+                    10,
+                    Math.min(
+                        90,
+                        architecture.scores.simplicity
+                    )
+                );
+
+
+            const y =
+                Math.max(
+                    10,
+                    Math.min(
+                        90,
+                        architecture.scores.scalability
+                    )
+                );
+
+
+
+            point.style.left =
+                x + "%";
+
+
+
+            point.style.bottom =
+                y + "%";
+
+
+
+            chart.appendChild(
+                point
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+
+
+/*
+=====================================
+ Architecture Diagram
+=====================================
+*/
+
+
+function updateDiagram(scenarioId){
 
 
     const diagram =
@@ -444,6 +836,11 @@ function updateDiagram(scenarioId) {
             scenarioId
         );
 
+
+    const container =
+        document.getElementById(
+            "diagramContainer"
+        );
 
 
     const title =
@@ -453,17 +850,10 @@ function updateDiagram(scenarioId) {
 
 
 
-    const container =
-        document.getElementById(
-            "diagramContainer"
-        );
-
-
-
-    if (
+    if(
         !diagram ||
         !container
-    ) {
+    ){
 
         return;
 
@@ -471,7 +861,7 @@ function updateDiagram(scenarioId) {
 
 
 
-    if (title) {
+    if(title){
 
         title.innerHTML =
             diagram.title;
@@ -486,7 +876,7 @@ function updateDiagram(scenarioId) {
 
 
     diagram.nodes.forEach(
-        (node, index) => {
+        (node,index)=>{
 
 
             const box =
@@ -495,10 +885,8 @@ function updateDiagram(scenarioId) {
                 );
 
 
-
             box.className =
                 "diagram-node";
-
 
 
             box.innerHTML =
@@ -512,11 +900,10 @@ function updateDiagram(scenarioId) {
 
 
 
-            if (
+            if(
                 index <
-                diagram.nodes.length - 1
-            ) {
-
+                diagram.nodes.length-1
+            ){
 
                 const arrow =
                     document.createElement(
@@ -524,24 +911,19 @@ function updateDiagram(scenarioId) {
                     );
 
 
-
                 arrow.className =
                     "diagram-arrow";
-
 
 
                 arrow.innerHTML =
                     "↓";
 
 
-
                 container.appendChild(
                     arrow
                 );
 
-
             }
-
 
 
         }
@@ -550,6 +932,17 @@ function updateDiagram(scenarioId) {
 
 
 }
+
+
+
+
+
+/*
+=====================================
+ ADR Generator
+=====================================
+*/
+
 
 function showADR(){
 
@@ -560,7 +953,7 @@ function showADR(){
     ){
 
         alert(
-        "Select a workload first."
+            "Select a workload first."
         );
 
         return;
@@ -569,20 +962,21 @@ function showADR(){
 
 
 
-    document
-    .getElementById(
-        "adrOutput"
-    )
-    .value =
+    const output =
+        document.getElementById(
+            "adrOutput"
+        );
 
 
-    generateADR(
+    if(output){
 
-        selectedScenario,
+        output.value =
+            generateADR(
+                selectedScenario,
+                selectedRecommendation
+            );
 
-        selectedRecommendation
-
-    );
+    }
 
 
 }
