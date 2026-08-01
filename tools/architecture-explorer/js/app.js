@@ -4,6 +4,42 @@ let selectedRecommendation = null;
 
 let currentDiagramId = null;
 
+/*
+=====================================
+ Theme
+=====================================
+*/
+
+const THEME_KEY = "ate-theme";
+
+function getInitialTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved === "light" || saved === "dark") {
+    return saved;
+  }
+  const prefersLight =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: light)").matches;
+  return prefersLight ? "light" : "dark";
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  const toggle = document.getElementById("themeToggle");
+  if (toggle) {
+    toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+  }
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute("data-theme");
+  const next = current === "light" ? "dark" : "light";
+  localStorage.setItem(THEME_KEY, next);
+  applyTheme(next);
+}
+
+applyTheme(getInitialTheme());
+
 const weightDimensions = [
   { id: "scalability", label: "Scalability" },
   { id: "reliability", label: "Reliability" },
@@ -967,14 +1003,14 @@ function resetView() {
 
   if (tradeoff) {
     tradeoff.innerHTML =
-      '<p style="color: #94a3b8">Select a workload to analyze tradeoffs.</p>';
+      '<p class="muted">Select a workload to analyze tradeoffs.</p>';
   }
 
   const landscape = document.getElementById("landscapeContainer");
 
   if (landscape) {
     landscape.innerHTML =
-      '<p style="color: #94a3b8">Select a workload to visualize architecture positioning.</p>';
+      '<p class="muted">Select a workload to visualize architecture positioning.</p>';
   }
 
   const diagramTitle = document.getElementById("diagramTitle");

@@ -41,7 +41,15 @@
         operational tradeoffs.
       </p>
 
-      <button id="resetViewButton" onclick="resetView()">↺ Reset View</button>
+      <div class="header-actions">
+        <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+          Light mode
+        </button>
+
+        <button class="header-btn" id="resetViewButton" onclick="resetView()">
+          ↺ Reset View
+        </button>
+      </div>
     </header>
 
     <div class="container">
@@ -204,21 +212,19 @@
           <h2>Architecture Tradeoff Matrix</h2>
 
           <div id="tradeoffMatrix">
-            <p style="color: #94a3b8">
-              Select a workload to analyze tradeoffs.
-            </p>
+            <p class="muted">Select a workload to analyze tradeoffs.</p>
           </div>
         </div>
 
         <div class="panel full-width">
           <h2>Architecture Landscape</h2>
 
-          <p style="color: #94a3b8; margin-bottom: 20px">
+          <p class="muted" style="margin-bottom: 20px">
             Compare architectures by scalability and operational simplicity.
           </p>
 
           <div id="landscapeContainer">
-            <p style="color: #94a3b8">
+            <p class="muted">
               Select a workload to visualize architecture positioning.
             </p>
           </div>
