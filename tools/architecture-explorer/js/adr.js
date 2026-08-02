@@ -1,3 +1,64 @@
+const OPERATIONAL_NOTES = {
+  kafka: `
+- Partition strategy
+- Consumer lag monitoring
+- Schema evolution strategy
+- Cluster capacity planning
+`,
+  kinesis: `
+- Shard count and capacity planning
+- Retention window configuration
+- Enhanced fan-out consumer pattern
+- Lambda / Flink integration points
+`,
+  sqs: `
+- Dead letter queue strategy
+- Retry policies
+- Visibility timeout tuning
+- Idempotent consumers
+`,
+  eventbridge: `
+- Event schema governance
+- Event routing rules
+- Integration monitoring
+`,
+  lambda: `
+- Cold start mitigation
+- Timeout and memory tuning
+- Reserved concurrency
+- Observability and tracing
+`,
+  apigateway: `
+- Throttling and quota policies
+- Authentication and authorization
+- Request validation
+- Usage plans and monitoring
+`,
+  ecs: `
+- Fargate vs. EC2 placement
+- Service auto scaling
+- Image registry and CI pipeline
+- Capacity planning
+`,
+  rosa: `
+- Node pool sizing and scaling
+- Cluster upgrade strategy
+- Role-based access control
+- Backup and disaster recovery
+`,
+  pubsub: `
+- Topic and subscription design
+- Exactly-once and ordering key strategy
+- Retention and seek configuration
+- Cross-region replication
+`,
+  default: `
+- Capacity planning
+- Monitoring strategy
+- Failure recovery procedures
+`,
+};
+
 function generateADR(scenario, recommendation) {
   const winner = recommendation.winner;
 
@@ -89,75 +150,7 @@ Recommended implementation considerations:
 
 `;
 
-  if (winner.id === "kafka") {
-    adr += `
-- Partition strategy
-- Consumer lag monitoring
-- Schema evolution strategy
-- Cluster capacity planning
-`;
-  } else if (winner.id === "kinesis") {
-    adr += `
-- Shard count and capacity planning
-- Retention window configuration
-- Enhanced fan-out consumer pattern
-- Lambda / Flink integration points
-`;
-  } else if (winner.id === "sqs") {
-    adr += `
-- Dead letter queue strategy
-- Retry policies
-- Visibility timeout tuning
-- Idempotent consumers
-`;
-  } else if (winner.id === "eventbridge") {
-    adr += `
-- Event schema governance
-- Event routing rules
-- Integration monitoring
-`;
-  } else if (winner.id === "lambda") {
-    adr += `
-- Cold start mitigation
-- Timeout and memory tuning
-- Reserved concurrency
-- Observability and tracing
-`;
-  } else if (winner.id === "apigateway") {
-    adr += `
-- Throttling and quota policies
-- Authentication and authorization
-- Request validation
-- Usage plans and monitoring
-`;
-  } else if (winner.id === "ecs") {
-    adr += `
-- Fargate vs. EC2 placement
-- Service auto scaling
-- Image registry and CI pipeline
-- Capacity planning
-`;
-  } else if (winner.id === "rosa") {
-    adr += `
-- Node pool sizing and scaling
-- Cluster upgrade strategy
-- Role-based access control
-- Backup and disaster recovery
-`;
-  } else if (winner.id === "pubsub") {
-    adr += `
-- Topic and subscription design
-- Exactly-once and ordering key strategy
-- Retention and seek configuration
-- Cross-region replication
-`;
-  } else {
-    adr += `
-- Capacity planning
-- Monitoring strategy
-- Failure recovery procedures
-`;
-  }
+  adr += OPERATIONAL_NOTES[winner.id] || OPERATIONAL_NOTES.default;
 
   adr += `
 

@@ -409,22 +409,6 @@ function updateTradeoffMatrix(results) {
     return;
   }
 
-  const dimensions = [
-    "scalability",
-
-    "reliability",
-
-    "simplicity",
-
-    "costEfficiency",
-
-    "latency",
-
-    "ordering",
-
-    "replay",
-  ];
-
   let html = `
 <table class="tradeoff-table">
 
@@ -456,7 +440,7 @@ ${system.name}
 
 `;
 
-  dimensions.forEach((dimension) => {
+  DIMENSIONS.forEach((dimension) => {
     html += `
 <tr>
 

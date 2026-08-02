@@ -1,27 +1,27 @@
+const DIMENSIONS = [
+  "scalability",
+
+  "reliability",
+
+  "simplicity",
+
+  "costEfficiency",
+
+  "latency",
+
+  "ordering",
+
+  "replay",
+];
+
 function evaluateArchitectures(requirements) {
-  const dimensions = [
-    "scalability",
-
-    "reliability",
-
-    "simplicity",
-
-    "costEfficiency",
-
-    "latency",
-
-    "ordering",
-
-    "replay",
-  ];
-
   return architectures
     .map((architecture) => {
       let weightedSum = 0;
 
       let totalWeight = 0;
 
-      dimensions.forEach((dimension) => {
+      DIMENSIONS.forEach((dimension) => {
         const weight = requirements[dimension] || 0;
 
         const capability = architecture.scores[dimension] || 0;
@@ -36,12 +36,12 @@ function evaluateArchitectures(requirements) {
       if (totalWeight > 0) {
         finalScore = weightedSum / totalWeight;
       } else {
-        const uniformScore = dimensions.reduce(
+        const uniformScore = DIMENSIONS.reduce(
           (acc, dimension) => acc + (architecture.scores[dimension] || 0),
           0,
         );
 
-        finalScore = uniformScore / dimensions.length;
+        finalScore = uniformScore / DIMENSIONS.length;
       }
 
       return {
