@@ -67,39 +67,25 @@ function selectScenario(scenarioId) {
 
   if (!scenario) {
     console.error("Scenario not found:", scenarioId);
-
     return;
   }
-
   selectedScenario = scenario;
-
   setActiveScenarioCard(scenarioId);
-
   updateScenarioContext(scenario);
-
   renderWeightSliders(scenario);
-
   clearWeightNote();
-
   const recommendation = getRecommendation(scenario.requirements);
-
   selectedRecommendation = recommendation;
-
   renderResults(recommendation);
-
   updateDiagram(scenarioId);
-
   currentDiagramId = scenarioId;
-
   scrollToResults();
 }
 
 function setActiveScenarioCard(scenarioId) {
   document.querySelectorAll(".scenario").forEach((card) => {
     const active = card.getAttribute("data-scenario") === scenarioId;
-
     card.classList.toggle("active", active);
-
     card.setAttribute("aria-pressed", active ? "true" : "false");
   });
 }
@@ -114,13 +100,9 @@ function scrollToResults() {
 
 function renderResults(recommendation) {
   updateRecommendation(recommendation);
-
   updateMetrics(recommendation.winner);
-
   updateComparison(recommendation.ranking);
-
   updateTradeoffMatrix(recommendation.ranking);
-
   updateLandscape(recommendation.ranking);
 }
 
@@ -132,9 +114,7 @@ function renderResults(recommendation) {
 
 function updateScenarioContext(scenario) {
   const title = document.getElementById("scenarioTitle");
-
   const description = document.getElementById("scenarioDescription");
-
   const challenges = document.getElementById("scenarioChallenges");
 
   if (title) {
@@ -162,15 +142,10 @@ function updateRecommendation(data) {
   if (!data || !data.winner) {
     return;
   }
-
   const winner = data.winner;
-
   const tech = document.querySelector(".tech");
-
   const score = document.querySelector(".score");
-
   const reason = document.querySelector(".reason");
-
   const confidence = document.querySelector(".confidence span");
 
   if (tech) {
@@ -238,11 +213,8 @@ function generateAlternativeAnalysis(winner, ranking) {
   if (!ranking || ranking.length === 0) {
     return "";
   }
-
   return ranking
-
     .filter((architecture) => architecture.id !== winner.id)
-
     .slice(0, 3)
 
     .map((architecture) => {
@@ -272,7 +244,6 @@ function generateAlternativeAnalysis(winner, ranking) {
             </div>
             `;
     })
-
     .join("<br>");
 }
 
@@ -280,24 +251,18 @@ function animateScore(element, target) {
   if (!element) {
     return;
   }
-
   let score = Number(target);
 
   if (isNaN(score)) {
     score = 0;
   }
-
   score = Math.max(0, Math.min(100, score));
-
   const duration = 800;
-
   const start = performance.now();
 
   const timer = setInterval(() => {
     const progress = Math.min(1, (performance.now() - start) / duration);
-
     const eased = 1 - Math.pow(1 - progress, 3);
-
     element.innerHTML = Math.round(score * eased) + "%";
 
     if (progress >= 1) {
@@ -305,7 +270,6 @@ function animateScore(element, target) {
     }
   }, 16);
 }
-
 /*
 =====================================
  Engineering Metrics
@@ -319,14 +283,10 @@ function updateMetrics(system) {
 
   const metrics = {
     scaleBar: system.scores.scalability,
-
     reliabilityBar: system.scores.reliability,
-
     simplicityBar: system.scores.simplicity,
-
     costBar: system.scores.costEfficiency,
   };
-
   Object.keys(metrics)
 
     .forEach((id) => {
@@ -337,7 +297,6 @@ function updateMetrics(system) {
       }
     });
 }
-
 /*
 =====================================
  Architecture Comparison
@@ -350,15 +309,12 @@ function updateComparison(results) {
   if (!container || !results) {
     return;
   }
-
   container.innerHTML = "";
 
   results.forEach((system, index) => {
     const row = document.createElement("div");
-
     row.className =
       "comparison-row" + (index === 0 ? " comparison-winner" : "");
-
     row.innerHTML = `
             <div class="comparison-header">
 
@@ -391,11 +347,9 @@ function updateComparison(results) {
 
             </div>
             `;
-
     container.appendChild(row);
   });
 }
-
 /*
 =====================================
  Tradeoff Matrix
@@ -408,7 +362,6 @@ function updateTradeoffMatrix(results) {
   if (!container || !results) {
     return;
   }
-
   let html = `
 <table class="tradeoff-table">
 
@@ -427,7 +380,6 @@ ${results
 <th>
 ${system.name}
 </th>
-
 `,
   )
   .join("")}
@@ -463,13 +415,9 @@ ${results
     }
 
     return `
-
 <td class="tradeoff-score ${css}">
-
 ${value}
-
 </td>
-
 `;
   })
   .join("")}
@@ -478,17 +426,14 @@ ${value}
 
 `;
   });
-
   html += `
 </tbody>
 
 </table>
 
 `;
-
   container.innerHTML = html;
 }
-
 /*
 =====================================
  Architecture Landscape
@@ -501,7 +446,6 @@ function updateLandscape(results) {
   if (!container || !results) {
     return;
   }
-
   container.innerHTML = `
     <div class="landscape-legend">
 
@@ -529,36 +473,25 @@ function updateLandscape(results) {
 
     </div>
     `;
-
   const chart = container.querySelector(".landscape");
-
   const plotPadding = window.innerWidth < 640 ? 56 : 90;
-
   const chartBox = chart.getBoundingClientRect();
-
   const usableWidth = Math.max(1, chartBox.width - plotPadding * 2);
-
   const usableHeight = Math.max(1, chartBox.height - plotPadding * 2);
 
   results.forEach((architecture, index) => {
     const point = document.createElement("div");
-
     point.className =
       "landscape-point" + (index === 0 ? " landscape-winner" : "");
-
     point.innerHTML = (index === 0 ? "★ " : "") + architecture.name;
-
     point.style.left =
       plotPadding + (architecture.scores.simplicity / 100) * usableWidth + "px";
-
     point.style.bottom =
       plotPadding +
       (architecture.scores.scalability / 100) * usableHeight +
       "px";
-
     chart.appendChild(point);
   });
-
   resolveLandscapeCollisions(
     chart,
     chart.querySelectorAll(".landscape-point"),
@@ -568,9 +501,7 @@ function updateLandscape(results) {
 
 function resolveLandscapeCollisions(chart, points, padding) {
   const gap = 10;
-
   const chartWidth = chart.clientWidth;
-
   const chartHeight = chart.clientHeight;
 
   for (let iteration = 0; iteration < 12; iteration++) {
@@ -579,11 +510,8 @@ function resolveLandscapeCollisions(chart, points, padding) {
     for (let i = 0; i < points.length; i++) {
       for (let j = i + 1; j < points.length; j++) {
         const a = points[i].getBoundingClientRect();
-
         const b = points[j].getBoundingClientRect();
-
         const overlapX = Math.min(a.right, b.right) - Math.max(a.left, b.left);
-
         const overlapY = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
 
         if (overlapX > -gap && overlapY > -gap) {
@@ -591,27 +519,19 @@ function resolveLandscapeCollisions(chart, points, padding) {
 
           if (overlapX < overlapY) {
             const direction = a.left < b.left ? 1 : -1;
-
             const left =
               parseFloat(points[j].style.left) +
               direction * (Math.abs(overlapX) + gap);
-
             const width = b.width;
-
             points[j].style.left =
-              Math.max(
-                padding,
-                Math.min(chartWidth - padding - width, left),
-              ) + "px";
+              Math.max(padding, Math.min(chartWidth - padding - width, left)) +
+              "px";
           } else {
             const direction = a.top < b.top ? -1 : 1;
-
             const bottom =
               parseFloat(points[j].style.bottom) +
               direction * (Math.abs(overlapY) + gap);
-
             const height = b.height;
-
             points[j].style.bottom =
               Math.max(
                 padding,
@@ -629,15 +549,10 @@ function resolveLandscapeCollisions(chart, points, padding) {
 
   for (const point of points) {
     const rect = point.getBoundingClientRect();
-
     const left = Math.max(
       padding,
-      Math.min(
-        chartWidth - padding - rect.width,
-        parseFloat(point.style.left),
-      ),
+      Math.min(chartWidth - padding - rect.width, parseFloat(point.style.left)),
     );
-
     const bottom = Math.max(
       padding,
       Math.min(
@@ -645,13 +560,10 @@ function resolveLandscapeCollisions(chart, points, padding) {
         parseFloat(point.style.bottom),
       ),
     );
-
     point.style.left = left + "px";
-
     point.style.bottom = bottom + "px";
   }
 }
-
 /*
 =====================================
  Architecture Diagram
@@ -660,9 +572,7 @@ function resolveLandscapeCollisions(chart, points, padding) {
 
 function updateDiagram(scenarioId) {
   const diagram = getDiagram(scenarioId);
-
   const container = document.getElementById("diagramContainer");
-
   const title = document.getElementById("diagramTitle");
 
   if (!diagram || !container) {
@@ -672,23 +582,16 @@ function updateDiagram(scenarioId) {
   if (title) {
     title.innerHTML = diagram.title;
   }
-
   container.innerHTML = "";
-
   const nodes = diagram.nodes;
-
   const adjacency = new Array(nodes.length).fill(null).map(() => []);
-
   const indegree = new Array(nodes.length).fill(0);
 
   diagram.connections.forEach(([source, target]) => {
     adjacency[source].push(target);
-
     indegree[target]++;
   });
-
   const level = new Array(nodes.length).fill(0);
-
   const queue = [];
 
   indegree.forEach((degree, index) => {
@@ -702,13 +605,10 @@ function updateDiagram(scenarioId) {
 
     adjacency[current].forEach((next) => {
       level[next] = Math.max(level[next], level[current] + 1);
-
       queue.push(next);
     });
   }
-
   const maxLevel = Math.max(...level);
-
   const nodesByLevel = [];
 
   for (let i = 0; i <= maxLevel; i++) {
@@ -718,68 +618,42 @@ function updateDiagram(scenarioId) {
   nodes.forEach((node, index) => {
     nodesByLevel[level[index]].push(index);
   });
-
   const maxRows = Math.max(...nodesByLevel.map((group) => group.length));
-
   const nodeWidth = 160;
-
   const nodeHeight = 56;
-
   const columnGap = 80;
-
   const rowHeight = 104;
-
   const padX = 24;
-
   const padY = 24;
-
   const columnWidth = nodeWidth + columnGap;
-
   const canvasWidth = padX * 2 + maxLevel * columnWidth + nodeWidth;
-
   const canvasHeight = padY * 2 + maxRows * rowHeight;
-
   const canvas = document.createElement("div");
-
   canvas.className = "diagram-canvas";
-
   canvas.style.width = canvasWidth + "px";
-
   canvas.style.height = canvasHeight + "px";
-
   const positions = [];
 
   nodesByLevel.forEach((group, levelIndex) => {
     group.forEach((nodeIndex, rowIndex) => {
       const box = document.createElement("div");
-
       box.className = "diagram-node";
-
       box.innerHTML = nodes[nodeIndex];
-
       box.style.left = padX + levelIndex * columnWidth + "px";
-
       box.style.top =
         padY + rowIndex * rowHeight + (rowHeight - nodeHeight) / 2 + "px";
 
       positions[nodeIndex] = {
         left: padX + levelIndex * columnWidth,
-
         top: padY + rowIndex * rowHeight + (rowHeight - nodeHeight) / 2,
       };
-
       canvas.appendChild(box);
     });
   });
-
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-
   svg.setAttribute("class", "diagram-svg");
-
   svg.setAttribute("width", canvasWidth);
-
   svg.setAttribute("height", canvasHeight);
-
   svg.innerHTML = `
     <defs>
       <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
@@ -790,51 +664,33 @@ function updateDiagram(scenarioId) {
 
   diagram.connections.forEach(([source, target]) => {
     const x1 = positions[source].left + nodeWidth;
-
     const y1 = positions[source].top + nodeHeight / 2;
-
     const x2 = positions[target].left;
-
     const y2 = positions[target].top + nodeHeight / 2;
-
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-
     path.setAttribute("d", `M${x1},${y1} L${x2},${y2}`);
-
     path.setAttribute("stroke", "#93c5fd");
-
     path.setAttribute("stroke-width", "2");
-
     path.setAttribute("fill", "none");
-
     path.setAttribute("marker-end", "url(#arrowHead)");
-
     svg.appendChild(path);
   });
-
   canvas.appendChild(svg);
-
   container.appendChild(canvas);
-
   fitDiagramToContainer(container, canvas, canvasWidth);
 }
 
 function fitDiagramToContainer(container, canvas, naturalWidth) {
   const available = container.clientWidth;
-
   const scale = Math.min(1, available / naturalWidth);
 
   if (scale >= 1) {
     return;
   }
-
   canvas.style.transformOrigin = "top center";
-
   canvas.style.transform = `scale(${scale})`;
-
   container.style.height = Math.ceil(canvas.offsetHeight * scale) + "px";
 }
-
 /*
 =====================================
  What-If Weight Tuning
@@ -847,52 +703,32 @@ function renderWeightSliders(scenario) {
   if (!container) {
     return;
   }
-
   container.innerHTML = "";
 
   weightDimensions.forEach((dimension) => {
     const row = document.createElement("div");
-
     row.className = "weight-row";
-
     const label = document.createElement("label");
-
     label.innerHTML = dimension.label;
-
     const input = document.createElement("input");
-
     input.type = "range";
-
     input.min = "0";
-
     input.max = "100";
-
     input.step = "5";
-
     input.id = "w-" + dimension.id;
-
     input.value = scenario.requirements[dimension.id] ?? 50;
-
     const value = document.createElement("span");
-
     value.className = "weight-value";
-
     value.id = "w-" + dimension.id + "-val";
-
     value.innerHTML = input.value;
 
     input.addEventListener("input", () => {
       value.innerHTML = input.value;
-
       onWeightChange();
     });
-
     row.appendChild(label);
-
     row.appendChild(input);
-
     row.appendChild(value);
-
     container.appendChild(row);
   });
 }
@@ -902,10 +738,8 @@ function getWeightsFromSliders() {
 
   weightDimensions.forEach((dimension) => {
     const element = document.getElementById("w-" + dimension.id);
-
     weights[dimension.id] = element ? Number(element.value) : 0;
   });
-
   return weights;
 }
 
@@ -913,13 +747,9 @@ function onWeightChange() {
   if (!selectedScenario) {
     return;
   }
-
   const recommendation = getRecommendation(getWeightsFromSliders());
-
   selectedRecommendation = recommendation;
-
   renderResults(recommendation);
-
   const note = document.getElementById("weightNote");
 
   if (note) {
@@ -931,15 +761,10 @@ function resetWeights() {
   if (!selectedScenario) {
     return;
   }
-
   renderWeightSliders(selectedScenario);
-
   clearWeightNote();
-
   const recommendation = getRecommendation(selectedScenario.requirements);
-
   selectedRecommendation = recommendation;
-
   renderResults(recommendation);
 }
 
@@ -950,7 +775,6 @@ function clearWeightNote() {
     note.innerHTML = "";
   }
 }
-
 /*
 =====================================
  Reset View
@@ -959,19 +783,14 @@ function clearWeightNote() {
 
 function resetView() {
   selectedScenario = null;
-
   selectedRecommendation = null;
 
   document.querySelectorAll(".scenario").forEach((card) => {
     card.classList.remove("active");
-
     card.setAttribute("aria-pressed", "false");
   });
-
   const title = document.getElementById("scenarioTitle");
-
   const description = document.getElementById("scenarioDescription");
-
   const challenges = document.getElementById("scenarioChallenges");
 
   if (title) {
@@ -986,15 +805,10 @@ function resetView() {
   if (challenges) {
     challenges.innerHTML = "";
   }
-
   const tech = document.querySelector(".tech");
-
   const score = document.querySelector(".score");
-
   const confidence = document.querySelector(".confidence span");
-
   const reason = document.querySelector(".reason");
-
   const alternatives = document.querySelector(".alternatives");
 
   if (tech) {
@@ -1028,29 +842,24 @@ function resetView() {
       element.style.width = "0%";
     }
   });
-
   const comparison = document.getElementById("comparisonContainer");
 
   if (comparison) {
     comparison.innerHTML = "<p>Select a workload to compare architectures.</p>";
   }
-
   const tradeoff = document.getElementById("tradeoffMatrix");
 
   if (tradeoff) {
     tradeoff.innerHTML =
       '<p class="muted">Select a workload to analyze tradeoffs.</p>';
   }
-
   const landscape = document.getElementById("landscapeContainer");
 
   if (landscape) {
     landscape.innerHTML =
       '<p class="muted">Select a workload to visualize architecture positioning.</p>';
   }
-
   const diagramTitle = document.getElementById("diagramTitle");
-
   const diagram = document.getElementById("diagramContainer");
 
   if (diagramTitle) {
@@ -1059,27 +868,21 @@ function resetView() {
 
   if (diagram) {
     diagram.style.height = "";
-
     diagram.innerHTML = "<p>Select a workload to visualize architecture.</p>";
   }
-
   currentDiagramId = null;
-
   const sliders = document.getElementById("weightSliders");
 
   if (sliders) {
     sliders.innerHTML = "";
   }
-
   clearWeightNote();
-
   const adrOutput = document.getElementById("adrOutput");
 
   if (adrOutput) {
     adrOutput.value = "";
   }
 }
-
 /*
 =====================================
  ADR Generator
@@ -1089,18 +892,12 @@ function resetView() {
 function showADR() {
   if (!selectedScenario || !selectedRecommendation) {
     showToast("Select a workload first.", "warn");
-
     return;
   }
-
   const output = document.getElementById("adrOutput");
 
   if (output) {
-    output.value = generateADR(
-      selectedScenario,
-
-      selectedRecommendation,
-    );
+    output.value = generateADR(selectedScenario, selectedRecommendation);
   }
 }
 
@@ -1109,10 +906,8 @@ function copyADR() {
 
   if (!output || !output.value) {
     showToast("Generate an ADR first.", "warn");
-
     return;
   }
-
   navigator.clipboard
     .writeText(output.value)
     .then(() => {
@@ -1125,108 +920,73 @@ function copyADR() {
 
 function buildAdrPdf(adrText) {
   const { jsPDF } = window.jspdf;
-
   const doc = new jsPDF();
-
   const marginX = 16;
-
   const pageW = doc.internal.pageSize.getWidth();
-
   const pageH = doc.internal.pageSize.getHeight();
-
   const maxW = pageW - marginX * 2;
-
   const footerSpace = 18;
-
   let y = 24;
-
   let lastLineWasSeparator = false;
 
   const ensureSpace = (needed) => {
     if (y + needed > pageH - footerSpace) {
       doc.addPage();
-
       y = 24;
     }
   };
 
   const renderLine = (rawLine) => {
-    const line = rawLine.replace(/\r/g, "").replace("✓", "[x]").replace("⚠", "[!]");
-
+    const line = rawLine
+      .replace(/\r/g, "")
+      .replace("✓", "[x]")
+      .replace("⚠", "[!]");
     const trimmed = line.trim();
 
     if (!trimmed) {
       y += 5;
-
       return;
     }
 
     if (/^[=-]+$/.test(trimmed)) {
       lastLineWasSeparator = true;
-
       y += 2;
-
       return;
     }
-
-    const isHeader =
-      lastLineWasSeparator || /^[A-Z][A-Z ]{3,}$/.test(trimmed);
-
+    const isHeader = lastLineWasSeparator || /^[A-Z][A-Z ]{3,}$/.test(trimmed);
     lastLineWasSeparator = false;
 
     if (isHeader) {
       ensureSpace(14);
-
       y += 8;
-
       doc.setFont("helvetica", "bold");
-
       doc.setFontSize(13);
-
       doc.setTextColor(30, 34, 64);
-
       const wrapped = doc.splitTextToSize(trimmed, maxW);
-
       doc.text(wrapped, marginX, y);
-
       y += wrapped.length * 5 + 4;
-
       doc.setDrawColor(148, 163, 184);
-
       doc.setLineWidth(0.4);
-
       doc.line(marginX, y - 2, pageW - marginX, y - 2);
-
       doc.setFont("helvetica", "normal");
-
       doc.setFontSize(11);
-
       doc.setTextColor(40, 40, 50);
     } else {
       const wrapped = doc.splitTextToSize(line, maxW);
-
       ensureSpace(wrapped.length * 5.5);
-
       doc.text(wrapped, marginX, y);
-
       y += wrapped.length * 5.5;
     }
   };
-
   adrText.split("\n").forEach(renderLine);
-
   doc.setFont("helvetica", "italic");
-
   doc.setFontSize(9);
-
   doc.setTextColor(120, 120, 130);
-
   doc.text(
     "Generated by Architecture Tradeoff Explorer",
     marginX,
     pageH - footerSpace + 8,
   );
-
   return doc;
 }
 
@@ -1235,45 +995,32 @@ function downloadADR() {
 
   if (!output || !output.value) {
     showToast("Generate an ADR first.", "warn");
-
     return;
   }
-
-  const filename = (selectedScenario ? selectedScenario.id : "adr") + "-adr.pdf";
+  const filename =
+    (selectedScenario ? selectedScenario.id : "adr") + "-adr.pdf";
 
   if (!window.jspdf) {
     const blob = new Blob([output.value], { type: "text/markdown" });
-
     const url = URL.createObjectURL(blob);
-
     const link = document.createElement("a");
-
     link.href = url;
-
     link.download = filename.replace(/\.pdf$/, ".md");
-
     document.body.appendChild(link);
-
     link.click();
-
     document.body.removeChild(link);
-
     URL.revokeObjectURL(url);
-
     showToast("PDF library unavailable - downloaded .md instead.", "warn");
-
     return;
   }
 
   try {
     buildAdrPdf(output.value).save(filename);
-
     showToast("ADR downloaded as PDF.");
   } catch (error) {
     showToast("Could not create PDF: " + error.message, "error");
   }
 }
-
 /*
 =====================================
  Toast Notifications
@@ -1285,18 +1032,12 @@ function showToast(message, type) {
 
   if (!container) {
     alert(message);
-
     return;
   }
-
   const toast = document.createElement("div");
-
   toast.className = "toast " + (type || "success");
-
   toast.setAttribute("role", "status");
-
   toast.textContent = message;
-
   container.appendChild(toast);
 
   requestAnimationFrame(() => {
@@ -1305,11 +1046,9 @@ function showToast(message, type) {
 
   setTimeout(() => {
     toast.classList.remove("toast-visible");
-
     setTimeout(() => toast.remove(), 400);
   }, 3200);
 }
-
 /*
 =====================================
  Scenario Card Keyboard Access
@@ -1319,17 +1058,13 @@ function showToast(message, type) {
 function initScenarioCards() {
   document.querySelectorAll(".scenario").forEach((card) => {
     card.setAttribute("tabindex", "0");
-
     card.setAttribute("role", "button");
-
     card.setAttribute("aria-pressed", "false");
-
     const id = card.getAttribute("data-scenario");
 
     card.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-
         if (id) selectScenario(id);
       }
     });

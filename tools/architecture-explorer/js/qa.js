@@ -1885,7 +1885,6 @@ async function askQuestion() {
 
 function initQA() {
   initGenAI();
-
   const container = document.getElementById("qaExamples");
   if (container) {
     container.innerHTML = qaExamples
