@@ -100,6 +100,7 @@ function scrollToResults() {
 
 function renderResults(recommendation) {
   updateRecommendation(recommendation);
+  updateSecurityPanel(recommendation.winner);
   updateMetrics(recommendation.winner);
   updateComparison(recommendation.ranking);
   updateTradeoffMatrix(recommendation.ranking);
@@ -186,17 +187,6 @@ function updateRecommendation(data) {
 
         <div class="recommendation-section">
         <h3>
-        Why not alternatives?
-        </h3>
-
-        <br>
-
-        ${generateAlternativeAnalysis(winner, data.ranking)}
-
-        </div>
-
-        <div class="recommendation-section">
-        <h3>
         Best suited for
         </h3>
 
@@ -205,19 +195,25 @@ function updateRecommendation(data) {
         ${winner.bestFor.map((item) => "✓ " + item).join("<br>")}
 
         </div>
-
-        <div class="recommendation-section">
-        <h3>
-        Security considerations
-        </h3>
-
-        <br>
-
-        ${renderSecuritySection(winner)}
-
-        </div>
         `;
   }
+}
+
+function updateSecurityPanel(architecture) {
+  const container = document.getElementById("securityContent");
+
+  if (!container) {
+    return;
+  }
+
+  if (!architecture) {
+    container.innerHTML =
+      '<p class="muted">Select a workload to see security guidance.</p>';
+
+    return;
+  }
+
+  container.innerHTML = renderSecuritySection(architecture);
 }
 
 function renderSecuritySection(architecture) {
@@ -230,8 +226,9 @@ function renderSecuritySection(architecture) {
       .map((line) => "• " + line.slice(2).trim())
       .join("<br>");
   return `
-        <div class="security-block">
+        <div class="security-grid">
 
+        <div class="security-block">
         <b>
         Infrastructure / IT
         </b>
@@ -239,9 +236,9 @@ function renderSecuritySection(architecture) {
         <br>
 
         ${bullets(notes)}
+        </div>
 
-        <br><br>
-
+        <div class="security-block">
         <b>
         Application / code
         </b>
@@ -249,47 +246,10 @@ function renderSecuritySection(architecture) {
         <br>
 
         ${bullets(CODE_SECURITY_NOTES)}
+        </div>
 
         </div>
         `;
-}
-
-function generateAlternativeAnalysis(winner, ranking) {
-  if (!ranking || ranking.length === 0) {
-    return "";
-  }
-  return ranking
-    .filter((architecture) => architecture.id !== winner.id)
-    .slice(0, 3)
-
-    .map((architecture) => {
-      return `
-            <div class="alternative-item">
-
-            <b>
-            ${architecture.name}
-            </b>
-
-            <br>
-
-            Score:
-            ${architecture.finalScore}%
-
-            <br><br>
-
-            Not selected because:
-
-            <br>
-
-            ${architecture.weaknesses
-              .slice(0, 2)
-              .map((item) => "• " + item)
-              .join("<br>")}
-
-            </div>
-            `;
-    })
-    .join("<br>");
 }
 
 function animateScore(element, target) {
