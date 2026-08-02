@@ -351,6 +351,19 @@ function updateComparison(results) {
             </div>
 
             </div>
+
+            ${
+              index === 0
+                ? ""
+                : `
+            <div class="comparison-reason">
+            Not selected because: ${system.weaknesses
+              .slice(0, 2)
+              .map((item) => "• " + item)
+              .join(" ")}
+            </div>
+            `
+            }
             `;
     container.appendChild(row);
   });
