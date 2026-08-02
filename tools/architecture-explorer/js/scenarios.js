@@ -34,6 +34,8 @@ const scenarios = {
       ordering: 100,
 
       replay: 100,
+
+      compliance: 35,
     },
 
     priorities: [
@@ -73,7 +75,7 @@ const scenarios = {
 
       reliability: 100,
 
-      simplicity: 70,
+      simplicity: 30,
 
       costEfficiency: 50,
 
@@ -82,6 +84,8 @@ const scenarios = {
       ordering: 90,
 
       replay: 80,
+
+      compliance: 80,
     },
 
     priorities: [
@@ -121,15 +125,17 @@ const scenarios = {
 
       reliability: 85,
 
-      simplicity: 60,
+      simplicity: 30,
 
-      costEfficiency: 75,
+      costEfficiency: 65,
 
       latency: 60,
 
       ordering: 40,
 
       replay: 85,
+
+      compliance: 45,
     },
 
     priorities: [
@@ -174,9 +180,11 @@ const scenarios = {
 
       latency: 100,
 
-      ordering: 20,
+      ordering: 5,
 
-      replay: 20,
+      replay: 5,
+
+      compliance: 60,
     },
 
     priorities: [
@@ -218,15 +226,17 @@ const scenarios = {
 
       reliability: 95,
 
-      simplicity: 75,
+      simplicity: 30,
 
-      costEfficiency: 85,
+      costEfficiency: 75,
 
       latency: 65,
 
       ordering: 50,
 
       replay: 90,
+
+      compliance: 45,
     },
 
     priorities: [
@@ -270,7 +280,7 @@ const scenarios = {
 
       reliability: 90,
 
-      simplicity: 40,
+      simplicity: 60,
 
       costEfficiency: 75,
 
@@ -279,6 +289,8 @@ const scenarios = {
       ordering: 95,
 
       replay: 90,
+
+      compliance: 55,
     },
 
     priorities: [
@@ -329,6 +341,8 @@ const scenarios = {
       ordering: 30,
 
       replay: 40,
+
+      compliance: 60,
     },
 
     priorities: [
@@ -370,15 +384,17 @@ const scenarios = {
 
       reliability: 100,
 
-      simplicity: 70,
+      simplicity: 30,
 
-      costEfficiency: 60,
+      costEfficiency: 50,
 
       latency: 90,
 
       ordering: 95,
 
       replay: 75,
+
+      compliance: 60,
     },
 
     priorities: [
@@ -416,19 +432,21 @@ const scenarios = {
     ],
 
     requirements: {
-      scalability: 75,
+      scalability: 55,
 
       reliability: 90,
 
-      simplicity: 95,
+      simplicity: 100,
 
       costEfficiency: 90,
 
-      latency: 75,
+      latency: 55,
 
-      ordering: 60,
+      ordering: 25,
 
-      replay: 40,
+      replay: 10,
+
+      compliance: 35,
     },
 
     priorities: [
@@ -466,19 +484,21 @@ const scenarios = {
     ],
 
     requirements: {
-      scalability: 80,
+      scalability: 60,
 
-      reliability: 90,
+      reliability: 95,
 
-      simplicity: 95,
+      simplicity: 100,
 
       costEfficiency: 90,
 
-      latency: 50,
+      latency: 30,
 
       ordering: 40,
 
-      replay: 30,
+      replay: 15,
+
+      compliance: 10,
     },
 
     priorities: [
@@ -529,6 +549,8 @@ const scenarios = {
       ordering: 90,
 
       replay: 50,
+
+      compliance: 35,
     },
 
     priorities: [
@@ -570,7 +592,7 @@ const scenarios = {
 
       reliability: 100,
 
-      simplicity: 65,
+      simplicity: 30,
 
       costEfficiency: 60,
 
@@ -579,6 +601,8 @@ const scenarios = {
       ordering: 85,
 
       replay: 95,
+
+      compliance: 75,
     },
 
     priorities: [
@@ -589,6 +613,276 @@ const scenarios = {
       "Reliability",
 
       "Ordered clinical events",
+    ],
+  },
+
+  managedStream: {
+    id: "managedStream",
+
+    name: "Managed Streaming Pipeline",
+
+    description:
+      "AWS-native streaming with fully managed ops, retention, and replay for moderate-scale pipelines.",
+
+    summary:
+      "Designed for teams that want real-time streaming without operating a Kafka cluster, trading some scale and replay depth for managed simplicity and tighter AWS integration.",
+
+    keyChallenges: [
+      "Streaming without broker operations",
+      "Managed retention and replay",
+      "Tight integration with Lambda and Flink",
+      "Predictable shard-based capacity",
+      "Lower operational overhead",
+    ],
+
+    requirements: {
+      scalability: 90,
+
+      reliability: 88,
+
+      simplicity: 88,
+
+      costEfficiency: 80,
+
+      latency: 85,
+
+      ordering: 92,
+
+      replay: 55,
+
+      compliance: 75,
+    },
+
+    priorities: [
+      "Managed simplicity",
+      "Fully managed ops",
+      "AWS-native integration",
+      "Predictable capacity",
+    ],
+  },
+
+  eventDriven: {
+    id: "eventDriven",
+
+    name: "Event-Driven Integration Platform",
+
+    description:
+      "Routing events across SaaS tools and internal services with filtering, schemas, and governance.",
+
+    summary:
+      "Designed for platforms that react to events from SaaS products and internal systems, prioritizing routing rules, schema governance, and compliance over strict ordering and replay.",
+
+    keyChallenges: [
+      "Integrating many SaaS and internal event sources",
+      "Event filtering and routing rules",
+      "Schema discovery and governance",
+      "Cross-account and cross-team event flows",
+      "Auditable event delivery",
+    ],
+
+    requirements: {
+      scalability: 65,
+
+      reliability: 90,
+
+      simplicity: 100,
+
+      costEfficiency: 85,
+
+      latency: 25,
+
+      ordering: 20,
+
+      replay: 30,
+
+      compliance: 100,
+    },
+
+    priorities: [
+      "Managed event routing",
+      "Schema governance",
+      "Compliance and audit",
+      "Integration breadth",
+    ],
+  },
+
+  reliableMessaging: {
+    id: "reliableMessaging",
+
+    name: "Low-Latency Reliable Messaging",
+
+    description:
+      "Sub-millisecond request/reply transport and complex routing between internal services.",
+
+    summary:
+      "Designed for latency-sensitive point-to-point communication where messages must be routed flexibly and delivered exactly, with no need for durable long-term replay.",
+
+    keyChallenges: [
+      "Sub-millisecond message delivery",
+      "Complex routing and exchange patterns",
+      "Exactly-once or at-most-once semantics",
+      "Fan-out to many consumers",
+      "Simple broker operations",
+    ],
+
+    requirements: {
+      scalability: 25,
+
+      reliability: 80,
+
+      simplicity: 95,
+
+      costEfficiency: 90,
+
+      latency: 100,
+
+      ordering: 70,
+
+      replay: 10,
+
+      compliance: 10,
+    },
+
+    priorities: [
+      "Sub-millisecond latency",
+      "Flexible routing",
+      "Operational simplicity",
+      "Low operating cost",
+    ],
+  },
+
+  serverlessFunctions: {
+    id: "serverlessFunctions",
+
+    name: "Serverless & Utility Functions",
+
+    description:
+      "Bursty, event-driven glue functions and API backends that scale to zero and charge per invocation.",
+
+    summary:
+      "Designed for workloads that run occasionally or in bursts - webhooks, ETL glue, image resizing, notification handlers - where zero provisioning and per-invocation billing beat dedicated infrastructure.",
+
+    keyChallenges: [
+      "Bursty and unpredictable invocation patterns",
+      "Zero idle cost and scale to zero",
+      "Rapid integration with many event sources",
+      "Short-lived, stateless executions",
+      "Developer velocity without provisioning",
+    ],
+
+    requirements: {
+      scalability: 90,
+
+      reliability: 65,
+
+      simplicity: 100,
+
+      costEfficiency: 100,
+
+      latency: 30,
+
+      ordering: 15,
+
+      replay: 10,
+
+      compliance: 35,
+    },
+
+    priorities: [
+      "Zero provisioning",
+      "Pay-per-invocation cost",
+      "Operational simplicity",
+      "Fast integration glue",
+    ],
+  },
+
+  containerPlatform: {
+    id: "containerPlatform",
+
+    name: "Containerized Microservices Platform",
+
+    description:
+      "Long-running containerized services with predictable performance and simple orchestration.",
+
+    summary:
+      "Designed for teams running many long-lived services that need consistent latency and reliability, where Fargate-style managed containers beat serverless limits and Kubernetes complexity.",
+
+    keyChallenges: [
+      "Long-running, stateful-capable services",
+      "Predictable low-latency response times",
+      "Managed orchestration without K8s overhead",
+      "Custom images and specialized runtimes",
+      "Balance of control and operations",
+    ],
+
+    requirements: {
+      scalability: 90,
+
+      reliability: 90,
+
+      simplicity: 65,
+
+      costEfficiency: 65,
+
+      latency: 92,
+
+      ordering: 15,
+
+      replay: 10,
+
+      compliance: 20,
+    },
+
+    priorities: [
+      "Predictable latency",
+      "Managed orchestration",
+      "Long-running services",
+      "Custom runtime flexibility",
+    ],
+  },
+
+  regulatedPlatform: {
+    id: "regulatedPlatform",
+
+    name: "Regulated Enterprise Platform",
+
+    description:
+      "Governance-heavy application platforms for regulated industries requiring audit, control, and hybrid deployment.",
+
+    summary:
+      "Designed for banks, insurers, and public sector estates where governance, auditability, and hybrid/edge consistency matter more than cost or operational simplicity.",
+
+    keyChallenges: [
+      "Strict compliance and audit requirements",
+      "Role-based access and policy controls",
+      "Hybrid and on-premises consistency",
+      "Long-lived platform investment",
+      "Integration with enterprise security tooling",
+    ],
+
+    requirements: {
+      scalability: 85,
+
+      reliability: 96,
+
+      simplicity: 45,
+
+      costEfficiency: 45,
+
+      latency: 90,
+
+      ordering: 30,
+
+      replay: 30,
+
+      compliance: 100,
+    },
+
+    priorities: [
+      "Compliance and governance",
+      "Auditability",
+      "Reliability",
+      "Hybrid consistency",
     ],
   },
 };

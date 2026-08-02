@@ -6,6 +6,7 @@ const DIMENSIONS = [
   "latency",
   "ordering",
   "replay",
+  "compliance",
 ];
 
 function evaluateArchitectures(requirements) {
@@ -21,24 +22,27 @@ function evaluateArchitectures(requirements) {
         totalWeight += weight;
       });
       let finalScore = 0;
+      let rawScore = 0;
 
       if (totalWeight > 0) {
-        finalScore = weightedSum / totalWeight;
+        rawScore = weightedSum / totalWeight;
       } else {
-        const uniformScore = DIMENSIONS.reduce(
-          (acc, dimension) => acc + (architecture.scores[dimension] || 0),
-          0,
-        );
-        finalScore = uniformScore / DIMENSIONS.length;
+        rawScore =
+          DIMENSIONS.reduce(
+            (acc, dimension) => acc + (architecture.scores[dimension] || 0),
+            0,
+          ) / DIMENSIONS.length;
       }
+      finalScore = Math.min(100, Math.max(0, Math.round(rawScore)));
 
       return {
         ...architecture,
+        rawScore,
         // Always keep architecture fit between 0-100
-        finalScore: Math.min(100, Math.max(0, Math.round(finalScore))),
+        finalScore,
       };
     })
-    .sort((a, b) => b.finalScore - a.finalScore);
+    .sort((a, b) => b.rawScore - a.rawScore);
 }
 
 function getRecommendation(requirements) {

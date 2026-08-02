@@ -232,6 +232,122 @@ const diagrams = {
       [3, 5],
     ],
   },
+
+  managedStream: {
+    title: "Managed Streaming Pipeline Architecture",
+    nodes: [
+      "Applications",
+      "Event Producers",
+      "Kinesis Stream",
+      "Lambda Consumers",
+      "Analytics Platform",
+      "S3 Retention",
+    ],
+    connections: [
+      [0, 1],
+      [1, 2],
+      [2, 3],
+      [3, 4],
+      [3, 5],
+      [2, 5],
+    ],
+  },
+
+  eventDriven: {
+    title: "Event-Driven Integration Architecture",
+    nodes: [
+      "SaaS Sources",
+      "Internal Services",
+      "Event Bus",
+      "Routing Rules",
+      "Schema Registry",
+      "Target Integrations",
+    ],
+    connections: [
+      [0, 2],
+      [1, 2],
+      [2, 3],
+      [2, 4],
+      [3, 5],
+      [4, 5],
+    ],
+  },
+
+  reliableMessaging: {
+    title: "Reliable Messaging Architecture",
+    nodes: [
+      "Clients",
+      "API Service",
+      "Message Broker",
+      "Worker Services",
+      "Response Queue",
+      "Backend Services",
+    ],
+    connections: [
+      [0, 1],
+      [1, 2],
+      [2, 3],
+      [3, 4],
+      [2, 5],
+    ],
+  },
+
+  serverlessFunctions: {
+    title: "Serverless & Utility Functions Architecture",
+    nodes: [
+      "Event Sources",
+      "Webhooks",
+      "API Gateway",
+      "Lambda Functions",
+      "Destination Services",
+      "Observability",
+    ],
+    connections: [
+      [0, 3],
+      [1, 2],
+      [2, 3],
+      [3, 4],
+      [3, 5],
+    ],
+  },
+
+  containerPlatform: {
+    title: "Containerized Microservices Architecture",
+    nodes: [
+      "Clients",
+      "Load Balancer",
+      "Container Services",
+      "Fargate Tasks",
+      "Databases",
+      "Message Queue",
+    ],
+    connections: [
+      [0, 1],
+      [1, 2],
+      [2, 3],
+      [3, 4],
+      [3, 5],
+    ],
+  },
+
+  regulatedPlatform: {
+    title: "Regulated Enterprise Platform Architecture",
+    nodes: [
+      "Enterprise Apps",
+      "Ingress Gateway",
+      "ROSA Cluster",
+      "Workload Namespaces",
+      "Policy & Audit",
+      "Hybrid / Edge Sites",
+    ],
+    connections: [
+      [0, 1],
+      [1, 2],
+      [2, 3],
+      [2, 4],
+      [4, 5],
+    ],
+  },
 };
 
 function getDiagram(scenarioId) {

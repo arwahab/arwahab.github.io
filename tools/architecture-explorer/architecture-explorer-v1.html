@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Architecture Tradeoff Explorer</title>
+    <title>Wahab Waypoint: Architect</title>
 
     <link
       rel="icon"
@@ -54,40 +54,83 @@
   </head>
 
   <body>
-    <header>
-      <h1>Architecture Tradeoff Explorer</h1>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="#overview">
+          <span class="brand-mark">WW</span>
 
-      <p class="subtitle">
-        Explore architecture choices through scalability, reliability, cost, and
-        operational tradeoffs.
-      </p>
+          <span class="brand-name">Wahab Waypoint: Architect</span>
 
-      <div class="header-actions">
-        <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
-          Light mode
-        </button>
+          <span class="brand-badge">Enterprise</span>
+        </a>
 
-        <button class="header-btn" id="resetViewButton" onclick="resetView()">
-          ↺ Reset View
-        </button>
-      </div>
+        <div class="app-nav">
+          <a href="#overview">Overview</a>
+
+          <a href="#recommendation">Recommendation</a>
+
+          <a href="#tuning">Tuning</a>
+
+          <a href="#compare">Compare</a>
+
+          <a href="#blueprint">Blueprint</a>
+
+          <a href="#qa">Q&A</a>
+
+          <a href="#adr">ADR</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+
+          <button
+            class="header-btn btn-primary"
+            id="resetViewButton"
+            onclick="resetView()"
+          >
+            ↺ Reset View
+          </button>
+        </div>
+      </nav>
     </header>
 
-    <nav class="quick-nav" aria-label="Page sections">
-      <a href="#overview">Overview</a>
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
 
-      <a href="#recommendation">Recommendation</a>
+        Wahab Waypoint
+      </div>
 
-      <a href="#tuning">Tuning</a>
+      <h1>Wahab <span class="grad-text">Waypoint</span>: Architect</h1>
 
-      <a href="#compare">Compare</a>
+      <p class="hero-subtitle">
+        Evaluate architectural tradeoffs across scalability, reliability, cost,
+        and operations. Select a workload scenario to get an evidence-based
+        recommendation in seconds.
+      </p>
 
-      <a href="#blueprint">Blueprint</a>
+      <div class="hero-stats">
+        <div class="stat">
+          <strong id="statScenarios">12</strong>
 
-      <a href="#qa">Q&A</a>
+          <span>Workloads</span>
+        </div>
 
-      <a href="#adr">ADR</a>
-    </nav>
+        <div class="stat">
+          <strong id="statArchitectures">10</strong>
+
+          <span>Architectures</span>
+        </div>
+
+        <div class="stat">
+          <strong id="statCriteria">7</strong>
+
+          <span>Evaluation Criteria</span>
+        </div>
+      </div>
+    </section>
 
     <div class="container">
       <div class="scenarios" id="overview">
@@ -189,6 +232,54 @@
 
           <p>Claims, compliance, audit trails, replay.</p>
         </div>
+
+        <div class="scenario" data-scenario="managedStream">
+          <div class="icon">🌊</div>
+
+          <h3>Managed Streaming</h3>
+
+          <p>Fully managed AWS streaming, lower ops.</p>
+        </div>
+
+        <div class="scenario" data-scenario="eventDriven">
+          <div class="icon">🔀</div>
+
+          <h3>Event-Driven Integration</h3>
+
+          <p>SaaS events, routing, schema governance.</p>
+        </div>
+
+        <div class="scenario" data-scenario="reliableMessaging">
+          <div class="icon">✉️</div>
+
+          <h3>Reliable Messaging</h3>
+
+          <p>Sub-millisecond transport, complex routing.</p>
+        </div>
+
+        <div class="scenario" data-scenario="serverlessFunctions">
+          <div class="icon">⚡</div>
+
+          <h3>Serverless Functions</h3>
+
+          <p>Bursty glue code, scale to zero, pay per call.</p>
+        </div>
+
+        <div class="scenario" data-scenario="containerPlatform">
+          <div class="icon">📦</div>
+
+          <h3>Container Platform</h3>
+
+          <p>Long-running microservices, Fargate.</p>
+        </div>
+
+        <div class="scenario" data-scenario="regulatedPlatform">
+          <div class="icon">🏛️</div>
+
+          <h3>Regulated Enterprise</h3>
+
+          <p>Governance, compliance, hybrid estates.</p>
+        </div>
       </div>
 
       <div class="workspace">
@@ -219,7 +310,11 @@
 
           <div class="score">--</div>
 
-          <p>Architecture Fit</p>
+          <p class="fit-label">
+            Architecture Fit
+
+            <span id="fitValue">--</span>
+          </p>
 
           <div class="confidence">
             <span></span>
@@ -457,9 +552,9 @@
         <div class="footer-grid">
           <!-- Product -->
           <div class="footer-section">
-            <div class="footer-logo">Architecture Tradeoff Explorer</div>
+            <div class="footer-logo">Wahab Waypoint: Architect</div>
 
-            <div class="footer-tagline">Engineering Decision Lab</div>
+            <div class="footer-tagline">Wahab Waypoint</div>
           </div>
 
           <!-- Creator -->
@@ -467,7 +562,7 @@
             <div class="footer-title">About the Creator</div>
 
             <p class="footer-bio">
-              Built by Abdul Rafee Wahab, an architect, engineer, and leader
+              Built by Abdul Rafee Wahab, a technical architect, leading software engineer, and tech leader
               passionate about software architecture, scalable systems, and
               engineering excellence.
             </p>
@@ -498,7 +593,7 @@
         <div class="footer-divider"></div>
 
         <div class="footer-bottom">
-          <span> © 2026 Engineering Decision Lab </span>
+          <span> © 2026 Wahab Waypoint </span>
 
           <span class="dot">•</span>
 
