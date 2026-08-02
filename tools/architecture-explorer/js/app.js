@@ -205,8 +205,53 @@ function updateRecommendation(data) {
         ${winner.bestFor.map((item) => "✓ " + item).join("<br>")}
 
         </div>
+
+        <div class="recommendation-section">
+        <h3>
+        Security considerations
+        </h3>
+
+        <br>
+
+        ${renderSecuritySection(winner)}
+
+        </div>
         `;
   }
+}
+
+function renderSecuritySection(architecture) {
+  const notes = SECURITY_NOTES[architecture.id] || SECURITY_NOTES.default;
+  const bullets = (text) =>
+    text
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line.startsWith("-"))
+      .map((line) => "• " + line.slice(2).trim())
+      .join("<br>");
+  return `
+        <div class="security-block">
+
+        <b>
+        Infrastructure / IT
+        </b>
+
+        <br>
+
+        ${bullets(notes)}
+
+        <br><br>
+
+        <b>
+        Application / code
+        </b>
+
+        <br>
+
+        ${bullets(CODE_SECURITY_NOTES)}
+
+        </div>
+        `;
 }
 
 function generateAlternativeAnalysis(winner, ranking) {

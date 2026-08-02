@@ -889,6 +889,14 @@ header h1 {
   font-size: 13px;
 }
 
+.security-block {
+  border-left: 3px solid var(--accent-violet);
+  padding-left: 12px;
+  line-height: 1.6;
+  font-size: 13px;
+  color: var(--text-1);
+}
+
 /* =====================================
    Architecture Q&A
 ===================================== */
