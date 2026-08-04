@@ -69,21 +69,50 @@
         <div class="app-nav">
           <a href="#overview">Overview</a>
 
+          <a href="#priorities">Priorities</a>
+
+          <div class="nav-dropdown">
+            <details>
+              <summary class="nav-dropdown-label">
+                Results <span class="caret">▾</span>
+              </summary>
+
+              <div class="nav-dropdown-menu">
+                <a
+                  href="#recommendation"
+                  onclick="this.closest('details').open = false"
+                >
+                  Recommendation
+                </a>
+
+                <a
+                  href="#compare"
+                  onclick="this.closest('details').open = false"
+                >
+                  Compare
+                </a>
+
+                <a
+                  href="#blueprint"
+                  onclick="this.closest('details').open = false"
+                >
+                  Blueprint
+                </a>
+
+                <a href="#qa" onclick="this.closest('details').open = false">
+                  Q&A
+                </a>
+
+                <a href="#adr" onclick="this.closest('details').open = false">
+                  ADR
+                </a>
+              </div>
+            </details>
+          </div>
+
           <a href="../domain-context-learner/domain-context-learner.html">
             Domain
           </a>
-
-          <a href="#priorities">Priorities</a>
-
-          <a href="#recommendation">Recommendation</a>
-
-          <a href="#compare">Compare</a>
-
-          <a href="#blueprint">Blueprint</a>
-
-          <a href="#qa">Q&A</a>
-
-          <a href="#adr">ADR</a>
         </div>
 
         <div class="app-actions">

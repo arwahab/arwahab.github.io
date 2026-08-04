@@ -230,6 +230,85 @@ body::before {
   outline-offset: 2px;
 }
 
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown details {
+  position: relative;
+}
+
+.nav-dropdown summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 13px;
+  border-radius: 50px;
+  border: 1px solid transparent;
+  color: var(--text-2);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.25s;
+}
+
+.nav-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-dropdown summary:hover,
+.nav-dropdown details[open] summary {
+  color: var(--text);
+  background: var(--chip-bg);
+  border-color: var(--chip-border);
+}
+
+.nav-dropdown .caret {
+  font-size: 10px;
+  transition: transform 0.25s;
+}
+
+.nav-dropdown details[open] .caret {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 205px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  z-index: 80;
+}
+
+.nav-dropdown-menu a {
+  padding: 8px 12px;
+  border-radius: 9px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-2);
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.nav-dropdown-menu a:hover {
+  color: var(--text);
+  background: var(--chip-bg);
+  border-color: var(--chip-border);
+}
+
 .app-actions {
   display: flex;
   align-items: center;
@@ -302,7 +381,7 @@ a.home-link:hover {
   max-width: 1440px;
   margin: auto;
   text-align: center;
-  padding: 64px 24px 10px;
+  padding: 40px 24px 8px;
 }
 
 .hero-eyebrow {
@@ -329,7 +408,7 @@ a.home-link:hover {
 }
 
 .hero h1 {
-  margin-top: 18px;
+  margin-top: 14px;
   font-size: 46px;
   font-weight: 800;
   letter-spacing: -1.5px;
@@ -1855,6 +1934,18 @@ body.ui-anim .comparison-row:nth-child(7) {
     display: none;
   }
 
+  .nav-dropdown-menu {
+    position: static;
+    transform: none;
+    min-width: 0;
+    width: max-content;
+    margin-left: 12px;
+    padding: 4px 6px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
   .app-actions {
     margin-left: auto;
   }
@@ -1866,7 +1957,7 @@ body.ui-anim .comparison-row:nth-child(7) {
   }
 
   .hero {
-    padding: 48px 16px 8px;
+    padding: 40px 16px 8px;
   }
 
   .hero h1 {
