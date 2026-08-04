@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Wahab Waypoint: Domain Context Learner</title>
+
+    <meta
+      name="description"
+      content="Learn and capture the business domain knowledge of your organization so Wahab Waypoint: Architect can tailor its recommendations."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="css/domain-context-learner.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../../waypoint/index.html">
+          <img
+            class="brand-mark"
+            src="wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name"
+            >Wahab Waypoint: Domain Context Learner</span
+          >
+
+          <span class="brand-badge">Learning</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="#overview">Domains</a>
+
+          <a href="#qualities">Qualities</a>
+
+          <a href="#data">Data</a>
+
+          <a href="#profile">Profile</a>
+
+          <a href="../architecture-explorer/architecture-explorer-v1.html">
+            Architect
+          </a>
+        </div>
+
+        <div class="app-actions">
+          <a class="home-link" href="../../waypoint/index.html">
+            ↩ Waypoint Home
+          </a>
+
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+
+        Wahab Waypoint
+      </div>
+
+      <h1>
+        Domain Context
+        <span class="grad-text">Learner</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Learn and capture the business domain knowledge of your organization —
+        what it does, what it cares about, and how its data flows. Architect
+        uses this context to pre-tune its recommendations.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>12</strong>
+
+          <span>Business Domains</span>
+        </div>
+
+        <div class="stat">
+          <strong>8</strong>
+
+          <span>Critical Qualities</span>
+        </div>
+
+        <div class="stat">
+          <strong>3</strong>
+
+          <span>Guided Steps</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="journey-wrap">
+      <div class="stepper" id="stepper" aria-label="Learning steps">
+        <div class="step active" data-step="1">
+          <span class="step-num">1</span>
+
+          <span class="step-label">Choose domain</span>
+        </div>
+
+        <span class="step-line"></span>
+
+        <div class="step" data-step="2">
+          <span class="step-num">2</span>
+
+          <span class="step-label">What matters most</span>
+        </div>
+
+        <span class="step-line"></span>
+
+        <div class="step" data-step="3">
+          <span class="step-num">3</span>
+
+          <span class="step-label">Data &amp; integration</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="savedBanner" class="saved-banner hidden">
+        <span id="savedBannerText"></span>
+
+        <a class="saved-banner-link" href="#profile" onclick="viewSavedProfile()">
+          View profile
+        </a>
+      </div>
+
+      <div class="workspace">
+        <!-- Step 1 -->
+
+        <div class="panel full-width" id="overview">
+          <span class="step-badge">Step 1 · Choose your business domain</span>
+
+          <h2>What is your organization's business domain?</h2>
+
+          <p class="panel-note">
+            Pick the domain closest to what your organization does. This frames
+            the context that Architect uses to pre-tune its recommendations.
+          </p>
+
+          <div class="scenarios" id="domainGrid"></div>
+        </div>
+
+        <!-- Step 2 -->
+
+        <div class="panel full-width hidden" id="qualities">
+          <span class="step-badge">Step 2 · What matters most</span>
+
+          <h2>Which qualities matter most to your business?</h2>
+
+          <p class="panel-note">
+            Select up to 4. These become the priorities Architect emphasizes in
+            its recommendations.
+          </p>
+
+          <div class="quality-grid" id="qualityGrid"></div>
+
+          <div class="priority-actions">
+            <button
+              class="cta-btn"
+              id="continueBtn"
+              onclick="continueToData()"
+              disabled
+            >
+              Continue →
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+
+        <div class="panel full-width hidden" id="data">
+          <span class="step-badge">Step 3 · Data &amp; integration</span>
+
+          <h2>What does your data landscape look like?</h2>
+
+          <p class="panel-note">
+            Describe the scale, sensitivity, and tempo of your data so the
+            domain profile reflects reality.
+          </p>
+
+          <div class="data-group">
+            <h3>Data volume</h3>
+
+            <div class="option-row" id="opt-volume"></div>
+          </div>
+
+          <div class="data-group">
+            <h3>Data sensitivity</h3>
+
+            <div class="option-row" id="opt-sensitivity"></div>
+          </div>
+
+          <div class="data-group">
+            <h3>Real-time needs</h3>
+
+            <div class="option-row" id="opt-realtime"></div>
+          </div>
+
+          <div class="data-group">
+            <h3>Integration complexity</h3>
+
+            <div class="option-row" id="opt-integration"></div>
+          </div>
+
+          <div class="priority-actions">
+            <button
+              class="cta-btn"
+              id="generateBtn"
+              onclick="generateProfile()"
+            >
+              Generate Domain Profile →
+            </button>
+
+            <button class="secondary" onclick="clearAll()">Start over</button>
+          </div>
+        </div>
+
+        <!-- Results -->
+
+        <div class="panel full-width hidden" id="profile">
+          <span class="step-badge">Step 4 · Your domain profile</span>
+
+          <h2>Learned Context</h2>
+
+          <div id="profileContent"></div>
+
+          <div class="priority-actions">
+            <a
+              class="cta-btn"
+              href="../architecture-explorer/architecture-explorer-v1.html"
+            >
+              Use in Architect →
+            </a>
+
+            <button class="secondary" onclick="clearAll()">
+              Clear &amp; start over
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">Wahab Waypoint: Domain Context Learner</div>
+
+            <div class="footer-tagline">Wahab Waypoint</div>
+
+            <div class="footer-sub-links">
+              <a href="../../waypoint/index.html">Product line</a>
+
+              <a href="../architecture-explorer/architecture-explorer-v1.html">
+                Architect
+              </a>
+            </div>
+          </div>
+
+          <!-- Creator -->
+          <div class="footer-section">
+            <div class="footer-title">About the Creator</div>
+
+            <p class="footer-bio">
+              Built by Abdul Rafee Wahab, a technical architect, leading
+              software engineer, and tech leader passionate about software
+              architecture, scalable systems, and engineering excellence.
+            </p>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="js/domain-learner.js"></script>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+  </body>
+</html>

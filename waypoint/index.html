@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Wahab Waypoint</title>
+
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+
+    <meta
+      name="description"
+      content="Wahab Waypoint is a product line of architecture intelligence tools: Wahab Waypoint: Architect and Wahab Waypoint: Domain Context Learner."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="css/waypoint.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="#products">
+          <img
+            class="brand-mark"
+            src="../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+
+          <span class="brand-badge">Product Line</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="#products">Products</a>
+
+          <a href="#how">How it works</a>
+
+          <a href="#start">Get started</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+
+        Wahab Waypoint
+      </div>
+
+      <h1>
+        Architecture intelligence for
+        <span class="grad-text">your business</span>.
+      </h1>
+
+      <p class="hero-subtitle">
+        Two products that work together. Learn the business domain of your
+        organization, then get evidence-based architecture recommendations
+        tuned to the context that actually matters.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>2</strong>
+
+          <span>Products</span>
+        </div>
+
+        <div class="stat">
+          <strong>18</strong>
+
+          <span>Workloads</span>
+        </div>
+
+        <div class="stat">
+          <strong>10</strong>
+
+          <span>Architectures</span>
+        </div>
+
+        <div class="stat">
+          <strong>8</strong>
+
+          <span>Evaluation Criteria</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section id="products" class="products">
+        <div class="section-head">
+          <span class="step-badge">The product line</span>
+
+          <h2>Two products. One mission.</h2>
+
+          <p>
+            Wahab Waypoint pairs domain understanding with architectural
+            evaluation — so the architecture you pick is right for the business
+            you run.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-icon">🧠</div>
+
+            <h3>Wahab Waypoint: Domain Context Learner</h3>
+
+            <p class="product-desc">
+              Learn and deeply understand the business domain knowledge of your
+              organization — what it does, what it cares about, and how its data
+              flows. The context Architect needs to make optimal
+              recommendations.
+            </p>
+
+            <ul class="feature-list">
+              <li>12 business domains</li>
+              <li>Guided three-step learning flow</li>
+              <li>Stores a reusable domain profile</li>
+              <li>Feeds priorities into Architect</li>
+            </ul>
+
+            <a
+              class="cta-btn"
+              href="../tools/domain-context-learner/domain-context-learner.html"
+            >
+              Learn your domain →
+            </a>
+          </div>
+
+          <div class="product-card">
+            <div class="product-icon">🏗️</div>
+
+            <h3>Wahab Waypoint: Architect</h3>
+
+            <p class="product-desc">
+              Evaluate architectural tradeoffs across scalability, reliability,
+              cost, and operations. Pick a workload, set your priorities, and
+              get an evidence-based recommendation — pre-tuned to your domain.
+            </p>
+
+            <ul class="feature-list">
+              <li>18 workload scenarios</li>
+              <li>10 reference architectures</li>
+              <li>8 evaluation criteria</li>
+              <li>What-if tuning, blueprints &amp; ADRs</li>
+            </ul>
+
+            <a
+              class="cta-btn"
+              href="../tools/architecture-explorer/architecture-explorer-v1.html"
+            >
+              Open Architect →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="how" class="how">
+        <div class="section-head">
+          <span class="step-badge">How it works</span>
+
+          <h2>One shared context, end to end.</h2>
+
+          <p>
+            The two products are designed as a single journey — from business
+            understanding to architecture decision.
+          </p>
+        </div>
+
+        <div class="how-grid">
+          <div class="how-step">
+            <span class="how-num">1</span>
+
+            <h3>Learn the domain</h3>
+
+            <p>
+              In Domain Context Learner, capture your business domain, the
+              qualities that matter most, and the shape of your data.
+            </p>
+          </div>
+
+          <div class="how-step">
+            <span class="how-num">2</span>
+
+            <h3>Set your priorities</h3>
+
+            <p>
+              In Architect, priority sliders start pre-tuned from your learned
+              domain profile — then you refine them to taste.
+            </p>
+          </div>
+
+          <div class="how-step">
+            <span class="how-num">3</span>
+
+            <h3>Get the recommendation</h3>
+
+            <p>
+              Generate an evidence-based architecture recommendation, with
+              alternatives, tradeoffs, blueprints, and decision records.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="start" class="cta-banner">
+        <h2>Ready to architect with business context?</h2>
+
+        <p>
+          Start by teaching Wahab Waypoint about your organization — it takes a
+          minute, and Architect will use it right away.
+        </p>
+
+        <div class="cta-actions">
+          <a
+            class="cta-btn"
+            href="../tools/domain-context-learner/domain-context-learner.html"
+          >
+            Learn your domain →
+          </a>
+
+          <a
+            class="header-btn"
+            href="../tools/architecture-explorer/architecture-explorer-v1.html"
+          >
+            Open Architect
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">Wahab Waypoint</div>
+
+            <div class="footer-tagline">Architecture intelligence for your business</div>
+          </div>
+
+          <!-- Creator -->
+          <div class="footer-section">
+            <div class="footer-title">About the Creator</div>
+
+            <p class="footer-bio">
+              Built by Abdul Rafee Wahab, a technical architect, leading
+              software engineer, and tech leader passionate about software
+              architecture, scalable systems, and engineering excellence.
+            </p>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+  </body>
+</html>

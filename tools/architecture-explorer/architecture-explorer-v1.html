@@ -71,9 +71,13 @@
         <div class="app-nav">
           <a href="#overview">Overview</a>
 
-          <a href="#recommendation">Recommendation</a>
+          <a href="../domain-context-learner/domain-context-learner.html">
+            Domain
+          </a>
 
-          <a href="#tuning">Tuning</a>
+          <a href="#priorities">Priorities</a>
+
+          <a href="#recommendation">Recommendation</a>
 
           <a href="#compare">Compare</a>
 
@@ -85,6 +89,10 @@
         </div>
 
         <div class="app-actions">
+          <a class="home-link" href="../../waypoint/index.html">
+            ↩ Waypoint Home
+          </a>
+
           <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
             Light mode
           </button>
@@ -111,8 +119,8 @@
 
       <p class="hero-subtitle">
         Evaluate architectural tradeoffs across scalability, reliability, cost,
-        and operations. Select a workload scenario to get an evidence-based
-        recommendation in seconds.
+        and operations. Work through three guided steps — pick a workload, set
+        your priorities, and get an evidence-based recommendation.
       </p>
 
       <div class="hero-stats">
@@ -135,6 +143,32 @@
         </div>
       </div>
     </section>
+
+    <div class="journey-wrap">
+      <div class="stepper" id="stepper" aria-label="Guided journey steps">
+        <div class="step active" data-step="1">
+          <span class="step-num">1</span>
+
+          <span class="step-label">Pick a workload</span>
+        </div>
+
+        <span class="step-line"></span>
+
+        <div class="step" data-step="2">
+          <span class="step-num">2</span>
+
+          <span class="step-label">Set your priorities</span>
+        </div>
+
+        <span class="step-line"></span>
+
+        <div class="step" data-step="3">
+          <span class="step-num">3</span>
+
+          <span class="step-label">Get a recommendation</span>
+        </div>
+      </div>
+    </div>
 
     <div class="container">
       <div class="scenarios" id="overview">
@@ -290,6 +324,8 @@
         <!-- Scenario Overview -->
 
         <div class="panel scenario-panel">
+          <span class="step-badge">Step 1 · Choose a workload</span>
+
           <h2>Scenario Overview</h2>
 
           <div class="glass scenario-content">
@@ -305,9 +341,49 @@
           </div>
         </div>
 
+        <!-- Set Your Priorities (Step 2) -->
+
+        <div class="panel priorities-panel hidden" id="priorities">
+          <span class="step-badge">Step 2 · Set your priorities</span>
+
+          <h2>Set Your Priorities</h2>
+
+          <p class="panel-note">
+            Tune how much each quality matters for this workload. The defaults
+            reflect what this type of workload usually needs — adjust them if
+            your situation differs, then generate your recommendation.
+          </p>
+
+          <div id="domainNote" class="domain-note hidden"></div>
+
+          <div id="weightSliders"></div>
+
+          <div id="weightNote" class="weight-note"></div>
+
+          <div class="priority-actions">
+            <button
+              class="cta-btn"
+              id="generateBtn"
+              onclick="proceedToRecommendation()"
+            >
+              Get Recommendation →
+            </button>
+
+            <button class="secondary" onclick="resetWeights()">
+              Reset Weights
+            </button>
+          </div>
+        </div>
+
+        <div id="resultsSection" class="results-gated hidden">
         <!-- Recommendation -->
 
-        <div class="panel recommendation" id="recommendation">
+        <div
+          class="panel recommendation full-width"
+          id="recommendation"
+        >
+          <span class="step-badge">Step 3 · Your recommendation</span>
+
           <h2>Recommended Architecture</h2>
 
           <div class="tech">Select a scenario</div>
@@ -335,7 +411,7 @@
 
         <!-- Metrics -->
 
-        <div class="panel profile-panel">
+        <div class="panel profile-panel full-width">
           <h2>Engineering Profile</h2>
 
           <div class="metric">
@@ -381,32 +457,13 @@
           </div>
         </div>
 
-        <!-- What-If Analysis + Comparison -->
+        <!-- Architecture Comparison -->
 
-        <div class="dual-panel">
-          <div class="panel" id="tuning">
-            <h2>What-If Weight Tuning</h2>
+        <div class="panel full-width" id="compare">
+          <h2>Architecture Comparison</h2>
 
-            <p class="panel-note">
-              Adjust requirement weights and see how the recommendation changes
-              in real time.
-            </p>
-
-            <div id="weightSliders"></div>
-
-            <div id="weightNote" class="weight-note"></div>
-
-            <button class="secondary" onclick="resetWeights()">
-              Reset Weights
-            </button>
-          </div>
-
-          <div class="panel" id="compare">
-            <h2>Architecture Comparison</h2>
-
-            <div id="comparisonContainer">
-              <p>Select a workload to compare architectures.</p>
-            </div>
+          <div id="comparisonContainer">
+            <p>Select a workload to compare architectures.</p>
           </div>
         </div>
 
@@ -440,6 +497,7 @@
           <div id="diagramContainer" class="diagram-container">
             <p>Select a workload to visualize architecture.</p>
           </div>
+        </div>
         </div>
 
         <!-- Architecture Q&A -->
@@ -559,6 +617,14 @@
             <div class="footer-logo">Wahab Waypoint: Architect</div>
 
             <div class="footer-tagline">Wahab Waypoint</div>
+
+            <div class="footer-sub-links">
+              <a href="../../waypoint/index.html">Product line</a>
+
+              <a href="../domain-context-learner/domain-context-learner.html">
+                Domain Context Learner
+              </a>
+            </div>
           </div>
 
           <!-- Creator -->

@@ -1,0 +1,213 @@
+/* =========================================
+   DOMAIN CONTEXT LEARNER
+========================================= */
+
+.saved-banner {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: var(--winner-tint);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  color: var(--text-1);
+  font-size: 13.5px;
+}
+
+.saved-banner-link {
+  color: var(--text-link);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.saved-banner-link:hover {
+  text-decoration: underline;
+}
+
+/* Quality chips */
+
+.quality-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.quality-chip {
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--text-1);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.25s;
+}
+
+.quality-chip:hover {
+  border-color: #60a5fa;
+  color: var(--text);
+}
+
+.quality-chip.selected {
+  border-color: #60a5fa;
+  background: var(--winner-tint);
+  color: var(--text);
+  box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.35);
+}
+
+/* Data option cards */
+
+.data-group {
+  margin-bottom: 22px;
+}
+
+.data-group h3 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-2);
+  margin-bottom: 10px;
+}
+
+.option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.option-card {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--text-1);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.option-card:hover {
+  border-color: #60a5fa;
+  color: var(--text);
+}
+
+.option-card.selected {
+  border-color: #60a5fa;
+  background: var(--winner-tint);
+  color: var(--text);
+  box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.35);
+}
+
+.cta-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.cta-btn:disabled:hover {
+  filter: none;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Profile results */
+
+.profile-domain {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.profile-icon {
+  font-size: 34px;
+}
+
+.profile-domain h3 {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.profile-block h4 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+
+.profile-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.profile-chip {
+  padding: 5px 12px;
+  border-radius: 50px;
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  color: var(--text-1);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.profile-block {
+  background: var(--inner-bg);
+  border: 1px solid var(--inner-border);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.profile-block p {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.profile-summary {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--inner-bg);
+  border: 1px solid var(--inner-border);
+  color: var(--text-1);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+/* Footer sub links */
+
+.footer-sub-links {
+  margin-top: 12px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.footer-sub-links a {
+  color: var(--text-link);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-sub-links a:hover {
+  text-decoration: underline;
+}

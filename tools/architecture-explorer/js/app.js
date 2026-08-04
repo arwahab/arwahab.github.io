@@ -4,6 +4,8 @@ let selectedRecommendation = null;
 
 let currentDiagramId = null;
 
+let journeyStep = 1;
+
 /*
 =====================================
  Theme
@@ -51,6 +53,138 @@ const weightDimensions = [
   { id: "compliance", label: "Compliance & Governance" },
 ];
 
+const DOMAIN_PROFILE_KEY = "wahab-waypoint.domain-profile";
+
+const DOMAIN_DOMAIN_WEIGHTS = {
+  financial: { compliance: 15, reliability: 10 },
+  healthcare: { compliance: 20, reliability: 10, latency: 5 },
+  ecommerce: { scalability: 10, latency: 10, reliability: 5 },
+  logistics: { costEfficiency: 10, reliability: 10 },
+  media: { scalability: 15, latency: 10 },
+  saas: { scalability: 10, simplicity: 10 },
+  manufacturing: { reliability: 10, costEfficiency: 10 },
+  public: { compliance: 20 },
+  energy: { reliability: 15, compliance: 10 },
+  travel: { scalability: 5, costEfficiency: 5 },
+  education: { costEfficiency: 10 },
+  other: {},
+};
+
+const DOMAIN_QUALITY_WEIGHTS = {
+  costControl: { costEfficiency: 20, simplicity: 5 },
+  timeToMarket: { simplicity: 20, latency: 5 },
+  regulatoryCompliance: { compliance: 25, reliability: 10 },
+  resilience: { reliability: 25, compliance: 5 },
+  dataPrivacy: { compliance: 20 },
+  scalability: { scalability: 25 },
+  interoperability: { simplicity: 15, reliability: 5 },
+  security: { compliance: 15, reliability: 10 },
+};
+
+const DOMAIN_DATA_WEIGHTS = {
+  volume: {
+    low: {},
+    medium: { scalability: 10 },
+    high: { scalability: 20, costEfficiency: 5 },
+  },
+  realtime: {
+    low: {},
+    medium: { latency: 10 },
+    high: { latency: 20 },
+  },
+  integration: {
+    simple: {},
+    complex: { simplicity: 10 },
+  },
+  sensitivity: {
+    pii: { compliance: 10 },
+    phi: { compliance: 15 },
+    cardholder: { compliance: 15 },
+  },
+};
+
+function getDomainProfile() {
+  try {
+    const raw = localStorage.getItem(DOMAIN_PROFILE_KEY);
+
+    if (!raw) {
+      return null;
+    }
+    const profile = JSON.parse(raw);
+    return profile && profile.version && profile.domain ? profile : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function getDomainAdjustments(profile) {
+  const adjustments = {};
+  const add = (delta) => {
+    if (!delta) {
+      return;
+    }
+    Object.keys(delta).forEach((dimension) => {
+      adjustments[dimension] = (adjustments[dimension] || 0) + delta[dimension];
+    });
+  };
+
+  if (!profile) {
+    return adjustments;
+  }
+  add(DOMAIN_DOMAIN_WEIGHTS[profile.domain && profile.domain.id]);
+  (profile.qualities || []).forEach((quality) => {
+    add(DOMAIN_QUALITY_WEIGHTS[quality && quality.id]);
+  });
+  const data = profile.data || {};
+  add(DOMAIN_DATA_WEIGHTS.volume[data.volume && data.volume.id]);
+  add(DOMAIN_DATA_WEIGHTS.realtime[data.realtime && data.realtime.id]);
+  add(DOMAIN_DATA_WEIGHTS.integration[data.integration && data.integration.id]);
+  (data.sensitivity || []).forEach((item) => {
+    add(DOMAIN_DATA_WEIGHTS.sensitivity[item && item.id]);
+  });
+  return adjustments;
+}
+
+function updateDomainNote(profile) {
+  const note = document.getElementById("domainNote");
+
+  if (!note) {
+    return;
+  }
+
+  if (profile && profile.domain) {
+    note.innerHTML =
+      "🧭 Domain context applied — priorities below are pre-tuned for <b>" +
+      profile.domain.name +
+      "</b> by Domain Context Learner. " +
+      '<a href="../domain-context-learner/domain-context-learner.html">Manage</a>' +
+      " · " +
+      '<button class="link-btn" onclick="clearDomainProfile()">Clear</button>';
+    note.classList.remove("hidden");
+  } else {
+    note.classList.add("hidden");
+    note.innerHTML = "";
+  }
+}
+
+function clearDomainProfile() {
+  localStorage.removeItem(DOMAIN_PROFILE_KEY);
+
+  if (selectedScenario) {
+    renderWeightSliders(selectedScenario);
+    clearWeightNote();
+
+    if (journeyStep >= 3) {
+      document.body.classList.add("ui-anim");
+      const recommendation = getRecommendation(selectedScenario.requirements);
+      selectedRecommendation = recommendation;
+      renderResults(recommendation);
+    }
+  }
+  updateDomainNote(null);
+  showToast("Domain profile cleared — priorities reset to defaults.");
+}
+
 const setStat = (id, value) => {
   const element = document.getElementById(id);
 
@@ -87,13 +221,16 @@ function selectScenario(scenarioId) {
   document.body.classList.add("ui-anim");
   updateScenarioContext(scenario);
   renderWeightSliders(scenario);
+  updateDomainNote(getDomainProfile());
   clearWeightNote();
-  const recommendation = getRecommendation(scenario.requirements);
-  selectedRecommendation = recommendation;
-  renderResults(recommendation);
-  updateDiagram(scenarioId);
-  currentDiagramId = scenarioId;
-  scrollToResults();
+  clearResults();
+  const button = document.getElementById("generateBtn");
+
+  if (button) {
+    button.innerHTML = "Get Recommendation →";
+  }
+  setJourneyStep(2);
+  scrollToPriorities();
 }
 
 function setActiveScenarioCard(scenarioId) {
@@ -104,12 +241,79 @@ function setActiveScenarioCard(scenarioId) {
   });
 }
 
-function scrollToResults() {
-  const recommendation = document.getElementById("recommendation");
-
-  if (recommendation && window.matchMedia("(max-width: 900px)").matches) {
-    recommendation.scrollIntoView({ behavior: "smooth", block: "start" });
+function scrollToSection(element) {
+  if (!element) {
+    return;
   }
+  const rect = element.getBoundingClientRect();
+  const viewportHeight =
+    window.innerHeight || document.documentElement.clientHeight;
+
+  if (rect.top >= 0 && rect.bottom <= viewportHeight) {
+    return;
+  }
+  element.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function scrollToPriorities() {
+  scrollToSection(document.getElementById("priorities"));
+}
+
+function scrollToRecommendation() {
+  scrollToSection(document.getElementById("recommendation"));
+}
+
+function setJourneyStep(step) {
+  journeyStep = step;
+  const stepper = document.getElementById("stepper");
+
+  if (stepper) {
+    stepper.querySelectorAll(".step").forEach((el) => {
+      const n = Number(el.getAttribute("data-step"));
+      const numEl = el.querySelector(".step-num");
+      el.classList.toggle("active", n === step);
+      el.classList.toggle("done", n < step);
+
+      if (numEl) {
+        numEl.textContent = n < step ? "✓" : String(n);
+      }
+    });
+  }
+  const results = document.getElementById("resultsSection");
+
+  if (results) {
+    results.classList.toggle("hidden", step < 3);
+  }
+  const priorities = document.getElementById("priorities");
+
+  if (priorities) {
+    priorities.classList.toggle("hidden", step < 2);
+  }
+}
+
+function proceedToRecommendation() {
+  if (!selectedScenario) {
+    showToast("Pick a workload first.", "warn");
+    return;
+  }
+  document.body.classList.add("ui-anim");
+  const recommendation = getRecommendation(getWeightsFromSliders());
+  selectedRecommendation = recommendation;
+  renderResults(recommendation);
+  updateDiagram(selectedScenario.id);
+  currentDiagramId = selectedScenario.id;
+  setJourneyStep(3);
+  const note = document.getElementById("weightNote");
+
+  if (note) {
+    note.innerHTML = "⚙ Custom weights applied";
+  }
+  const button = document.getElementById("generateBtn");
+
+  if (button) {
+    button.innerHTML = "↻ Regenerate Recommendation";
+  }
+  scrollToRecommendation();
 }
 
 function renderResults(recommendation) {
@@ -119,6 +323,86 @@ function renderResults(recommendation) {
   updateComparison(recommendation.ranking);
   updateTradeoffMatrix(recommendation.ranking);
   updateLandscape(recommendation.ranking);
+}
+
+function clearResults() {
+  const tech = document.querySelector(".tech");
+  const score = document.querySelector(".score");
+  const confidence = document.querySelector(".confidence span");
+  const reason = document.querySelector(".reason");
+  const alternatives = document.querySelector(".alternatives");
+
+  if (tech) {
+    tech.innerHTML = "Select a scenario";
+  }
+
+  if (score) {
+    score.innerHTML = "--";
+  }
+
+  if (confidence) {
+    confidence.style.width = "0%";
+  }
+
+  const fitValue = document.getElementById("fitValue");
+
+  if (fitValue) {
+    fitValue.textContent = "--";
+  }
+
+  if (reason) {
+    reason.innerHTML = `
+        <div class="recommendation-section">
+        Your architecture recommendation will appear here.
+        </div>
+        `;
+  }
+
+  if (alternatives) {
+    alternatives.innerHTML = "";
+  }
+
+  ["scaleBar", "reliabilityBar", "simplicityBar", "costBar"].forEach((id) => {
+    const element = document.getElementById(id);
+
+    if (element) {
+      element.style.width = "0%";
+    }
+  });
+  const comparison = document.getElementById("comparisonContainer");
+
+  if (comparison) {
+    comparison.innerHTML = "<p>Select a workload to compare architectures.</p>";
+  }
+  const tradeoff = document.getElementById("tradeoffMatrix");
+
+  if (tradeoff) {
+    tradeoff.innerHTML =
+      '<p class="muted">Select a workload to analyze tradeoffs.</p>';
+  }
+  const landscape = document.getElementById("landscapeContainer");
+
+  if (landscape) {
+    landscape.innerHTML =
+      '<p class="muted">Select a workload to visualize architecture positioning.</p>';
+  }
+  const diagramTitle = document.getElementById("diagramTitle");
+  const diagram = document.getElementById("diagramContainer");
+
+  if (diagramTitle) {
+    diagramTitle.innerHTML = "Architecture Blueprint";
+  }
+
+  if (diagram) {
+    diagram.style.height = "";
+    diagram.innerHTML = "<p>Select a workload to visualize architecture.</p>";
+  }
+  currentDiagramId = null;
+  const adrOutput = document.getElementById("adrOutput");
+
+  if (adrOutput) {
+    adrOutput.value = "";
+  }
 }
 
 /*
@@ -742,6 +1026,7 @@ function renderWeightSliders(scenario) {
     return;
   }
   container.innerHTML = "";
+  const domainAdjustments = getDomainAdjustments(getDomainProfile());
 
   weightDimensions.forEach((dimension) => {
     const row = document.createElement("div");
@@ -754,7 +1039,9 @@ function renderWeightSliders(scenario) {
     input.max = "100";
     input.step = "5";
     input.id = "w-" + dimension.id;
-    input.value = scenario.requirements[dimension.id] ?? 50;
+    const base = scenario.requirements[dimension.id] ?? 50;
+    const adjusted = base + (domainAdjustments[dimension.id] || 0);
+    input.value = Math.max(0, Math.min(100, Math.round(adjusted / 5) * 5));
     const value = document.createElement("span");
     value.className = "weight-value";
     value.id = "w-" + dimension.id + "-val";
@@ -785,11 +1072,19 @@ function onWeightChange() {
   if (!selectedScenario) {
     return;
   }
+  const note = document.getElementById("weightNote");
+
+  if (journeyStep < 3) {
+    if (note) {
+      note.innerHTML =
+        "⚙ Custom priorities set — generate your recommendation to see results.";
+    }
+    return;
+  }
   document.body.classList.remove("ui-anim");
   const recommendation = getRecommendation(getWeightsFromSliders());
   selectedRecommendation = recommendation;
   renderResults(recommendation);
-  const note = document.getElementById("weightNote");
 
   if (note) {
     note.innerHTML = "⚙ Custom weights applied";
@@ -802,10 +1097,13 @@ function resetWeights() {
   }
   renderWeightSliders(selectedScenario);
   clearWeightNote();
-  document.body.classList.add("ui-anim");
-  const recommendation = getRecommendation(selectedScenario.requirements);
-  selectedRecommendation = recommendation;
-  renderResults(recommendation);
+
+  if (journeyStep >= 3) {
+    document.body.classList.add("ui-anim");
+    const recommendation = getRecommendation(selectedScenario.requirements);
+    selectedRecommendation = recommendation;
+    renderResults(recommendation);
+  }
 }
 
 function clearWeightNote() {
@@ -845,89 +1143,20 @@ function resetView() {
   if (challenges) {
     challenges.innerHTML = "";
   }
-  const tech = document.querySelector(".tech");
-  const score = document.querySelector(".score");
-  const confidence = document.querySelector(".confidence span");
-  const reason = document.querySelector(".reason");
-  const alternatives = document.querySelector(".alternatives");
-
-  if (tech) {
-    tech.innerHTML = "Select a scenario";
-  }
-
-  if (score) {
-    score.innerHTML = "--";
-  }
-
-  if (confidence) {
-    confidence.style.width = "0%";
-  }
-
-  const fitValue = document.getElementById("fitValue");
-
-  if (fitValue) {
-    fitValue.textContent = "--";
-  }
-
-  if (reason) {
-    reason.innerHTML = `
-        <div class="recommendation-section">
-        Your architecture recommendation will appear here.
-        </div>
-        `;
-  }
-
-  if (alternatives) {
-    alternatives.innerHTML = "";
-  }
-
-  ["scaleBar", "reliabilityBar", "simplicityBar", "costBar"].forEach((id) => {
-    const element = document.getElementById(id);
-
-    if (element) {
-      element.style.width = "0%";
-    }
-  });
-  const comparison = document.getElementById("comparisonContainer");
-
-  if (comparison) {
-    comparison.innerHTML = "<p>Select a workload to compare architectures.</p>";
-  }
-  const tradeoff = document.getElementById("tradeoffMatrix");
-
-  if (tradeoff) {
-    tradeoff.innerHTML =
-      '<p class="muted">Select a workload to analyze tradeoffs.</p>';
-  }
-  const landscape = document.getElementById("landscapeContainer");
-
-  if (landscape) {
-    landscape.innerHTML =
-      '<p class="muted">Select a workload to visualize architecture positioning.</p>';
-  }
-  const diagramTitle = document.getElementById("diagramTitle");
-  const diagram = document.getElementById("diagramContainer");
-
-  if (diagramTitle) {
-    diagramTitle.innerHTML = "Architecture Blueprint";
-  }
-
-  if (diagram) {
-    diagram.style.height = "";
-    diagram.innerHTML = "<p>Select a workload to visualize architecture.</p>";
-  }
-  currentDiagramId = null;
+  clearResults();
   const sliders = document.getElementById("weightSliders");
 
   if (sliders) {
     sliders.innerHTML = "";
   }
   clearWeightNote();
-  const adrOutput = document.getElementById("adrOutput");
+  const button = document.getElementById("generateBtn");
 
-  if (adrOutput) {
-    adrOutput.value = "";
+  if (button) {
+    button.innerHTML = "Get Recommendation →";
   }
+  setJourneyStep(1);
+  scrollToSection(document.getElementById("overview"));
 }
 /*
 =====================================
@@ -936,8 +1165,13 @@ function resetView() {
 */
 
 function showADR() {
-  if (!selectedScenario || !selectedRecommendation) {
+  if (!selectedScenario) {
     showToast("Select a workload first.", "warn");
+    return;
+  }
+
+  if (!selectedRecommendation) {
+    showToast("Generate a recommendation first.", "warn");
     return;
   }
   const output = document.getElementById("adrOutput");
@@ -1121,8 +1355,56 @@ function initScenarioCards() {
   });
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initScenarioCards);
-} else {
+function handleStepClick(step) {
+  if (step === 1) {
+    scrollToSection(document.getElementById("overview"));
+    return;
+  }
+
+  if (step === 2) {
+    if (journeyStep < 2) {
+      showToast("Pick a workload first.", "warn");
+      return;
+    }
+    scrollToSection(document.getElementById("priorities"));
+    return;
+  }
+
+  if (step === 3) {
+    if (journeyStep < 3) {
+      showToast("Generate a recommendation first.", "warn");
+      return;
+    }
+    scrollToSection(document.getElementById("recommendation"));
+  }
+}
+
+function initStepper() {
+  document.querySelectorAll(".stepper .step").forEach((step) => {
+    step.setAttribute("tabindex", "0");
+    step.setAttribute("role", "button");
+    const id = Number(step.getAttribute("data-step"));
+
+    step.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        handleStepClick(id);
+      }
+    });
+
+    step.addEventListener("click", () => {
+      handleStepClick(id);
+    });
+  });
+}
+
+function init() {
   initScenarioCards();
+  initStepper();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
 }
