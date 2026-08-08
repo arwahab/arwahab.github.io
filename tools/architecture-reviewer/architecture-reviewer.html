@@ -5,11 +5,47 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Wahab Waypoint: Domain Context Learner</title>
+    <title>Wahab Waypoint: Reviewer</title>
 
     <meta
       name="description"
-      content="Learn and capture the business domain knowledge of your organization so Wahab Waypoint: Architect can tailor its recommendations."
+      content="Score an existing or planned architecture against a workload's real requirements and see exactly where it fits and where it falls short."
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../architecture-explorer/favicons/favicon.ico"
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +60,7 @@
       href="../architecture-explorer/css/architecture-explorer.css"
     />
 
-    <link rel="stylesheet" href="css/domain-context-learner.css" />
+    <link rel="stylesheet" href="css/architecture-reviewer.css" />
   </head>
 
   <body>
@@ -37,26 +73,22 @@
             alt="Wahab Waypoint logo"
           />
 
-          <span class="brand-name"
-            >Wahab Waypoint: Domain Context Learner</span
-          >
+          <span class="brand-name">Wahab Waypoint: Reviewer</span>
         </a>
 
         <div class="app-nav">
-          <a href="#overview">Domains</a>
+          <a href="#workload">Workload</a>
 
-          <a href="#qualities">Qualities</a>
+          <a href="#architecture">Architecture</a>
 
-          <a href="#data">Data</a>
-
-          <a href="#profile">Profile</a>
+          <a href="#review">Review</a>
 
           <a href="../architecture-explorer/architecture-explorer-v1.html">
             Architect
           </a>
 
-          <a href="../architecture-reviewer/architecture-reviewer.html">
-            Reviewer
+          <a href="../domain-context-learner/domain-context-learner.html">
+            Domain
           </a>
         </div>
 
@@ -80,43 +112,43 @@
       </div>
 
       <h1>
-        Domain Context
-        <span class="grad-text">Learner</span>
+        Wahab Waypoint:
+        <span class="grad-text">Reviewer</span>
       </h1>
 
       <p class="hero-subtitle">
-        Learn and capture the business domain knowledge of your organization —
-        what it does, what it cares about, and how its data flows. Architect
-        uses this context to pre-tune its recommendations.
+        Score the architecture you already have — or plan to build — against
+        the real requirements of your workload. See where it fits, where it
+        falls short, and what to change.
       </p>
 
       <div class="hero-stats">
         <div class="stat">
-          <strong>12</strong>
+          <strong>18</strong>
 
-          <span>Business Domains</span>
+          <span>Workloads</span>
+        </div>
+
+        <div class="stat">
+          <strong>10</strong>
+
+          <span>Architectures</span>
         </div>
 
         <div class="stat">
           <strong>8</strong>
 
-          <span>Critical Qualities</span>
-        </div>
-
-        <div class="stat">
-          <strong>3</strong>
-
-          <span>Guided Steps</span>
+          <span>Evaluation Criteria</span>
         </div>
       </div>
     </section>
 
     <div class="journey-wrap">
-      <div class="stepper" id="stepper" aria-label="Learning steps">
+      <div class="stepper" id="stepper" aria-label="Review steps">
         <div class="step active" data-step="1">
           <span class="step-num">1</span>
 
-          <span class="step-label">Choose domain</span>
+          <span class="step-label">Pick a workload</span>
         </div>
 
         <span class="step-line"></span>
@@ -124,7 +156,7 @@
         <div class="step" data-step="2">
           <span class="step-num">2</span>
 
-          <span class="step-label">What matters most</span>
+          <span class="step-label">Select your architecture</span>
         </div>
 
         <span class="step-line"></span>
@@ -132,132 +164,52 @@
         <div class="step" data-step="3">
           <span class="step-num">3</span>
 
-          <span class="step-label">Data &amp; integration</span>
+          <span class="step-label">Read your review</span>
         </div>
       </div>
     </div>
 
     <div class="container">
-      <div id="savedBanner" class="saved-banner hidden">
-        <span id="savedBannerText"></span>
-
-        <a class="saved-banner-link" href="#profile" onclick="viewSavedProfile()">
-          View profile
-        </a>
-      </div>
-
       <div class="workspace">
         <!-- Step 1 -->
 
-        <div class="panel full-width" id="overview">
-          <span class="step-badge">Step 1 · Choose your business domain</span>
+        <div class="panel full-width" id="workload">
+          <span class="step-badge">Step 1 · Choose a workload</span>
 
-          <h2>What is your organization's business domain?</h2>
+          <h2>What workload are you reviewing?</h2>
 
           <p class="panel-note">
-            Pick the domain closest to what your organization does. This frames
-            the context that Architect uses to pre-tune its recommendations.
+            Pick the scenario closest to the system you are evaluating. The
+            review scores an architecture against this workload's
+            requirements.
           </p>
 
-          <div class="scenarios" id="domainGrid"></div>
+          <div class="scenarios" id="scenarioGrid"></div>
         </div>
 
         <!-- Step 2 -->
 
-        <div class="panel full-width hidden" id="qualities">
-          <span class="step-badge">Step 2 · What matters most</span>
+        <div class="panel full-width hidden" id="architecture">
+          <span class="step-badge">Step 2 · Select your architecture</span>
 
-          <h2>Which qualities matter most to your business?</h2>
+          <h2>Which architecture are you reviewing?</h2>
 
           <p class="panel-note">
-            Select up to 4. These become the priorities Architect emphasizes in
-            its recommendations.
+            Choose the architecture you currently run, or the one you plan to
+            build, and get a scored fit for the workload you picked.
           </p>
 
-          <div class="quality-grid" id="qualityGrid"></div>
-
-          <div class="priority-actions">
-            <button
-              class="cta-btn"
-              id="continueBtn"
-              onclick="continueToData()"
-              disabled
-            >
-              Continue →
-            </button>
-          </div>
+          <div class="arch-grid" id="archGrid"></div>
         </div>
 
         <!-- Step 3 -->
 
-        <div class="panel full-width hidden" id="data">
-          <span class="step-badge">Step 3 · Data &amp; integration</span>
+        <div class="panel full-width hidden" id="review">
+          <span class="step-badge">Step 3 · Your review</span>
 
-          <h2>What does your data landscape look like?</h2>
+          <h2>Architecture Review</h2>
 
-          <p class="panel-note">
-            Describe the scale, sensitivity, and tempo of your data so the
-            domain profile reflects reality.
-          </p>
-
-          <div class="data-group">
-            <h3>Data volume</h3>
-
-            <div class="option-row" id="opt-volume"></div>
-          </div>
-
-          <div class="data-group">
-            <h3>Data sensitivity</h3>
-
-            <div class="option-row" id="opt-sensitivity"></div>
-          </div>
-
-          <div class="data-group">
-            <h3>Real-time needs</h3>
-
-            <div class="option-row" id="opt-realtime"></div>
-          </div>
-
-          <div class="data-group">
-            <h3>Integration complexity</h3>
-
-            <div class="option-row" id="opt-integration"></div>
-          </div>
-
-          <div class="priority-actions">
-            <button
-              class="cta-btn"
-              id="generateBtn"
-              onclick="generateProfile()"
-            >
-              Generate Domain Profile →
-            </button>
-
-            <button class="secondary" onclick="clearAll()">Start over</button>
-          </div>
-        </div>
-
-        <!-- Results -->
-
-        <div class="panel full-width hidden" id="profile">
-          <span class="step-badge">Step 4 · Your domain profile</span>
-
-          <h2>Learned Context</h2>
-
-          <div id="profileContent"></div>
-
-          <div class="priority-actions">
-            <a
-              class="cta-btn"
-              href="../architecture-explorer/architecture-explorer-v1.html"
-            >
-              Use in Architect →
-            </a>
-
-            <button class="secondary" onclick="clearAll()">
-              Clear &amp; start over
-            </button>
-          </div>
+          <div id="reviewContent"></div>
         </div>
       </div>
     </div>
@@ -267,7 +219,7 @@
         <div class="footer-grid">
           <!-- Product -->
           <div class="footer-section">
-            <div class="footer-logo">Wahab Waypoint: Domain Context Learner</div>
+            <div class="footer-logo">Wahab Waypoint: Reviewer</div>
 
             <div class="footer-tagline">Wahab Waypoint</div>
 
@@ -278,8 +230,10 @@
                 Architect
               </a>
 
-              <a href="../architecture-reviewer/architecture-reviewer.html">
-                Reviewer
+              <a
+                href="../domain-context-learner/domain-context-learner.html"
+              >
+                Domain Context Learner
               </a>
             </div>
           </div>
@@ -331,7 +285,15 @@
 
     <div id="toastContainer" class="toast-container"></div>
 
-    <script src="js/domain-learner.js"></script>
+    <script src="../architecture-explorer/js/architectures.js"></script>
+
+    <script src="../architecture-explorer/js/scenarios.js"></script>
+
+    <script src="../architecture-explorer/js/engine.js"></script>
+
+    <script src="../architecture-explorer/js/domain-context.js"></script>
+
+    <script src="js/reviewer.js"></script>
 
     <script>
       const THEME_KEY = "ate-theme";
