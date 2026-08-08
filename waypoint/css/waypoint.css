@@ -192,7 +192,7 @@
   object-fit: cover;
   object-position: center;
   transform: scale(1.28);
-  transform-origin: 50% 30%;
+  transform-origin: 50% 22%;
 }
 
 .about-content h2 {
