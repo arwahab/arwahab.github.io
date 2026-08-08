@@ -914,19 +914,34 @@ function updateDiagram(scenarioId) {
   });
   canvas.appendChild(svg);
   container.appendChild(canvas);
-  fitDiagramToContainer(container, canvas, canvasWidth);
+  scheduleDiagramFit(container, canvas, canvasWidth);
 }
 
 function fitDiagramToContainer(container, canvas, naturalWidth) {
   const available = container.clientWidth;
+
+  if (!available || available <= 0) {
+    return;
+  }
   const scale = Math.min(1, available / naturalWidth);
 
   if (scale >= 1) {
+    canvas.style.transform = "";
+    canvas.style.transformOrigin = "";
+    container.style.height = "";
     return;
   }
   canvas.style.transformOrigin = "top center";
   canvas.style.transform = `scale(${scale})`;
   container.style.height = Math.ceil(canvas.offsetHeight * scale) + "px";
+}
+
+function scheduleDiagramFit(container, canvas, naturalWidth) {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      fitDiagramToContainer(container, canvas, naturalWidth);
+    });
+  });
 }
 /*
 =====================================
