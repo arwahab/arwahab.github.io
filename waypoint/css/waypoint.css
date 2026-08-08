@@ -278,26 +278,6 @@
   margin-top: 12px;
 }
 
-.about-bio .about-quote {
-  margin: 18px 0 0;
-  padding: 14px 18px;
-  border-left: 3px solid var(--accent-violet);
-  background: var(--chip-bg);
-  border-radius: 0 14px 14px 0;
-  color: var(--text-1);
-  font-size: 15px;
-  font-style: italic;
-  line-height: 1.6;
-}
-
-.about-signature {
-  margin-top: 22px;
-  font-family: Caveat, cursive;
-  font-size: 32px;
-  line-height: 1;
-  color: var(--text-link);
-}
-
 @keyframes about-fade-up {
   from {
     opacity: 0;
