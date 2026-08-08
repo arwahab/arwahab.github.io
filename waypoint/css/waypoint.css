@@ -161,19 +161,50 @@
 
 .about {
   margin-top: 56px;
+  animation: about-fade-up 0.7s ease both;
 }
 
 .about-card {
+  position: relative;
   display: grid;
   grid-template-columns: 300px 1fr;
-  gap: 36px;
+  gap: 40px;
   align-items: start;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  padding: 34px;
+  border-radius: 26px;
+  padding: 36px;
   backdrop-filter: blur(20px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-violet));
+  z-index: 1;
+}
+
+.about-card::after {
+  content: "";
+  position: absolute;
+  top: -70px;
+  left: -70px;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(
+    closest-side,
+    rgba(96, 165, 250, 0.28),
+    transparent 72%
+  );
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .about-photo-wrap {
@@ -183,7 +214,7 @@
   border-radius: 50%;
   overflow: hidden;
   border: 4px solid var(--glass-border);
-  box-shadow: 0 14px 40px var(--shadow);
+  animation: about-glow-pulse 4.5s ease-in-out infinite;
 }
 
 .about-photo {
@@ -193,6 +224,11 @@
   object-position: center;
   transform: scale(1.34);
   transform-origin: 50% 0%;
+}
+
+.about-content {
+  position: relative;
+  z-index: 1;
 }
 
 .about-content h2 {
@@ -208,8 +244,31 @@
   font-weight: 600;
 }
 
+.about-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.about-chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--text-link);
+  font-size: 12px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.about-chip:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.25);
+}
+
 .about-bio {
-  margin-top: 18px;
+  margin-top: 20px;
   color: var(--text-2);
   font-size: 14.5px;
   line-height: 1.7;
@@ -217,6 +276,51 @@
 
 .about-bio p + p {
   margin-top: 12px;
+}
+
+.about-bio .about-quote {
+  margin: 18px 0 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--accent-violet);
+  background: var(--chip-bg);
+  border-radius: 0 14px 14px 0;
+  color: var(--text-1);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.about-signature {
+  margin-top: 22px;
+  font-family: Caveat, cursive;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--text-link);
+}
+
+@keyframes about-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes about-glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(96, 165, 250, 0.35),
+      0 14px 40px var(--shadow);
+  }
+  50% {
+    box-shadow:
+      0 0 0 10px rgba(96, 165, 250, 0.05),
+      0 14px 40px var(--shadow);
+  }
 }
 
 .connect-row {
