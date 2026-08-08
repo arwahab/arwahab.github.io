@@ -384,31 +384,8 @@ a.home-link:hover {
   padding: 40px 24px 8px;
 }
 
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 50px;
-  border: 1px solid var(--chip-border);
-  background: var(--chip-bg);
-  color: var(--text-link);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-}
-
-.eyebrow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, var(--accent-blue), var(--accent-violet));
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.7);
-}
-
 .hero h1 {
-  margin-top: 14px;
+  margin-top: 0;
   font-size: 46px;
   font-weight: 800;
   letter-spacing: -1.5px;
@@ -2003,11 +1980,6 @@ body.ui-anim .comparison-row:nth-child(7) {
   .hero h1 {
     font-size: 26px;
     letter-spacing: -0.5px;
-  }
-
-  .hero-eyebrow {
-    font-size: 10.5px;
-    padding: 5px 11px;
   }
 
   .hero-subtitle {
