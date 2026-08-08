@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Overview · Wahab Waypoint Docs</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../tools/architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../tools/architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../../tools/architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../tools/architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon.ico"
+    />
+
+    <meta
+      name="description"
+      content="An overview of the Wahab Waypoint product line: how Domain Context Learner, Architect, and Reviewer work together around a shared domain profile."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="../css/waypoint.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-mark"
+            src="../../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="../index.html">Home</a>
+
+          <a href="index.html">Docs</a>
+
+          <a href="../index.html#how">How it works</a>
+
+          <a href="../about.html">About</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <h1>
+        Wahab Waypoint,
+        <span class="grad-text">at a glance</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Three products, one shared context. Understand the business, pick an
+        architecture, and review what you actually run.
+      </p>
+    </section>
+
+    <div class="container">
+      <article class="doc-page" aria-label="Overview">
+        <div class="doc-prose">
+          <div class="doc-crumb">
+            <a href="index.html">Docs</a>
+
+            <span class="sep">/</span>
+
+            <span class="current">Overview</span>
+          </div>
+
+          <h1>Wahab Waypoint, at a glance</h1>
+
+          <p>
+            Wahab Waypoint is a product line of three browser-based tools that
+            approach one question from three angles: <em>which architecture
+            should I run?</em> Each product works standalone, but they are
+            designed to be used as a single journey that carries context from
+            one step to the next.
+          </p>
+
+          <div class="doc-meta">
+            <span>3 products</span>
+
+            <span>18 workloads</span>
+
+            <span>10 reference architectures</span>
+
+            <span>8 evaluation criteria</span>
+
+            <span>12 domains</span>
+          </div>
+
+          <h2>The three products</h2>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Answers</th>
+                  <th>Output</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Domain Context Learner</td>
+                  <td>What does the business actually care about?</td>
+                  <td>A reusable domain profile</td>
+                </tr>
+                <tr>
+                  <td>Architect</td>
+                  <td>Which architecture best fits this workload and priorities?</td>
+                  <td>Recommendation, tradeoffs, blueprint, ADR</td>
+                </tr>
+                <tr>
+                  <td>Reviewer</td>
+                  <td>How well does the design I have fit the requirements?</td>
+                  <td>Fit score, strengths, gaps, watch-outs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>How they fit together</h2>
+
+          <p>
+            The connector between the products is the <strong>domain
+            profile</strong>. When you complete Domain Context Learner, it saves
+            a profile — your domain, the qualities you ranked, and the shape of
+            your data — in the browser.
+          </p>
+
+          <p>
+            Architect reads that profile automatically. Your priority sliders
+            start pre-tuned toward what your business told us matters, instead
+            of a generic default. Reviewer applies the same domain adjustments,
+            so the requirements you are scored against match the context
+            Architect used.
+          </p>
+
+          <div class="doc-steps">
+            <div class="doc-step">
+              <h4>Learn the domain</h4>
+
+              <p>
+                Domain Context Learner builds the profile. One minute of input,
+                reused everywhere.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Set priorities &amp; evaluate</h4>
+
+              <p>
+                Architect tunes its weights from the profile, then lets you
+                refine them for a specific workload.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Review what you run</h4>
+
+              <p>
+                Reviewer scores your existing or planned architecture against
+                the same, domain-adjusted requirements.
+              </p>
+            </div>
+          </div>
+
+          <h2>Core vocabulary</h2>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Term</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Domain</td>
+                  <td>The business you operate in, e.g. E-Commerce &amp; Retail or Financial Services.</td>
+                </tr>
+                <tr>
+                  <td>Scenario / workload</td>
+                  <td>A concrete system shape, e.g. E-Commerce Order Platform or Event Streaming Platform.</td>
+                </tr>
+                <tr>
+                  <td>Reference architecture</td>
+                  <td>One of 10 real patterns, e.g. Apache Kafka, AWS Lambda, or Amazon EventBridge.</td>
+                </tr>
+                <tr>
+                  <td>Evaluation criterion</td>
+                  <td>One of 8 ways architectures are scored — scalability, reliability, operational simplicity, cost efficiency, latency, ordering, replay, and compliance.</td>
+                </tr>
+                <tr>
+                  <td>Domain profile</td>
+                  <td>Your saved context, shared between the three products.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="doc-note">
+            <span class="note-icon">💡</span>
+
+            <p>
+              Everything runs in your browser. Domain profiles and theme
+              preferences live in local storage — no account, no server, no
+              uploads.
+            </p>
+          </div>
+
+          <h2>Where to go next</h2>
+
+          <ul>
+            <li>
+              <a href="domain-context-learner.html">How to learn your domain</a>
+              — start here if you are new.
+            </li>
+
+            <li>
+              <a href="architect.html">How to evaluate architectures</a> —
+              the core workflow.
+            </li>
+
+            <li>
+              <a href="reviewer.html">How to review a design</a> — score what
+              you already have.
+            </li>
+
+            <li>
+              <a href="example-ecommerce.html">E-commerce example</a> and
+              <a href="example-streaming.html">streaming example</a> — full
+              end-to-end walkthroughs.
+            </li>
+          </ul>
+
+          <div class="doc-next">
+            <p>
+              Ready to try it? 
+              <a href="domain-context-learner.html">
+                Start by learning your domain →
+              </a>
+            </p>
+          </div>
+
+          <a class="doc-back" href="index.html">← Back to all docs</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              Wahab <span class="logo-grad">Waypoint</span>
+            </div>
+
+            <div class="footer-tagline">Architecture intelligence for your business</div>
+
+            <div class="footer-sub-links">
+              <a href="../index.html">Product line</a>
+
+              <a href="index.html">Docs</a>
+
+              <a href="../about.html">About</a>
+            </div>
+          </div>
+
+          <!-- Docs -->
+          <div class="footer-section">
+            <div class="footer-title">Documentation</div>
+
+            <div class="footer-links">
+              <a href="domain-context-learner.html">
+                Learn your domain
+              </a>
+
+              <a href="architect.html"> Evaluate architectures </a>
+
+              <a href="reviewer.html"> Review a design </a>
+
+              <a href="example-ecommerce.html"> E-commerce example </a>
+
+              <a href="example-streaming.html"> Streaming example </a>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Crafted by Abdul Rafee Wahab </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+  </body>
+</html>

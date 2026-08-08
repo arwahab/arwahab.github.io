@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Learn your domain · Wahab Waypoint Docs</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../tools/architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../tools/architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../../tools/architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../tools/architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon.ico"
+    />
+
+    <meta
+      name="description"
+      content="How to capture a domain profile with Wahab Waypoint: Domain Context Learner — the context Architect and Reviewer use to tune their recommendations."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="../css/waypoint.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-mark"
+            src="../../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="../index.html">Home</a>
+
+          <a href="index.html">Docs</a>
+
+          <a href="../index.html#how">How it works</a>
+
+          <a href="../about.html">About</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <h1>
+        Learn your
+        <span class="grad-text">domain</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A how-to guide for Wahab Waypoint: Domain Context Learner — the first
+        step of every good architecture decision.
+      </p>
+    </section>
+
+    <div class="container">
+      <article class="doc-page" aria-label="Domain Context Learner guide">
+        <div class="doc-prose">
+          <div class="doc-crumb">
+            <a href="index.html">Docs</a>
+
+            <span class="sep">/</span>
+
+            <a href="index.html">Guides</a>
+
+            <span class="sep">/</span>
+
+            <span class="current">Domain Context Learner</span>
+          </div>
+
+          <h1>Learn your domain</h1>
+
+          <p>
+            Domain Context Learner captures the business context that an
+            architecture decision should never ignore: what your organization
+            does, what it cares about, and how its data really flows. It takes
+            about a minute and produces a <strong>domain profile</strong> that
+            Architect and Reviewer reuse automatically.
+          </p>
+
+          <div class="doc-meta">
+            <span>⏱️ About 1 minute</span>
+
+            <span>🧠 Step 1 of 3</span>
+
+            <span>💾 Saves in-browser</span>
+          </div>
+
+          <div class="doc-note">
+            <span class="note-icon">💡</span>
+
+            <p>
+              You only need to do this once. The profile stays saved in your
+              browser and is applied every time you open Architect or Reviewer
+              — until you update or clear it.
+            </p>
+          </div>
+
+          <h2>When to use it</h2>
+
+          <ul>
+            <li>Before your first architecture evaluation — so Architect starts pre-tuned.</li>
+            <li>When your business context changes, e.g. a new compliance regime or a shift toward real-time operations.</li>
+            <li>When you want a reminder of the qualities driving your decisions.</li>
+          </ul>
+
+          <h2>The four steps</h2>
+
+          <div class="doc-steps">
+            <div class="doc-step">
+              <h4>Choose your business domain</h4>
+
+              <p>
+                Pick the domain that matches your organization from the twelve
+                available options.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Rank the qualities that matter</h4>
+
+              <p>
+                Select and order the qualities that drive your decisions —
+                cost control, time-to-market, resilience, compliance, and more.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Describe the shape of your data</h4>
+
+              <p>
+                Answer four questions about your data: volume, real-time needs,
+                integration complexity, and sensitivity.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Save your profile</h4>
+
+              <p>
+                Confirm and save. Architect and Reviewer will pick the profile
+                up automatically from now on.
+              </p>
+            </div>
+          </div>
+
+          <h2>The twelve domains</h2>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Domain</th>
+                  <th>What it covers</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Financial Services</td><td>Payments, banking, capital markets, compliance.</td></tr>
+                <tr><td>Healthcare</td><td>Claims, patient data, care coordination, compliance.</td></tr>
+                <tr><td>E-Commerce &amp; Retail</td><td>Orders, inventory, personalization, peak traffic.</td></tr>
+                <tr><td>Logistics &amp; Supply Chain</td><td>Tracking, carriers, fleet telemetry, cost control.</td></tr>
+                <tr><td>Media &amp; Streaming</td><td>Content delivery, events, analytics at scale.</td></tr>
+                <tr><td>SaaS &amp; Multi-tenant</td><td>Multi-tenant products, feature velocity, isolation.</td></tr>
+                <tr><td>Manufacturing &amp; Industrial</td><td>OT/IT integration, sensor data, reliability.</td></tr>
+                <tr><td>Public Sector &amp; Government</td><td>Citizen services, auditability, strict compliance.</td></tr>
+                <tr><td>Energy &amp; Utilities</td><td>Grid telemetry, forecasting, mission-critical uptime.</td></tr>
+                <tr><td>Travel &amp; Hospitality</td><td>Bookings, availability, reservations, volatility.</td></tr>
+                <tr><td>Education &amp; EdTech</td><td>Learning platforms, student data, seasonality.</td></tr>
+                <tr><td>Other / General</td><td>A domain not listed — choose what fits best.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>The eight qualities</h2>
+
+          <p>
+            You rank the qualities your business weighs most heavily when
+            making architecture decisions:
+          </p>
+
+          <ul>
+            <li><strong>Cost control</strong> — keeping operating costs predictable.</li>
+            <li><strong>Time-to-market</strong> — shipping quickly and iterating fast.</li>
+            <li><strong>Regulatory compliance</strong> — meeting audit and industry rules.</li>
+            <li><strong>Resilience &amp; uptime</strong> — staying up when it matters.</li>
+            <li><strong>Data privacy</strong> — protecting personal and sensitive data.</li>
+            <li><strong>Scalability</strong> — handling growth and peaks.</li>
+            <li><strong>Interoperability</strong> — integrating with other systems.</li>
+            <li><strong>Security &amp; auditability</strong> — controlling and evidencing access.</li>
+          </ul>
+
+          <h2>The four data questions</h2>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Question</th>
+                  <th>Options</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Data volume</td><td>Low · Medium · High</td></tr>
+                <tr><td>Real-time needs</td><td>None · Medium · High</td></tr>
+                <tr><td>Integration complexity</td><td>Simple · Complex</td></tr>
+                <tr><td>Sensitive data</td><td>Not sensitive · PII · PHI · Cardholder data</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>What happens next</h2>
+
+          <p>
+            Your saved profile is stored under the
+            <code>wahab-waypoint.domain-profile</code> key in the browser. From
+            now on:
+          </p>
+
+          <ul>
+            <li>
+              <strong>Architect</strong> pre-tunes its priority sliders from
+              your domain and ranked qualities.
+            </li>
+
+            <li>
+              <strong>Reviewer</strong> adjusts requirements with the same
+              domain context before scoring.
+            </li>
+          </ul>
+
+          <p>
+            To redo it, simply run the learner again and save — the new profile
+            replaces the old one.
+          </p>
+
+          <div class="doc-next">
+            <p>
+              Next: 
+              <a href="architect.html">evaluate architectures with Architect →</a>
+            </p>
+          </div>
+
+          <a class="doc-back" href="index.html">← Back to all docs</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              Wahab <span class="logo-grad">Waypoint</span>
+            </div>
+
+            <div class="footer-tagline">Architecture intelligence for your business</div>
+
+            <div class="footer-sub-links">
+              <a href="../index.html">Product line</a>
+
+              <a href="index.html">Docs</a>
+
+              <a href="../about.html">About</a>
+            </div>
+          </div>
+
+          <!-- Docs -->
+          <div class="footer-section">
+            <div class="footer-title">Documentation</div>
+
+            <div class="footer-links">
+              <a href="domain-context-learner.html">
+                Learn your domain
+              </a>
+
+              <a href="architect.html"> Evaluate architectures </a>
+
+              <a href="reviewer.html"> Review a design </a>
+
+              <a href="example-ecommerce.html"> E-commerce example </a>
+
+              <a href="example-streaming.html"> Streaming example </a>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Crafted by Abdul Rafee Wahab </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+  </body>
+</html>

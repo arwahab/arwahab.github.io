@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Evaluate architectures · Wahab Waypoint Docs</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../tools/architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../tools/architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../../tools/architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../tools/architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon.ico"
+    />
+
+    <meta
+      name="description"
+      content="How to evaluate architectures with Wahab Waypoint: Architect — select a workload, tune priorities, and get an evidence-based recommendation."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="../css/waypoint.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-mark"
+            src="../../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="../index.html">Home</a>
+
+          <a href="index.html">Docs</a>
+
+          <a href="../index.html#how">How it works</a>
+
+          <a href="../about.html">About</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <h1>
+        Evaluate
+        <span class="grad-text">architectures</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A how-to guide for Wahab Waypoint: Architect — turn a workload and a set
+        of priorities into an evidence-based recommendation.
+      </p>
+    </section>
+
+    <div class="container">
+      <article class="doc-page" aria-label="Architect guide">
+        <div class="doc-prose">
+          <div class="doc-crumb">
+            <a href="index.html">Docs</a>
+
+            <span class="sep">/</span>
+
+            <a href="index.html">Guides</a>
+
+            <span class="sep">/</span>
+
+            <span class="current">Architect</span>
+          </div>
+
+          <h1>Evaluate architectures</h1>
+
+          <p>
+            Architect scores ten reference architectures against a workload and
+            your priorities, then presents a clear winner with evidence,
+            alternatives, and tradeoffs. When a domain profile exists, the
+            priorities start pre-tuned to your business context.
+          </p>
+
+          <div class="doc-meta">
+            <span>⏱️ About 2 minutes</span>
+
+            <span>🏗️ Step 2 of 3</span>
+
+            <span>⚖️ 8 criteria</span>
+          </div>
+
+          <div class="doc-note">
+            <span class="note-icon">💡</span>
+
+            <p>
+              A saved domain profile pre-tunes the priority sliders. You can
+              always override them — the sliders are suggestions, not lock-ins.
+            </p>
+          </div>
+
+          <h2>When to use it</h2>
+
+          <ul>
+            <li>Choosing the foundation for a new workload or platform.</li>
+            <li>Comparing messaging or integration patterns for a specific scenario.</li>
+            <li>Re-evaluating a choice when priorities shift (try the What-If tuning).</li>
+          </ul>
+
+          <h2>The five steps</h2>
+
+          <div class="doc-steps">
+            <div class="doc-step">
+              <h4>Select a workload scenario</h4>
+
+              <p>
+                Pick one of the 18 scenarios, e.g. E-Commerce Order Platform or
+                Event Streaming Platform. Each scenario carries realistic
+                requirements and quality guidance.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Review the priority sliders</h4>
+
+              <p>
+                Eight criteria — scalability, reliability, operational
+                simplicity, cost efficiency, latency, ordering, replay, and
+                compliance — start weighted from your domain profile. Adjust
+                them to reflect the decision at hand.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Generate the recommendation</h4>
+
+              <p>
+                Architect evaluates all ten architectures and ranks them. The
+                winner gets a score, a confidence level, and a plain-English
+                rationale.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Explore the tradeoffs</h4>
+
+              <p>
+                Compare alternatives side by side, review the tradeoff matrix,
+                and inspect the recommended architecture in the blueprint
+                diagram.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Export or hand off</h4>
+
+              <p>
+                Download the blueprint and ADR for your records, or jump
+                straight to Reviewer to score the design you actually plan to
+                run.
+              </p>
+            </div>
+          </div>
+
+          <h2>The ten reference architectures</h2>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Architecture</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Apache Kafka</td><td>Log-based streaming</td></tr>
+                <tr><td>Amazon Kinesis Data Streams</td><td>Log-based streaming</td></tr>
+                <tr><td>Google Cloud Pub/Sub</td><td>Managed pub/sub</td></tr>
+                <tr><td>Amazon SQS</td><td>Queueing</td></tr>
+                <tr><td>RabbitMQ</td><td>Queueing / broker</td></tr>
+                <tr><td>Amazon EventBridge</td><td>Event routing</td></tr>
+                <tr><td>Amazon API Gateway</td><td>API / event ingress</td></tr>
+                <tr><td>AWS Lambda</td><td>Serverless compute</td></tr>
+                <tr><td>AWS Elastic Container Service</td><td>Container compute</td></tr>
+                <tr><td>Red Hat OpenShift on AWS (ROSA)</td><td>Managed Kubernetes</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>The eight criteria</h2>
+
+          <ul>
+            <li><strong>Scalability</strong> — headroom for growth and peaks.</li>
+            <li><strong>Reliability</strong> — durability and uptime guarantees.</li>
+            <li><strong>Operational Simplicity</strong> — how easy it is to run.</li>
+            <li><strong>Cost Efficiency</strong> — operating cost behavior.</li>
+            <li><strong>Latency</strong> — end-to-end delay.</li>
+            <li><strong>Ordering</strong> — message ordering guarantees.</li>
+            <li><strong>Replay</strong> — re-processing past events.</li>
+            <li><strong>Compliance &amp; Governance</strong> — audit and regulatory fit.</li>
+          </ul>
+
+          <h2>Workflow tips</h2>
+
+          <ul>
+            <li>
+              <strong>Deep links.</strong> A scenario can be opened directly with
+              <code>?scenario=&lt;id&gt;</code>, and the recommendation links
+              into Reviewer with the chosen architecture pre-selected.
+            </li>
+
+            <li>
+              <strong>What-If tuning.</strong> Move a slider after generating a
+              result to see how the ranking shifts — great for "what if cost
+              matters more?" conversations.
+            </li>
+
+            <li>
+              <strong>Read the Q&amp;A.</strong> The built-in Q&amp;A explains
+              the tradeoffs behind each scenario in plain language.
+            </li>
+          </ul>
+
+          <div class="doc-note">
+            <span class="note-icon">🔗</span>
+
+            <p>
+              Architect hands off to Reviewer automatically: the "Review this
+              design" link opens Reviewer with the scenario and winning
+              architecture pre-loaded.
+            </p>
+          </div>
+
+          <div class="doc-next">
+            <p>
+              Next: 
+              <a href="reviewer.html">review a design with Reviewer →</a>
+            </p>
+          </div>
+
+          <a class="doc-back" href="index.html">← Back to all docs</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              Wahab <span class="logo-grad">Waypoint</span>
+            </div>
+
+            <div class="footer-tagline">Architecture intelligence for your business</div>
+
+            <div class="footer-sub-links">
+              <a href="../index.html">Product line</a>
+
+              <a href="index.html">Docs</a>
+
+              <a href="../about.html">About</a>
+            </div>
+          </div>
+
+          <!-- Docs -->
+          <div class="footer-section">
+            <div class="footer-title">Documentation</div>
+
+            <div class="footer-links">
+              <a href="domain-context-learner.html">
+                Learn your domain
+              </a>
+
+              <a href="architect.html"> Evaluate architectures </a>
+
+              <a href="reviewer.html"> Review a design </a>
+
+              <a href="example-ecommerce.html"> E-commerce example </a>
+
+              <a href="example-streaming.html"> Streaming example </a>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Crafted by Abdul Rafee Wahab </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>E-commerce example · Wahab Waypoint Docs</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../tools/architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../tools/architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../../tools/architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../tools/architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon.ico"
+    />
+
+    <meta
+      name="description"
+      content="A worked example: follow an online retailer through Wahab Waypoint — domain profile, architecture recommendation, and design review."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="../css/waypoint.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-mark"
+            src="../../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="../index.html">Home</a>
+
+          <a href="index.html">Docs</a>
+
+          <a href="../index.html#how">How it works</a>
+
+          <a href="../about.html">About</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <h1>
+        E-commerce order
+        <span class="grad-text">platform</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A worked example: an online retailer preparing for holiday peaks, taken
+        through all three products end to end.
+      </p>
+    </section>
+
+    <div class="container">
+      <article class="doc-page" aria-label="E-commerce example">
+        <div class="doc-prose">
+          <div class="doc-crumb">
+            <a href="index.html">Docs</a>
+
+            <span class="sep">/</span>
+
+            <a href="index.html">Examples</a>
+
+            <span class="sep">/</span>
+
+            <span class="current">E-commerce order platform</span>
+          </div>
+
+          <h1>E-commerce order platform</h1>
+
+          <p>
+            <strong>Meridian Retail</strong> is an online retailer. Black Friday
+            traffic peaks at 10× normal, checkout must survive order surges,
+            and the team wants to modernize the order pipeline that currently
+            processes everything through a single shared database and an
+            in-house queue.
+          </p>
+
+          <p>
+            The company is a classic case for the full Wahab Waypoint journey:
+            capture the domain, evaluate the right event backbone, and check
+            the existing design before committing.
+          </p>
+
+          <div class="doc-meta">
+            <span>🛒 E-Commerce &amp; Retail</span>
+
+            <span>🏷️ E-Commerce Order Platform</span>
+
+            <span>🎯 Holiday peaks</span>
+          </div>
+
+          <h2>Step 1 · Learn the domain</h2>
+
+          <p>In Domain Context Learner, Meridian captures:</p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Prompt</th>
+                  <th>Answer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Domain</td><td>E-Commerce &amp; Retail</td></tr>
+                <tr><td>Qualities that matter</td><td>Scalability, Resilience &amp; uptime, Cost control</td></tr>
+                <tr><td>Data volume</td><td>High</td></tr>
+                <tr><td>Real-time needs</td><td>High — order status and inventory must update live</td></tr>
+                <tr><td>Integration complexity</td><td>Complex — payments, inventory, fulfillment, loyalty</td></tr>
+                <tr><td>Sensitive data</td><td>Cardholder data (PCI)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Saving this profile pre-tunes Architect and Reviewer for a
+            business where <em>scalability</em>, <em>resilience</em>, and
+            <em>cost</em> lead the ranking — and where compliance must carry
+            real weight because cardholder data is involved.
+          </p>
+
+          <h2>Step 2 · Evaluate the architecture</h2>
+
+          <p>
+            In Architect, Meridian opens the <strong>E-Commerce Order
+            Platform</strong> scenario. The priority sliders arrive pre-tuned
+            from the profile: scalability, reliability, and cost efficiency
+            weighted high, with compliance raised for PCI.
+          </p>
+
+          <p>Architect evaluates all ten reference architectures. The conversation typically comes down to the event-broker patterns:</p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Architecture</th>
+                  <th>Why it ranks well here</th>
+                  <th>Watch out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Apache Kafka</td>
+                  <td>Ordering and replay, strong reliability, scales with peaks</td>
+                  <td>Operational overhead; needs care to run well</td>
+                </tr>
+                <tr>
+                  <td>Amazon EventBridge</td>
+                  <td>Simple event routing between many order-related services</td>
+                  <td>Less replay control than a log</td>
+                </tr>
+                <tr>
+                  <td>Amazon SQS</td>
+                  <td>Simple, reliable queueing for decoupling order steps</td>
+                  <td>Weak ordering guarantees outside FIFO</td>
+                </tr>
+                <tr>
+                  <td>RabbitMQ</td>
+                  <td>Familiar broker with flexible routing</td>
+                  <td>Operational tuning for 10× peak bursts</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            With Meridian's sliders, the event-log patterns (led by Apache
+            Kafka) tend to rise to the top: the combination of per-partition
+            ordering for order events, durable replay for reprocessing, and
+            reliability during peak traffic outweighs the added operational
+            simplicity of a managed queue.
+          </p>
+
+          <div class="doc-note">
+            <span class="note-icon">⚖️</span>
+
+            <p>
+              What-If tip: if Meridian later decides operational simplicity
+              matters more than replay, one slider move visibly reshuffles the
+              ranking — a useful artifact for the platform decision review.
+            </p>
+          </div>
+
+          <h2>Step 3 · Review the design you have</h2>
+
+          <p>
+            Before the migration, Meridian reviews the current stack in
+            Reviewer — a single monolith database feeding an in-house queue —
+            against the same scenario and domain-adjusted requirements. The
+            verdict is blunt:
+          </p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Finding</th>
+                  <th>Why</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Low fit on scalability</td><td>One shared database and one queue are the bottleneck at 10× peaks</td></tr>
+                <tr><td>Low fit on replay</td><td>No durable log to re-process order events</td></tr>
+                <tr><td>Low fit on ordering at scale</td><td>Single in-house queue cannot keep per-order ordering under load</td></tr>
+                <tr><td>Strength: compliance posture</td><td>Existing PCI controls map cleanly to the target design</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            The gaps map almost one-to-one onto the Architect recommendation,
+            which turns the review into a migration checklist: introduce a
+            durable, partitionable event backbone, split the shared database
+            behind it, and preserve the existing compliance controls.
+          </p>
+
+          <div class="doc-next">
+            <p>
+              Another angle on the same journey:
+              <a href="example-streaming.html">
+                the media event pipeline example →
+              </a>
+            </p>
+          </div>
+
+          <a class="doc-back" href="index.html">← Back to all docs</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              Wahab <span class="logo-grad">Waypoint</span>
+            </div>
+
+            <div class="footer-tagline">Architecture intelligence for your business</div>
+
+            <div class="footer-sub-links">
+              <a href="../index.html">Product line</a>
+
+              <a href="index.html">Docs</a>
+
+              <a href="../about.html">About</a>
+            </div>
+          </div>
+
+          <!-- Docs -->
+          <div class="footer-section">
+            <div class="footer-title">Documentation</div>
+
+            <div class="footer-links">
+              <a href="domain-context-learner.html">
+                Learn your domain
+              </a>
+
+              <a href="architect.html"> Evaluate architectures </a>
+
+              <a href="reviewer.html"> Review a design </a>
+
+              <a href="example-ecommerce.html"> E-commerce example </a>
+
+              <a href="example-streaming.html"> Streaming example </a>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Crafted by Abdul Rafee Wahab </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+  </body>
+</html>

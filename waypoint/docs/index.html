@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Documentation · Wahab Waypoint</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../tools/architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../tools/architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../../tools/architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../tools/architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon.ico"
+    />
+
+    <meta
+      name="description"
+      content="Documentation, how-to guides, and worked examples for Wahab Waypoint — Architect, Domain Context Learner, and Reviewer."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="../css/waypoint.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-mark"
+            src="../../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="../index.html">Home</a>
+
+          <a href="index.html">Docs</a>
+
+          <a href="../index.html#how">How it works</a>
+
+          <a href="../about.html">About</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <h1>
+        Wahab Waypoint
+        <span class="grad-text">documentation</span>.
+      </h1>
+
+      <p class="hero-subtitle">
+        How-to guides and worked examples for the whole product line — learn the
+        domain, evaluate architectures, and review what you run.
+      </p>
+    </section>
+
+    <div class="container">
+      <section class="doc-page" aria-label="Documentation">
+        <div class="section-head">
+          <span class="step-badge">Start here</span>
+
+          <h2>Get oriented</h2>
+
+          <p>
+            New to Wahab Waypoint? The overview explains the product line and
+            how the pieces fit together.
+          </p>
+        </div>
+
+        <div class="doc-grid tight">
+          <div class="doc-card">
+            <span class="doc-tag">Overview</span>
+
+            <div class="product-icon">🧭</div>
+
+            <h3>Wahab Waypoint at a glance</h3>
+
+            <p>
+              What the product line is, the shared domain profile, and how
+              Domain Context Learner, Architect, and Reviewer work as one
+              journey.
+            </p>
+
+            <a class="cta-btn" href="overview.html"> Read the overview → </a>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top: 56px">
+          <span class="step-badge">How-to guides</span>
+
+          <h2>Get productive</h2>
+
+          <p>
+            Step-by-step guides for each product, written for a first-time
+            user.
+          </p>
+        </div>
+
+        <div class="doc-grid">
+          <div class="doc-card">
+            <span class="doc-tag">Guide · Step 1</span>
+
+            <div class="product-icon">🧠</div>
+
+            <h3>Learn your domain</h3>
+
+            <p>
+              Capture the business domain, the qualities that matter, and the
+              shape of your data — the context every other decision builds on.
+            </p>
+
+            <a class="cta-btn" href="domain-context-learner.html">
+              Domain Context Learner →
+            </a>
+          </div>
+
+          <div class="doc-card">
+            <span class="doc-tag">Guide · Step 2</span>
+
+            <div class="product-icon">🏗️</div>
+
+            <h3>Evaluate architectures</h3>
+
+            <p>
+              Pick a workload, tune priorities, and get an evidence-based
+              recommendation with alternatives, tradeoffs, and blueprints.
+            </p>
+
+            <a class="cta-btn" href="architect.html"> Architect → </a>
+          </div>
+
+          <div class="doc-card">
+            <span class="doc-tag">Guide · Step 3</span>
+
+            <div class="product-icon">🔍</div>
+
+            <h3>Review a design</h3>
+
+            <p>
+              Score an existing or planned architecture against the same
+              workload requirements and see exactly where it falls short.
+            </p>
+
+            <a class="cta-btn" href="reviewer.html"> Reviewer → </a>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top: 56px">
+          <span class="step-badge">Worked examples</span>
+
+          <h2>See it end to end</h2>
+
+          <p>
+            Full walkthroughs that follow a real business problem through all
+            three products.
+          </p>
+        </div>
+
+        <div class="doc-grid">
+          <div class="doc-card">
+            <span class="doc-tag">Example · Retail</span>
+
+            <div class="product-icon">🛒</div>
+
+            <h3>E-commerce order platform</h3>
+
+            <p>
+              An online retailer preparing for holiday peaks: domain profile,
+              architecture recommendation, and a review of the legacy stack.
+            </p>
+
+            <a class="cta-btn" href="example-ecommerce.html"> Follow along → </a>
+          </div>
+
+          <div class="doc-card">
+            <span class="doc-tag">Example · Streaming</span>
+
+            <div class="product-icon">📡</div>
+
+            <h3>Media event pipeline</h3>
+
+            <p>
+              A streaming media business shipping a high-throughput event
+              pipeline — choosing between queue and log-first architectures.
+            </p>
+
+            <a class="cta-btn" href="example-streaming.html">
+              Follow along →
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              Wahab <span class="logo-grad">Waypoint</span>
+            </div>
+
+            <div class="footer-tagline">Architecture intelligence for your business</div>
+
+            <div class="footer-sub-links">
+              <a href="../index.html">Product line</a>
+
+              <a href="overview.html">Overview</a>
+
+              <a href="../about.html">About</a>
+            </div>
+          </div>
+
+          <!-- Docs -->
+          <div class="footer-section">
+            <div class="footer-title">Documentation</div>
+
+            <div class="footer-links">
+              <a href="domain-context-learner.html">
+                Learn your domain
+              </a>
+
+              <a href="architect.html"> Evaluate architectures </a>
+
+              <a href="reviewer.html"> Review a design </a>
+
+              <a href="example-ecommerce.html"> E-commerce example </a>
+
+              <a href="example-streaming.html"> Streaming example </a>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Crafted by Abdul Rafee Wahab </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+  </body>
+</html>

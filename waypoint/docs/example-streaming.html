@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Media event pipeline · Wahab Waypoint Docs</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../tools/architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../tools/architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../../tools/architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../tools/architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon.ico"
+    />
+
+    <meta
+      name="description"
+      content="A worked example: a streaming media business evaluates a high-throughput event pipeline with Wahab Waypoint — queue vs log-first architectures."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="../css/waypoint.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-mark"
+            src="../../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="../index.html">Home</a>
+
+          <a href="index.html">Docs</a>
+
+          <a href="../index.html#how">How it works</a>
+
+          <a href="../about.html">About</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <h1>
+        Media event
+        <span class="grad-text">pipeline</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A worked example: a streaming media business builds a high-throughput
+        event pipeline and weighs queue-first against log-first architectures.
+      </p>
+    </section>
+
+    <div class="container">
+      <article class="doc-page" aria-label="Streaming example">
+        <div class="doc-prose">
+          <div class="doc-crumb">
+            <a href="index.html">Docs</a>
+
+            <span class="sep">/</span>
+
+            <a href="index.html">Examples</a>
+
+            <span class="sep">/</span>
+
+            <span class="current">Media event pipeline</span>
+          </div>
+
+          <h1>Media event pipeline</h1>
+
+          <p>
+            <strong>WaveStream</strong> streams video to millions of viewers.
+            Every play, pause, and quality switch generates an event, and the
+            team is building a platform that turns those events into
+            real-time analytics, billing, and personalization. They already run
+            RabbitMQ for a handful of internal queues, but the new pipeline
+            needs to absorb far more volume with replay and strict ordering.
+          </p>
+
+          <div class="doc-meta">
+            <span>📡 Media &amp; Streaming</span>
+
+            <span>🏷️ Event Streaming Platform</span>
+
+            <span>🎯 Million-scale events/sec</span>
+          </div>
+
+          <h2>Step 1 · Learn the domain</h2>
+
+          <p>In Domain Context Learner, WaveStream captures:</p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Prompt</th>
+                  <th>Answer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Domain</td><td>Media &amp; Streaming</td></tr>
+                <tr><td>Qualities that matter</td><td>Scalability, Resilience &amp; uptime, Cost control, Time-to-market</td></tr>
+                <tr><td>Data volume</td><td>High — every play, pause, and quality switch</td></tr>
+                <tr><td>Real-time needs</td><td>High — analytics and personalization must react live</td></tr>
+                <tr><td>Integration complexity</td><td>Complex — analytics, billing, personalization, support</td></tr>
+                <tr><td>Sensitive data</td><td>Not sensitive — viewing telemetry, no PII required</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            The profile pushes Architect toward <em>scalability</em> and
+            <em>resilience</em> first, with cost efficiency ranked above
+            compliance — telemetry, not regulated data.
+          </p>
+
+          <h2>Step 2 · Evaluate the architecture</h2>
+
+          <p>
+            In Architect, WaveStream opens the <strong>Event Streaming
+            Platform</strong> scenario. With scalability and reliability
+            weighted highest, the race is between the log-first and
+            pub/sub-first patterns:
+          </p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Architecture</th>
+                  <th>Why it ranks well here</th>
+                  <th>Watch out</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Apache Kafka</td>
+                  <td>Log-based replay, per-partition ordering, massive throughput</td>
+                  <td>Operational complexity to host or manage well</td>
+                </tr>
+                <tr>
+                  <td>Amazon Kinesis Data Streams</td>
+                  <td>Managed log semantics with ordering and replay</td>
+                  <td>Cost at sustained very-high throughput</td>
+                </tr>
+                <tr>
+                  <td>Google Cloud Pub/Sub</td>
+                  <td>Fully managed pub/sub, at-least-once delivery</td>
+                  <td>Weaker ordering guarantees than a partitioned log</td>
+                </tr>
+                <tr>
+                  <td>Amazon EventBridge</td>
+                  <td>Simple routing and filtering between consumers</td>
+                  <td>Not built for replay-heavy, event-log workloads</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Because replay and ordering carry real weight, the log-first
+            patterns lead the ranking. The interesting decision is managed vs
+            self-hosted: if WaveStream's team can operate Kafka, its cost
+            profile wins at this scale; if not, Kinesis trades cost for
+            operational simplicity. That is exactly the tradeoff the What-If
+            sliders make visible in one move.
+          </p>
+
+          <div class="doc-note">
+            <span class="note-icon">⚖️</span>
+
+            <p>
+              The Q&amp;A panel spells out the log-vs-queue differences in
+              plain language — ordering and replay semantics are the two
+              dimensions that separate these architectures.
+            </p>
+          </div>
+
+          <h2>Step 3 · Review the design you have</h2>
+
+          <p>
+            WaveStream's current pipeline is built on RabbitMQ fan-out. Running
+            it through Reviewer against the same scenario exposes the gaps:
+          </p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Finding</th>
+                  <th>Why</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Low fit on replay</td><td>Messages are consumed and gone — no durable re-read</td></tr>
+                <tr><td>Low fit on ordering at scale</td><td>Broker-wide ordering collapses once consumers fan out</td></tr>
+                <tr><td>Low fit on throughput</td><td>Single-broker design needs heavy tuning at event-scale</td></tr>
+                <tr><td>Strength: operational simplicity</td><td>Well-understood broker, easy to run today</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            The verdict is a clean justification for the migration: keep the
+            RabbitMQ usage where queues genuinely fit, and stand up a
+            log-first event backbone for the analytics, billing, and
+            personalization consumers that need replay and ordering.
+          </p>
+
+          <div class="doc-next">
+            <p>
+              Want the full workflow before the examples?
+              <a href="overview.html">
+                Read the Wahab Waypoint overview →
+              </a>
+            </p>
+          </div>
+
+          <a class="doc-back" href="index.html">← Back to all docs</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              Wahab <span class="logo-grad">Waypoint</span>
+            </div>
+
+            <div class="footer-tagline">Architecture intelligence for your business</div>
+
+            <div class="footer-sub-links">
+              <a href="../index.html">Product line</a>
+
+              <a href="index.html">Docs</a>
+
+              <a href="../about.html">About</a>
+            </div>
+          </div>
+
+          <!-- Docs -->
+          <div class="footer-section">
+            <div class="footer-title">Documentation</div>
+
+            <div class="footer-links">
+              <a href="domain-context-learner.html">
+                Learn your domain
+              </a>
+
+              <a href="architect.html"> Evaluate architectures </a>
+
+              <a href="reviewer.html"> Review a design </a>
+
+              <a href="example-ecommerce.html"> E-commerce example </a>
+
+              <a href="example-streaming.html"> Streaming example </a>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Crafted by Abdul Rafee Wahab </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+  </body>
+</html>

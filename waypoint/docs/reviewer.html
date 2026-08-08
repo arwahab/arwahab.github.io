@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Review a design · Wahab Waypoint Docs</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../tools/architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../tools/architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../../tools/architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../tools/architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon.ico"
+    />
+
+    <meta
+      name="description"
+      content="How to review an architecture with Wahab Waypoint: Reviewer — score a design against domain-adjusted requirements and get actionable gaps."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="../css/waypoint.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-mark"
+            src="../../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="../index.html">Home</a>
+
+          <a href="index.html">Docs</a>
+
+          <a href="../index.html#how">How it works</a>
+
+          <a href="../about.html">About</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <h1>
+        Review a
+        <span class="grad-text">design</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A how-to guide for Wahab Waypoint: Reviewer — score an existing or
+        planned architecture against the requirements that actually matter.
+      </p>
+    </section>
+
+    <div class="container">
+      <article class="doc-page" aria-label="Reviewer guide">
+        <div class="doc-prose">
+          <div class="doc-crumb">
+            <a href="index.html">Docs</a>
+
+            <span class="sep">/</span>
+
+            <a href="index.html">Guides</a>
+
+            <span class="sep">/</span>
+
+            <span class="current">Reviewer</span>
+          </div>
+
+          <h1>Review a design</h1>
+
+          <p>
+            Reviewer answers a question Architect does not: <em>how well does
+            the architecture I actually have — or plan to build — fit this
+            workload?</em> It scores a chosen architecture against the same
+            domain-adjusted requirements and surfaces strengths, gaps, and
+            watch-outs.
+          </p>
+
+          <div class="doc-meta">
+            <span>⏱️ About 1 minute</span>
+
+            <span>🔍 Step 3 of 3</span>
+
+            <span>📊 Fit scored across 8 criteria</span>
+          </div>
+
+          <div class="doc-note">
+            <span class="note-icon">🔗</span>
+
+            <p>
+              The fastest way in is from Architect: the "Review this design"
+              link pre-loads the scenario and the winning architecture.
+            </p>
+          </div>
+
+          <h2>When to use it</h2>
+
+          <ul>
+            <li>Before committing to a design — validate it against real requirements.</li>
+            <li>Auditing an existing stack before a migration or upgrade.</li>
+            <li>Comparing two candidate designs side by side for the same workload.</li>
+          </ul>
+
+          <h2>The five steps</h2>
+
+          <div class="doc-steps">
+            <div class="doc-step">
+              <h4>Choose a workload scenario</h4>
+
+              <p>
+                Select one of the 18 scenarios, or arrive pre-loaded from an
+                Architect recommendation.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Select the architecture to review</h4>
+
+              <p>
+                Pick the design under review from the ten reference
+                architectures — the one you already run or plan to build.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Check the requirements</h4>
+
+              <p>
+                Review the requirements that will be scored. If a domain
+                profile exists, they are adjusted for your domain context —
+                the same adjustments Architect used.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Generate the review</h4>
+
+              <p>
+                Reviewer scores fit across all eight criteria and produces a
+                verdict with per-criterion scoring.
+              </p>
+            </div>
+
+            <div class="doc-step">
+              <h4>Read the gaps &amp; act</h4>
+
+              <p>
+                Review strengths, gaps, and watch-outs — the concrete changes
+                that would move the fit, and the risks to keep an eye on.
+              </p>
+            </div>
+          </div>
+
+          <h2>Reading the verdict</h2>
+
+          <ul>
+            <li>
+              <strong>Fit score.</strong> An overall measure of how well the
+              architecture matches the workload requirements.
+            </li>
+
+            <li>
+              <strong>Per-criterion scores.</strong> Where the design shines
+              and where it struggles, criterion by criterion.
+            </li>
+
+            <li>
+              <strong>Strengths.</strong> The reasons the fit is good — reuse
+              these in your design review write-up.
+            </li>
+
+            <li>
+              <strong>Gaps.</strong> The highest-impact mismatches and what
+              would close them.
+            </li>
+
+            <li>
+              <strong>Watch-outs.</strong> Operational or long-term risks worth
+              tracking even if the fit looks good.
+            </li>
+          </ul>
+
+          <div class="doc-note">
+            <span class="note-icon">💡</span>
+
+            <p>
+              Because Reviewer shares the domain context with Architect, the
+              two verdicts are consistent: you evaluate with the same weights
+              you review against.
+            </p>
+          </div>
+
+          <h2>Workflow tips</h2>
+
+          <ul>
+            <li>
+              <strong>Compare candidates.</strong> Run the same scenario twice
+              with different architectures and put the verdicts side by side.
+            </li>
+
+            <li>
+              <strong>Validate before you migrate.</strong> Review the current
+              stack first, then the target — the gap list doubles as a
+              migration checklist.
+            </li>
+
+            <li>
+              <strong>Pair with the domain profile.</strong> If requirements
+              look off, re-run Domain Context Learner — the review follows the
+              profile.
+            </li>
+          </ul>
+
+          <div class="doc-next">
+            <p>
+              Prefer to see it working? 
+              <a href="example-ecommerce.html">
+                Follow the e-commerce example end to end →
+              </a>
+            </p>
+          </div>
+
+          <a class="doc-back" href="index.html">← Back to all docs</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              Wahab <span class="logo-grad">Waypoint</span>
+            </div>
+
+            <div class="footer-tagline">Architecture intelligence for your business</div>
+
+            <div class="footer-sub-links">
+              <a href="../index.html">Product line</a>
+
+              <a href="index.html">Docs</a>
+
+              <a href="../about.html">About</a>
+            </div>
+          </div>
+
+          <!-- Docs -->
+          <div class="footer-section">
+            <div class="footer-title">Documentation</div>
+
+            <div class="footer-links">
+              <a href="domain-context-learner.html">
+                Learn your domain
+              </a>
+
+              <a href="architect.html"> Evaluate architectures </a>
+
+              <a href="reviewer.html"> Review a design </a>
+
+              <a href="example-ecommerce.html"> E-commerce example </a>
+
+              <a href="example-streaming.html"> Streaming example </a>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Crafted by Abdul Rafee Wahab </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+  </body>
+</html>
