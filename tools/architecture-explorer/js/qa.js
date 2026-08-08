@@ -1456,7 +1456,7 @@ const qaTopics = [
       "How this tool helps:",
       "- Select a scenario above to see the recommended architecture",
       "- Tune the What-If weights to reflect your priorities",
-      "- Compare results in the Tradeoff Matrix, Landscape, and Blueprint panels",
+      "- Compare results in the Tradeoff Matrix and Blueprint panels",
       "Quick heuristics:",
       "- Event streaming with replay: Apache Kafka / Amazon Kinesis",
       "- Reliable background jobs / serverless: Amazon SQS / AWS Lambda",

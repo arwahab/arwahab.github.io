@@ -28,7 +28,6 @@
   --point-bg: rgba(96, 165, 250, 0.2);
   --node-bg: rgba(96, 165, 250, 0.15);
   --node-border: #60a5fa88;
-  --legend-bg: rgba(2, 6, 23, 0.6);
   --plain-bg: rgba(139, 92, 246, 0.12);
   --plain-text: #d8d8e8;
   --arrow-color: #93c5fd;
@@ -78,7 +77,6 @@
   --point-bg: rgba(37, 99, 235, 0.15);
   --node-bg: rgba(37, 99, 235, 0.1);
   --node-border: #60a5fa99;
-  --legend-bg: rgba(255, 255, 255, 0.85);
   --plain-bg: rgba(139, 92, 246, 0.1);
   --plain-text: #4c1d95;
   --arrow-color: #2563eb;
@@ -848,91 +846,6 @@ a.home-link:hover {
   color: var(--score-red);
 }
 
-/* =========================================
-   LANDSCAPE
-========================================= */
-
-#landscapeContainer {
-  margin-top: 20px;
-}
-
-.landscape {
-  position: relative;
-  height: 400px;
-  width: 100%;
-  border-radius: 16px;
-  border: 1px solid var(--glass-border);
-  background: var(--card-bg);
-  overflow: hidden;
-}
-
-.landscape-axis-x {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--text-2);
-}
-
-.landscape-axis-y {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%) rotate(-90deg);
-  color: var(--text-2);
-}
-
-.landscape-point {
-  position: absolute;
-  transform: translate(-50%, 50%);
-  padding: 8px 14px;
-  border-radius: 16px;
-  background: var(--point-bg);
-  border: 1px solid #60a5fa;
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--text);
-  white-space: nowrap;
-}
-
-.landscape-winner {
-  background: linear-gradient(90deg, var(--accent-blue), var(--accent-violet));
-  border-color: #c084fc;
-  box-shadow: 0 0 24px rgba(139, 92, 246, 0.5);
-  color: white;
-}
-
-.landscape-legend {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 14px;
-  padding: 8px 12px;
-  border-radius: 12px;
-  background: var(--legend-bg);
-  color: var(--text-2);
-  font-size: 12px;
-  font-weight: 600;
-  width: max-content;
-}
-
-.legend-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.legend-winner {
-  background: var(--accent-violet);
-}
-
-.legend-alt {
-  background: rgba(96, 165, 250, 0.5);
-  border: 1px solid #60a5fa;
-}
 
 /* =========================================
    DIAGRAM
@@ -1647,7 +1560,6 @@ html {
 
 #comparisonContainer > p,
 #tradeoffMatrix > p,
-#landscapeContainer > p,
 #diagramContainer > p,
 #securityContent > p {
   margin: 14px 0 0;
@@ -2273,22 +2185,6 @@ a.pj-step:hover {
   .qa-settings-row input,
   #adrOutput {
     font-size: 16px;
-  }
-
-  .landscape {
-    height: 340px;
-    min-width: 480px;
-  }
-
-  #landscapeContainer {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-  }
-
-  .landscape-legend {
-    width: 100%;
-    max-width: 100%;
   }
 
   .toast-container {

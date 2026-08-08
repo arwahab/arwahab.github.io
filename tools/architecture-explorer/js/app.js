@@ -230,7 +230,6 @@ function renderResults(recommendation) {
   updateMetrics(recommendation.winner);
   updateComparison(recommendation.ranking);
   updateTradeoffMatrix(recommendation.ranking);
-  updateLandscape(recommendation.ranking);
 }
 
 function clearResults() {
@@ -287,12 +286,6 @@ function clearResults() {
   if (tradeoff) {
     tradeoff.innerHTML =
       '<p class="muted">Select a workload to analyze tradeoffs.</p>';
-  }
-  const landscape = document.getElementById("landscapeContainer");
-
-  if (landscape) {
-    landscape.innerHTML =
-      '<p class="muted">Select a workload to visualize architecture positioning.</p>';
   }
   const diagramTitle = document.getElementById("diagramTitle");
   const diagram = document.getElementById("diagramContainer");
@@ -670,136 +663,6 @@ ${value}
 
 `;
   container.innerHTML = html;
-}
-/*
-=====================================
- Architecture Landscape
-=====================================
-*/
-
-function updateLandscape(results) {
-  const container = document.getElementById("landscapeContainer");
-
-  if (!container || !results) {
-    return;
-  }
-  container.innerHTML = `
-    <div class="landscape-legend">
-
-        <span class="legend-dot legend-winner"></span>
-        Recommended
-
-        <span class="legend-dot legend-alt"></span>
-        Alternative
-
-    </div>
-
-    <div class="landscape">
-
-        <div class="landscape-axis-x">
-
-        Operational Simplicity →
-
-        </div>
-
-        <div class="landscape-axis-y">
-
-        Scalability →
-
-        </div>
-
-    </div>
-    `;
-  const chart = container.querySelector(".landscape");
-  const plotPadding = window.innerWidth < 640 ? 56 : 90;
-  const chartBox = chart.getBoundingClientRect();
-  const usableWidth = Math.max(1, chartBox.width - plotPadding * 2);
-  const usableHeight = Math.max(1, chartBox.height - plotPadding * 2);
-
-  results.forEach((architecture, index) => {
-    const point = document.createElement("div");
-    point.className =
-      "landscape-point" + (index === 0 ? " landscape-winner" : "");
-    point.innerHTML = (index === 0 ? "★ " : "") + architecture.name;
-    point.style.left =
-      plotPadding + (architecture.scores.simplicity / 100) * usableWidth + "px";
-    point.style.bottom =
-      plotPadding +
-      (architecture.scores.scalability / 100) * usableHeight +
-      "px";
-    chart.appendChild(point);
-  });
-  resolveLandscapeCollisions(
-    chart,
-    chart.querySelectorAll(".landscape-point"),
-    plotPadding,
-  );
-}
-
-function resolveLandscapeCollisions(chart, points, padding) {
-  const gap = 10;
-  const chartWidth = chart.clientWidth;
-  const chartHeight = chart.clientHeight;
-
-  for (let iteration = 0; iteration < 12; iteration++) {
-    let moved = false;
-
-    for (let i = 0; i < points.length; i++) {
-      for (let j = i + 1; j < points.length; j++) {
-        const a = points[i].getBoundingClientRect();
-        const b = points[j].getBoundingClientRect();
-        const overlapX = Math.min(a.right, b.right) - Math.max(a.left, b.left);
-        const overlapY = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
-
-        if (overlapX > -gap && overlapY > -gap) {
-          moved = true;
-
-          if (overlapX < overlapY) {
-            const direction = a.left < b.left ? 1 : -1;
-            const left =
-              parseFloat(points[j].style.left) +
-              direction * (Math.abs(overlapX) + gap);
-            const width = b.width;
-            points[j].style.left =
-              Math.max(padding, Math.min(chartWidth - padding - width, left)) +
-              "px";
-          } else {
-            const direction = a.top < b.top ? -1 : 1;
-            const bottom =
-              parseFloat(points[j].style.bottom) +
-              direction * (Math.abs(overlapY) + gap);
-            const height = b.height;
-            points[j].style.bottom =
-              Math.max(
-                padding,
-                Math.min(chartHeight - padding - height, bottom),
-              ) + "px";
-          }
-        }
-      }
-    }
-
-    if (!moved) {
-      break;
-    }
-  }
-
-  for (const point of points) {
-    const rect = point.getBoundingClientRect();
-    const left = Math.max(
-      padding,
-      Math.min(chartWidth - padding - rect.width, parseFloat(point.style.left)),
-    );
-    const bottom = Math.max(
-      padding,
-      Math.min(
-        chartHeight - padding - rect.height,
-        parseFloat(point.style.bottom),
-      ),
-    );
-    point.style.left = left + "px";
-    point.style.bottom = bottom + "px";
-  }
 }
 /*
 =====================================
