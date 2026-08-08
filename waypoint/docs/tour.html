@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Narrated tour · Wahab Waypoint Docs</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../tools/architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../tools/architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../../tools/architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../tools/architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon.ico"
+    />
+
+    <meta
+      name="description"
+      content="A narrated tour of Wahab Waypoint — the product line, the shared domain profile, and a worked example, spoken aloud in your browser."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="../css/waypoint.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-mark"
+            src="../../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="../index.html">Home</a>
+
+          <a href="index.html">Docs</a>
+
+          <a href="../index.html#how">How it works</a>
+
+          <a href="../about.html">About</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="tour-stage" aria-label="Narrated tour">
+      <div class="doc-crumb" style="text-align: center">
+        <a href="index.html">Docs</a>
+
+        <span class="sep">/</span>
+
+        <span class="current">Narrated tour</span>
+      </div>
+
+      <div class="tour-frame">
+        <div class="tour-progress" id="tourProgress"></div>
+
+        <div class="tour-topbar">
+          <span class="tour-counter" id="tourCounter">Slide 1 of 12</span>
+
+          <div class="product-journey" id="tourJourney" style="margin: 0"></div>
+        </div>
+
+        <div class="tour-slide" id="tourSlide">
+          <div class="tour-icon" id="tourIcon">🧭</div>
+
+          <h2 id="tourTitle">Wahab Waypoint</h2>
+
+          <p class="tour-sub" id="tourSub"></p>
+
+          <ul class="tour-bullets" id="tourBullets"></ul>
+        </div>
+
+        <div class="tour-caption" id="tourCaption">
+          <span class="cap-label">Narration</span>
+
+          <span id="tourCaptionText"></span>
+        </div>
+
+        <div class="tour-controls">
+          <button class="tour-btn" id="btnReplay" title="Replay this slide">
+            ↺ Replay
+          </button>
+
+          <button class="tour-btn" id="btnPrev" title="Previous slide">
+            ←
+          </button>
+
+          <button class="tour-btn primary" id="btnPlay">
+            ▶ Play narrated tour
+          </button>
+
+          <button class="tour-btn" id="btnNext" title="Next slide">
+            →
+          </button>
+
+          <button class="tour-btn" id="btnMute">🔊 Voice on</button>
+        </div>
+
+        <div class="tour-dots" id="tourDots"></div>
+
+        <p class="tour-hint">
+          Tip: press Space to play or pause, and ← → to skip between slides.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              Wahab <span class="logo-grad">Waypoint</span>
+            </div>
+
+            <div class="footer-tagline">Architecture intelligence for your business</div>
+
+            <div class="footer-sub-links">
+              <a href="../index.html">Product line</a>
+
+              <a href="index.html">Docs</a>
+
+              <a href="../about.html">About</a>
+            </div>
+          </div>
+
+          <!-- Docs -->
+          <div class="footer-section">
+            <div class="footer-title">Documentation</div>
+
+            <div class="footer-links">
+              <a href="tour.html"> Watch the narrated tour </a>
+
+              <a href="domain-context-learner.html">
+                Learn your domain
+              </a>
+
+              <a href="architect.html"> Evaluate architectures </a>
+
+              <a href="reviewer.html"> Review a design </a>
+
+              <a href="example-ecommerce.html"> E-commerce example </a>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Crafted by Abdul Rafee Wahab </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+
+    <script>
+      const SLIDES = [
+        {
+          icon: "🧭",
+          title: "Wahab Waypoint",
+          sub: "Architecture intelligence for your business",
+          bullets: [
+            "Three products that work together",
+            "Understand your domain, choose an architecture, review what you run",
+            "Runs entirely in your browser",
+          ],
+          journey: 0,
+          narration:
+            "Welcome to Wahab Waypoint — architecture intelligence for your business. In the next few minutes, I'll walk you through the three products that make up the line, how they share a single thread of business context, and a real example that ties it all together.",
+        },
+        {
+          icon: "🎯",
+          title: "One question, three angles",
+          sub: "Which architecture should I run?",
+          bullets: [
+            "What does my business actually care about?",
+            "Which architecture fits this workload best?",
+            "How well does the design I have measure up?",
+          ],
+          journey: 0,
+          narration:
+            "Every architecture decision starts from one question: which architecture should I run? Three products answer it from three angles. First, what does the business actually care about? Second, which architecture fits the workload best? And third — how well does the design I already have measure up?",
+        },
+        {
+          icon: "🧩",
+          title: "The product line",
+          sub: "Three tools, one journey",
+          bullets: ["Domain Context Learner", "Architect", "Reviewer"],
+          journey: 0,
+          narration:
+            "The three products are Domain Context Learner, Architect, and Reviewer. They are designed to be used in sequence, as a single journey — but each one is perfectly useful on its own.",
+        },
+        {
+          icon: "🔗",
+          title: "One shared context",
+          sub: "The domain profile connects them",
+          bullets: [
+            "Learn your domain once",
+            "Architect starts pre-tuned to your business",
+            "Reviewer scores with the same context",
+          ],
+          journey: 0,
+          narration:
+            "What connects them is a shared domain profile. You learn your domain once, and that context flows everywhere. Architect starts pre-tuned to your business, and Reviewer scores your designs against exactly the same requirements. Nothing is retyped, nothing is re-asked.",
+        },
+        {
+          icon: "🧠",
+          title: "Product one · Domain Context Learner",
+          sub: "Understand the business before the architecture",
+          bullets: [
+            "12 business domains",
+            "Rank the qualities that matter most",
+            "Describe your data in four questions",
+          ],
+          journey: 1,
+          narration:
+            "Start with Domain Context Learner. In about a minute, you choose your business domain from twelve options, rank the qualities that matter most — cost, resilience, compliance, scalability — and answer four quick questions about your data. The result is a reusable domain profile.",
+        },
+        {
+          icon: "🏗️",
+          title: "Product two · Architect",
+          sub: "Evidence-based architecture recommendations",
+          bullets: [
+            "18 workload scenarios",
+            "10 reference architectures",
+            "8 evaluation criteria, tuned to your domain",
+          ],
+          journey: 2,
+          narration:
+            "Next is Architect. Pick one of eighteen workload scenarios, from e-commerce order platforms to event streaming. Architect evaluates ten reference architectures against eight criteria — and because it knows your domain, the priority sliders start exactly where your business would put them. You get a ranked winner, alternatives, tradeoffs, and a blueprint.",
+        },
+        {
+          icon: "🔍",
+          title: "Product three · Reviewer",
+          sub: "Score the design you actually run",
+          bullets: [
+            "Same domain-adjusted requirements",
+            "Fit scored across 8 criteria",
+            "Strengths, gaps, and watch-outs",
+          ],
+          journey: 3,
+          narration:
+            "Finally, Reviewer. Score the architecture you already have, or the one you plan to build, against the same domain-adjusted requirements. You get a fit score, a per-criterion breakdown, the strengths — and the gaps that matter most, ready to act on.",
+        },
+        {
+          icon: "🛒",
+          title: "Putting it together",
+          sub: "A worked example — Meridian Retail",
+          bullets: [
+            "Online retailer, holiday peaks",
+            "10× traffic during Black Friday",
+            "Modernizing its order pipeline",
+          ],
+          journey: 0,
+          narration:
+            "Let's put it together with a real example. Meet Meridian Retail — an online store whose traffic spikes tenfold on Black Friday. They want to modernize the order pipeline that currently runs on a shared database and an in-house queue.",
+        },
+        {
+          icon: "🧠",
+          title: "Example · learn the domain",
+          sub: "Meridian's profile",
+          bullets: [
+            "E-Commerce & Retail",
+            "Scalability, resilience, cost control",
+            "High volume, real time, cardholder data",
+          ],
+          journey: 1,
+          narration:
+            "In Domain Context Learner, Meridian picks E-Commerce and Retail, ranks scalability, resilience, and cost control, and flags high volume, real-time needs, and cardholder data. That profile now tunes every decision that follows.",
+        },
+        {
+          icon: "🏗️",
+          title: "Example · evaluate",
+          sub: "E-Commerce Order Platform",
+          bullets: [
+            "Log-first patterns lead the ranking",
+            "Ordering and replay win for order events",
+            "Kafka edges out the managed queues",
+          ],
+          journey: 2,
+          narration:
+            "In Architect, Meridian opens the E-Commerce Order Platform scenario. Because ordering and replay matter for order events, the log-first patterns lead the ranking — Apache Kafka edges out the managed queues — while the What-If sliders make the tradeoffs visible in one move.",
+        },
+        {
+          icon: "🔍",
+          title: "Example · review",
+          sub: "The verdict on the current stack",
+          bullets: [
+            "Low fit on scalability at 10× peaks",
+            "No durable replay",
+            "Gaps become the migration checklist",
+          ],
+          journey: 3,
+          narration:
+            "And in Reviewer, Meridian runs the current stack — one shared database and one queue — against the same requirements. The fit is low on scalability and replay, and those gaps map one to one onto the migration checklist.",
+        },
+        {
+          icon: "🚀",
+          title: "Start your own journey",
+          sub: "Runs entirely in your browser",
+          bullets: [
+            "No account, no server, no uploads",
+            "Learn your domain first",
+            "Then open Architect and Reviewer",
+          ],
+          journey: 0,
+          narration:
+            "Everything runs in your browser — no account, no server, no uploads. Start your own journey by learning your domain, then open Architect and Reviewer. Thank you for watching.",
+        },
+      ];
+
+      const speech = window.speechSynthesis;
+
+      const state = {
+        index: 0,
+        playing: false,
+        muted: false,
+        timers: [],
+      };
+
+      const $ = (id) => document.getElementById(id);
+
+      function clearTimers() {
+        state.timers.forEach(clearTimeout);
+        state.timers = [];
+      }
+
+      function estimateMs(text) {
+        const words = (text.match(/\S+/g) || []).length;
+        return words * 420 + 1400;
+      }
+
+      function pickVoice() {
+        const voices = speech.getVoices();
+        const en = voices.filter((v) => /^en[-_]/i.test(v.lang));
+        return (
+          en.find((v) => /Google US English|Natural|Samantha|Alex/i.test(v.name)) ||
+          en.find((v) => /^en[-_]?US/i.test(v.lang)) ||
+          en[0] ||
+          null
+        );
+      }
+
+      function buildJourney(mark) {
+        const steps = ["Learn the domain", "Architect", "Review"];
+
+        return steps
+          .map((name, i) => {
+            const n = i + 1;
+            let cls = "pj-step";
+
+            if (mark === n) {
+              cls += " is-current";
+            } else if (mark !== 0 && n < mark) {
+              cls += " is-done";
+            }
+            return (
+              '<span class="' +
+              cls +
+              '"><span class="pj-num">' +
+              n +
+              "</span>" +
+              name +
+              "</span>"
+            );
+          })
+          .join('<span class="pj-arrow">→</span>');
+      }
+
+      function render() {
+        const slide = SLIDES[state.index];
+
+        $("tourIcon").textContent = slide.icon;
+        $("tourTitle").textContent = slide.title;
+        $("tourSub").textContent = slide.sub;
+        $("tourBullets").innerHTML = slide.bullets
+          .map((b) => "<li>" + b + "</li>")
+          .join("");
+        $("tourCaptionText").textContent = slide.narration;
+        $("tourCounter").textContent =
+          "Slide " + (state.index + 1) + " of " + SLIDES.length;
+        $("tourProgress").style.width =
+          ((state.index + 1) / SLIDES.length) * 100 + "%";
+
+        const journey = $("tourJourney");
+
+        if (slide.journey !== undefined && slide.journey !== null) {
+          journey.innerHTML = buildJourney(slide.journey);
+          journey.hidden = false;
+        } else {
+          journey.hidden = true;
+        }
+
+        const dots = $("tourDots");
+        dots.innerHTML = SLIDES.map(
+          (_, i) =>
+            '<button class="tour-dot' +
+            (i === state.index ? " active" : "") +
+            '" data-i="' +
+            i +
+            '" aria-label="Go to slide ' +
+            (i + 1) +
+            '"></button>',
+        ).join("");
+        dots.querySelectorAll("button").forEach((b) =>
+          b.addEventListener("click", () => goTo(+b.dataset.i)),
+        );
+
+        const caption = $("tourCaption");
+        caption.style.animation = "none";
+        void caption.offsetWidth;
+        caption.style.animation = "about-fade-up 0.5s ease both";
+      }
+
+      function speakSlide() {
+        clearTimers();
+        speech.cancel();
+
+        const slide = SLIDES[state.index];
+        const ms = estimateMs(slide.narration);
+
+        if (state.muted) {
+          state.timers.push(setTimeout(advance, ms));
+          return;
+        }
+
+        const utterance = new SpeechSynthesisUtterance(slide.narration);
+        utterance.rate = 0.95;
+        utterance.pitch = 1;
+
+        const voice = pickVoice();
+
+        if (voice) {
+          utterance.voice = voice;
+        }
+        utterance.onend = () => {
+          state.timers.push(setTimeout(advance, 800));
+        };
+        speech.speak(utterance);
+
+        state.timers.push(setTimeout(advance, ms));
+      }
+
+      function advance() {
+        clearTimers();
+
+        if (!state.playing) {
+          return;
+        }
+        goTo(state.index + 1);
+      }
+
+      function goTo(i) {
+        if (i < 0) {
+          i = 0;
+        }
+
+        if (i > SLIDES.length - 1) {
+          state.playing = false;
+          speech.cancel();
+          updatePlay();
+          return;
+        }
+        state.index = i;
+        render();
+
+        if (state.playing) {
+          speakSlide();
+        }
+      }
+
+      function togglePlay() {
+        if (state.playing) {
+          state.playing = false;
+          clearTimers();
+          speech.cancel();
+        } else {
+          state.playing = true;
+
+          if (state.index >= SLIDES.length - 1) {
+            state.index = 0;
+          }
+          render();
+          speakSlide();
+        }
+        updatePlay();
+      }
+
+      function toggleMute() {
+        state.muted = !state.muted;
+
+        if (state.playing) {
+          speakSlide();
+        }
+        updateMute();
+      }
+
+      function updatePlay() {
+        $("btnPlay").textContent = state.playing ? "⏸ Pause" : "▶ Play narrated tour";
+      }
+
+      function updateMute() {
+        $("btnMute").textContent = state.muted ? "🔇 Voice off" : "🔊 Voice on";
+      }
+
+      $("btnPlay").addEventListener("click", togglePlay);
+      $("btnMute").addEventListener("click", toggleMute);
+      $("btnPrev").addEventListener("click", () => goTo(state.index - 1));
+      $("btnNext").addEventListener("click", () => goTo(state.index + 1));
+      $("btnReplay").addEventListener("click", () => goTo(state.index));
+
+      document.addEventListener("keydown", (event) => {
+        if (event.code === "Space") {
+          if (event.target.tagName === "BUTTON") {
+            return;
+          }
+          event.preventDefault();
+          togglePlay();
+        } else if (event.key === "ArrowLeft") {
+          goTo(state.index - 1);
+        } else if (event.key === "ArrowRight") {
+          goTo(state.index + 1);
+        }
+      });
+
+      render();
+      updatePlay();
+      updateMute();
+    </script>
+  </body>
+</html>
