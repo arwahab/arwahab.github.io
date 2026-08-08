@@ -394,7 +394,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
@@ -487,7 +487,7 @@
 }
 
 .doc-card p {
-  margin-top: 10px;
+  margin: 10px 0 26px;
   color: var(--text-2);
   font-size: 14px;
   line-height: 1.65;
@@ -496,7 +496,10 @@
 .doc-card .cta-btn {
   align-self: flex-start;
   margin-top: auto;
-  padding-top: 12px;
+}
+
+.doc-card.centered .cta-btn {
+  align-self: center;
 }
 
 .doc-tag {
@@ -918,7 +921,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
   padding: 0 26px 18px;
 }

@@ -1915,7 +1915,7 @@ a.pj-step:hover {
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .footer-links a {
