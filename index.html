@@ -64,37 +64,25 @@
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
 
-    <link
-      href="tools/architecture-explorer/css/architecture-explorer.css"
-      rel="stylesheet"
-    />
-    <link href="waypoint/css/waypoint.css" rel="stylesheet" />
-    <link href="assets/css/landing.css" rel="stylesheet" />
+    <link href="assets/css/home.css" rel="stylesheet" />
   </head>
 
   <body>
-    <header class="app-header">
-      <nav class="app-bar" aria-label="Primary">
-        <a class="brand" href="index.html">
-          <img
-            class="brand-mark"
-            src="assets/img/wahab-waypoint.svg"
-            alt="Abdul Rafee Wahab"
-          />
+    <header class="site-head">
+      <div class="site-bar">
+        <a class="wordmark" href="index.html">Abdul Rafee <em>Wahab.</em></a>
 
-          <span class="brand-name">Abdul Rafee Wahab</span>
-        </a>
-
-        <div class="app-nav">
+        <nav class="app-nav" aria-label="Primary">
           <a href="#top">Home</a>
 
           <a href="#about">About</a>
@@ -102,402 +90,402 @@
           <a href="#expertise">Expertise</a>
 
           <a href="waypoint/index.html">Wahab Waypoint</a>
-        </div>
+        </nav>
 
-        <div class="app-actions">
-          <a
-            class="social-icon"
-            href="https://www.linkedin.com/in/arwahab"
-            aria-label="Read more about Abdul Rafee Wahab's career."
-            target="_blank"
-            ><i class="bx bxl-linkedin"></i
-          ></a>
-
-          <a
-            class="social-icon"
-            href="https://www.github.com/arwahab"
-            aria-label="See some project code Abdul has been building."
-            target="_blank"
-            ><i class="bx bxl-github"></i
-          ></a>
-
-          <a
-            class="social-icon"
-            href="https://abdulrwahab.medium.com"
-            aria-label="Read publications written by Abdul."
-            target="_blank"
-            ><i class="bx bxl-medium"></i
-          ></a>
-
-          <a
-            class="social-icon"
-            href="mailto:arw9511@gmail.com"
-            aria-label="Send an e-mail to Abdul Rafee Wahab."
-            target="_blank"
-            ><i class="bx bxl-google"></i
-          ></a>
-
-          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
-            Light mode
-          </button>
-        </div>
-      </nav>
+        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">
+          Light mode
+        </button>
+      </div>
     </header>
 
-    <section class="hero" id="top" aria-label="Introduction">
-      <span class="hero-eyebrow">Product-oriented Tech Leader · Engineer · Architect</span>
-
-      <h1>Abdul Rafee Wahab</h1>
-
-      <p class="hero-type">
-        I'm a <span class="typing"></span>
-      </p>
-
-      <p class="hero-subtitle">
-        I build software and lead engineering teams that turn difficult
-        business problems into great products — and I'm the creator of
-        Wahab Waypoint, architecture intelligence tools for your business.
-      </p>
-
-      <div class="hero-actions">
-        <a class="cta-btn" href="waypoint/index.html">
-          Explore Wahab Waypoint →
-        </a>
-
-        <a class="header-btn" href="#about">More about me</a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="stat">
-          <strong>3</strong>
-
-          <span>Products</span>
-        </div>
-
-        <div class="stat">
-          <strong>18</strong>
-
-          <span>Workloads</span>
-        </div>
-
-        <div class="stat">
-          <strong>10</strong>
-
-          <span>Architectures</span>
-        </div>
-
-        <div class="stat">
-          <strong>8</strong>
-
-          <span>Evaluation Criteria</span>
-        </div>
-      </div>
-    </section>
-
-    <div class="container">
-      <section id="about" class="landing-section about" aria-label="About me">
-        <div class="section-head">
-          <span class="step-badge">About</span>
-
-          <h2>Tech leader. Engineer. Problem solver.</h2>
-
-          <p class="lead">
-            A passion for using technology to solve business problems — and
-            for leading effective, purpose-driven engineering teams.
+    <main>
+      <section class="hero" id="top" aria-label="Introduction">
+        <div class="hero-inner">
+          <p class="hero-eyebrow">
+            Tech Leader · Software Engineer · Architect
           </p>
-        </div>
 
-        <div class="about-card">
-          <div class="about-photo-wrap">
-            <img
-              class="about-photo"
-              src="assets/img/abdul_r_wahab_square.webp"
-              alt="Abdul Rafee Wahab"
-            />
+          <h1>
+            Abdul Rafee <em>Wahab</em><span class="accent-dot">.</span>
+          </h1>
+
+          <p class="hero-type">I'm a <span class="typing"></span></p>
+
+          <p class="hero-subtitle">
+            I build software and lead engineering teams that turn difficult
+            business problems into great products — and I'm the creator of
+            Wahab Waypoint, architecture intelligence tools for your business.
+          </p>
+
+          <div class="hero-actions">
+            <a class="act-link" href="waypoint/index.html">
+              Explore Wahab Waypoint <i class="ri-arrow-right-line"></i>
+            </a>
+
+            <a class="act-link act-secondary" href="#about">
+              More about me
+            </a>
           </div>
 
-          <div class="about-content">
-            <h2>Abdul Rafee Wahab</h2>
+          <div class="social-row">
+            <a href="https://www.linkedin.com/in/arwahab" target="_blank">
+              <i class="bx bxl-linkedin"></i> LinkedIn
+            </a>
 
-            <p class="about-role">
-              Tech Leader · Software Engineer · Architect
-            </p>
+            <a href="https://www.github.com/arwahab" target="_blank">
+              <i class="bx bxl-github"></i> GitHub
+            </a>
 
-            <div class="about-bio">
-              <p>
-                I'm a Tech Leader, Software Engineer, and Architect. I
-                currently lead the Cloud Analytic Data Strategy group at a
-                Fortune 50 company. Problem solver both at heart and by
-                choice.
+            <a href="https://abdulrwahab.medium.com" target="_blank">
+              <i class="bx bxl-medium"></i> Medium
+            </a>
+
+            <a href="mailto:arw9511@gmail.com" target="_blank">
+              <i class="bx bxl-google"></i> Email
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="about" class="landing-section about" aria-label="About me">
+        <div class="hero-inner">
+          <header class="section-head">
+            <p class="kicker"><span>01</span> About</p>
+          </header>
+
+          <div class="about-grid">
+            <figure class="about-figure">
+              <div class="photo-frame">
+                <img
+                  src="assets/img/abdul_r_wahab_square.webp"
+                  alt="Abdul Rafee Wahab"
+                />
+              </div>
+            </figure>
+
+            <div class="about-copy">
+              <h3>Abdul Rafee Wahab</h3>
+
+              <p class="about-role">
+                Tech Leader · Software Engineer · Architect
               </p>
 
-              <p>
-                My passion is using technologies to solve business problems,
-                as well as developing and leading effective & purpose-driven
-                engineering teams.
-              </p>
+              <div class="about-bio">
+                <p>
+                  I'm a Tech Leader, Software Engineer, and Architect. I
+                  currently lead the Cloud Analytic Data Strategy group at a
+                  Fortune 50 company. Problem solver both at heart and by
+                  choice.
+                </p>
 
-              <p>
-                When I am not doing that, I write How-to tutorials, and
-                dabble around with baking recipes.
-              </p>
+                <p>
+                  My passion is using technologies to solve business problems,
+                  as well as developing and leading effective & purpose-driven
+                  engineering teams.
+                </p>
 
-              <p>
-                Explore my product line —
-                <a href="waypoint/index.html"><b>Wahab Waypoint</b></a
-                >, architecture intelligence tools built around your business
-                domain.
-              </p>
-            </div>
+                <p>
+                  When I am not doing that, I write How-to tutorials, and
+                  dabble around with baking recipes.
+                </p>
 
-            <div class="connect-row">
-              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
-                LinkedIn
-              </a>
+                <p>
+                  Explore my product line —
+                  <a href="waypoint/index.html"><b>Wahab Waypoint</b></a
+                  >, architecture intelligence tools built around your business
+                  domain.
+                </p>
+              </div>
 
-              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+              <div class="connect-row">
+                <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                  <i class="bx bxl-linkedin"></i> LinkedIn
+                </a>
 
-              <a href="https://abdulrwahab.medium.com" target="_blank">
-                Medium
-              </a>
+                <a href="https://github.com/arwahab" target="_blank">
+                  <i class="bx bxl-github"></i> GitHub
+                </a>
 
-              <a href="mailto:arw9511@gmail.com" target="_blank"> Email </a>
+                <a href="https://abdulrwahab.medium.com" target="_blank">
+                  <i class="bx bxl-medium"></i> Medium
+                </a>
 
-              <a href="waypoint/docs/index.html">Documentation</a>
+                <a href="mailto:arw9511@gmail.com" target="_blank">
+                  <i class="bx bxl-google"></i> Email
+                </a>
+
+                <a href="waypoint/docs/index.html">
+                  <i class="ri-book-open-line"></i> Documentation
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section id="expertise" class="landing-section" aria-label="Expertise">
-        <div class="section-head">
-          <span class="step-badge">Expertise</span>
+        <div class="hero-inner">
+          <div class="expertise-cols">
+            <div class="expertise-col">
+              <header class="section-head">
+                <p class="kicker"><span>02</span> Expertise</p>
 
-          <h2>What I write about</h2>
+                <h2>What I write about</h2>
 
-          <p class="lead">
-            Publications on the key skills and interests I frequently write
-            about on Medium.
-          </p>
-        </div>
+                <p class="lead">
+                  Publications on the key skills and interests I frequently write
+                  about on Medium.
+                </p>
+              </header>
 
-        <div class="expertise-grid">
-          <div
-            class="expertise-card"
-            style="--card-icon-glow: rgba(255, 187, 44, 0.16)"
-          >
-            <span class="expertise-icon">
-              <i class="ri-grid-fill" style="color: #ffbb2c"></i>
-            </span>
-
-            <a
-              class="publication"
+              <div class="index-list">
+                <a
+              class="index-row"
               target="_blank"
               href="https://abdulrwahab.medium.com/list/apis-technical-architecture-best-practices-358ef11585c3"
-              >Tech Architecture Best Practices</a
             >
-          </div>
+              <span class="index-num">01</span>
 
-          <div
-            class="expertise-card"
-            style="--card-icon-glow: rgba(232, 3, 104, 0.14)"
-          >
-            <span class="expertise-icon">
-              <i class="ri-emotion-line" style="color: #e80368"></i>
-            </span>
+              <span class="index-icon" style="color: #ffbb2c">
+                <i class="ri-grid-fill"></i>
+              </span>
+
+              <span class="index-body">
+                <span class="index-title">Tech Architecture Best Practices</span>
+
+                <span class="index-desc">
+                  APIs, design and standards that hold up in production.
+                </span>
+              </span>
+
+              <i class="ri-arrow-right-line index-arrow"></i>
+            </a>
 
             <a
-              class="publication"
+              class="index-row"
               target="_blank"
               href="https://abdulrwahab.medium.com/list/technical-leadership-professional-development-61d1b6573764"
-              >Tech Leadership & Team Development</a
             >
-          </div>
+              <span class="index-num">02</span>
 
-          <div
-            class="expertise-card"
-            style="--card-icon-glow: rgba(85, 120, 255, 0.16)"
-          >
-            <span class="expertise-icon">
-              <i class="ri-database-2-line" style="color: #5578ff"></i>
-            </span>
+              <span class="index-icon" style="color: #e80368">
+                <i class="ri-emotion-line"></i>
+              </span>
+
+              <span class="index-body">
+                <span class="index-title">
+                  Tech Leadership & Team Development
+                </span>
+
+                <span class="index-desc">
+                  Building effective, purpose-driven engineering teams.
+                </span>
+              </span>
+
+              <i class="ri-arrow-right-line index-arrow"></i>
+            </a>
 
             <a
-              class="publication"
+              class="index-row"
               target="_blank"
               href="https://abdulrwahab.medium.com/list/amazon-redshift-1bedfd75ad6b"
-              >Amazon Redshift, Glue, S3</a
             >
-          </div>
+              <span class="index-num">03</span>
 
-          <div
-            class="expertise-card"
-            style="--card-icon-glow: rgba(28, 125, 50, 0.14)"
-          >
-            <span class="expertise-icon">
-              <i class="ri-database-line" style="color: #1c7d32"></i>
-            </span>
+              <span class="index-icon" style="color: #5578ff">
+                <i class="ri-database-2-line"></i>
+              </span>
+
+              <span class="index-body">
+                <span class="index-title">Amazon Redshift, Glue, S3</span>
+
+                <span class="index-desc">
+                  Serverless analytics across the AWS data stack.
+                </span>
+              </span>
+
+              <i class="ri-arrow-right-line index-arrow"></i>
+            </a>
 
             <a
-              class="publication"
+              class="index-row"
               target="_blank"
               href="https://abdulrwahab.medium.com/list/data-cloud-redshift-data-mesh-436fe0757f23"
-              >Data Strategy, Mesh, Sharing</a
             >
-          </div>
+              <span class="index-num">04</span>
 
-          <div
-            class="expertise-card"
-            style="--card-icon-glow: rgba(40, 167, 69, 0.14)"
-          >
-            <span class="expertise-icon">
-              <i class="ri-upload-cloud-line" style="color: #28a745"></i>
-            </span>
+              <span class="index-icon" style="color: #1c7d32">
+                <i class="ri-database-line"></i>
+              </span>
+
+              <span class="index-body">
+                <span class="index-title">Data Strategy, Mesh, Sharing</span>
+
+                <span class="index-desc">
+                  Data as a product across the enterprise.
+                </span>
+              </span>
+
+              <i class="ri-arrow-right-line index-arrow"></i>
+            </a>
 
             <a
-              class="publication"
+              class="index-row"
               target="_blank"
               href="https://abdulrwahab.medium.com/list/aws-cloud-28276d55ea93"
-              >AWS Cloud, IaC</a
             >
-          </div>
+              <span class="index-num">05</span>
 
-          <div
-            class="expertise-card"
-            style="--card-icon-glow: rgba(255, 0, 255, 0.14)"
-          >
-            <span class="expertise-icon">
-              <i class="ri-code-s-slash-fill" style="color: magenta"></i>
-            </span>
+              <span class="index-icon" style="color: #28a745">
+                <i class="ri-upload-cloud-line"></i>
+              </span>
+
+              <span class="index-body">
+                <span class="index-title">AWS Cloud, IaC</span>
+
+                <span class="index-desc">
+                  Infrastructure as code, delivered cleanly.
+                </span>
+              </span>
+
+              <i class="ri-arrow-right-line index-arrow"></i>
+            </a>
 
             <a
-              class="publication"
+              class="index-row"
               target="_blank"
               href="https://abdulrwahab.medium.com/list/howtos-stepbystep-tutorials-e2447c886935"
-              >Full-Stack Dev</a
             >
-          </div>
+              <span class="index-num">06</span>
 
-          <div
-            class="expertise-card"
-            style="--card-icon-glow: rgba(71, 174, 255, 0.16)"
-          >
-            <span class="expertise-icon">
-              <i class="ri-code-s-slash-fill" style="color: #47aeff"></i>
-            </span>
+              <span class="index-icon" style="color: magenta">
+                <i class="ri-code-s-slash-fill"></i>
+              </span>
+
+              <span class="index-body">
+                <span class="index-title">Full-Stack Dev</span>
+
+                <span class="index-desc">
+                  How-tos and step-by-step tutorials.
+                </span>
+              </span>
+
+              <i class="ri-arrow-right-line index-arrow"></i>
+            </a>
 
             <a
-              class="publication"
+              class="index-row"
               target="_blank"
               href="https://abdulrwahab.medium.com/list/python-fa6e817a1cd4"
-              >Python</a
             >
-          </div>
+              <span class="index-num">07</span>
 
-          <div
-            class="expertise-card"
-            style="--card-icon-glow: rgba(255, 165, 0, 0.16)"
-          >
-            <span class="expertise-icon">
-              <i class="ri-grid-fill" style="color: orange"></i>
-            </span>
+              <span class="index-icon" style="color: #47aeff">
+                <i class="ri-code-s-slash-fill"></i>
+              </span>
+
+              <span class="index-body">
+                <span class="index-title">Python</span>
+
+                <span class="index-desc">
+                  Scripts, automation and clean code.
+                </span>
+              </span>
+
+              <i class="ri-arrow-right-line index-arrow"></i>
+            </a>
 
             <a
-              class="publication"
+              class="index-row"
               target="_blank"
               href="https://abdulrwahab.medium.com/list/micro-frontend-arch-great-customer-experiences-e18359f3b1e7"
-              >Micro Frontends</a
             >
+              <span class="index-num">08</span>
+
+              <span class="index-icon" style="color: orange">
+                <i class="ri-grid-fill"></i>
+              </span>
+
+              <span class="index-body">
+                <span class="index-title">Micro Frontends</span>
+
+                <span class="index-desc">
+                  Architecture for great customer experiences.
+                </span>
+              </span>
+
+              <i class="ri-arrow-right-line index-arrow"></i>
+            </a>
+              </div>
+            </div>
+
+            <div class="expertise-col">
+              <header class="section-head">
+                <p class="kicker"><span>03</span> Tools</p>
+
+                <h2>Tools I've built</h2>
+              </header>
+
+              <div class="tool-card">
+                <p class="tool-tag">Product line</p>
+
+                <h3>Wahab Waypoint</h3>
+
+                <p class="tool-desc">
+                  Architecture intelligence tools built around your business
+                  domain — domain learning, architectural evaluation, and fit
+                  review.
+                </p>
+
+                <div class="tool-links">
+                  <a class="act-link" href="waypoint/index.html">
+                    Explore the product <i class="ri-arrow-right-line"></i>
+                  </a>
+
+                  <a
+                    class="act-link act-secondary"
+                    href="waypoint/docs/index.html"
+                  >
+                    Documentation
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+    </main>
 
-      <section class="cta-banner" aria-label="Explore the products">
-        <h2>Explore my product line</h2>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <a class="wordmark" href="index.html">Abdul Rafee <em>Wahab.</em></a>
 
-        <p>
-          Wahab Waypoint pairs domain understanding, architectural evaluation,
-          and fit review — so the architecture you pick is right for the
-          business you run.
+          <div class="footer-links">
+            <a href="#top">Home</a>
+
+            <a href="#about">About</a>
+
+            <a href="#expertise">Expertise</a>
+
+            <a href="waypoint/index.html">Wahab Waypoint</a>
+
+            <a href="waypoint/docs/index.html">Documentation</a>
+          </div>
+        </div>
+
+        <p class="footer-tag">
+          Product-oriented tech leader, software engineer, and architect — and
+          creator of Wahab Waypoint.
         </p>
 
-        <div class="cta-actions">
-          <a
-            class="cta-btn"
-            href="tools/domain-context-learner/domain-context-learner.html"
-          >
-            Learn your domain →
-          </a>
-
-          <a class="header-btn" href="waypoint/index.html">
-            About Wahab Waypoint
-          </a>
-        </div>
-      </section>
-    </div>
-
-    <footer class="footer">
-      <div class="footer-glass">
-        <div class="footer-grid">
-          <!-- Brand -->
-          <div class="footer-section">
-            <div class="footer-logo">
-              Abdul <span class="logo-grad">Rafee Wahab</span>
-            </div>
-
-            <div class="footer-tagline">
-              Product-oriented tech leader, software engineer, and architect.
-            </div>
-          </div>
-
-          <!-- About -->
-          <div class="footer-section">
-            <div class="footer-title">About</div>
-
-            <p class="footer-bio">
-              I lead the Cloud Analytic Data Strategy group at a Fortune 50
-              company — passionate about using technology to solve business
-              problems and leading effective, purpose-driven engineering
-              teams.
-            </p>
-          </div>
-
-          <!-- Links -->
-          <div class="footer-section">
-            <div class="footer-title">Connect</div>
-
-            <div class="footer-links">
-              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
-                LinkedIn
-              </a>
-
-              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
-
-              <a href="https://abdulrwahab.medium.com" target="_blank">
-                Medium
-              </a>
-
-              <a href="mailto:arw9511@gmail.com" target="_blank"> Email </a>
-
-              <a href="waypoint/index.html">Wahab Waypoint</a>
-
-              <a href="waypoint/docs/index.html">Documentation</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-divider"></div>
-
         <div class="footer-bottom">
-          <span> © 2026 Abdul Rafee Wahab </span>
+          <span>© 2026 Abdul Rafee Wahab</span>
 
-          <span class="dot">•</span>
+          <span class="dot">·</span>
 
-          <span> Crafted by Abdul Rafee Wahab </span>
-
-          <span class="dot">•</span>
-
-          <span> Creator of Wahab Waypoint </span>
+          <span>Crafted by Abdul Rafee Wahab</span>
         </div>
       </div>
     </footer>
