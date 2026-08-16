@@ -348,12 +348,13 @@
 
           var button = form.querySelector(".feedback-submit");
           var action = "https://api.web3forms.com/submit";
-          var payload = new FormData(form);
 
           if (subject.value) {
             emailSubject.value =
               "[" + subject.value + "] from " + (nameField.value || "Anonymous");
           }
+
+          var payload = new FormData(form);
 
           button.disabled = true;
           status.textContent = "Sending…";
