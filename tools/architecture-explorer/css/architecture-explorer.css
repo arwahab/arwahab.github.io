@@ -1825,7 +1825,7 @@ a.pj-step:hover {
 
 .footer {
   width: 100%;
-  padding: 36px 28px 44px;
+  padding: 18px 28px 26px;
   display: flex;
   justify-content: center;
 }
@@ -1835,7 +1835,7 @@ a.pj-step:hover {
   overflow: hidden;
   width: 100%;
   max-width: 1380px;
-  padding: 32px 32px 26px;
+  padding: 20px 28px 18px;
   border-radius: 20px;
   background:
     radial-gradient(
@@ -1872,11 +1872,11 @@ a.pj-step:hover {
     1.2fr
     1.5fr
     0.8fr;
-  gap: 45px;
+  gap: 28px;
 }
 
 .footer-logo {
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 700;
   letter-spacing: 0.3px;
 }
@@ -1890,17 +1890,17 @@ a.pj-step:hover {
 }
 
 .footer-tagline {
-  margin-top: 10px;
-  font-size: 14px;
+  margin-top: 6px;
+  font-size: 13px;
   opacity: 0.7;
 }
 
 .footer-title {
   position: relative;
-  padding-bottom: 12px;
-  font-size: 15px;
+  padding-bottom: 8px;
+  font-size: 13.5px;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .footer-title::after {
@@ -1924,7 +1924,14 @@ a.pj-step:hover {
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
+}
+
+.footer-links--cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 12px;
+  align-items: start;
 }
 
 .footer-links a {
@@ -1932,11 +1939,12 @@ a.pj-step:hover {
   align-items: center;
   gap: 8px;
   width: fit-content;
-  padding: 6px 12px;
+  padding: 4px 10px;
   margin-left: -12px;
   border-radius: 999px;
   border: 1px solid transparent;
   color: var(--text);
+  font-size: 13px;
   text-decoration: none;
   opacity: 0.75;
   transition: 0.25s ease;
@@ -1967,7 +1975,7 @@ a.pj-step:hover {
 
 .footer-divider {
   height: 1px;
-  margin: 34px 0 18px;
+  margin: 20px 0 12px;
   background: linear-gradient(
     90deg,
     transparent,
@@ -1982,7 +1990,7 @@ a.pj-step:hover {
   align-items: center;
   flex-wrap: wrap;
   gap: 14px;
-  font-size: 13px;
+  font-size: 12.5px;
   letter-spacing: 0.2px;
   opacity: 0.6;
 }
@@ -2009,6 +2017,10 @@ a.pj-step:hover {
 
   .footer-links a {
     margin-left: 0;
+  }
+
+  .footer-links--cols {
+    grid-template-columns: 1fr;
   }
 
   .footer-bottom {
@@ -2550,14 +2562,14 @@ a.pj-step:hover {
 }
 
 .footer-sub-links {
-  margin-top: 14px;
+  margin-top: 10px;
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
 .footer-sub-links a {
-  padding: 6px 12px;
+  padding: 4px 10px;
   border-radius: 999px;
   border: 1px solid var(--chip-border);
   background: var(--chip-bg);
