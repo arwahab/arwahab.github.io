@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>About · Wahab Waypoint</title>
+    <title>Feedback · Wahab Waypoint</title>
 
     <link
       rel="icon"
@@ -45,20 +45,20 @@
 
     <meta
       name="description"
-      content="About Wahab Waypoint and its founder, Abdul Rafee Wahab — technical architect, lead software engineer, and tech leader."
+      content="Send feedback, ask a question, or request a consultation about Wahab Waypoint."
     />
     <meta name="author" content="Abdul Rafee Wahab" />
     <meta name="robots" content="index, follow" />
 
-    <meta property="og:title" content="About · Wahab Waypoint" />
+    <meta property="og:title" content="Feedback · Wahab Waypoint" />
     <meta
       property="og:description"
-      content="Wahab Waypoint is built by Abdul Rafee Wahab — a technical architect, lead software engineer, and tech leader passionate about software architecture and scalable systems."
+      content="Send feedback, ask a question, or request a consultation about Wahab Waypoint."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Wahab Waypoint" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://wahab2.com/waypoint/about.html" />
+    <meta property="og:url" content="https://wahab2.com/waypoint/feedback.html" />
     <meta
       property="og:image"
       content="https://wahab2.com/waypoint/docs/media/og-image.png"
@@ -67,37 +67,24 @@
     <meta property="og:image:height" content="630" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="About · Wahab Waypoint" />
+    <meta name="twitter:title" content="Feedback · Wahab Waypoint" />
     <meta
       name="twitter:description"
-      content="Wahab Waypoint is built by Abdul Rafee Wahab — technical architect, lead software engineer, and tech leader."
+      content="Send feedback, ask a question, or request a consultation about Wahab Waypoint."
     />
     <meta
       name="twitter:image"
       content="https://wahab2.com/waypoint/docs/media/og-image.png"
     />
 
-    <link rel="canonical" href="https://wahab2.com/waypoint/about.html" />
+    <link rel="canonical" href="https://wahab2.com/waypoint/feedback.html" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Abdul Rafee Wahab",
-        "url": "https://wahab2.com/waypoint/about.html",
-        "sameAs": [
-          "https://www.linkedin.com/in/arwahab",
-          "https://github.com/arwahab",
-          "https://abdulrwahab.medium.com"
-        ],
-        "jobTitle": "Technical Architect & Tech Leader",
-        "description": "Technical architect, lead software engineer, and tech leader — creator of Wahab Waypoint.",
-        "knowsAbout": [
-          "Software architecture",
-          "Scalable systems",
-          "Cloud engineering",
-          "Technical leadership"
-        ]
+        "@type": "ContactPage",
+        "name": "Wahab Waypoint — Feedback",
+        "url": "https://wahab2.com/waypoint/feedback.html"
       }
     </script>
 
@@ -139,8 +126,6 @@
           <a href="about.html">About</a>
 
           <a href="feedback.html">Feedback</a>
-
-          <a href="index.html#start">Get started</a>
         </div>
 
         <div class="app-actions">
@@ -153,107 +138,96 @@
 
     <section class="hero" aria-label="Introduction">
       <h1>
-        About the
-        <span class="grad-text">founder</span>
+        Feedback, questions
+        <span class="grad-text">& consultation</span>
       </h1>
 
       <p class="hero-subtitle">
-        The story behind Wahab Waypoint — and the guy who built it.
+        Ideas, questions, or a conversation about your architecture — send a
+        note and it lands straight in my inbox.
       </p>
     </section>
 
     <div class="container">
-      <section class="about" aria-label="Founder bio">
-        <div class="about-card">
-          <div class="about-photo-wrap">
-            <img
-              class="about-photo"
-              src="../assets/img/abdul_r_wahab_square.webp"
-              alt="Abdul Rafee Wahab"
+      <div class="feedback-wrap">
+        <div class="feedback-card">
+          <form
+            class="feedback-form"
+            id="feedbackForm"
+            method="POST"
+            autocomplete="on"
+          >
+            <input
+              type="hidden"
+              name="access_key"
+              id="accessKey"
+              value="REPLACE_WITH_YOUR_ACCESS_KEY"
             />
-          </div>
 
-          <div class="about-content">
-            <h2>Abdul Rafee Wahab</h2>
+            <input type="hidden" name="_subject" id="emailSubject" value="Feedback" />
 
-            <p class="about-role">
-              Tech Leader · Software Engineer · Architect
-            </p>
+            <input type="hidden" name="_template" value="table" />
 
-            <div class="about-bio">
-              <p>
-                I'm a technical architect, lead software engineer, and tech
-                leader. Today I lead the Cloud Analytic Data Strategy group at
-                a Fortune 50 company. I'm a problem solver both at heart and by
-                choice.
-              </p>
+            <input type="hidden" name="_captcha" value="false" />
 
-              <p>
-                Wahab Waypoint grew out of the work I do every day: using key
-                domain knowledge and technology to solve business problems, and
-                leading effective, purpose-driven engineering teams. It is the
-                architecture intelligence I wished I had — packaged as a
-                product line that pairs domain understanding, architectural
-                evaluation, and fit review.
-              </p>
+            <input
+              type="text"
+              name="_honey"
+              style="display: none"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
 
-              <p>
-                When I am not architecting systems, I write how-to tutorials on
-                engineering and leadership, reading Marcus Aurelius' and
-                Seneca's narratives, and fixing mechanical watches.
-              </p>
+            <div class="field">
+              <label for="name">Your name</label>
+
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Jane Doe"
+                required
+              />
             </div>
 
-            <div class="connect-row">
-              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
-                LinkedIn
-              </a>
+            <div class="field">
+              <label for="subject">What do you want to talk about?</label>
 
-              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+              <select id="subject" name="subject" required>
+                <option value="" disabled selected>Choose a topic</option>
 
-              <a href="https://blog.wahab2.com" target="_blank">
-                Engineering Blog
-              </a>
+                <option value="General feedback">General feedback</option>
 
-              <a href="https://wahab2.com" target="_blank">
-                Personal Website
-              </a>
+                <option value="Question">Question</option>
+
+                <option value="Consultation request">Consultation request</option>
+
+                <option value="Bug report">Bug report</option>
+
+                <option value="Feature suggestion">Feature suggestion</option>
+
+                <option value="Other">Something else</option>
+              </select>
             </div>
-          </div>
+
+            <div class="field">
+              <label for="message">Your message</label>
+
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Tell me what's on your mind…"
+                required
+              ></textarea>
+            </div>
+
+            <button class="feedback-submit" type="submit">Send message →</button>
+
+            <p class="feedback-status" id="feedbackStatus" role="status"></p>
+          </form>
         </div>
-      </section>
-
-      <section class="cta-banner" aria-label="Explore the products">
-        <h2>Explore the product line</h2>
-
-        <p>
-          Learn your business domain, get evidence-based architecture
-          recommendations, and review the architecture you run.
-        </p>
-
-        <div class="cta-actions">
-          <a
-            class="cta-btn"
-            href="../tools/domain-context-learner/domain-context-learner.html"
-          >
-            Learn your domain →
-          </a>
-
-          <a
-            class="header-btn"
-            href="../tools/architecture-explorer/architecture-explorer-v1.html"
-          >
-            Open Architect
-          </a>
-
-          <a
-            class="header-btn"
-            href="../tools/architecture-reviewer/architecture-reviewer.html"
-          >
-            Open Reviewer
-          </a>
-        </div>
-      </section>
+      </div>
     </div>
 
     <footer class="footer">
@@ -318,7 +292,7 @@
 
           <span class="dot">•</span>
 
-          <span> Version 1.0 </span>
+          <span> Version 1.3 </span>
         </div>
       </div>
     </footer>
@@ -356,7 +330,63 @@
 
       applyTheme(getInitialTheme());
     </script>
+
+    <script>
+      (function () {
+        "use strict";
+
+        var form = document.getElementById("feedbackForm");
+        var status = document.getElementById("feedbackStatus");
+        var subject = document.getElementById("subject");
+        var nameField = document.getElementById("name");
+        var emailSubject = document.getElementById("emailSubject");
+
+        if (!form) return;
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var button = form.querySelector(".feedback-submit");
+          var action = "https://api.web3forms.com/submit";
+          var payload = new FormData(form);
+
+          if (subject.value) {
+            emailSubject.value =
+              "[" + subject.value + "] Feedback from " + (nameField.value || "Anonymous");
+          }
+
+          button.disabled = true;
+          status.textContent = "Sending…";
+          status.className = "feedback-status";
+
+          fetch(action, { method: "POST", body: payload })
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (json) {
+              if (json && json.success) {
+                status.textContent =
+                  "Thanks! Your message is on its way — I'll get back to you soon.";
+                status.className = "feedback-status ok";
+                form.reset();
+              } else {
+                status.textContent =
+                  "Something went wrong and your message wasn't sent. Please try again.";
+                status.className = "feedback-status err";
+              }
+            })
+            .catch(function () {
+              status.textContent =
+                "Network error — please check your connection and try again.";
+              status.className = "feedback-status err";
+            })
+            .finally(function () {
+              button.disabled = false;
+            });
+        });
+      })();
+    </script>
     <script src="../assets/js/site-nav.js" defer></script>
-<script src="../assets/js/clean-url.js" defer></script>
+    <script src="../assets/js/clean-url.js" defer></script>
   </body>
 </html>
