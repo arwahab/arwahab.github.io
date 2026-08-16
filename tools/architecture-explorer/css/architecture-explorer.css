@@ -326,7 +326,7 @@ body::before {
 }
 
 .header-btn {
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 10px;
   border: 1px solid var(--chip-border);
   cursor: pointer;
@@ -348,7 +348,7 @@ a.home-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: 10px;
   border: 1px solid var(--chip-border);
   background: var(--chip-bg);
@@ -390,15 +390,15 @@ a.home-link:hover {
   max-width: 1440px;
   margin: auto;
   text-align: center;
-  padding: 40px 24px 8px;
+  padding: 56px 24px 8px;
 }
 
 .hero h1 {
   margin-top: 0;
-  font-size: 46px;
+  font-size: 42px;
   font-weight: 800;
-  letter-spacing: -1.5px;
-  line-height: 1.1;
+  letter-spacing: -1.2px;
+  line-height: 1.15;
 }
 
 .grad-text {
@@ -409,24 +409,24 @@ a.home-link:hover {
 }
 
 .hero-subtitle {
-  margin: 16px auto 0;
-  max-width: 660px;
+  margin: 18px auto 0;
+  max-width: 620px;
   color: var(--text-2);
-  font-size: 15.5px;
-  line-height: 1.65;
+  font-size: 15px;
+  line-height: 1.75;
 }
 
 .hero-stats {
   display: flex;
   justify-content: center;
-  gap: 48px;
-  margin-top: 32px;
+  gap: 56px;
+  margin-top: 38px;
   flex-wrap: wrap;
 }
 
 .stat strong {
   display: block;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 800;
   line-height: 1.1;
   background: linear-gradient(90deg, #60a5fa, #c084fc);
@@ -436,7 +436,7 @@ a.home-link:hover {
 }
 
 .stat span {
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--text-2);
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -449,7 +449,7 @@ a.home-link:hover {
 .container {
   max-width: 1440px;
   margin: auto;
-  padding: 26px;
+  padding: 32px;
 }
 
 /* =========================================
@@ -459,14 +459,14 @@ a.home-link:hover {
 .scenarios {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  gap: 18px;
 }
 
 .scenario {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 18px;
-  padding: 18px;
+  padding: 20px;
   cursor: pointer;
   backdrop-filter: blur(20px);
   transition: 0.35s;
@@ -475,7 +475,7 @@ a.home-link:hover {
 .scenario:hover {
   transform: translateY(-8px);
   border-color: #60a5fa;
-  box-shadow: 0 20px 60px var(--shadow);
+  box-shadow: 0 12px 40px var(--shadow);
 }
 
 .scenario:focus-visible {
@@ -501,17 +501,18 @@ a.home-link:hover {
 
 .icon {
   font-size: 28px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .scenario h3 {
   font-size: 17px;
+  line-height: 1.3;
 }
 
 .scenario p {
-  margin-top: 6px;
+  margin-top: 8px;
   color: var(--text-2);
-  line-height: 1.4;
+  line-height: 1.5;
   font-size: 13px;
 }
 
@@ -523,7 +524,7 @@ a.home-link:hover {
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 20px;
+  gap: 24px;
 }
 
 @media (min-width: 901px) {
@@ -552,12 +553,12 @@ a.home-link:hover {
   border-radius: 20px;
   padding: 24px;
   position: relative;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
   backdrop-filter: blur(20px);
 }
 
 .panel h2 {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   font-size: 19px;
 }
 
@@ -595,10 +596,10 @@ a.home-link:hover {
 
 .panel-note {
   margin-top: -6px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   color: var(--text-2);
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .muted {
@@ -613,7 +614,7 @@ a.home-link:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 12px 0;
+  margin: 14px 0;
 }
 
 .weight-row label {
@@ -638,7 +639,7 @@ a.home-link:hover {
 
 .weight-note {
   min-height: 20px;
-  margin: 10px 0 6px;
+  margin: 12px 0 6px;
   color: var(--warn);
   font-size: 14px;
   font-weight: 600;
@@ -712,9 +713,9 @@ a.home-link:hover {
 }
 
 .reason {
-  margin-top: 18px;
+  margin-top: 20px;
   color: var(--text-1);
-  line-height: 1.6;
+  line-height: 1.7;
   font-size: 14px;
 }
 
@@ -723,11 +724,11 @@ a.home-link:hover {
 ========================================= */
 
 .metric {
-  margin: 14px 0;
+  margin: 16px 0;
 }
 
 .metric-header {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-size: 14px;
 }
 
@@ -749,13 +750,13 @@ a.home-link:hover {
 ========================================= */
 
 .comparison-row {
-  margin: 12px 0;
+  margin: 14px 0;
 }
 
 .comparison-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-size: 14px;
 }
 
@@ -780,16 +781,16 @@ a.home-link:hover {
 }
 
 .comparison-reason {
-  margin-top: 8px;
-  padding-top: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
   border-top: 1px dashed var(--inner-border);
   color: var(--text-2);
   font-size: 12.5px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .comparison-winner {
-  padding: 12px;
+  padding: 14px;
   border: 1px solid #60a5fa66;
   border-radius: 12px;
   background: var(--winner-tint);
@@ -868,7 +869,7 @@ a.home-link:hover {
   align-items: center;
   justify-content: flex-start;
   overflow: hidden;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
 }
 
 .diagram-canvas {
@@ -901,10 +902,10 @@ a.home-link:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 12px;
+  padding: 10px 14px;
   text-align: center;
   font-size: 13px;
-  line-height: 1.3;
+  line-height: 1.35;
   border-radius: 14px;
   background: var(--node-bg);
   border: 1px solid var(--node-border);
@@ -941,11 +942,11 @@ a.home-link:hover {
 .adr-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
 }
 
 .secondary {
-  padding: 10px 18px;
+  padding: 10px 20px;
   border-radius: 10px;
   border: 1px solid var(--chip-border);
   cursor: pointer;
@@ -994,7 +995,7 @@ a.home-link:hover {
 
 #scenarioTitle {
   font-size: 20px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   color: var(--text);
 }
 
@@ -1002,22 +1003,22 @@ a.home-link:hover {
   color: var(--text-2);
   line-height: 1.7;
   font-size: 14px;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
 .challenge-section {
-  padding-top: 25px;
+  padding-top: 28px;
   border-top: 1px solid var(--challenge-border);
 }
 
 .challenge-section h3 {
   font-size: 20px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 #scenarioChallenges {
   color: var(--text-1);
-  line-height: 2;
+  line-height: 2.1;
   font-size: 16px;
 }
 
@@ -1034,12 +1035,12 @@ a.home-link:hover {
   background: var(--inner-bg);
   border: 1px solid var(--inner-border);
   border-radius: 16px;
-  padding: 18px;
+  padding: 20px;
 }
 
 .scenario-content h3 {
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 #scenarioDescription {
@@ -1052,15 +1053,15 @@ a.home-link:hover {
 }
 
 .challenge-list {
-  margin-top: 10px;
-  line-height: 1.8;
+  margin-top: 12px;
+  line-height: 1.9;
   color: var(--text-1);
   font-size: 14px;
 }
 
 .recommendation-section {
-  margin-top: 16px;
-  padding: 14px;
+  margin-top: 18px;
+  padding: 16px;
   background: var(--inner-bg);
   border: 1px solid var(--inner-border);
   border-radius: 14px;
@@ -1075,8 +1076,8 @@ a.home-link:hover {
 
 .reviewer-link {
   display: inline-block;
-  margin-top: 14px;
-  padding: 9px 14px;
+  margin-top: 16px;
+  padding: 10px 16px;
   border: 1px solid var(--accent-blue);
   border-radius: 999px;
   color: var(--accent-blue);
@@ -1098,12 +1099,12 @@ a.home-link:hover {
 }
 
 .security-block {
-  padding: 14px;
+  padding: 16px;
   background: var(--inner-bg);
   border: 1px solid var(--inner-border);
   border-left: 3px solid var(--accent-violet);
   border-radius: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
   font-size: 13px;
   color: var(--text-1);
 }
@@ -1125,8 +1126,8 @@ a.home-link:hover {
 .qa-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 14px;
+  margin-top: 14px;
 }
 
 #qaInput {
@@ -1174,12 +1175,12 @@ a.home-link:hover {
 .qa-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 14px;
 }
 
 .qa-chip {
-  padding: 6px 13px;
+  padding: 7px 15px;
   border-radius: 50px;
   border: 1px solid var(--chip-border);
   background: var(--chip-bg);
@@ -1210,7 +1211,7 @@ a.home-link:hover {
   background: var(--inner-bg);
   border: 1px solid var(--inner-border);
   border-radius: 16px;
-  padding: 18px;
+  padding: 20px;
 }
 
 .qa-badge {
@@ -1239,35 +1240,35 @@ a.home-link:hover {
 }
 
 .qa-plain {
-  margin: 14px 0;
-  padding: 12px 16px;
+  margin: 16px 0;
+  padding: 14px 18px;
   background: var(--plain-bg);
   border-left: 3px solid var(--accent-violet);
   border-radius: 10px;
   color: var(--plain-text);
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .qa-answer p {
   color: var(--text-1);
-  line-height: 1.7;
-  margin: 10px 0;
+  line-height: 1.75;
+  margin: 12px 0;
 }
 
 .qa-answer ul {
-  margin: 10px 0 10px 22px;
+  margin: 12px 0 12px 22px;
   color: var(--text-1);
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .qa-answer li {
-  margin: 6px 0;
+  margin: 7px 0;
 }
 
 .qa-related {
-  margin-top: 18px;
-  padding-top: 16px;
+  margin-top: 20px;
+  padding-top: 18px;
   border-top: 1px solid var(--challenge-border);
   color: var(--text-2);
   font-size: 13px;
@@ -1365,8 +1366,8 @@ a.home-link:hover {
 ===================================== */
 
 .qa-settings {
-  margin-top: 22px;
-  padding-top: 18px;
+  margin-top: 24px;
+  padding-top: 20px;
   border-top: 1px solid var(--challenge-border);
   font-size: 13px;
 }
@@ -1422,8 +1423,8 @@ a.home-link:hover {
 }
 
 .qa-settings-body {
-  margin-top: 14px;
-  padding: 16px;
+  margin-top: 16px;
+  padding: 18px;
   background: var(--inner-bg);
   border: 1px solid var(--inner-border);
   border-radius: 14px;
@@ -1465,9 +1466,9 @@ a.home-link:hover {
 }
 
 .qa-key-status {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 12px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .qa-key-on {
@@ -1496,19 +1497,19 @@ a.home-link:hover {
   z-index: 100;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   max-width: min(360px, calc(100vw - 48px));
 }
 
 .toast {
-  padding: 14px 18px;
+  padding: 16px 20px;
   border-radius: 14px;
   background: var(--card-bg);
   border: 1px solid var(--glass-border);
   color: var(--text);
   font-size: 14px;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.55;
   box-shadow: 0 12px 40px var(--shadow);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -1675,8 +1676,8 @@ body.ui-anim .comparison-row:nth-child(7) {
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 26px auto 0;
-  padding: 10px 16px;
+  margin: 28px auto 0;
+  padding: 12px 18px;
   max-width: 720px;
   border-radius: 999px;
   border: 1px solid var(--glass-border);
@@ -1688,7 +1689,7 @@ body.ui-anim .comparison-row:nth-child(7) {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 7px 14px;
+  padding: 8px 16px;
   border-radius: 999px;
   font-size: 12.5px;
   font-weight: 600;
@@ -1744,7 +1745,7 @@ a.pj-step:hover {
 ===================================== */
 
 .journey-next {
-  margin: 56px auto 0;
+  margin: 60px auto 0;
   max-width: 1380px;
   padding: 0 28px;
 }
@@ -1752,9 +1753,9 @@ a.pj-step:hover {
 .journey-next-card {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 24px;
   flex-wrap: wrap;
-  padding: 26px 30px;
+  padding: 28px 32px;
   border-radius: 22px;
   background:
     radial-gradient(
@@ -1771,8 +1772,8 @@ a.pj-step:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   flex: none;
   border-radius: 16px;
   font-size: 24px;
@@ -1795,17 +1796,17 @@ a.pj-step:hover {
 }
 
 .journey-next-body h3 {
-  margin-top: 4px;
+  margin-top: 6px;
   font-size: 19px;
   font-weight: 800;
   letter-spacing: -0.3px;
 }
 
 .journey-next-body p {
-  margin-top: 6px;
+  margin-top: 8px;
   color: var(--text-2);
   font-size: 13.5px;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 @media (max-width: 640px) {
@@ -1825,7 +1826,7 @@ a.pj-step:hover {
 
 .footer {
   width: 100%;
-  padding: 18px 28px 26px;
+  padding: 20px 28px 30px;
   display: flex;
   justify-content: center;
 }
@@ -1835,7 +1836,7 @@ a.pj-step:hover {
   overflow: hidden;
   width: 100%;
   max-width: 1380px;
-  padding: 20px 28px 18px;
+  padding: 22px 28px 20px;
   border-radius: 20px;
   background:
     radial-gradient(
@@ -1847,7 +1848,7 @@ a.pj-step:hover {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--footer-border);
-  box-shadow: var(--footer-shadow), var(--footer-inset);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18), var(--footer-inset);
   color: var(--text);
 }
 
@@ -1872,13 +1873,14 @@ a.pj-step:hover {
     1.2fr
     1.5fr
     0.8fr;
-  gap: 28px;
+  gap: 32px;
 }
 
 .footer-logo {
   font-size: 21px;
   font-weight: 700;
   letter-spacing: 0.3px;
+  line-height: 1.3;
 }
 
 .logo-grad {
@@ -1890,17 +1892,18 @@ a.pj-step:hover {
 }
 
 .footer-tagline {
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 13px;
   opacity: 0.7;
+  line-height: 1.6;
 }
 
 .footer-title {
   position: relative;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
   font-size: 13.5px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .footer-title::after {
@@ -1916,7 +1919,7 @@ a.pj-step:hover {
 
 .footer-bio {
   margin: 0;
-  line-height: 1.7;
+  line-height: 1.8;
   font-size: 14px;
   opacity: 0.75;
 }
@@ -1924,7 +1927,7 @@ a.pj-step:hover {
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 7px;
 }
 
 .footer-links--cols {
@@ -1975,7 +1978,7 @@ a.pj-step:hover {
 
 .footer-divider {
   height: 1px;
-  margin: 20px 0 12px;
+  margin: 22px 0 14px;
   background: linear-gradient(
     90deg,
     transparent,
@@ -1989,7 +1992,7 @@ a.pj-step:hover {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 16px;
   font-size: 12.5px;
   letter-spacing: 0.2px;
   opacity: 0.6;
