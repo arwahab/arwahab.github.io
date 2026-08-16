@@ -1,0 +1,1280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>System Architecture · Wahab Waypoint Docs</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../tools/architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../tools/architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../../tools/architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../tools/architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon.ico"
+    />
+
+    <meta
+      name="description"
+      content="How Wahab Waypoint works under the hood: high-level and detailed topology, tech stack, shared state, the scoring engine, integrations, and security model."
+    />
+    <meta name="author" content="Abdul Rafee Wahab" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:title" content="System Architecture · Wahab Waypoint" />
+    <meta
+      property="og:description"
+      content="How Wahab Waypoint works under the hood: topology, tech stack, shared state, scoring engine, integrations, and security."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Wahab Waypoint" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="og:url"
+      content="https://wahab2.com/waypoint/docs/architecture.html"
+    />
+    <meta
+      property="og:image"
+      content="https://wahab2.com/waypoint/docs/media/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="System Architecture · Wahab Waypoint" />
+    <meta
+      name="twitter:description"
+      content="How Wahab Waypoint works under the hood: topology, tech stack, shared state, scoring engine, integrations, and security."
+    />
+    <meta
+      name="twitter:image"
+      content="https://wahab2.com/waypoint/docs/media/og-image.png"
+    />
+
+    <link
+      rel="canonical"
+      href="https://wahab2.com/waypoint/docs/architecture.html"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="../css/waypoint.css" />
+
+    <style>
+      .arch-figure {
+        margin: 28px 0 8px;
+        padding: 18px;
+        background: var(--inner-bg);
+        border: 1px solid var(--inner-border);
+        border-radius: 14px;
+        overflow-x: auto;
+      }
+
+      .arch-figure svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        min-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .arch-figure figcaption {
+        margin-top: 12px;
+        color: var(--text-2);
+        font-size: 12.5px;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .arch-svg-title {
+        fill: var(--text);
+        font-size: 17px;
+        font-weight: 700;
+        font-family: Inter, sans-serif;
+      }
+
+      .arch-svg-sub {
+        fill: var(--text-1);
+        font-size: 13px;
+        font-weight: 500;
+        font-family: Inter, sans-serif;
+      }
+
+      .arch-svg-box {
+        fill: var(--card-bg);
+        stroke: var(--glass-border);
+        stroke-width: 1.5;
+      }
+
+      .arch-svg-box-key {
+        fill: var(--node-bg);
+        stroke: var(--node-border);
+        stroke-width: 1.5;
+      }
+
+      .arch-svg-box-dash {
+        fill: var(--card-bg);
+        stroke: var(--text-2);
+        stroke-width: 1.5;
+        stroke-dasharray: 6 5;
+      }
+
+      .arch-svg-chip {
+        fill: var(--chip-bg);
+        stroke: var(--chip-border);
+        stroke-width: 1.5;
+      }
+
+      .arch-svg-chip-shared {
+        fill: var(--plain-bg);
+        stroke: var(--plain-text);
+        stroke-width: 1.5;
+      }
+
+      .arch-svg-chip-text {
+        fill: var(--text-1);
+        font-size: 14px;
+        font-weight: 700;
+        font-family: Inter, sans-serif;
+      }
+
+      .arch-svg-chip-text-shared {
+        fill: var(--plain-text);
+        font-size: 14px;
+        font-weight: 700;
+        font-family: Inter, sans-serif;
+      }
+
+      .arch-svg-chip-sub {
+        fill: var(--text-1);
+        font-size: 11.5px;
+        font-weight: 500;
+        font-family: Inter, sans-serif;
+      }
+
+      .arch-svg-arrow {
+        stroke: var(--arrow-color);
+        stroke-width: 3;
+        fill: none;
+      }
+
+      .arch-svg-arrow-dash {
+        stroke: var(--text-2);
+        stroke-width: 3;
+        stroke-dasharray: 6 5;
+        fill: none;
+      }
+
+      .arch-svg-label {
+        fill: var(--text-1);
+        font-size: 13px;
+        font-weight: 600;
+        font-family: Inter, sans-serif;
+        stroke: var(--bg);
+        stroke-width: 4px;
+        paint-order: stroke;
+      }
+
+      .arch-svg-label-sub {
+        fill: var(--text-1);
+        font-size: 11.5px;
+        font-weight: 600;
+        font-family: Inter, sans-serif;
+        stroke: var(--bg);
+        stroke-width: 4px;
+        paint-order: stroke;
+      }
+
+      .arch-legend {
+        margin-top: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        color: var(--text-2);
+        font-size: 12.5px;
+      }
+
+      .arch-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .arch-swatch {
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        border: 1px solid var(--glass-border);
+        background: var(--card-bg);
+        display: inline-block;
+      }
+
+      .arch-swatch.key {
+        background: var(--node-bg);
+        border-color: var(--node-border);
+      }
+
+      .arch-swatch.shared {
+        background: var(--plain-bg);
+        border-color: var(--plain-text);
+      }
+
+      .arch-swatch.dash {
+        background: transparent;
+        border-style: dashed;
+        border-color: var(--text-2);
+      }
+
+      .arch-code {
+        margin: 18px 0;
+        padding: 16px 18px;
+        background: var(--code-bg);
+        border: 1px solid var(--inner-border);
+        border-radius: 12px;
+        overflow-x: auto;
+      }
+
+      .arch-code code {
+        color: var(--code-text);
+        font-size: 12.5px;
+        line-height: 1.7;
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-mark"
+            src="../../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="../index.html">Home</a>
+
+          <a href="index.html">Docs</a>
+
+          <a href="../index.html#how">How it works</a>
+
+          <a href="../about.html">About</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <h1>
+        Wahab Waypoint,
+        <span class="grad-text">under the hood</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        How the product line is built: topology, tech stack, shared state, the
+        scoring engine, integrations, and the security model.
+      </p>
+    </section>
+
+    <div class="container">
+      <article class="doc-page" aria-label="System architecture">
+        <div class="doc-prose">
+          <div class="doc-crumb">
+            <a href="index.html">Docs</a>
+
+            <span class="sep">/</span>
+
+            <span class="current">System Architecture</span>
+          </div>
+
+          <h1>Wahab Waypoint — system architecture</h1>
+
+          <p>
+            Wahab Waypoint is a product line of three <strong>browser-based
+            tools</strong> — Domain Context Learner, Architect, and Reviewer —
+            published as a static site. There is no backend, no database, no
+            authentication, and no build step. Everything a user does, from
+            learning a domain to scoring an architecture, happens in their own
+            browser; the only state shared between tools is a small JSON
+            profile stored in <code>localStorage</code>.
+          </p>
+
+          <div class="doc-meta">
+            <span>0 backend servers</span>
+
+            <span>3 browser tools</span>
+
+            <span>1 shared store</span>
+
+            <span>3 external integrations</span>
+
+            <span>10 architectures · 18 workloads · 8 criteria</span>
+          </div>
+
+          <h2 id="high-level">High-level topology</h2>
+
+          <p>
+            The diagram below shows the system at a glance. A browser loads the
+            static origin serving <code>wahab2.com</code>, runs
+            all logic client-side, persists state to local storage, and — for
+            two optional features — reaches out to Google Fonts, the jsPDF
+            CDN, and the Google Gemini API.
+          </p>
+
+          <figure class="arch-figure">
+            <svg
+              viewBox="0 0 1080 640"
+              role="img"
+              aria-label="High-level topology of Wahab Waypoint"
+            >
+              <defs>
+                <marker
+                  id="arrH"
+                  markerWidth="10"
+                  markerHeight="10"
+                  refX="9"
+                  refY="5"
+                  orient="auto"
+                >
+                  <path d="M0,0 L10,5 L0,10 z" fill="#93c5fd"></path>
+                </marker>
+              </defs>
+
+              <!-- User -->
+              <rect
+                class="arch-svg-box-key"
+                x="30"
+                y="260"
+                width="190"
+                height="130"
+                rx="14"
+              />
+              <text class="arch-svg-title" x="60" y="298">User / Browser</text>
+              <text class="arch-svg-sub" x="60" y="320">No account · no install</text>
+              <text class="arch-svg-sub" x="60" y="338">All logic runs in-browser</text>
+              <text class="arch-svg-sub" x="60" y="356">Static HTML · CSS · JS</text>
+
+              <!-- Static origin -->
+              <rect
+                class="arch-svg-box"
+                x="270"
+                y="60"
+                width="440"
+                height="470"
+                rx="16"
+              />
+              <text class="arch-svg-title" x="300" y="92">Static Origin — wahab2.com</text>
+              <text class="arch-svg-sub" x="300" y="112">CDN-backed · zero server-side code</text>
+
+              <g>
+                <rect class="arch-svg-chip" x="300" y="145" width="190" height="58" rx="8" />
+                <text class="arch-svg-chip-text" x="318" y="170">Landing page</text>
+                <text class="arch-svg-chip-sub" x="318" y="188">index.html</text>
+
+                <rect class="arch-svg-chip" x="500" y="145" width="190" height="58" rx="8" />
+                <text class="arch-svg-chip-text" x="518" y="170">Waypoint hub</text>
+                <text class="arch-svg-chip-sub" x="518" y="188">waypoint/index.html</text>
+
+                <rect class="arch-svg-chip" x="300" y="223" width="190" height="58" rx="8" />
+                <text class="arch-svg-chip-text" x="318" y="248">Docs</text>
+                <text class="arch-svg-chip-sub" x="318" y="266">overview · guides · tour</text>
+
+                <rect class="arch-svg-chip" x="500" y="223" width="190" height="58" rx="8" />
+                <text class="arch-svg-chip-text" x="518" y="248">Domain Context Learner</text>
+                <text class="arch-svg-chip-sub" x="518" y="266">domain-context-learner.html</text>
+
+                <rect class="arch-svg-chip" x="300" y="301" width="190" height="58" rx="8" />
+                <text class="arch-svg-chip-text" x="318" y="326">Architect</text>
+                <text class="arch-svg-chip-sub" x="318" y="344">architecture-explorer-v1.html</text>
+
+                <rect class="arch-svg-chip" x="500" y="301" width="190" height="58" rx="8" />
+                <text class="arch-svg-chip-text" x="518" y="326">Reviewer</text>
+                <text class="arch-svg-chip-sub" x="518" y="344">architecture-reviewer.html</text>
+              </g>
+
+              <!-- Local storage -->
+              <rect
+                class="arch-svg-box-key"
+                x="270"
+                y="560"
+                width="440"
+                height="56"
+                rx="12"
+              />
+              <text class="arch-svg-title" x="490" y="584" text-anchor="middle">
+                Browser localStorage — shared state
+              </text>
+
+              <text class="arch-svg-sub" x="490" y="602" text-anchor="middle">
+                domain profile · theme · optional Gemini key
+              </text>
+
+              <!-- External column -->
+              <rect class="arch-svg-box" x="760" y="60" width="290" height="70" rx="14" />
+              <text class="arch-svg-title" x="790" y="92">Google Fonts</text>
+              <text class="arch-svg-sub" x="790" y="112">Inter typeface · web CSS</text>
+
+              <rect class="arch-svg-box" x="760" y="150" width="290" height="70" rx="14" />
+              <text class="arch-svg-title" x="790" y="182">jsPDF 2.5.1 (CDN)</text>
+              <text class="arch-svg-sub" x="790" y="202">ADR export → PDF</text>
+
+              <rect class="arch-svg-box" x="760" y="240" width="290" height="90" rx="14" />
+              <text class="arch-svg-title" x="790" y="272">Google Gemini API</text>
+              <text class="arch-svg-sub" x="790" y="292">Optional Q&amp;A · free tier</text>
+              <text class="arch-svg-sub" x="790" y="310">Key stored in browser only</text>
+
+              <!-- Arrows -->
+              <path class="arch-svg-arrow" d="M220,325 L262,325" marker-end="url(#arrH)" />
+              <path class="arch-svg-arrow" d="M490,530 L490,552" marker-end="url(#arrH)" />
+              <text class="arch-svg-label" x="498" y="548">read / write</text>
+
+              <path class="arch-svg-arrow" d="M710,95 L752,95" marker-end="url(#arrH)" />
+              <path class="arch-svg-arrow" d="M710,185 L752,185" marker-end="url(#arrH)" />
+              <path class="arch-svg-arrow" d="M710,285 L752,285" marker-end="url(#arrH)" />
+            </svg>
+
+            <figcaption>
+              Every request is served as static files. The only runtime
+              dependencies are Google Fonts, the jsPDF CDN (used for ADR PDF
+              export), and — if the visitor opts in — the Google Gemini API.
+            </figcaption>
+          </figure>
+
+          <h2 id="detailed">Detailed topology</h2>
+
+          <p>
+            Zooming in: each tool is a self-contained page with its own
+            stylesheet and JavaScript modules. The three tools deliberately
+            share a small set of <strong>knowledge and engine modules</strong>
+            so the numbers stay consistent — Architect and Reviewer evaluate
+            against the same architectures, scenarios, and weights.
+          </p>
+
+          <figure class="arch-figure">
+            <svg
+              viewBox="0 0 1080 860"
+              role="img"
+              aria-label="Detailed topology of Wahab Waypoint"
+            >
+              <defs>
+                <marker
+                  id="arrHD"
+                  markerWidth="10"
+                  markerHeight="10"
+                  refX="9"
+                  refY="5"
+                  orient="auto"
+                >
+                  <path d="M0,0 L10,5 L0,10 z" fill="#93c5fd"></path>
+                </marker>
+              </defs>
+
+              <!-- ============ Domain Context Learner ============ -->
+              <rect class="arch-svg-box" x="30" y="60" width="330" height="470" rx="16" />
+              <text class="arch-svg-title" x="58" y="92">Domain Context Learner</text>
+              <text class="arch-svg-sub" x="58" y="112">domain-context-learner.html</text>
+
+              <g>
+                <rect class="arch-svg-chip" x="50" y="140" width="290" height="52" rx="8" />
+                <text class="arch-svg-chip-text" x="68" y="164">1 · Business domain</text>
+                <text class="arch-svg-chip-sub" x="68" y="182">12 domains</text>
+
+                <rect class="arch-svg-chip" x="50" y="204" width="290" height="52" rx="8" />
+                <text class="arch-svg-chip-text" x="68" y="228">2 · Priorities</text>
+                <text class="arch-svg-chip-sub" x="68" y="246">8 qualities · pick up to 4</text>
+
+                <rect class="arch-svg-chip" x="50" y="268" width="290" height="52" rx="8" />
+                <text class="arch-svg-chip-text" x="68" y="292">3 · Data shape</text>
+                <text class="arch-svg-chip-sub" x="68" y="310">volume · realtime · integration · sensitivity</text>
+
+                <rect class="arch-svg-chip" x="50" y="332" width="290" height="52" rx="8" />
+                <text class="arch-svg-chip-text" x="68" y="356">4 · Save profile</text>
+                <text class="arch-svg-chip-sub" x="68" y="374">writes wahab-waypoint.domain-profile</text>
+
+                <rect class="arch-svg-chip" x="50" y="396" width="290" height="52" rx="8" />
+                <text class="arch-svg-chip-text" x="68" y="420">domain-learner.js</text>
+                <text class="arch-svg-chip-sub" x="68" y="438">journey state · profile build · persistence</text>
+              </g>
+
+              <text class="arch-svg-label" x="58" y="472">Output: a reusable domain profile</text>
+
+              <!-- ============ Architect ============ -->
+              <rect class="arch-svg-box" x="390" y="60" width="330" height="600" rx="16" />
+              <text class="arch-svg-title" x="418" y="92">Architect</text>
+              <text class="arch-svg-sub" x="418" y="112">architecture-explorer-v1.html</text>
+              <text class="arch-svg-label" x="418" y="140">
+                Workload → Weights → Engine → Ranking
+              </text>
+              <text class="arch-svg-label-sub" x="418" y="156">
+                Blueprint · ADR · Q&amp;A
+              </text>
+
+              <g>
+                <rect class="arch-svg-chip-shared" x="410" y="178" width="290" height="48" rx="8" />
+                <text class="arch-svg-chip-text-shared" x="428" y="201">scenarios.js</text>
+                <text class="arch-svg-chip-sub" x="428" y="216">18 workload scenarios</text>
+
+                <rect class="arch-svg-chip-shared" x="410" y="234" width="290" height="48" rx="8" />
+                <text class="arch-svg-chip-text-shared" x="428" y="257">architectures.js</text>
+                <text class="arch-svg-chip-sub" x="428" y="272">10 reference architectures</text>
+
+                <rect class="arch-svg-chip-shared" x="410" y="290" width="290" height="48" rx="8" />
+                <text class="arch-svg-chip-text-shared" x="428" y="313">domain-context.js</text>
+                <text class="arch-svg-chip-sub" x="428" y="328">reads profile → weight deltas</text>
+
+                <rect class="arch-svg-chip-shared" x="410" y="346" width="290" height="48" rx="8" />
+                <text class="arch-svg-chip-text-shared" x="428" y="369">engine.js</text>
+                <text class="arch-svg-chip-sub" x="428" y="384">weighted scoring + ranking</text>
+
+                <rect class="arch-svg-chip" x="410" y="402" width="290" height="48" rx="8" />
+                <text class="arch-svg-chip-text" x="428" y="425">diagrams.js</text>
+                <text class="arch-svg-chip-sub" x="428" y="440">blueprint DAG → SVG</text>
+
+                <rect class="arch-svg-chip" x="410" y="458" width="290" height="48" rx="8" />
+                <text class="arch-svg-chip-text" x="428" y="481">adr.js</text>
+                <text class="arch-svg-chip-sub" x="428" y="496">ADR text · copy · PDF export</text>
+
+                <rect class="arch-svg-chip" x="410" y="514" width="290" height="48" rx="8" />
+                <text class="arch-svg-chip-text" x="428" y="537">qa.js + genai.js</text>
+                <text class="arch-svg-chip-sub" x="428" y="552">local KB · optional Gemini</text>
+
+                <rect class="arch-svg-chip" x="410" y="570" width="290" height="48" rx="8" />
+                <text class="arch-svg-chip-text" x="428" y="593">app.js</text>
+                <text class="arch-svg-chip-sub" x="428" y="608">UI state · orchestration</text>
+              </g>
+
+              <text class="arch-svg-label" x="418" y="640">
+                Output: winner · tradeoffs · blueprint · ADR
+              </text>
+
+              <!-- ============ Reviewer ============ -->
+              <rect class="arch-svg-box" x="750" y="60" width="300" height="470" rx="16" />
+              <text class="arch-svg-title" x="778" y="92">Reviewer</text>
+              <text class="arch-svg-sub" x="778" y="112">architecture-reviewer.html</text>
+
+              <g>
+                <rect class="arch-svg-chip" x="770" y="140" width="260" height="48" rx="8" />
+                <text class="arch-svg-chip-text" x="788" y="164">reviewer.js</text>
+                <text class="arch-svg-chip-sub" x="788" y="179">fit score · verdict · gaps</text>
+
+                <rect class="arch-svg-chip-shared" x="770" y="196" width="260" height="48" rx="8" />
+                <text class="arch-svg-chip-text-shared" x="788" y="220">architectures.js</text>
+                <text class="arch-svg-chip-sub" x="788" y="235">shared with Architect</text>
+
+                <rect class="arch-svg-chip-shared" x="770" y="252" width="260" height="48" rx="8" />
+                <text class="arch-svg-chip-text-shared" x="788" y="276">scenarios.js</text>
+                <text class="arch-svg-chip-sub" x="788" y="291">shared with Architect</text>
+
+                <rect class="arch-svg-chip-shared" x="770" y="308" width="260" height="48" rx="8" />
+                <text class="arch-svg-chip-text-shared" x="788" y="332">engine.js</text>
+                <text class="arch-svg-chip-sub" x="788" y="347">shared scoring</text>
+
+                <rect class="arch-svg-chip-shared" x="770" y="364" width="260" height="48" rx="8" />
+                <text class="arch-svg-chip-text-shared" x="788" y="388">domain-context.js</text>
+                <text class="arch-svg-chip-sub" x="788" y="403">same weight adjustments</text>
+
+                <rect class="arch-svg-chip" x="770" y="420" width="260" height="48" rx="8" />
+                <text class="arch-svg-chip-text" x="788" y="444">architecture-reviewer.css</text>
+                <text class="arch-svg-chip-sub" x="788" y="459">tool styles</text>
+              </g>
+
+              <text class="arch-svg-label" x="778" y="492">
+                Output: fit score · strengths · gaps
+              </text>
+
+              <!-- ============ Shared state ============ -->
+              <rect class="arch-svg-box-key" x="390" y="690" width="660" height="66" rx="12" />
+              <text class="arch-svg-title" x="720" y="724" text-anchor="middle">
+                wahab-waypoint.domain-profile — shared context
+              </text>
+              <text class="arch-svg-sub" x="720" y="744" text-anchor="middle">
+                browser localStorage · read by Architect &amp; Reviewer
+              </text>
+
+              <!-- External strip -->
+              <rect class="arch-svg-box-dash" x="30" y="760" width="320" height="56" rx="12" />
+              <text class="arch-svg-title" x="58" y="787">External services</text>
+              <text class="arch-svg-sub" x="58" y="806">Google Fonts · jsPDF CDN · Gemini</text>
+
+              <!-- ============ Arrows ============ -->
+              <path
+                class="arch-svg-arrow"
+                d="M195,530 L195,720 L382,720"
+                marker-end="url(#arrHD)"
+              />
+              <text class="arch-svg-label" x="205" y="640">save profile</text>
+
+              <path
+                class="arch-svg-arrow"
+                d="M555,690 L555,668"
+                marker-end="url(#arrHD)"
+              />
+              <text class="arch-svg-label" x="563" y="684">pre-tunes sliders</text>
+
+              <path
+                class="arch-svg-arrow"
+                d="M1000,690 L1000,538"
+                marker-end="url(#arrHD)"
+              />
+              <text class="arch-svg-label" x="992" y="622" text-anchor="end">same requirements</text>
+
+              <path
+                class="arch-svg-arrow"
+                d="M720,320 L742,320"
+                marker-end="url(#arrHD)"
+              />
+              <text class="arch-svg-label" x="735" y="312" text-anchor="middle">handoff</text>
+
+              <path
+                class="arch-svg-arrow"
+                d="M750,364 L728,364"
+                marker-end="url(#arrHD)"
+              />
+              <text class="arch-svg-label" x="735" y="376" text-anchor="middle">compare</text>
+            </svg>
+
+            <figcaption>
+              Colored boxes (violet fill) are modules shared verbatim between
+              Architect and Reviewer, which is what keeps the two tools'
+              verdicts consistent. Arrows show the cross-tool journey: the
+              learner writes the profile, Architect and Reviewer both read it,
+              and the tools hand off to each other through URL query
+              parameters.
+            </figcaption>
+          </figure>
+
+          <div class="arch-legend" aria-label="Diagram legend">
+            <span class="arch-legend-item">
+              <span class="arch-swatch"></span> Tool / page
+            </span>
+            <span class="arch-legend-item">
+              <span class="arch-swatch key"></span> Shared state or entry point
+            </span>
+            <span class="arch-legend-item">
+              <span class="arch-swatch shared"></span> Module shared by Architect &amp; Reviewer
+            </span>
+            <span class="arch-legend-item">
+              <span class="arch-swatch dash"></span> External / out-of-scope
+            </span>
+          </div>
+
+          <h2 id="stack">Tech stack</h2>
+
+          <p>
+            The entire product line is plain web technology. No framework, no
+            bundler, no server runtime, no package manager — the deployed files
+            are the source files.
+          </p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Layer</th>
+                  <th>Technology</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Language</td>
+                  <td>Vanilla JavaScript (ES6+)</td>
+                  <td>No TypeScript, no frameworks, no jQuery in the tools</td>
+                </tr>
+                <tr>
+                  <td>Markup</td>
+                  <td>HTML5</td>
+                  <td>Semantic elements, ARIA roles, keyboard-navigable cards</td>
+                </tr>
+                <tr>
+                  <td>Styling</td>
+                  <td>CSS3 with custom properties</td>
+                  <td>Theme variables switch light/dark via <code>data-theme</code></td>
+                </tr>
+                <tr>
+                  <td>Build</td>
+                  <td>None</td>
+                  <td>Files deploy as-is; no compile or bundling step</td>
+                </tr>
+                <tr>
+                  <td>Hosting</td>
+                  <td>CDN-backed static hosting</td>
+                  <td><code>wahab2.com</code>, HTTPS</td>
+                </tr>
+                <tr>
+                  <td>Typeface</td>
+                  <td>Google Fonts — Inter</td>
+                  <td>Loaded once per page from fonts.googleapis.com</td>
+                </tr>
+                <tr>
+                  <td>PDF export</td>
+                  <td>jsPDF 2.5.1 (cdnjs)</td>
+                  <td>Optional; falls back to a <code>.md</code> download</td>
+                </tr>
+                <tr>
+                  <td>AI Q&amp;A</td>
+                  <td>Google Gemini API (optional)</td>
+                  <td>Free tier; key stored in the visitor's browser</td>
+                </tr>
+                <tr>
+                  <td>Persistence</td>
+                  <td>Browser <code>localStorage</code></td>
+                  <td>Domain profile, theme, optional Gemini key</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="doc-note">
+            <span class="note-icon">🧩</span>
+
+            <p>
+              The personal landing page (repo root) is built with Bootstrap and
+              jQuery vendor assets. The Wahab Waypoint product line — the three
+              tools, the hub, and the docs — uses none of that; it is pure
+              vanilla JavaScript.
+            </p>
+          </div>
+
+          <h2 id="data">Shared state &amp; data model</h2>
+
+          <p>
+            All persistent state lives in the browser. There is exactly one
+            <em>product-level</em> piece of state — the domain profile — plus
+            two per-page preferences.
+          </p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>localStorage key</th>
+                  <th>Written by</th>
+                  <th>Read by</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>wahab-waypoint.domain-profile</code></td>
+                  <td>Domain Context Learner</td>
+                  <td>Architect, Reviewer</td>
+                  <td>The shared business context that tunes both tools</td>
+                </tr>
+                <tr>
+                  <td><code>ate-theme</code></td>
+                  <td>Every page</td>
+                  <td>Every page</td>
+                  <td>Light / dark preference</td>
+                </tr>
+                <tr>
+                  <td><code>ate-gemini-key</code></td>
+                  <td>Architect (Q&amp;A)</td>
+                  <td>Architect (Q&amp;A)</td>
+                  <td>Optional Google Gemini API key — never committed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Domain profile schema</h3>
+
+          <p>
+            Produced by Domain Context Learner, versioned for future
+            migration, and validated before it is used:
+          </p>
+
+          <div class="arch-code">
+            <code>
+{
+  "version": 1,
+  "updatedAt": "2026-08-16T12:00:00.000Z",
+  "domain": { "id": "ecommerce", "name": "E-Commerce &amp; Retail" },
+  "qualities": [
+    { "id": "scalability", "name": "Scalability" },
+    { "id": "resilience", "name": "Resilience &amp; uptime" }
+  ],
+  "data": {
+    "volume":      { "id": "high", "name": "High" },
+    "sensitivity": [ { "id": "cardholder", "name": "Cardholder data" } ],
+    "realtime":    { "id": "high", "name": "High" },
+    "integration": { "id": "complex", "name": "Complex" }
+  }
+}
+            </code>
+          </div>
+
+          <h2 id="weights">Domain profile → priority weights</h2>
+
+          <p>
+            The bridge between the tools lives in <code>domain-context.js</code>.
+            When a profile exists, its domain, ranked qualities, and data shape
+            are converted into per-criterion <strong>weight deltas</strong>.
+            Architect adds these to each scenario's baseline requirement, so
+            the priority sliders start pre-tuned; Reviewer adds the same deltas
+            before scoring, so its verdict uses the identical context. The
+            table below shows a representative subset.
+          </p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Profile input</th>
+                  <th>Weight deltas applied</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Domain: Financial Services</td>
+                  <td>compliance +15, reliability +10</td>
+                </tr>
+                <tr>
+                  <td>Domain: Healthcare</td>
+                  <td>compliance +20, reliability +10, latency +5</td>
+                </tr>
+                <tr>
+                  <td>Domain: E-Commerce &amp; Retail</td>
+                  <td>scalability +10, latency +10, reliability +5</td>
+                </tr>
+                <tr>
+                  <td>Domain: Media &amp; Streaming</td>
+                  <td>scalability +15, latency +10</td>
+                </tr>
+                <tr>
+                  <td>Domain: SaaS &amp; Multi-tenant</td>
+                  <td>scalability +10, simplicity +10</td>
+                </tr>
+                <tr>
+                  <td>Domain: Public Sector</td>
+                  <td>compliance +20</td>
+                </tr>
+                <tr>
+                  <td>Quality: Cost control</td>
+                  <td>costEfficiency +20, simplicity +5</td>
+                </tr>
+                <tr>
+                  <td>Quality: Time-to-market</td>
+                  <td>simplicity +20, latency +5</td>
+                </tr>
+                <tr>
+                  <td>Quality: Regulatory compliance</td>
+                  <td>compliance +25, reliability +10</td>
+                </tr>
+                <tr>
+                  <td>Quality: Resilience &amp; uptime</td>
+                  <td>reliability +25, compliance +5</td>
+                </tr>
+                <tr>
+                  <td>Quality: Scalability</td>
+                  <td>scalability +25</td>
+                </tr>
+                <tr>
+                  <td>Data: High volume</td>
+                  <td>scalability +20, costEfficiency +5</td>
+                </tr>
+                <tr>
+                  <td>Data: High real-time need</td>
+                  <td>latency +20</td>
+                </tr>
+                <tr>
+                  <td>Data: Complex integration</td>
+                  <td>simplicity +10</td>
+                </tr>
+                <tr>
+                  <td>Data: PII / PHI / Cardholder</td>
+                  <td>compliance +10 / +15 / +15</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Deltas are summed across every selected quality and data flag, then
+            clamped to the 0–100 slider range. The full mapping is defined in
+            <code>DOMAIN_DOMAIN_WEIGHTS</code>, <code>DOMAIN_QUALITY_WEIGHTS</code>,
+            and <code>DOMAIN_DATA_WEIGHTS</code> in
+            <code>tools/architecture-explorer/js/domain-context.js</code>.
+          </p>
+
+          <h2 id="engine">Scoring engine</h2>
+
+          <p>
+            Architect and Reviewer share one routine (<code>engine.js</code>).
+            Each reference architecture carries a fixed capability score
+            (0–100) for the eight criteria. Given a requirement vector
+            <code>w</code> — the eight priority weights — each architecture
+            receives:
+          </p>
+
+          <div class="arch-code">
+            <code>
+finalScore = clamp( round( 100 × Σ(wᵢ × capabilityᵢ) / Σ(wᵢ) ), 0, 100 )
+            </code>
+          </div>
+
+          <ul>
+            <li>
+              <strong>Architect</strong> sorts every architecture by this score
+              and returns the winner, the next three as alternatives, and the
+              full ranking. Slider defaults are the scenario baseline plus the
+              domain deltas, snapped to 5-point steps.
+            </li>
+            <li>
+              <strong>Reviewer</strong> computes per-criterion coverage:
+              <code>min(capability, requirement) ÷ requirement × 100</code>,
+              classifies each criterion as strong / partial / gap / not
+              critical, and derives the verdict from the same weighted score.
+            </li>
+          </ul>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Reviewer verdict</th>
+                  <th>Fit score</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Strong fit</td><td>≥ 85</td></tr>
+                <tr><td>Good fit</td><td>70 – 84</td></tr>
+                <tr><td>Moderate fit</td><td>55 – 69</td></tr>
+                <tr><td>Weak fit</td><td>40 – 54</td></tr>
+                <tr><td>Poor fit</td><td>&lt; 40</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="handoffs">Cross-tool handoffs</h2>
+
+          <p>
+            The products are linked end to end. Architect's recommendation
+            carries a deep link into Reviewer with the chosen architecture
+            pre-selected, and Reviewer links back to Architect for comparison —
+            both via URL query parameters that the pages read on load.
+          </p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>From</th>
+                  <th>Deep link</th>
+                  <th>What happens on load</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Architect → Reviewer</td>
+                  <td><code>?scenario=&lt;id&gt;&amp;arch=&lt;id&gt;</code></td>
+                  <td>Reviewer pre-selects the workload and the winning architecture</td>
+                </tr>
+                <tr>
+                  <td>Reviewer → Architect</td>
+                  <td><code>?scenario=&lt;id&gt;</code></td>
+                  <td>Architect selects the workload and generates a recommendation</td>
+                </tr>
+                <tr>
+                  <td>Direct scenario link</td>
+                  <td><code>?scenario=&lt;id&gt;</code></td>
+                  <td>Skips to the result for shareable, bookmarkable URLs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Because Reviewer loads the very same <code>scenarios.js</code> and
+            <code>architectures.js</code> as Architect, scenario and
+            architecture ids always align between the two tools.
+          </p>
+
+          <h2 id="integrations">Integrations</h2>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Integration</th>
+                  <th>Type</th>
+                  <th>Direction</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Static hosting / CDN</td>
+                  <td>Hosting</td>
+                  <td>Inbound</td>
+                  <td>Serves the static origin at <code>wahab2.com</code> over HTTPS</td>
+                </tr>
+                <tr>
+                  <td>Google Fonts</td>
+                  <td>Web fonts</td>
+                  <td>Outbound</td>
+                  <td>Inter, loaded via <code>fonts.googleapis.com</code></td>
+                </tr>
+                <tr>
+                  <td>jsPDF (cdnjs)</td>
+                  <td>Client library</td>
+                  <td>Outbound</td>
+                  <td>ADR export to PDF; graceful fallback to <code>.md</code></td>
+                </tr>
+                <tr>
+                  <td>Google Gemini API</td>
+                  <td>AI (optional)</td>
+                  <td>Outbound</td>
+                  <td>Enhanced Q&amp;A answers; <code>gemini-flash-latest</code>, temperature 0.4, 2048 max tokens</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="doc-note">
+            <span class="note-icon">📡</span>
+
+            <p>
+              There is currently no analytics, no comments, no email capture,
+              and no cookie banner anywhere in the product line — no third-party
+              code runs on the page except the three integrations above.
+            </p>
+          </div>
+
+          <h2 id="security">Security &amp; privacy model</h2>
+
+          <ul>
+            <li>
+              <strong>No backend.</strong> There is nothing to breach — no
+              server, database, API of our own, or user account store.
+            </li>
+            <li>
+              <strong>Data stays on-device.</strong> Domain profiles and theme
+              preferences never leave the browser; they live in
+              <code>localStorage</code>.
+            </li>
+            <li>
+              <strong>Optional AI key.</strong> The Gemini API key is entered
+              by the visitor, stored only in their own browser, and sent only
+              to Google's endpoint — it is never committed to the repository
+              and never sent anywhere else.
+            </li>
+            <li>
+              <strong>No tracking.</strong> No analytics, no cookies, no
+              fingerprinting.
+            </li>
+            <li>
+              <strong>Hardening notes.</strong> The site is served over HTTPS;
+              a future hardening pass could add a Content-Security-Policy
+              header and Subresource Integrity (SRI) attributes to the jsPDF
+              and Google Fonts includes.
+            </li>
+          </ul>
+
+          <h2 id="deployment">Deployment</h2>
+
+          <ul>
+            <li>
+              The product line is published as a static origin at
+              <code>wahab2.com</code>, served over HTTPS.
+            </li>
+            <li>
+              A <code>CNAME</code> record maps the custom domain
+              <code>wahab2.com</code>, with automatic HTTPS.
+            </li>
+            <li>
+              <code>robots.txt</code> and <code>sitemap.xml</code> cover
+              crawling and indexing; <code>404.html</code> provides a styled
+              fallback for unknown paths.
+            </li>
+            <li>
+              <code>clean-url.js</code> hides the <code>.html</code> suffix in
+              the address bar via <code>history.replaceState</code>, giving
+              shareable, readable URLs while the underlying files remain
+              plain static pages.
+            </li>
+            <li>
+              Shipping a change is a commit and a push — the updated static
+              files go live within a minute.
+            </li>
+          </ul>
+
+          <div class="doc-next">
+            <p>
+              See the product from the outside first? 
+              <a href="overview.html">read the overview →</a>
+            </p>
+          </div>
+
+          <a class="doc-back" href="index.html">← Back to all docs</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              Wahab <span class="logo-grad">Waypoint</span>
+            </div>
+
+            <div class="footer-tagline">Architecture intelligence for your business.</div>
+
+            <div class="footer-sub-links">
+              <a href="../index.html">Product line</a>
+
+              <a href="index.html">Docs</a>
+
+              <a href="../about.html">About</a>
+            </div>
+          </div>
+
+          <!-- Docs -->
+          <div class="footer-section">
+            <div class="footer-title">Documentation</div>
+
+            <div class="footer-links">
+              <a href="tour.html"> Watch the narrated tour </a>
+
+              <a href="domain-context-learner.html">
+                Learn your domain
+              </a>
+
+              <a href="architect.html"> Evaluate architectures </a>
+
+              <a href="reviewer.html"> Review a design </a>
+
+              <a href="architecture.html"> System architecture </a>
+
+              <a href="example-ecommerce.html"> E-commerce example </a>
+
+              <a href="example-streaming.html"> Streaming example </a>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Crafted by Abdul Rafee Wahab </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.0 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+    <script src="../../assets/js/site-nav.js" defer></script>
+    <script src="../../assets/js/clean-url.js" defer></script>
+  </body>
+</html>

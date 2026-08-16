@@ -46,6 +46,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://wahab2.com/waypoint/docs/architecture.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wahab2.com/waypoint/docs/release-notes.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://wahab2.com/waypoint/docs/example-ecommerce.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>

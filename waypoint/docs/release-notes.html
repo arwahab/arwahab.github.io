@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Release Notes · Wahab Waypoint Docs</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../tools/architecture-explorer/favicons/favicon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../tools/architecture-explorer/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="../../tools/architecture-explorer/favicons/favicon-64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../tools/architecture-explorer/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="48x48"
+      href="../../tools/architecture-explorer/favicons/favicon.ico"
+    />
+
+    <meta
+      name="description"
+      content="Release notes for Wahab Waypoint — every major change from the first page in July 2026 to the current build, newest first."
+    />
+    <meta name="author" content="Abdul Rafee Wahab" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:title" content="Release Notes · Wahab Waypoint" />
+    <meta
+      property="og:description"
+      content="Every major change to Wahab Waypoint, from the first page in July 2026 to the current build."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Wahab Waypoint" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="og:url"
+      content="https://wahab2.com/waypoint/docs/release-notes.html"
+    />
+    <meta
+      property="og:image"
+      content="https://wahab2.com/waypoint/docs/media/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Release Notes · Wahab Waypoint" />
+    <meta
+      name="twitter:description"
+      content="Every major change to Wahab Waypoint, from the first page in July 2026 to the current build."
+    />
+    <meta
+      name="twitter:image"
+      content="https://wahab2.com/waypoint/docs/media/og-image.png"
+    />
+
+    <link
+      rel="canonical"
+      href="https://wahab2.com/waypoint/docs/release-notes.html"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../tools/architecture-explorer/css/architecture-explorer.css"
+    />
+
+    <link rel="stylesheet" href="../css/waypoint.css" />
+
+    <style>
+      .release {
+        margin-top: 44px;
+      }
+
+      .rel-badge {
+        display: inline-block;
+        vertical-align: 4px;
+        margin-left: 10px;
+        padding: 3px 11px;
+        border-radius: 999px;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--text-2);
+        background: var(--chip-bg);
+        border: 1px solid var(--chip-border);
+      }
+
+      .rel-badge.current {
+        color: #ffffff;
+        background: linear-gradient(90deg, var(--accent-blue), var(--accent-violet));
+        border-color: transparent;
+      }
+
+      .rel-date {
+        margin: 6px 0 0;
+        color: var(--text-2);
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+      }
+
+      .rel-summary {
+        margin-top: 10px;
+      }
+
+      .doc-prose .release h3:first-of-type {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="app-header">
+      <nav class="app-bar" aria-label="Primary">
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-mark"
+            src="../../assets/img/wahab-waypoint.svg"
+            alt="Wahab Waypoint logo"
+          />
+
+          <span class="brand-name">Wahab Waypoint</span>
+        </a>
+
+        <div class="app-nav">
+          <a href="../index.html">Home</a>
+
+          <a href="index.html">Docs</a>
+
+          <a href="../index.html#how">How it works</a>
+
+          <a href="../about.html">About</a>
+        </div>
+
+        <div class="app-actions">
+          <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+            Light mode
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Introduction">
+      <h1>
+        Wahab Waypoint,
+        <span class="grad-text">release notes</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Every major change from the first page in July 2026 to the current
+        build — newest first.
+      </p>
+    </section>
+
+    <div class="container">
+      <article class="doc-page" aria-label="Release notes">
+        <div class="doc-prose">
+          <div class="doc-crumb">
+            <a href="index.html">Docs</a>
+
+            <span class="sep">/</span>
+
+            <span class="current">Release Notes</span>
+          </div>
+
+          <h1>Wahab Waypoint — release notes</h1>
+
+          <p>
+            Wahab Waypoint was first sketched as a single page on
+            <strong>July 30, 2026</strong> and grew into a product line of
+            three browser tools. Pre-launch builds are numbered
+            <strong>0.x</strong>; the public launch is <strong>1.0</strong>;
+            point releases track shipped changes since launch. There is no
+            backend, so every "release" is a set of static files going live —
+            nothing else to deploy.
+          </p>
+
+          <div class="doc-meta">
+            <span>Latest: v1.1</span>
+
+            <span>3 browser tools</span>
+
+            <span>0 backends</span>
+
+            <span>17 days in the making</span>
+          </div>
+
+          <h2 id="history">Release history at a glance</h2>
+
+          <p>
+            The short version. Each release is described in full below.
+          </p>
+
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Version</th>
+                  <th>Date</th>
+                  <th>What it was</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>v1.1</td>
+                  <td>Aug 16, 2026</td>
+                  <td>System architecture docs and this release notes page</td>
+                </tr>
+                <tr>
+                  <td>v1.0</td>
+                  <td>Aug 8, 2026</td>
+                  <td>Launch — Reviewer, cross-tool handoffs, docs, narrated tour, SEO</td>
+                </tr>
+                <tr>
+                  <td>v0.5</td>
+                  <td>Aug 3, 2026</td>
+                  <td>Domain Context Learner, Waypoint hub, hex-mesh logo</td>
+                </tr>
+                <tr>
+                  <td>v0.4</td>
+                  <td>Aug 2, 2026</td>
+                  <td>Security panel, compliance dimension, code quality pass</td>
+                </tr>
+                <tr>
+                  <td>v0.3</td>
+                  <td>Aug 1, 2026</td>
+                  <td>10 architectures, Gemini Q&amp;A, PDF ADR, theme toggle</td>
+                </tr>
+                <tr>
+                  <td>v0.2</td>
+                  <td>Jul 31, 2026</td>
+                  <td>Scoring engine, architecture library, first UI</td>
+                </tr>
+                <tr>
+                  <td>v0.1</td>
+                  <td>Jul 30, 2026</td>
+                  <td><code>ate.html</code> — the first page</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <section class="release">
+            <h2 id="v1-1">
+              v1.1 — Documentation release
+              <span class="rel-badge current">Current</span>
+            </h2>
+
+            <p class="rel-date">Aug 16, 2026</p>
+
+            <p class="rel-summary">
+              No product logic changed — this build is about being able to
+              explain the system and how it has changed.
+            </p>
+
+            <h3>New</h3>
+
+            <ul>
+              <li>
+                <strong>System architecture documentation</strong> —
+                <a href="architecture.html">architecture.html</a> walks through
+                the high-level and detailed topology, tech stack, shared state
+                and data model, the domain-profile weight mappings, the scoring
+                engine, cross-tool handoffs, integrations, and the security
+                model.
+              </li>
+              <li>
+                <strong>This release notes page</strong> — a running changelog
+                covering everything from the first commit to today.
+              </li>
+            </ul>
+          </section>
+
+          <section class="release">
+            <h2 id="v1-0">v1.0 — Launch edition <span class="rel-badge">Launch</span></h2>
+
+            <p class="rel-date">Aug 8, 2026</p>
+
+            <p class="rel-summary">
+              The product line went public as Wahab Waypoint. This is the
+              release the site, the docs, and the upcoming rollout campaign
+              describe.
+            </p>
+
+            <h3>New</h3>
+
+            <ul>
+              <li>
+                <strong>Reviewer</strong> — the third tool. Score an existing or
+                planned architecture against the same workload requirements
+                Architect uses, with per-criterion coverage (strong / partial /
+                gap), a fit verdict, and the shared scoring engine.
+              </li>
+              <li>
+                <strong>Cross-tool handoffs</strong> — Architect's
+                recommendation now deep-links into Reviewer
+                (<code>?scenario=&lt;id&gt;&amp;arch=&lt;id&gt;</code>) and
+                Reviewer links back, so the three tools behave as one journey.
+              </li>
+              <li>
+                <strong>Domain profile pre-tuning</strong> — the shared
+                <code>domain-context.js</code> maps a saved profile into weight
+                deltas that pre-tune Architect's sliders and feed Reviewer's
+                verdict, so both tools read the same context.
+              </li>
+              <li>
+                <strong>Documentation site</strong> — an overview, three
+                how-to guides, and two worked examples.
+              </li>
+              <li>
+                <strong>Narrated tour</strong> — a real narrated video with a
+                screencast UI walkthrough, replacing the earlier
+                speech-synthesis prototype.
+              </li>
+              <li>
+                <strong>About page</strong> — founder bio and photo.
+              </li>
+              <li>
+                <strong>SEO</strong> — structured data, Open Graph and Twitter
+                cards, canonical URLs, <code>robots.txt</code>, and
+                <code>sitemap.xml</code>.
+              </li>
+              <li>
+                <strong>Clean URLs</strong> — <code>history.replaceState</code>
+                hides the <code>.html</code> suffix in the address bar, plus a
+                styled 404 fallback.
+              </li>
+            </ul>
+
+            <h3>Improved</h3>
+
+            <ul>
+              <li>
+                Standardized hero titles across the line and removed redundant
+                badges.
+              </li>
+              <li>
+                Made the product journey explicit on every page — learn, then
+                evaluate, then review.
+              </li>
+              <li>
+                Site-wide design polish, and the personal landing page was
+                redesigned as an editorial page distinct from the product line.
+              </li>
+            </ul>
+
+            <h3>Fixed</h3>
+
+            <ul>
+              <li>Architecture diagrams collapsing to <code>scale(0)</code>.</li>
+            </ul>
+          </section>
+
+          <section class="release">
+            <h2 id="v0-5">v0.5 — Domain Context Learner &amp; the hub</h2>
+
+            <p class="rel-date">Aug 3, 2026</p>
+
+            <p class="rel-summary">
+              The single tool became a product line with a home page and a
+              second product.
+            </p>
+
+            <h3>New</h3>
+
+            <ul>
+              <li>
+                <strong>Wahab Waypoint landing page</strong> — the hub that
+                frames the whole line.
+              </li>
+              <li>
+                <strong>Domain Context Learner</strong> — captures the business
+                domain (12 domains), priority qualities (8 qualities, pick up to
+                4), and data shape (volume, real-time, integration, sensitivity),
+                then writes the shared domain profile to
+                <code>localStorage</code>.
+              </li>
+              <li>
+                <strong>Logo redesign</strong> — the hex-mesh monogram, with new
+                favicons and LinkedIn banner assets.
+              </li>
+            </ul>
+
+            <h3>Improved</h3>
+
+            <ul>
+              <li>
+                Shared favicon set across the line; decluttered app headers
+                (removed brand badge stickers, tightened the hero).
+              </li>
+            </ul>
+          </section>
+
+          <section class="release">
+            <h2 id="v0-4">v0.4 — Quality pass &amp; security</h2>
+
+            <p class="rel-date">Aug 2, 2026</p>
+
+            <p class="rel-summary">
+              A cleanup and hardening day: the tool got more opinionated about
+              security and the code got easier to maintain.
+            </p>
+
+            <h3>New</h3>
+
+            <ul>
+              <li>
+                <strong>Security considerations</strong> — IT and code security
+                notes in generated ADRs, plus a security panel in the
+                recommendation UI.
+              </li>
+              <li>
+                <strong>Compliance dimension</strong> — the eighth scoring
+                criterion, with scenarios rebalanced around it.
+              </li>
+              <li>
+                Restored the why-not reasoning lines in the comparison table.
+              </li>
+            </ul>
+
+            <h3>Improved</h3>
+
+            <ul>
+              <li>
+                Removed dead code and deduplicated explorer logic; formatted with
+                Prettier.
+              </li>
+              <li>
+                Reorganized the repo — tool assets moved into a
+                <code>favicons/</code> directory, <code>.DS_Store</code>
+                untracked.
+              </li>
+              <li>
+                Reorganized the explorer layout into a two-column top grid with
+                a full-width security panel.
+              </li>
+            </ul>
+          </section>
+
+          <section class="release">
+            <h2 id="v0-3">v0.3 — Architect feature sprint</h2>
+
+            <p class="rel-date">Aug 1, 2026</p>
+
+            <p class="rel-summary">
+              The busiest single day in the project's history — the tool went
+              from a working demo to a polished product.
+            </p>
+
+            <h3>New</h3>
+
+            <ul>
+              <li>
+                <strong>10 reference architectures</strong> and the first
+                scenario sets (later expanded to the 18 workloads of today).
+              </li>
+              <li>
+                <strong>ADR export to PDF</strong> via jsPDF.
+              </li>
+              <li>
+                <strong>Optional Gemini AI Q&amp;A</strong> with a local
+                knowledge-base fallback — the key stays in the visitor's
+                browser.
+              </li>
+              <li>Architecture Q&amp;A assistant panel.</li>
+              <li>
+                <strong>Light/dark theme toggle</strong> with a persisted
+                preference.
+              </li>
+              <li>
+                Navigation, keyboard access, and toast notifications.
+              </li>
+            </ul>
+
+            <h3>Improved</h3>
+
+            <ul>
+              <li>Responsive layout across devices.</li>
+              <li>Capability GIF and article background images.</li>
+            </ul>
+
+            <h3>Fixed</h3>
+
+            <ul>
+              <li>Proper multi-size favicon set.</li>
+            </ul>
+          </section>
+
+          <section class="release">
+            <h2 id="v0-2">v0.2 — Engine foundations</h2>
+
+            <p class="rel-date">Jul 31, 2026</p>
+
+            <p class="rel-summary">
+              The core became real: a weighted scoring engine, a library of
+              reference architectures, and the first working evaluation flow.
+            </p>
+
+            <h3>New</h3>
+
+            <ul>
+              <li>
+                <code>engine.js</code> — the weighted scoring routine both tools
+                still share today.
+              </li>
+              <li>
+                <code>architectures.js</code> — the reference architecture
+                library.
+              </li>
+              <li>
+                <code>decision-engine.js</code>, <code>data.js</code>,
+                <code>app.js</code>, and <code>styles.css</code> — the decision
+                logic, scenario data, UI, and styling.
+              </li>
+              <li>
+                The first end-to-end flow: pick a workload, see a
+                recommendation.
+              </li>
+            </ul>
+          </section>
+
+          <section class="release">
+            <h2 id="v0-1">v0.1 — The seed</h2>
+
+            <p class="rel-date">Jul 30, 2026</p>
+
+            <p class="rel-summary">
+              Where it all started.
+            </p>
+
+            <h3>New</h3>
+
+            <ul>
+              <li>
+                <code>ate.html</code> — the first page of what would become the
+                Architect tool.
+              </li>
+            </ul>
+          </section>
+
+          <h2 id="before">Before Waypoint</h2>
+
+          <p>
+            The repository itself is older than the product. It began in
+            <strong>May 2020</strong> as a personal landing page for
+            <code>wahab2.com</code>, hosted static experiments (including an R
+            flexdashboard example in 2022), and was the hosting ground the
+            architecture explorer grew out of in July 2026. Today the site is
+            split in two: the <a href="../about.html">personal landing page</a>
+            and the Wahab Waypoint product line.
+          </p>
+
+          <div class="doc-note">
+            <span class="note-icon">🛤️</span>
+
+            <p>
+              What's next: the pre-launch feedback circle and the eight-post
+              LinkedIn rollout are in motion. Anything that ships to the site
+              after that will be added to these notes.
+            </p>
+          </div>
+
+          <div class="doc-next">
+            <p>
+              Want the details behind today's build?
+              <a href="architecture.html">read the system architecture →</a>
+            </p>
+          </div>
+
+          <a class="doc-back" href="index.html">← Back to all docs</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-glass">
+        <div class="footer-grid">
+          <!-- Product -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              Wahab <span class="logo-grad">Waypoint</span>
+            </div>
+
+            <div class="footer-tagline">Architecture intelligence for your business.</div>
+
+            <div class="footer-sub-links">
+              <a href="../index.html">Product line</a>
+
+              <a href="index.html">Docs</a>
+
+              <a href="../about.html">About</a>
+            </div>
+          </div>
+
+          <!-- Docs -->
+          <div class="footer-section">
+            <div class="footer-title">Documentation</div>
+
+            <div class="footer-links">
+              <a href="tour.html"> Watch the narrated tour </a>
+
+              <a href="domain-context-learner.html">
+                Learn your domain
+              </a>
+
+              <a href="architect.html"> Evaluate architectures </a>
+
+              <a href="reviewer.html"> Review a design </a>
+
+              <a href="architecture.html"> System architecture </a>
+
+              <a href="release-notes.html"> Release notes </a>
+
+              <a href="example-ecommerce.html"> E-commerce example </a>
+
+              <a href="example-streaming.html"> Streaming example </a>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="footer-section">
+            <div class="footer-title">Connect</div>
+
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/arwahab/" target="_blank">
+                LinkedIn
+              </a>
+
+              <a href="https://github.com/arwahab" target="_blank"> GitHub </a>
+
+              <a href="https://blog.wahab2.com" target="_blank">
+                Engineering Blog
+              </a>
+
+              <a href="https://wahab2.com" target="_blank">
+                Personal Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <span> © 2026 Wahab Waypoint </span>
+
+          <span class="dot">•</span>
+
+          <span> Crafted by Abdul Rafee Wahab </span>
+
+          <span class="dot">•</span>
+
+          <span> Version 1.1 </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const THEME_KEY = "ate-theme";
+
+      function getInitialTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+
+        if (saved === "light" || saved === "dark") {
+          return saved;
+        }
+        const prefersLight =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: light)").matches;
+        return prefersLight ? "light" : "dark";
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const toggle = document.getElementById("themeToggle");
+
+        if (toggle) {
+          toggle.innerHTML = theme === "dark" ? "Light mode" : "Dark mode";
+        }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      }
+
+      applyTheme(getInitialTheme());
+    </script>
+    <script src="../../assets/js/site-nav.js" defer></script>
+    <script src="../../assets/js/clean-url.js" defer></script>
+  </body>
+</html>
