@@ -4,7 +4,7 @@
   var doc = document;
 
   var NAV = {
-    version: "1.2",
+    version: "1.3",
     groups: [
       {
         label: "Overview",

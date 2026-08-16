@@ -1031,6 +1031,10 @@
   padding: 30px 28px 44px;
 }
 
+.docs-main .hero {
+  padding: 24px 28px 6px;
+}
+
 /* On this page */
 .docs-toc {
   display: none;
