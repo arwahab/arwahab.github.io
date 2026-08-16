@@ -175,23 +175,19 @@
       </nav>
     </header>
 
-    <section class="hero" aria-label="Introduction">
-      <h1>
-        Wahab Waypoint,
-        <span class="grad-text">release notes</span>
-      </h1>
+    <div class="docs-layout">
+      <aside class="docs-sidebar" aria-label="Documentation navigation" id="docs-nav"></aside>
 
-      <p class="hero-subtitle">
-        Every major change from the first page in July 2026 to the current
-        build — newest first.
-      </p>
-    </section>
-
-    <div class="container">
+      <main class="docs-main" aria-label="Documentation content">
+        <div class="container">
       <article class="doc-page" aria-label="Release notes">
         <div class="doc-prose">
           <div class="doc-crumb">
             <a href="index.html">Docs</a>
+
+            <span class="sep">/</span>
+
+            <a href="index.html">References</a>
 
             <span class="sep">/</span>
 
@@ -211,7 +207,7 @@
           </p>
 
           <div class="doc-meta">
-            <span>Latest: v1.1</span>
+            <span>Latest: v1.2</span>
 
             <span>3 browser tools</span>
 
@@ -236,6 +232,11 @@
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td>v1.2</td>
+                  <td>Aug 16, 2026</td>
+                  <td>HashiCorp-style docs layout — sidebar nav, on-this-page TOC, pager</td>
+                </tr>
                 <tr>
                   <td>v1.1</td>
                   <td>Aug 16, 2026</td>
@@ -276,9 +277,51 @@
           </div>
 
           <section class="release">
+            <h2 id="v1-2">
+              v1.2 — Docs layout restructure
+              <span class="rel-badge current">Current</span>
+            </h2>
+
+            <p class="rel-date">Aug 16, 2026</p>
+
+            <p class="rel-summary">
+              The documentation moved to a HashiCorp-style developer-docs
+              layout. No product logic changed.
+            </p>
+
+            <h3>Changed</h3>
+
+            <ul>
+              <li>
+                <strong>Sidebar navigation</strong> — every docs page now has a
+                persistent left sidebar grouping the pages into Overview,
+                Guides, Examples, and References, with a version badge and
+                quick links to the product line, about page, GitHub, and
+                LinkedIn.
+              </li>
+              <li>
+                <strong>On this page</strong> — long pages gain a scrollspy
+                table of contents on the right that highlights the section you
+                are reading.
+              </li>
+              <li>
+                <strong>Breadcrumbs and pager</strong> — crumb trails were
+                standardized (<code>Docs / Guides / …</code>), and every page
+                now ends with Previous / Next navigation instead of the old
+                per-page links.
+              </li>
+              <li>
+                <strong>Compact page headers</strong> — inner pages swapped the
+                hero banner for a tight header, while the docs home keeps its
+                hero.
+              </li>
+            </ul>
+          </section>
+
+          <section class="release">
             <h2 id="v1-1">
               v1.1 — Documentation release
-              <span class="rel-badge current">Current</span>
+              <span class="rel-badge">Docs</span>
             </h2>
 
             <p class="rel-date">Aug 16, 2026</p>
@@ -607,16 +650,12 @@
             </p>
           </div>
 
-          <div class="doc-next">
-            <p>
-              Want the details behind today's build?
-              <a href="architecture.html">read the system architecture →</a>
-            </p>
-          </div>
-
-          <a class="doc-back" href="index.html">← Back to all docs</a>
         </div>
       </article>
+        </div>
+      </main>
+
+      <aside class="docs-toc" aria-label="On this page"></aside>
     </div>
 
     <footer class="footer">
@@ -697,7 +736,7 @@
 
           <span class="dot">•</span>
 
-          <span> Version 1.1 </span>
+          <span> Version 1.2 </span>
         </div>
       </div>
     </footer>
@@ -735,6 +774,7 @@
 
       applyTheme(getInitialTheme());
     </script>
+    <script src="../../assets/js/docs-nav.js" defer></script>
     <script src="../../assets/js/site-nav.js" defer></script>
     <script src="../../assets/js/clean-url.js" defer></script>
   </body>

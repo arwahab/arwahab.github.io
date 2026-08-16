@@ -131,19 +131,11 @@
       </nav>
     </header>
 
-    <section class="hero" aria-label="Introduction">
-      <h1>
-        E-commerce order
-        <span class="grad-text">platform</span>
-      </h1>
+    <div class="docs-layout">
+      <aside class="docs-sidebar" aria-label="Documentation navigation" id="docs-nav"></aside>
 
-      <p class="hero-subtitle">
-        A worked example: an online retailer preparing for holiday peaks, taken
-        through all three products end to end.
-      </p>
-    </section>
-
-    <div class="container">
+      <main class="docs-main" aria-label="Documentation content">
+        <div class="container">
       <article class="doc-page" aria-label="E-commerce example">
         <div class="doc-prose">
           <div class="doc-crumb">
@@ -308,18 +300,12 @@
             behind it, and preserve the existing compliance controls.
           </p>
 
-          <div class="doc-next">
-            <p>
-              Another angle on the same journey:
-              <a href="example-streaming.html">
-                the media event pipeline example →
-              </a>
-            </p>
-          </div>
-
-          <a class="doc-back" href="index.html">← Back to all docs</a>
         </div>
       </article>
+        </div>
+      </main>
+
+      <aside class="docs-toc" aria-label="On this page"></aside>
     </div>
 
     <footer class="footer">
@@ -356,6 +342,10 @@
               <a href="architect.html"> Evaluate architectures </a>
 
               <a href="reviewer.html"> Review a design </a>
+
+              <a href="architecture.html"> System architecture </a>
+
+              <a href="release-notes.html"> Release notes </a>
 
               <a href="example-ecommerce.html"> E-commerce example </a>
 
@@ -396,7 +386,7 @@
 
           <span class="dot">•</span>
 
-          <span> Version 1.0 </span>
+          <span> Version 1.2 </span>
         </div>
       </div>
     </footer>
@@ -434,6 +424,7 @@
 
       applyTheme(getInitialTheme());
     </script>
+    <script src="../../assets/js/docs-nav.js" defer></script>
     <script src="../../assets/js/site-nav.js" defer></script>
 <script src="../../assets/js/clean-url.js" defer></script>
   </body>

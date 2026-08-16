@@ -137,7 +137,11 @@
       </p>
     </section>
 
-    <div class="container">
+    <div class="docs-layout">
+      <aside class="docs-sidebar" aria-label="Documentation navigation" id="docs-nav"></aside>
+
+      <main class="docs-main" aria-label="Documentation content">
+        <div class="container">
       <section class="doc-page" aria-label="Documentation">
         <div class="doc-grid tight" style="margin-top: 0">
           <div class="doc-card centered" style="text-align: center">
@@ -323,6 +327,10 @@
           </div>
         </div>
       </section>
+        </div>
+      </main>
+
+      <aside class="docs-toc" aria-label="On this page"></aside>
     </div>
 
     <footer class="footer">
@@ -350,6 +358,8 @@
             <div class="footer-title">Documentation</div>
 
             <div class="footer-links">
+              <a href="tour.html"> Watch the narrated tour </a>
+
               <a href="domain-context-learner.html">
                 Learn your domain
               </a>
@@ -358,11 +368,13 @@
 
               <a href="reviewer.html"> Review a design </a>
 
+              <a href="architecture.html"> System architecture </a>
+
+              <a href="release-notes.html"> Release notes </a>
+
               <a href="example-ecommerce.html"> E-commerce example </a>
 
               <a href="example-streaming.html"> Streaming example </a>
-
-              <a href="release-notes.html"> Release notes </a>
             </div>
           </div>
 
@@ -399,7 +411,7 @@
 
           <span class="dot">•</span>
 
-          <span> Version 1.0 </span>
+          <span> Version 1.2 </span>
         </div>
       </div>
     </footer>
@@ -437,6 +449,7 @@
 
       applyTheme(getInitialTheme());
     </script>
+    <script src="../../assets/js/docs-nav.js" defer></script>
     <script src="../../assets/js/site-nav.js" defer></script>
 <script src="../../assets/js/clean-url.js" defer></script>
   </body>

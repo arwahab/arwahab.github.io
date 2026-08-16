@@ -125,19 +125,11 @@
       </nav>
     </header>
 
-    <section class="hero" aria-label="Introduction">
-      <h1>
-        Review a
-        <span class="grad-text">design</span>
-      </h1>
+    <div class="docs-layout">
+      <aside class="docs-sidebar" aria-label="Documentation navigation" id="docs-nav"></aside>
 
-      <p class="hero-subtitle">
-        A how-to guide for Wahab Waypoint: Reviewer — score an existing or
-        planned architecture against the requirements that actually matter.
-      </p>
-    </section>
-
-    <div class="container">
+      <main class="docs-main" aria-label="Documentation content">
+        <div class="container">
       <article class="doc-page" aria-label="Reviewer guide">
         <div class="doc-prose">
           <div class="doc-crumb">
@@ -297,18 +289,12 @@
             </li>
           </ul>
 
-          <div class="doc-next">
-            <p>
-              Prefer to see it working? 
-              <a href="example-ecommerce.html">
-                Follow the e-commerce example end to end →
-              </a>
-            </p>
-          </div>
-
-          <a class="doc-back" href="index.html">← Back to all docs</a>
         </div>
       </article>
+        </div>
+      </main>
+
+      <aside class="docs-toc" aria-label="On this page"></aside>
     </div>
 
     <footer class="footer">
@@ -345,6 +331,10 @@
               <a href="architect.html"> Evaluate architectures </a>
 
               <a href="reviewer.html"> Review a design </a>
+
+              <a href="architecture.html"> System architecture </a>
+
+              <a href="release-notes.html"> Release notes </a>
 
               <a href="example-ecommerce.html"> E-commerce example </a>
 
@@ -385,7 +375,7 @@
 
           <span class="dot">•</span>
 
-          <span> Version 1.0 </span>
+          <span> Version 1.2 </span>
         </div>
       </div>
     </footer>
@@ -423,6 +413,7 @@
 
       applyTheme(getInitialTheme());
     </script>
+    <script src="../../assets/js/docs-nav.js" defer></script>
     <script src="../../assets/js/site-nav.js" defer></script>
 <script src="../../assets/js/clean-url.js" defer></script>
   </body>

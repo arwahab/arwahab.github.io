@@ -152,8 +152,12 @@
       </nav>
     </header>
 
-    <main class="tour-stage" aria-label="Narrated tour">
-      <div class="doc-crumb" style="text-align: center">
+    <div class="docs-layout">
+      <aside class="docs-sidebar" aria-label="Documentation navigation" id="docs-nav"></aside>
+
+      <main class="docs-main" aria-label="Documentation content">
+        <div class="tour-stage" aria-label="Narrated tour">
+      <div class="doc-crumb">
         <a href="index.html">Docs</a>
 
         <span class="sep">/</span>
@@ -188,7 +192,11 @@
           Tip: use the chapter list to jump around, or press space to play and pause.
         </p>
       </div>
-    </main>
+        </div>
+      </main>
+
+      <aside class="docs-toc" aria-label="On this page"></aside>
+    </div>
 
     <footer class="footer">
       <div class="footer-glass">
@@ -225,7 +233,13 @@
 
               <a href="reviewer.html"> Review a design </a>
 
+              <a href="architecture.html"> System architecture </a>
+
+              <a href="release-notes.html"> Release notes </a>
+
               <a href="example-ecommerce.html"> E-commerce example </a>
+
+              <a href="example-streaming.html"> Streaming example </a>
             </div>
           </div>
 
@@ -262,7 +276,7 @@
 
           <span class="dot">•</span>
 
-          <span> Version 1.0 </span>
+          <span> Version 1.2 </span>
         </div>
       </div>
     </footer>
@@ -391,6 +405,7 @@
         }
       });
     </script>
+    <script src="../../assets/js/docs-nav.js" defer></script>
     <script src="../../assets/js/site-nav.js" defer></script>
 <script src="../../assets/js/clean-url.js" defer></script>
   </body>
